@@ -26,9 +26,9 @@ const bi = Binance({
 //     })
 // }).then(coins => coins.map(coin => coin.symbol))
 
-let find = (async() => {
+let find = (async(size, volume) => {
         let arr = []
-        let eyoarr = await eyo
+        let eyoarr = await eyo(volume)
         return Promise.all(
             eyoarr.map(async function(eyo) {
                 // let a = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
@@ -43,9 +43,9 @@ let find = (async() => {
                 // then(data => data.data).then(data => data.map(datum => (datum[3])))
                 // let d = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
                 //then(data => data.data).then(data => data.map(datum => (datum[4])))
-                let close100 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=15m&limit=500`).
+                let close100 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                 then(data => data.data).then(data => data.map(datum => (datum[4])));
-                let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=15m&limit=500`).
+                let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                 then(data => data.data).then(data => data.map(datum => (datum[4])));
                 // arr.push({ name: eyo, pip100: close100, pip200: close200 })
                 //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
@@ -67,9 +67,9 @@ function testing(arr) {
         return false
     }
 }
-let found = (async() => {
+let found = (async(size, volume) => {
     let arr = []
-    let candles = await find()
+    let candles = await find(size, volume)
         //console.log(candles)
     return Promise.all(
             candles.map(async function(candle) {
@@ -102,7 +102,7 @@ let found = (async() => {
 })
 
 module.exports.founnd = async() => {
-    let a = await found()
+    let a = await found(size, volume)
     console.log(a)
     return a
         //console.log(a[0])
