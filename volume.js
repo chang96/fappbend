@@ -30,7 +30,7 @@ async function getprice() {
 
     return { ETH: ETH, BNB: BNB, BTC: BTC }
 }
-async function checkcoin(coins, volume = 50000) {
+async function checkcoin(coins, volume) {
     const prices = await getprice()
     const coin = await coins
     const rgETH = /[ETH]$/

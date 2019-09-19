@@ -8,7 +8,7 @@ const binance = require('node-binance-api')().options({
     APISECRET: process.env.APISECRET,
     useServerTime: true
 })
-const eyo = require('./volume').volumeCheck
+const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
 const bi = Binance({
@@ -27,8 +27,9 @@ const bi = Binance({
 // }).then(coins => coins.map(coin => coin.symbol))
 
 let find = (async(size, volume) => {
+        console.log(4)
         let arr = []
-        let eyoarr = await eyo(volume)
+        let eyoarr = await eyo.volumeCheck(volume)
         return Promise.all(
             eyoarr.map(async function(eyo) {
                 // let a = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
@@ -69,6 +70,7 @@ function testing(arr) {
 }
 let found = (async(size, volume) => {
     let arr = []
+    console.log(3)
     let candles = await find(size, volume)
         //console.log(candles)
     return Promise.all(
@@ -102,6 +104,7 @@ let found = (async(size, volume) => {
 })
 
 module.exports.founnd = async(size, volume) => {
+    console.log(2)
     let a = await found(size, volume)
     console.log(a)
     return a
