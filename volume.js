@@ -23,6 +23,7 @@ const bi = Binance({
 let ETHPRICE = axios.get(`https://api.binance.com/api/v1/ticker/price`, { params: { symbol: 'ETHUSDT' } }).then((datum) => datum.data.price)
 let BNBPRICE = axios.get(`https://api.binance.com/api/v1/ticker/price`, { params: { symbol: 'BNBUSDT' } }).then((datum) => datum.data.price)
 let BTCPRICE = axios.get(`https://api.binance.com/api/v1/ticker/price`, { params: { symbol: 'BTCUSDT' } }).then((datum) => datum.data.price)
+let stuff = axios.get(`https://api.binance.com/api/v1/ticker/24hr`)
 async function getprice() {
     let ETH = await ETHPRICE
     let BNB = await BNBPRICE
@@ -71,8 +72,9 @@ async function checkcoin(coins, volume) {
 //             }
 //         }))
 //     })
-module.exports.volumeCheck = function(volume) {
-        axios.get(`https://api.binance.com/api/v1/ticker/24hr`).then((datum) => {
+module.exports.volumeCheck = async function(volume) {
+        let s = await stuff
+        s.then((datum) => {
 
                 return Promise.all(datum.data.map(async function(dat, i) {
                     let a = await checkcoin(dat, volume)
