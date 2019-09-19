@@ -26,7 +26,7 @@ const bi = Binance({
 //     })
 // }).then(coins => coins.map(coin => coin.symbol))
 
-let find = (async(size, volume) => {
+let find = (async(size = '15m', volume) => {
         let arr = []
         let eyoarr = await eyo(volume)
         return Promise.all(
