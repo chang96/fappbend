@@ -30,14 +30,13 @@ async function getprice() {
 
     return { ETH: ETH, BNB: BNB, BTC: BTC }
 }
-async function checkcoin(coins) {
+async function checkcoin(coins, volume = 50000) {
     const prices = await getprice()
     const coin = await coins
     const rgETH = /[ETH]$/
     const rgBTC = /[BTC]$/
     const rgBNB = /[BNB]$/
     const rgUSDT = /[USDT]$/
-    let volume = 50000
         //console.log(coin)
     if (coin.symbol.match(rgETH) && coin.quoteVolume * prices.ETH >= volume) {
         return true
@@ -72,29 +71,29 @@ async function checkcoin(coins) {
 //             }
 //         }))
 //     })
-module.exports.volumeCheck =
-    axios.get(`https://api.binance.com/api/v1/ticker/24hr`).then((datum) => {
+module.exports.volumeCheck = function(volume) {
+        axios.get(`https://api.binance.com/api/v1/ticker/24hr`).then((datum) => {
 
-        return Promise.all(datum.data.map(async function(dat, i) {
-            let a = await checkcoin(dat)
-            if (a === true)
-                return dat.symbol
-            else {
-                //console.log('twale')
-            }
-        }))
-    })
-    .then((arr) => {
-        //let r = []
-        return Promise.all(arr.filter(function(a) {
-            if ((a !== undefined)) {
-                return a
-            }
-            //return r
-        }))
-    })
-
-// let a = (async() => {
-//     let b = await eyo
-//     console.log(b)
-// })()
+                return Promise.all(datum.data.map(async function(dat, i) {
+                    let a = await checkcoin(dat, volume)
+                    if (a === true)
+                        return dat.symbol
+                    else {
+                        //console.log('twale')
+                    }
+                }))
+            })
+            .then((arr) => {
+                //let r = []
+                return Promise.all(arr.filter(function(a) {
+                    if ((a !== undefined)) {
+                        return a
+                    }
+                    //return r
+                }))
+            })
+    }
+    // let a = (async() => {
+    //     let b = await eyo
+    //     console.log(b)
+    // })()
