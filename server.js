@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000
 
 app.get('/getcoins/:volume', (req, res) => {
     let volume = Number(req.params.volume)
-    let size = Number(req.query.size)
+    let size = req.query.size
     let a = (async() => {
         let b = await ind.founnd(size, volume)
         console.log('yea')
