@@ -74,26 +74,26 @@ async function checkcoin(coins, volume) {
 //     })
 module.exports.volumeCheck = async function(volume) {
         let s = await stuff
-        s.then((datum) => {
 
-                return Promise.all(datum.data.map(async function(dat, i) {
-                    let a = await checkcoin(dat, volume)
-                    if (a === true)
-                        return dat.symbol
-                    else {
-                        //console.log('twale')
-                    }
-                }))
-            })
-            .then((arr) => {
-                //let r = []
-                return Promise.all(arr.filter(function(a) {
-                    if ((a !== undefined)) {
-                        return a
-                    }
-                    //return r
-                }))
-            })
+
+        return Promise.all(s.data.map(async function(dat, i) {
+            let a = await checkcoin(dat, volume)
+            if (a === true)
+                return dat.symbol
+            else {
+                //console.log('twale')
+            }
+        }))
+
+        .then((arr) => {
+            //let r = []
+            return Promise.all(arr.filter(function(a) {
+                if ((a !== undefined)) {
+                    return a
+                }
+                //return r
+            }))
+        })
     }
     // let a = (async() => {
     //     let b = await eyo
