@@ -71,29 +71,29 @@ async function checkcoin(coins, volume = 50000) {
 //             }
 //         }))
 //     })
-module.exports.volumeCheck = function(volume) {
-        axios.get(`https://api.binance.com/api/v1/ticker/24hr`).then((datum) => {
+module.exports.volumeCheck =
+    axios.get(`https://api.binance.com/api/v1/ticker/24hr`).then((datum) => {
 
-                return Promise.all(datum.data.map(async function(dat, i) {
-                    let a = await checkcoin(dat, volume)
-                    if (a === true)
-                        return dat.symbol
-                    else {
-                        //console.log('twale')
-                    }
-                }))
-            })
-            .then((arr) => {
-                //let r = []
-                return Promise.all(arr.filter(function(a) {
-                    if ((a !== undefined)) {
-                        return a
-                    }
-                    //return r
-                }))
-            })
-    }
-    // let a = (async() => {
-    //     let b = await eyo
-    //     console.log(b)
-    // })()
+        return Promise.all(datum.data.map(async function(dat, i) {
+            let a = await checkcoin(dat, volume)
+            if (a === true)
+                return dat.symbol
+            else {
+                //console.log('twale')
+            }
+        }))
+    })
+    .then((arr) => {
+        //let r = []
+        return Promise.all(arr.filter(function(a) {
+            if ((a !== undefined)) {
+                return a
+            }
+            //return r
+        }))
+    })
+
+// let a = (async() => {
+//     let b = await eyo
+//     console.log(b)
+// })()
