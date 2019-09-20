@@ -10,13 +10,17 @@ const time = '15m'
     // then(data => data.data).then(data => data.map(datum => (datum[4])));
 
 module.exports.histogram = async(close, close1) => {
-    let c = await close
-    let e = await close1
-        //let d = await (ema.see(12, 12, c))
-    macd = await diff.diff(c, e)
-    let histogram = await hist.signal(macd)
-        //return hist
-    return histogram
-        //d.splice(0, 400)
-        //console.log()
+    try {
+        let c = await close
+        let e = await close1
+            //let d = await (ema.see(12, 12, c))
+        macd = await diff.diff(c, e)
+        let histogram = await hist.signal(macd)
+            //return hist
+        return histogram
+            //d.splice(0, 400)
+            //console.log()
+    } catch (err) {
+        console.log(err)
+    }
 }

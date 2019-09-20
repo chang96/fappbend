@@ -25,36 +25,43 @@ let BNBPRICE = axios.get(`https://api.binance.com/api/v1/ticker/price`, { params
 let BTCPRICE = axios.get(`https://api.binance.com/api/v1/ticker/price`, { params: { symbol: 'BTCUSDT' } }).then((datum) => datum.data.price)
 let stuff = axios.get(`https://api.binance.com/api/v1/ticker/24hr`)
 async function getprice() {
-    let ETH = await ETHPRICE
-    let BNB = await BNBPRICE
-    let BTC = await BTCPRICE
+    try {
+        let ETH = await ETHPRICE
+        let BNB = await BNBPRICE
+        let BTC = await BTCPRICE
 
-    return { ETH: ETH, BNB: BNB, BTC: BTC }
+        return { ETH: ETH, BNB: BNB, BTC: BTC }
+    } catch (err) {
+        console.log(err)
+    }
 }
 async function checkcoin(coins, volume) {
-    const prices = await getprice()
-    const coin = await coins
-    const rgETH = /[ETH]$/
-    const rgBTC = /[BTC]$/
-    const rgBNB = /[BNB]$/
-    const rgUSDT = /[USDT]$/
-        //console.log(coin)
-    if (coin.symbol.match(rgETH) && coin.quoteVolume * prices.ETH >= volume) {
-        return true
+    try {
+        const prices = await getprice()
+        const coin = await coins
+        const rgETH = /[ETH]$/
+        const rgBTC = /[BTC]$/
+        const rgBNB = /[BNB]$/
+        const rgUSDT = /[USDT]$/
+            //console.log(coin)
+        if (coin.symbol.match(rgETH) && coin.quoteVolume * prices.ETH >= volume) {
+            return true
 
-    } else if (coin.symbol.match(rgBNB) && coin.quoteVolume * prices.BNB >= volume) {
-        return true
+        } else if (coin.symbol.match(rgBNB) && coin.quoteVolume * prices.BNB >= volume) {
+            return true
 
-    } else if (coin.symbol.match(rgBTC) && coin.quoteVolume * prices.BTC >= volume) {
-        return true
+        } else if (coin.symbol.match(rgBTC) && coin.quoteVolume * prices.BTC >= volume) {
+            return true
 
-    } else if (coin.symbol.match(rgUSDT) && coin.quoteVolume * 1 >= volume) {
-        return true
+        } else if (coin.symbol.match(rgUSDT) && coin.quoteVolume * 1 >= volume) {
+            return true
 
-    } else {
-        return false
+        } else {
+            return false
+        }
+    } catch (err) {
+        console.log(err)
     }
-
 }
 
 // const eyo = axios.get(`https://api.binance.com/api/v1/ticker/24hr`).then((datum) => {
@@ -93,7 +100,7 @@ module.exports.volumeCheck = async function(volume) {
                 }
                 //return r
             }))
-        })
+        }).catch(err => console.log(err))
     }
     // let a = (async() => {
     //     let b = await eyo

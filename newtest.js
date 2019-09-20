@@ -26,7 +26,7 @@ const bi = Binance({
 //     })
 // }).then(coins => coins.map(coin => coin.symbol))
 
-let find = (async(size, volume) => {
+let find = async(size, volume) => {
         console.log(4)
         let arr = []
         let eyoarr = await eyo.volumeCheck(volume)
@@ -52,9 +52,9 @@ let find = (async(size, volume) => {
                 //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
                 // return arr
                 return { name: eyo, pip100: close100, pip200: close200 }
-            }))
+            })).catch(err => console.log(err))
 
-    })
+    }
     //(a[0][6] - a[1][6]) >= -0.9 * a[0][6] && (a[0][6] - a[1][6]) <= 0.7 && a[2][6] > -25 && b[0][17] < 40 && c[0][14] < c[1][14] && c[0][14] < 30
     // const testing = function(a) {
     //     if (a[0] <= 0 && a[1] <= 0 && a[2] <= 0 && a[3] <= 0 && a[4] <= 0 && a[5] <= 0 && a[6] >= 0)
@@ -100,16 +100,20 @@ let found = async(size, volume) => {
                 }
                 //return r
             }))
-        })
+        }).catch(err => console.log(err))
         //console.log(candles[0])
 }
 
 module.exports.founnd = async(size, volume) => {
-    console.log(2)
-    let a = await found(size, volume)
-    console.log(a)
-    return a
-        //console.log(a[0])
+    try {
+        console.log(2)
+        let a = await found(size, volume)
+        console.log(a)
+        return a
+    } catch (err) {
+        console.log(err)
+    }
+    //console.log(a[0])
 }
 
 //https://forms.gle/hwuRPE7DSn6gR3nW6
