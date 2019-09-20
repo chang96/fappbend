@@ -19,7 +19,7 @@ const bi = Binance({
 const rgETH = /[ETH]$/
 const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
     return coins.filter(function(coin) {
-        let num = coin.symbol.split('').length
+        //let num = coin.symbol.split('').length
         if (coin.symbol.match(rgETH))
             return coin
 
@@ -29,7 +29,8 @@ const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
 let find = async(size, volume) => {
         console.log(4)
         let arr = []
-        let eyoarr = await eyo.volumeCheck(volume)
+        let eyoarr = await eyo
+            //let eyoarr = await eyo.volumeCheck(volume)
         return Promise.all(
             eyoarr.map(async function(eyo) {
                 // let a = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
