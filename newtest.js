@@ -4,27 +4,27 @@ const mymacd = require('./taapi/index')
 const axios = require('axios')
 const Binance = require('binance-api-node').default
 const binance = require('node-binance-api')().options({
-    APIKEY: process.env.APIKEY,
-    APISECRET: process.env.APISECRET,
-    useServerTime: true
-})
-const eyo = require('./volume')
+        APIKEY: process.env.APIKEY,
+        APISECRET: process.env.APISECRET,
+        useServerTime: true
+    })
+    //const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
 const bi = Binance({
-        apiKey: process.env.APIKEY,
-        apiSecret: process.env.APISECRET,
-        // getTime: xxx // time generator function, optional, defaults to () => Date.now()
-    })
-    // const rgETH = /[ETH]$/
-    // const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
-    //     return coins.filter(function(coin) {
-    //         let num = coin.symbol.split('').length
-    //         if (coin.symbol.match(rgETH))
-    //             return coin
+    apiKey: process.env.APIKEY,
+    apiSecret: process.env.APISECRET,
+    // getTime: xxx // time generator function, optional, defaults to () => Date.now()
+})
+const rgETH = /[ETH]$/
+const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
+    return coins.filter(function(coin) {
+        let num = coin.symbol.split('').length
+        if (coin.symbol.match(rgETH))
+            return coin
 
-//     })
-// }).then(coins => coins.map(coin => coin.symbol))
+    })
+}).then(coins => coins.map(coin => coin.symbol))
 
 let find = async(size, volume) => {
         console.log(4)
