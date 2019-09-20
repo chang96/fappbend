@@ -79,13 +79,14 @@ let found = async(size, volume) => {
                 let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200)
                 mymyhist.splice(0, 450)
                     //console.log(mymyhist)
-                    //let b = await tulind.indicators.rsi.indicator([candle.val], [14])
+                let b = await tulind.indicators.rsi.indicator([candle.val], [14])
+                console.log(b)
                     //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                     //console.log(c[1][14])
                     //console.log(a[2].length)
-                if (testing(mymyhist)) {
+                if (testing(mymyhist) && b < 35) {
                     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                    console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1] })
+                    console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b })
                         //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                         //arr.push({ name: candle.name })
                     return candle.name
