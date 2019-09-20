@@ -85,7 +85,9 @@ let found = async(size, volume) => {
                     //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                     //console.log(c[1][14])
                     //console.log(a[2].length)
-                if (testing(mymyhist) && (b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)) {
+                    //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
+                console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
+                if (testing(mymyhist)) {
                     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1] })
                         //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
