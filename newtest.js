@@ -42,8 +42,8 @@ let find = async(size, volume) => {
                 // then(data => data.data).then(data => data.map(datum => (datum[2])))
                 // let c = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
                 // then(data => data.data).then(data => data.map(datum => (datum[3])))
-                // let d = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-                //then(data => data.data).then(data => data.map(datum => (datum[4])))
+                let d = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
+                then(data => data.data).then(data => data.map(datum => (datum[4])))
                 let close100 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                 then(data => data.data).then(data => data.map(datum => (datum[4])));
                 let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
@@ -51,7 +51,7 @@ let find = async(size, volume) => {
                 // arr.push({ name: eyo, pip100: close100, pip200: close200 })
                 //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
                 // return arr
-                return { name: eyo, pip100: close100, pip200: close200 }
+                return { name: eyo, pip100: close100, pip200: close200, rsi: d }
             })).catch(err => console.log(err))
 
     }
@@ -79,7 +79,7 @@ let found = async(size, volume) => {
                 let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200)
                 mymyhist.splice(0, 450)
                     //console.log(mymyhist)
-                let b = await tulind.indicators.rsi.indicator([candle.pip100], [14])
+                let b = await tulind.indicators.rsi.indicator([candle.rsi], [14])
                 console.log(b)
                     //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                     //console.log(c[1][14])
