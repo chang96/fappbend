@@ -68,7 +68,7 @@ function testing(arr) {
         return false
     }
 }
-let found = (async(size, volume) => {
+let found = async(size, volume) => {
     let arr = []
     console.log(3)
     let candles = await find(size, volume)
@@ -95,13 +95,14 @@ let found = (async(size, volume) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
                 if ((a !== undefined)) {
+                    console.log(5)
                     return a
                 }
                 //return r
             }))
         })
         //console.log(candles[0])
-})
+}
 
 module.exports.founnd = async(size, volume) => {
     console.log(2)
