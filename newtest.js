@@ -82,7 +82,7 @@ let found = async(size, volume) => {
                 // mymyhist.splice(0, 450)
                 //     console.log(mymyhist)
                 // let b = await tulind.indicators.rsi.indicator([candle.pip100], [14])
-                console.log(candle.pip100)
+                //console.log(candle.pip100)
                 try {
                     let [mymyhist, b] = await Promise.all(tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100))
                         //console.log(b)
