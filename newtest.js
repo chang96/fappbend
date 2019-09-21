@@ -45,7 +45,7 @@ let find = async(size, volume) => {
                 // then(data => data.data).then(data => data.map(datum => (datum[3])))
                 // let d = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                 // then(data => data.data).then(data => data.map(datum => (datum[4])))
-                let close100 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
+                let close100 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                 then(data => data.data).then(data => data.map(datum => (datum[4])));
                 // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                 // then(data => data.data).then(data => data.map(datum => (datum[4])));
