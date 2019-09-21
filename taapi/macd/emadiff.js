@@ -4,13 +4,15 @@ module.exports.diff = async(twelve, twentysix) => {
 
     try {
         // let twentysix = await ema26.t26
+        let twe = await twelve
 
-        // let twelve = await ema12.t12
-        //let [twelve, twentysix] = await Promise.all([ema12.see(12, 12, coindata12), ema26.see(26, 26, coindata26)])
-        console.log('26', twentysix.emaarr.length)
-        twelve.emaarr.splice(0, 14)
-        let a = await twentysix.emaarr
-        let b = await twelve.emaarr
+        let twent = await twentysix
+            // let twelve = await ema12.t12
+            //let [twelve, twentysix] = await Promise.all([ema12.see(12, 12, coindata12), ema26.see(26, 26, coindata26)])
+            //console.log('26', twentysix.emaarr.length)
+        twe.emaarr.splice(0, 14)
+        let a = twent.emaarr
+        let b = twe.emaarr
         console.log(a.length, b.length)
         return b.map(function(bee, i) {
 
