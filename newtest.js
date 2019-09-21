@@ -4,33 +4,33 @@ const mymacd = require('./taapi/index')
 const axios = require('axios')
 const Binance = require('binance-api-node').default
 const binance = require('node-binance-api')().options({
-        APIKEY: process.env.APIKEY,
-        APISECRET: process.env.APISECRET,
-        useServerTime: true
-    })
-    //const eyo = require('./volume')
+    APIKEY: process.env.APIKEY,
+    APISECRET: process.env.APISECRET,
+    useServerTime: true
+})
+const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
 const bi = Binance({
-    apiKey: process.env.APIKEY,
-    apiSecret: process.env.APISECRET,
-    // getTime: xxx // time generator function, optional, defaults to () => Date.now()
-})
-const rgETH = /[ETH]$/
-const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
-    return coins.filter(function(coin) {
-        //let num = coin.symbol.split('').length
-        if (coin.symbol.match(rgETH))
-            return coin
-
+        apiKey: process.env.APIKEY,
+        apiSecret: process.env.APISECRET,
+        // getTime: xxx // time generator function, optional, defaults to () => Date.now()
     })
-}).then(coins => coins.map(coin => coin.symbol))
+    // const rgETH = /[ETH]$/
+    // const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
+    //     return coins.filter(function(coin) {
+    //         //let num = coin.symbol.split('').length
+    //         if (coin.symbol.match(rgETH))
+    //             return coin
+
+//     })
+// }).then(coins => coins.map(coin => coin.symbol))
 
 let find = async(size, volume) => {
         console.log(4)
         let arr = []
-        let eyoarr = await eyo
-            //let eyoarr = await eyo.volumeCheck(volume)
+            //let eyoarr = await eyo
+        let eyoarr = await eyo.volumeCheck(volume)
         return Promise.all(
             eyoarr.map(async function(eyo) {
                 // let a = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
@@ -86,7 +86,7 @@ let found = async(size, volume) => {
                     //console.log(c[1][14])
                     //console.log(a[2].length)
                     //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
-                console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
+                    // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
                 if (testing(mymyhist)) {
                     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1] })
