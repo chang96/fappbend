@@ -1,36 +1,52 @@
 require('dotenv').config()
 const tulind = require('tulind')
 const mymacd = require('./taapi/index')
+const Coins = require('./model/coin')
 const axios = require('axios')
 const Binance = require('binance-api-node').default
 const binance = require('node-binance-api')().options({
-    APIKEY: process.env.APIKEY,
-    APISECRET: process.env.APISECRET,
-    useServerTime: true
-})
-const eyo = require('./volume')
+        APIKEY: process.env.APIKEY,
+        APISECRET: process.env.APISECRET,
+        useServerTime: true
+    })
+    //const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
 const bi = Binance({
-        apiKey: process.env.APIKEY,
-        apiSecret: process.env.APISECRET,
-        // getTime: xxx // time generator function, optional, defaults to () => Date.now()
+    apiKey: process.env.APIKEY,
+    apiSecret: process.env.APISECRET,
+    // getTime: xxx // time generator function, optional, defaults to () => Date.now()
+})
+const rgETH = /[ETH]$/
+const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
+    return coins.filter(function(coin) {
+        //let num = coin.symbol.split('').length
+        if (coin.symbol.match(rgETH))
+            return coin
+
     })
-    // const rgETH = /[ETH]$/
-    // const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
-    //     return coins.filter(function(coin) {
-    //         //let num = coin.symbol.split('').length
-    //         if (coin.symbol.match(rgETH))
-    //             return coin
-
-//     })
-// }).then(coins => coins.map(coin => coin.symbol))
-
+}).then(coins => coins.map(coin => coin.symbol))
+const save = function(data) {
+    Coins.findById('12345', (err, coin) => {
+        if (err)
+            return err
+        else if (coin && coin.coins.length > 0) {
+            coin.coins = data
+            coin.save()
+        } else if (!coin) {
+            const newcoins = new Coins({ coins: data })
+            newcoins.save().then(console.log)
+        } else {
+            const newcoins = new Coins({ coins: data })
+            newcoins.save().then(console.log)
+        }
+    })
+}
 let find = async(size, volume) => {
         console.log(4)
         let arr = []
-            //let eyoarr = await eyo
-        let eyoarr = await eyo.volumeCheck(volume)
+        let eyoarr = await eyo
+            //let eyoarr = await eyo.volumeCheck(volume)
         return Promise.all(
             eyoarr.map(async function(eyo) {
                 // let a = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
@@ -47,13 +63,14 @@ let find = async(size, volume) => {
                 // then(data => data.data).then(data => data.map(datum => (datum[4])))
                 let close100 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                 then(data => data.data).then(data => data.map(datum => (datum[4])));
-                // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
-                // then(data => data.data).then(data => data.map(datum => (datum[4])));
-                // arr.push({ name: eyo, pip100: close100, pip200: close200 })
-                //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
-                // return arr
-                //return { name: eyo, pip100: close100, pip200: close200, rsi: d }
-                return { name: eyo, pip100: close100 }
+                let close200 = [...close100]
+                    // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
+                    // then(data => data.data).then(data => data.map(datum => (datum[4])));
+                    // arr.push({ name: eyo, pip100: close100, pip200: close200 })
+                    //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
+                    // return arr
+                    //return { name: eyo, pip100: close100, pip200: close200, rsi: d }
+                return { name: eyo, pip100: close100, pip200: close200 }
             })).catch(err => console.log(err))
 
     }
@@ -86,7 +103,7 @@ let found = async(size, volume) => {
                 try {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
-                    let mymyhist = await mymacd.histogram(candle.pip100, candle.pip100)
+                    let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200)
                     let b = await tulind.indicators.rsi.indicator([candle.pip100], [14])
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])

@@ -3,11 +3,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const coin = new Schema({
-    name: {
-        type: String
+    coins: {
+        type: Array
     },
-    hi: {
-        type: Number
+    _id: {
+        type: String,
+        default: '12345'
     }
 })
 
