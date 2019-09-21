@@ -34,7 +34,6 @@ module.exports.see = async(weight, period, coindata) => {
 module.exports.minus1226 = async(weight, period, c) => {
     try {
         const data = await c
-        data.splice(0, 2)
         const emaarr = []
         const den = weight + 1
         const k = 2 / den
