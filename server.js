@@ -9,11 +9,11 @@ const app = express()
     //const tel = require('./command/telegram')
     //const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
 const PORT = process.env.PORT || 3000
-mongoose.connect(process.env.URI, { useNewUrlParser: true })
-const connection = mongoose.connection
-connection.once('open', function() {
-        console.log('up!')
-    })
+    // mongoose.connect(process.env.URI, { useNewUrlParser: true })
+    // const connection = mongoose.connection
+    // connection.once('open', function() {
+    //         console.log('up!')
+    //     })
     // let a = (async() => {
     //     let b = await ind.founnd
     //     console.log(b)
