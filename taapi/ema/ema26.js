@@ -22,7 +22,7 @@ module.exports.see = async(weight, period, coindata) => {
             emaarr.push(a)
             return a
         }, sma)
-
+        console.log(emaarr)
         return { ema: ema, emaarr: emaarr }
     } catch (err) {
         console.log(err)
