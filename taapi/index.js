@@ -11,8 +11,9 @@ const time = '15m'
 
 module.exports.histogram = async(close, close1) => {
     try {
-        let c = await close
-        let e = await close1
+        // let c = await close
+        // let e = await close1
+        let [c, e] = await Promise.all([close, close1])
             //let d = await (ema.see(12, 12, c))
         macd = await diff.diff(c, e)
         let histogram = await hist.signal(macd)

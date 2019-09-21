@@ -3,9 +3,10 @@ const ema26 = require('../ema/ema26')
 module.exports.diff = async(coindata12, coindata26) => {
 
     try {
-        let twentysix = await ema26.see(26, 26, coindata26)
+        // let twentysix = await ema26.see(26, 26, coindata26)
 
-        let twelve = await ema12.see(12, 12, coindata12)
+        // let twelve = await ema12.see(12, 12, coindata12)
+        let [twelve, twentysix] = await Promise.all([ema12.see(12, 12, coindata12), ema26.see(26, 26, coindata26)])
         console.log(twentysix.emaarr.length)
         twelve.emaarr.splice(0, 14)
         let a = twentysix.emaarr
