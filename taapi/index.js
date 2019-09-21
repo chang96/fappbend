@@ -13,9 +13,9 @@ const time = '15m'
 
 module.exports.histogram = async(close, close1) => {
     try {
-        console.log('c:', c.length, 'e:', e.length)
         let c1 = await close;
         let e1 = await close1
+        console.log('c:', c1.length, 'e:', e1.length)
         let c = await e12.t12(c1)
         let e = await e26.t26(e1)
 
