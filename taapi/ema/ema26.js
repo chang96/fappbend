@@ -19,12 +19,12 @@ module.exports.see = async(weight, period, coindata) => {
         emaarr.push(sma)
             //console.log(data.slice(0, 26))
         let ema = data.reduce(function(prev, price) {
-            let a = Number(price) * k + Number(prev) * (1 - k)
-                //console.log(a)
-            emaarr.push(a)
-            return a
-        }, sma)
-        console.log(emaarr)
+                let a = Number(price) * k + Number(prev) * (1 - k)
+                    //console.log(a)
+                emaarr.push(a)
+                return a
+            }, sma)
+            //console.log(emaarr)
         return { ema: ema, emaarr: emaarr }
     } catch (err) {
         console.log(err)

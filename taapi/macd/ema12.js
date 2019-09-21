@@ -2,7 +2,8 @@ const ema12 = require('../ema/ema')
 
 module.exports.t12 = async(coindata12) => {
     try {
-        let twelve = await ema12.see(12, 12, coindata12)
+        let a = await coindata12
+        let twelve = await ema12.see(12, 12, a)
         return twelve
     } catch (err) {
         console.log(err)
