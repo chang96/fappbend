@@ -12,7 +12,7 @@ module.exports.see = async(weight, period, coindata) => {
         let emadata = data.splice(0, period)
         let sm = smadata.reduce(function(a, b) {
                 return Number(a) + Number(b)
-            })
+            }, 0)
             //  console.log('12:', data.length)
             //console.log(data)
         let sma = sm / period
