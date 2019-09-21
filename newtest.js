@@ -82,20 +82,24 @@ let found = async(size, volume) => {
                 // mymyhist.splice(0, 450)
                 //     console.log(mymyhist)
                 // let b = await tulind.indicators.rsi.indicator([candle.pip100], [14])
-                let [mymyhist, b] = Promise.all(tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100))
-                    //console.log(b)
-                    //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
-                    //console.log(c[1][14])
-                    //console.log(a[2].length)
-                    //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
-                    // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
-                if (testing(mymyhist)) {
-                    //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                    console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1] })
-                        //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                        //arr.push({ name: candle.name })
-                    return candle.name
-                } else {}
+                try {
+                    let [mymyhist, b] = await Promise.all(tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100))
+                        //console.log(b)
+                        //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
+                        //console.log(c[1][14])
+                        //console.log(a[2].length)
+                        //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
+                        // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
+                    if (testing(mymyhist)) {
+                        //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
+                        console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1] })
+                            //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
+                            //arr.push({ name: candle.name })
+                        return candle.name
+                    } else {}
+                } catch (err) {
+                    console.log(err)
+                }
                 //return arr
             })).then((arr) => {
             //let r = []
