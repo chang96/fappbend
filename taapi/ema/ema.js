@@ -7,13 +7,13 @@ module.exports.see = async(weight, period, coindata) => {
         const emaarr = []
         const den = weight + 1
         const k = 2 / den
-        console.log('12:', data.length)
+            // console.log('12:', data.length)
         let smadata = data.slice(0, period)
         let emadata = data.splice(0, period)
         let sm = smadata.reduce(function(a, b) {
-            return Number(a) + Number(b)
-        })
-        console.log('12:', data.length)
+                return Number(a) + Number(b)
+            })
+            //  console.log('12:', data.length)
             //console.log(data)
         let sma = sm / period
         emaarr.push(sma)

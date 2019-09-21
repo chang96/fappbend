@@ -4,13 +4,13 @@ const axios = require('axios')
 module.exports.see = async(weight, period, coindata) => {
     try {
         const data = await coindata
-        console.log(data.length)
+            // console.log(data.length)
         const emaarr = []
         const den = weight + 1
         const k = 2 / den
         let smadata = data.slice(0, period)
         let emadata = data.splice(0, period)
-        console.log('26:', data.length)
+            // console.log('26:', data.length)
         let sm = smadata.reduce(function(a, b) {
                 return Number(a) + Number(b)
             }, 0)
