@@ -15,8 +15,8 @@ module.exports.histogram = async(close, close1) => {
     try {
         // let c = await close;
         // let e = await close1
-        let c = e12.t12(close)
-        let e = e26.t26(close1)
+        let c = await e12.t12(close)
+        let e = await e26.t26(close1)
         console.log('c:', c.length, 'e:', e.length)
             //let [c, e] = await Promise.all([close, close1])
             //let d = await (ema.see(12, 12, c))

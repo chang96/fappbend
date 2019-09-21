@@ -9,8 +9,8 @@ module.exports.diff = async(twelve, twentysix) => {
         //let [twelve, twentysix] = await Promise.all([ema12.see(12, 12, coindata12), ema26.see(26, 26, coindata26)])
         console.log('26', twentysix.emaarr.length)
         twelve.emaarr.splice(0, 14)
-        let a = twentysix.emaarr
-        let b = twelve.emaarr
+        let a = await twentysix.emaarr
+        let b = await twelve.emaarr
         console.log(a.length, b.length)
         return b.map(function(bee, i) {
 
