@@ -111,7 +111,7 @@ let found = async(size, volume) => {
                         //console.log(a[2].length)
                         //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
                         // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
-                    if (testing(mymyhist)) {
+                    if (testing(mymyhist) && (b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)) {
                         //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1] })
                             //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
