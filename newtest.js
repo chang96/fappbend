@@ -74,7 +74,7 @@ let find = async(size, volume) => {
                     //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
                     // return arr
                     //return { name: eyo, pip100: close100, pip200: close200, rsi: d }
-                return { name: eyo, pip100: close100, pip200: close200 }
+                return { name: eyo, pip100: close100, pip200: close200, pip: close400 }
             })).catch(err => console.log(err))
 
     }
@@ -108,7 +108,7 @@ let found = async(size, volume) => {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
                     let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200)
-                    let b = await tulind.indicators.rsi.indicator([candle.pip100], [14])
+                    let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
