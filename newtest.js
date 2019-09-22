@@ -65,6 +65,9 @@ let find = async(size, volume) => {
                 then(data => data.data).then(data => data.map(datum => (datum[4])));
                 let close100 = [...close300]
                 let close200 = [...close300]
+                let close400 = [...close300]
+                close400.splice(0, 486)
+                console.log(close400.length)
                     // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                     // then(data => data.data).then(data => data.map(datum => (datum[4])));
                     // arr.push({ name: eyo, pip100: close100, pip200: close200 })

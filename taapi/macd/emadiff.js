@@ -13,7 +13,7 @@ module.exports.diff = async(twelve, twentysix) => {
         twe.emaarr.splice(0, 14)
         let a = twent.emaarr
         let b = twe.emaarr
-        console.log(a.length, b.length)
+            //console.log(a.length, b.length)
         return b.map(function(bee, i) {
 
                 return bee - a[i]
