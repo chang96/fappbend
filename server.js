@@ -10,7 +10,7 @@ const Coin = require('./model/coin')
     //const tel = require('./command/telegram')
     //const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
 const PORT = process.env.PORT || 3000
-mongoose.connect(process.env.URI, { useNewUrlParser: true })
+mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const connection = mongoose.connection
 connection.once('open', function() {
         console.log('up!')
@@ -30,12 +30,12 @@ const save = async function(dat, t) {
                 coin[t] = data
                 coin.save().then(() => console.log('saved'))
             } else if (!coin) {
-                const newcoins = new Coins({
+                const newcoins = new Coin({
                     [t]: data
                 })
                 newcoins.save().then(console.log)
             } else {
-                const newcoins = new Coins({
+                const newcoins = new Coin({
                     [t]: data
                 })
                 newcoins.save().then(console.log)
@@ -49,7 +49,7 @@ let search15 = function(size, volume) {
         let c = await save(b, 't15m')
     })(size, volume)
 }
-setInterval(search15, 1000 * 60 * 3, '15m', 100000)
+setInterval(search15, 1000 * 60 * 10, '15m', 100000)
 
 app.get('/getcoins/:volume', (req, res) => {
     try {
