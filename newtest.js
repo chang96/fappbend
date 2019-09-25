@@ -53,7 +53,7 @@ let find = async(size, volume) => {
                 let close200 = [...close300]
                 let close400 = [...close300]
                     //close400.splice(0, 486)
-                console.log(close400.length)
+                    //console.log(close400.length)
                     // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                     // then(data => data.data).then(data => data.map(datum => (datum[4])));
                     // arr.push({ name: eyo, pip100: close100, pip200: close200 })
@@ -77,7 +77,7 @@ function testing(arr) {
         return false
     }
 }
-let found = async(size, volume) => {
+let found = async(size, volume, rs) => {
     let arr = []
     console.log(3)
     let candles = await find(size, volume)
@@ -101,7 +101,7 @@ let found = async(size, volume) => {
                         //console.log(a[2].length)
                         //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
                         // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
-                    let z = 40
+                    let z = rs
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
                     if (testing(mymyhist)) {
                         //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
@@ -127,10 +127,10 @@ let found = async(size, volume) => {
         //console.log(candles[0])
 }
 
-module.exports.founnd = async(size, volume) => {
+module.exports.founnd = async(size, volume, rs) => {
     try {
         console.log(2)
-        let a = await found(size, volume)
+        let a = await found(size, volume, rs)
         console.log(a)
         return a
     } catch (err) {

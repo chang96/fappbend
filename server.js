@@ -43,25 +43,26 @@ const save = async function(dat, t) {
         })
     }
     // 15m 1h 1w
-let search15 = function(size, volume) {
-    let a = (async(size, volume) => {
-        let b = await ind.founnd(size, volume)
-        let c = await save(b, 't15m')
-    })(size, volume)
-}
-setInterval(search15, 1000 * 60 * 10, '15m', 100000)
+let search15 = function(size, volume, rs) {
+        let a = (async(size, volume, rs) => {
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't15m')
+        })(size, volume)
+    }
+    //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
 
 app.get('/getcoins/:volume', (req, res) => {
     try {
         let volume = Number(req.params.volume)
         console.log(typeof volume, 1)
         let size = req.query.size
-        let a = (async(size, volume) => {
-            let b = await ind.founnd(size, volume)
+        let rs = req.query.rsi
+        let a = (async(size, volume, rs) => {
+            let b = await ind.founnd(size, volume, rs)
             console.log('yea')
             res.send(b)
                 //console.log(b)
-        })(size, volume)
+        })(size, volume, rs)
     } catch (err) {
         console.log(err)
     }
