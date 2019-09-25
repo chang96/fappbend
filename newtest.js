@@ -102,7 +102,7 @@ let found = async(size, volume, rs) => {
                         //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
                         // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
                     let z = rs
-                    console.log(z)
+                    console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
                     if (testing(mymyhist && (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))) {
                         //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
@@ -132,7 +132,7 @@ module.exports.founnd = async(size, volume, rs) => {
     try {
         console.log(2)
         let a = await found(size, volume, rs)
-            //console.log(a)
+        console.log(a)
         return a
     } catch (err) {
         console.log(err)
