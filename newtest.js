@@ -95,7 +95,7 @@ let found = async(size, volume) => {
                     //console.log(b)
                     let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200)
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                    let b = await myrsi.rsi(candle.pip)
+                        //let b = await myrsi.rsi(candle.pip)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
