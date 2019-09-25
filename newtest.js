@@ -3,6 +3,7 @@ const tulind = require('tulind')
 const mymacd = require('./taapi/index')
 const Coins = require('./model/coin')
 const axios = require('axios')
+const myrsi = require('./taapiRSI/index')
 const Binance = require('binance-api-node').default
 const binance = require('node-binance-api')().options({
     APIKEY: process.env.APIKEY,
@@ -26,22 +27,7 @@ const bi = Binance({
 
 //     })
 // }).then(coins => coins.map(coin => coin.symbol))
-const save = function(data) {
-    Coins.findById('12345', (err, coin) => {
-        if (err)
-            return err
-        else if (coin && coin.coins.length > 0) {
-            coin.coins = data
-            coin.save()
-        } else if (!coin) {
-            const newcoins = new Coins({ coins: data })
-            newcoins.save().then(console.log)
-        } else {
-            const newcoins = new Coins({ coins: data })
-            newcoins.save().then(console.log)
-        }
-    })
-}
+
 let find = async(size, volume) => {
         console.log(4)
         let arr = []
@@ -66,7 +52,7 @@ let find = async(size, volume) => {
                 let close100 = [...close300]
                 let close200 = [...close300]
                 let close400 = [...close300]
-                close400.splice(0, 486)
+                    //close400.splice(0, 486)
                 console.log(close400.length)
                     // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
                     // then(data => data.data).then(data => data.map(datum => (datum[4])));
@@ -108,13 +94,14 @@ let found = async(size, volume) => {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
                     let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200)
-                    let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
+                        //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
+                    let b = await myrsi.rsi(candle.pip)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
                         //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
                         // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
-                    let z = 25
+                    let z = 35
                     if (testing(mymyhist) && (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)) {
                         //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1] })
