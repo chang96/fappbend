@@ -24,4 +24,4 @@ then(data => data.data).then(data => data.map(datum => (datum[4])));
 // })(close)
 
 
-module.exports.rsi = RSI
+module.exports.rsi = RSI.AVG
