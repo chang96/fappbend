@@ -72,11 +72,22 @@ let find = async(size, volume) => {
     // }
 function testing(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
+        //if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
         return true
     } else {
         return false
     }
 }
+
+function testing1(arr) {
+    //if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
+    if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
+        return true
+    } else {
+        return false
+    }
+}
+
 let found = async(size, volume, rs) => {
     let arr = []
     console.log(3)
@@ -102,10 +113,10 @@ let found = async(size, volume, rs) => {
                         //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
                         // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
                     let z = rs
-                    console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
-                    let testrsi = (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z)
+                        //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
+                    let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
-                    if (testing(mymyhist) && testrsi) {
+                    if (testing(mymyhist) || (testrsi && testing1(mymyhist))) {
                         //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                             //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
