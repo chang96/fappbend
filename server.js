@@ -28,9 +28,9 @@ const save = async function(dat, t) {
                 return err
             else if (coin) {
                 let data = await dat
-                console.log(data)
+                console.log(coin[t])
                 coin[t] = data
-                Coin.markModified(`${t}`)
+
                 coin.save().then(() => console.log(`${t} saved`))
             } else if (!coin) {
                 console.log(2)
