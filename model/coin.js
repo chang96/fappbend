@@ -24,7 +24,7 @@ const coin = new Schema({
     },
     mymyid: {
         type: String,
-        default: '12345'
+        default: 'string'
     }
 })
 
