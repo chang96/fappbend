@@ -72,7 +72,7 @@ let search4h = function(size, volume, rs) {
         setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 30)
     }
     //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
-setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 30)
+    //setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 30)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.
@@ -107,9 +107,15 @@ app.get('/coins/:t', function(req, res) {
     })
 })
 app.get('/delete', function(req, res) {
-        Coin.deleteMany({}, function(err, r) {
-            if (err) console.log(err)
-            else res.send('deleted')
+    Coin.deleteMany({}, function(err, r) {
+        if (err) console.log(err)
+        else res.send('deleted')
+    })
+})
+app.get('/find', function(req, res) {
+        Coin.find({}, function(err, coin) {
+            if (coin)
+                res.send(coin)
         })
     })
     // app.get('/store', function(req, res) {
