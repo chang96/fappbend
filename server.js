@@ -27,7 +27,7 @@ const save = async function(dat, t) {
             if (err)
                 return err
             else if (coin) {
-                console.log(1)
+                console.log(coin)
                 coin[t] = data
                 coin.save().then(() => console.log(`${t} saved`))
             } else if (!coin) {
