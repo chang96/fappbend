@@ -21,13 +21,14 @@ connection.once('open', function() {
     // })()
 
 const save = async function(dat, t) {
-        let data = await dat
+        //let data = await dat
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
             console.log('...................................')
             if (err)
                 return err
             else if (coin) {
-                console.log(coin)
+                let data = await dat
+                console.log(data)
                 coin[t] = data
                 coin.save().then(() => console.log(`${t} saved`))
             } else if (!coin) {
