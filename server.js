@@ -22,7 +22,7 @@ connection.once('open', function() {
 
 const save = async function(dat, t) {
         let data = await dat
-        Coin.findById('12345', (err, coin) => {
+        Coin.findOne({ 'mymyid': '12345' }, (err, coin) => {
             if (err)
                 return err
             else if (coin && coin[t].length > 0) {
@@ -42,14 +42,37 @@ const save = async function(dat, t) {
             }
         })
     }
-    // 15m 1h 1w
+    //5m 15m 1h 4h // 1w
+let search5 = function(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+        let b = await ind.founnd(size, volume, rs)
+        let c = await save(b, 't5m')
+    })(size, volume)
+    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 30)
+}
 let search15 = function(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+        let b = await ind.founnd(size, volume, rs)
+        let c = await save(b, 't15m')
+    })(size, volume)
+    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, 30)
+}
+let search1h = function(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+        let b = await ind.founnd(size, volume, rs)
+        let c = await save(b, 't1h')
+    })(size, volume)
+    setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, 30)
+}
+let search4h = function(size, volume, rs) {
         let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
-            let c = await save(b, 't15m')
+            let c = await save(b, 't4h')
         })(size, volume)
+        setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 30)
     }
     //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
+setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 30)
 
 app.get('/getcoins/:volume', (req, res) => {
     try {
@@ -68,12 +91,18 @@ app.get('/getcoins/:volume', (req, res) => {
     }
 })
 app.get('/coins/:t', function(req, res) {
-        let t = req.params.t
-        Coin.findById('12345', (err, coin) => {
-            if (err) return err
-            if (coin) {
-                res.send(coin[t])
-            }
+    let t = req.params.t
+    Coin.findById('12345', (err, coin) => {
+        if (err) return err
+        if (coin) {
+            res.send(coin[t])
+        }
+    })
+})
+app.get('/delete', function(req, res) {
+        Coin.deleteMany({}, function(err, r) {
+            if (err) console.log(err)
+            else res.send('deleted')
         })
     })
     // app.get('/store', function(req, res) {

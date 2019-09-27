@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const coin = new Schema({
+    // candles:{
+    //     type: Object
+    // },
     t15m: {
         type: Array,
         default: ['BTCUSDT']
@@ -15,7 +18,7 @@ const coin = new Schema({
         type: Array,
         default: ['BTCUSDT']
     },
-    _id: {
+    mymyid: {
         type: String,
         default: '12345'
     }
