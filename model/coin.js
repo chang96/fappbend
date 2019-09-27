@@ -18,7 +18,7 @@ const coin = new Schema({
         type: Array,
         default: ['BTCUSDT']
     },
-    t1w: {
+    t4h: {
         type: Array,
         default: ['BTCUSDT']
     },
