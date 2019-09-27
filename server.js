@@ -30,6 +30,7 @@ const save = async function(dat, t) {
                 let data = await dat
                 console.log(data)
                 coin[t] = data
+                Coin.markModified(`${t}`)
                 coin.save().then(() => console.log(`${t} saved`))
             } else if (!coin) {
                 console.log(2)
