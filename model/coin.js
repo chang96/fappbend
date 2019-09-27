@@ -6,6 +6,10 @@ const coin = new Schema({
     // candles:{
     //     type: Object
     // },
+    t5m: {
+        type: Array,
+        default: ['BTCUSDT']
+    },
     t15m: {
         type: Array,
         default: ['BTCUSDT']
