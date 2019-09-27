@@ -22,6 +22,7 @@ connection.once('open', function() {
 
 const save = async function(dat, t) {
         let data = await dat
+        console.log('...................................')
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, (err, coin) => {
             if (err)
                 return err
@@ -48,6 +49,7 @@ const save = async function(dat, t) {
 let search5 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
         let b = await ind.founnd(size, volume, rs)
+        console.log('5min')
         let c = await save(b, 't5m')
     })(size, volume)
     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 30)
