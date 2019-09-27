@@ -22,8 +22,8 @@ connection.once('open', function() {
 
 const save = async function(dat, t) {
         let data = await dat
-        console.log('...................................')
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, (err, coin) => {
+            console.log('...................................')
             if (err)
                 return err
             else if (coin) {
