@@ -22,7 +22,7 @@ connection.once('open', function() {
 
 const save = async function(dat, t) {
         let data = await dat
-        Coin.findOne({ 'mymyid': '12345' }, (err, coin) => {
+        Coin.findOneAndUpdate({ 'mymyid': '12345' }, (err, coin) => {
             if (err)
                 return err
             else if (coin && coin[t].length > 0) {
@@ -74,27 +74,27 @@ let search4h = function(size, volume, rs) {
     //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
 setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 30)
 app.get('/', function(req, res) {
-    res.send(`
+        res.send(`
     1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.
      /t5m to access 5min candle
     `)
-})
-app.get('/getcoins/:volume', (req, res) => {
-    try {
-        let volume = Number(req.params.volume)
-        console.log(typeof volume, 1)
-        let size = req.query.size
-        let rs = req.query.rsi
-        let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
-            console.log('yea')
-            res.send(b)
-                //console.log(b)
-        })(size, volume, rs)
-    } catch (err) {
-        console.log(err)
-    }
-})
+    })
+    // app.get('/getcoins/:volume', (req, res) => {
+    //     try {
+    //         let volume = Number(req.params.volume)
+    //         console.log(typeof volume, 1)
+    //         let size = req.query.size
+    //         let rs = req.query.rsi
+    //         let a = (async(size, volume, rs) => {
+    //             let b = await ind.founnd(size, volume, rs)
+    //             console.log('yea')
+    //             res.send(b)
+    //                 //console.log(b)
+    //         })(size, volume, rs)
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // })
 app.get('/coins/:t', function(req, res) {
     let t = req.params.t
     console.log(t)
