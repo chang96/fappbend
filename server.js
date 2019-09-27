@@ -22,7 +22,7 @@ connection.once('open', function() {
 
 const save = async function(dat, t) {
         //let data = await dat
-        Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
+        Coin.findOne({ 'mymyid': 'string' }, async(err, coin) => {
             console.log('...................................')
             if (err)
                 return err
