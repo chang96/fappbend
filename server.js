@@ -115,10 +115,13 @@ app.get('/delete', function(req, res) {
     })
 })
 app.get('/find', function(req, res) {
-        Coin.find({}, function(err, coin) {
-            if (coin)
-                res.send(coin)
-        })
+        let stuff = { t5m: ['BTCUSDT'], t15m: ['BTCUSDT'], t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], mymyid: 'string' }
+        let c = new Coin(stuff)
+        c.save().then(console.log)
+            // Coin.find({}, function(err, coin) {
+            //     if (coin)
+            //         res.send(coin)
+            // })
     })
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
