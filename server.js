@@ -72,7 +72,7 @@ let search4h = function(size, volume, rs) {
         setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 30)
     }
     //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
-setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 30)
+setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 30)
 
 app.get('/getcoins/:volume', (req, res) => {
     try {
@@ -91,10 +91,12 @@ app.get('/getcoins/:volume', (req, res) => {
     }
 })
 app.get('/coins/:t', function(req, res) {
+    console.log(t)
     let t = req.params.t
     Coin.findById('12345', (err, coin) => {
         if (err) return err
         if (coin) {
+            console.log(coin[t])
             res.send(coin[t])
         }
     })
