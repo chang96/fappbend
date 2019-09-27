@@ -73,7 +73,12 @@ let search4h = function(size, volume, rs) {
     }
     //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
 setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 30)
-
+app.get('/', function(req, res) {
+    res.send(`
+    1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.
+     /t5m to access 5min candle
+    `)
+})
 app.get('/getcoins/:volume', (req, res) => {
     try {
         let volume = Number(req.params.volume)
