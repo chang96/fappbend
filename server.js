@@ -91,8 +91,8 @@ app.get('/getcoins/:volume', (req, res) => {
     }
 })
 app.get('/coins/:t', function(req, res) {
-    console.log(t)
     let t = req.params.t
+    console.log(t)
     Coin.findById('12345', (err, coin) => {
         if (err) return err
         if (coin) {
