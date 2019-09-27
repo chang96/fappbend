@@ -25,10 +25,10 @@ const save = async function(dat, t) {
         Coin.findOneAndUpdate({ 'mymyid': '12345' }, (err, coin) => {
             if (err)
                 return err
-            else if (coin && coin[t].length > 0) {
+            else if (coin) {
 
                 coin[t] = data
-                coin.save().then(() => console.log('saved'))
+                coin.save().then(() => console.log(`${t} saved`))
             } else if (!coin) {
                 const newcoins = new Coin({
                     [t]: data
