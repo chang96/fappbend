@@ -23,13 +23,14 @@ connection.once('open', function() {
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
-            [t]: data
-        }, async(err, coin) => {
-            console.log('...................................')
-            if (err)
-                return err
+                [t]: data
+            }, { useFindAndModify: true },
+            async(err, coin) => {
+                console.log('...................................')
+                if (err)
+                    return err
 
-        })
+            }).then((d) => { console.log(`${t} saved`) })
     }
     //5m 15m 1h 4h // 1w
 let search5 = function(size, volume, rs) {
