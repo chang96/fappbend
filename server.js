@@ -24,7 +24,7 @@ const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
                 [t]: data
-            }, { useFindAndModify: true },
+            }, { useFindAndModify: false },
             async(err, coin) => {
                 console.log('...................................')
                 if (err)
@@ -63,7 +63,7 @@ let search4h = function(size, volume, rs) {
         setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 30)
     }
     //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
-setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 30)
+    //setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 30)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.
