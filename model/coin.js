@@ -25,7 +25,8 @@ const coin = new Schema({
     mymyid: {
         type: String,
         default: 'string'
-    }
-})
+    },
+
+}, { strict: false })
 
 module.exports = mongoose.model('coin', coin)
