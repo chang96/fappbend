@@ -88,7 +88,7 @@ app.get('/', function(req, res) {
 app.get('/coins/:t', function(req, res) {
     let t = req.params.t
     console.log(t)
-    Coin.findOne({ 'mymyid': '12345' }, (err, coin) => {
+    Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
         if (err) return err
         if (coin) {
             console.log(coin[t])
