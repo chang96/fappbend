@@ -5,15 +5,16 @@ const user = new Schema({
     username: {
         type: String
     },
-    Time: {
-        type: Date,
+    time: {
+        type: Number,
         default: Date.now()
     },
     hasAccess: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
     paid: {
-        type: Number
+        type: Array
     }
 })
 

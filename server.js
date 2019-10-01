@@ -8,9 +8,14 @@ const axios = require('axios')
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-const bot = new telegraf(token)
+const bot = new telegraf(token, { telegram: { webhookReply: true } })
 const User = require('./model/user')
 const Coin = require('./model/coin')
+const bodyParser = require('body-parser')
+app.use(bot.webhookCallback('/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972'))
+bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
     //const tel = require('./command/telegram')
     //const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
 const PORT = process.env.PORT || 3000
@@ -18,15 +23,25 @@ mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: t
 const connection = mongoose.connection
 connection.once('open', function() {
     console.log('up!')
-})
+}).catch(err => { return err })
 
-let tel = require('./command/telegram').tel(bot, Coin)
+let tel = require('./command/telegram').tel(bot, Coin, User)
+app.post('/teltest', function(req, res) {
+        res.send('now testing tel')
+    })
+    // let a = (async() => {
+    //     let b = await ind.founnd
+    //     console.log(b)
+    // })()
+function checking() {
 
-// let a = (async() => {
-//     let b = await ind.founnd
-//     console.log(b)
-// })()
-
+    User.updateMany({ 'time': { $lt: Date.now() - (1000 * 60 * 60 * 24 * 30) } }, { '$set': { "hasAccess": false } }, function(err, doc) {
+        if (err) return err
+        else if (doc) {
+            console.log(doc)
+        }
+    })
+}
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -45,6 +60,7 @@ let search5 = function(size, volume, rs) {
         let b = await ind.founnd(size, volume, rs)
         console.log('5min')
         let c = await save(b, 't5m')
+        checking()
     })(size, volume)
     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
 }
@@ -69,8 +85,7 @@ let search4h = function(size, volume, rs) {
         })(size, volume)
         setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 35)
     }
-    //setInterval(search15, 1000 * 60 * 20, '15m', 100000, 35)
-setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 35)
+    //setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 35)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.
@@ -93,6 +108,56 @@ app.get('/', function(req, res) {
     //         console.log(err)
     //     }
     // })
+app.get('/seeall', function(req, res) {
+    User.find({}, function(err, users) {
+        if (err) return err
+        else {
+            res.send(users)
+        }
+    })
+})
+app.post('/seeuser', function(req, res) {
+    let username = req.body.username
+    User.findOne({ username: username }, function(err, user) {
+        if (err) return err
+        if (user) res.send(user)
+        else return null
+    })
+})
+app.post('/adduser', function(req, res) {
+    let username = req.body.username
+    let paid = req.body.paid
+    User.findOne({ username: username }, function(err, user) {
+        if (err) return err
+        if (user) {
+            res.send('username already exists')
+        } else {
+            let newUser = new User({ username: username, paid: [paid] })
+            newUser.save().then(() => {
+                res.send(`${username} created`)
+            })
+        }
+    })
+
+})
+app.post('/removeuser', function(req, res) {
+    const username = req.body.username
+    User.findOneAndDelete({ username: username }, function(err, n) {
+        if (err) return err
+        else {
+            res.send('done')
+        }
+    })
+})
+app.post('/updateuser', function(req, res) {
+    let username = req.body.username
+    let paid = req.body.paid
+    User.findOneAndUpdate({ username: username }, { time: Date.now(), paid: paid.push(paid) }, function(err, doc) {
+        if (err) return err
+    }).then(() => {
+        res.send(`${username} updated`)
+    })
+})
 app.get('/coins/:t', function(req, res) {
     let t = req.params.t
     console.log(t)
