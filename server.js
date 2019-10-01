@@ -12,8 +12,8 @@ const bot = new telegraf(token, { telegram: { webhookReply: true } })
 const User = require('./model/user')
 const Coin = require('./model/coin')
 const bodyParser = require('body-parser')
-app.use(bot.webhookCallback('/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972'))
-bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
+    // app.use(bot.webhookCallback('/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972'))
+    // bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
     //const tel = require('./command/telegram')
@@ -79,13 +79,13 @@ let search1h = function(size, volume, rs) {
     setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, 35)
 }
 let search4h = function(size, volume, rs) {
-        let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
-            let c = await save(b, 't4h')
-        })(size, volume)
-        setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 35)
-    }
-    //setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 35)
+    let a = (async(size, volume, rs) => {
+        let b = await ind.founnd(size, volume, rs)
+        let c = await save(b, 't4h')
+    })(size, volume)
+    setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 35)
+}
+setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 35)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.

@@ -80,7 +80,7 @@ module.exports.tel = function(bot, Coin, User) {
             })
 
         });
-        //bot.startPolling()
+        bot.startPolling()
     }
     // module.exports.sending = async function(text) {
     //         let a = await text
