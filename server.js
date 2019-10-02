@@ -1,14 +1,22 @@
 require('dotenv').config()
     //const telegram = require('telegram-bot-api');
 const ind = require('./newtest')
-const telegraf = require('telegraf');
+    //const telegraf = require('telegraf');
+const Bot = require('node-telegram-bot-api')
 const taapi = process.env.TAAPI
 const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
 const axios = require('axios')
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-const bot = new telegraf(token)
+    //const bot = new telegraf(token)
+let bot
+if (process.env.NODE_ENV === 'production') {
+    bot = new Bot(token);
+    bot.setWebHook(process.env.HEROKU_URL + bot.token);
+} else {
+    // bot = new Bot(token, { polling: true });
+}
 const User = require('./model/user')
 const Coin = require('./model/coin')
 const bodyParser = require('body-parser')
@@ -16,8 +24,8 @@ const bodyParser = require('body-parser')
     // bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-    //const tel = require('./command/telegram')
-    //const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
+
+//const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
 const PORT = process.env.PORT || 3000
 mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const connection = mongoose.connection
@@ -26,9 +34,6 @@ connection.once('open', function() {
 }).catch(err => { return err })
 
 let tel = require('./command/telegram').tel(bot, Coin, User)
-app.post('/teltest', function(req, res) {
-        res.send('now testing tel')
-    })
     // let a = (async() => {
     //     let b = await ind.founnd
     //     console.log(b)
@@ -116,6 +121,10 @@ app.get('/seeall', function(req, res) {
         }
     })
 })
+app.post('/' + token, function(req, res) {
+    bot.processUpdate(req.body);
+    res.sendStatus(200);
+});
 app.post('/seeuser', function(req, res) {
     let username = req.body.username
     User.findOne({ username: username }, function(err, user) {
