@@ -1,5 +1,5 @@
 require('dotenv').config()
-const telegram = require('telegram-bot-api');
+    //const telegram = require('telegram-bot-api');
 const ind = require('./newtest')
 const telegraf = require('telegraf');
 //const Bot = require('node-telegram-bot-api')
@@ -11,12 +11,12 @@ const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 const bot = new telegraf(token)
-    //let bot
+    // let bot
     // if (process.env.NODE_ENV === 'production') {
     //     bot = new Bot(token);
-    //     bot.setWebHook(process.env.HEROKU_URL + bot.token);
+    //     bot.setWebHook('https://shrouded-beach-91632.herokuapp.com/' + bot.token);
     // } else {
-    //     // bot = new Bot(token, { polling: true });
+    //     bot = new Bot(token, { polling: true });
     // }
 const User = require('./model/user')
 const Coin = require('./model/coin')
@@ -44,7 +44,7 @@ function checking() {
     User.updateMany({ 'time': { $lt: Date.now() - (1000 * 60 * 60 * 24 * 30) } }, { '$set': { "hasAccess": false } }, function(err, doc) {
         if (err) return err
         else if (doc) {
-            console.log(doc)
+            //console.log(doc)
         }
     })
 }
@@ -63,38 +63,48 @@ const save = async function(dat, t) {
     //5m 15m 1h 4h // 1w
 let search5 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-        let b = await ind.founnd(size, volume, rs)
-        console.log('5min')
-        let c = await save(b, 't5m')
-        checking()
-    })(size, volume)
-    api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
-
+            let b = await ind.founnd(size, volume, rs)
+            console.log('5min')
+            let c = await save(b, 't5m')
+            checking()
+        })(size, volume)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
+    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, 35)
+    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
+}
+let search5mstar = function(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd(size, volume, rs)
+            console.log('5min')
+            let c = await save(b, 't5m')
+            checking()
+        })(size, volume)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
 }
 let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-        let b = await ind.founnd(size, volume, rs)
-        let c = await save(b, 't15m')
-    })(size, volume)
-    api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, 35)
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't15m')
+        })(size, volume)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search5mstar, 1000 * 60 * 3, '1h', 100000, 35)
 }
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-        let b = await ind.founnd(size, volume, rs)
-        let c = await save(b, 't1h')
-    })(size, volume)
-    api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, 35)
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't1h')
+        })(size, volume)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
+    setTimeout(search4h, 1000 * 60 * 10, '4h', 100000, 35)
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-        let b = await ind.founnd(size, volume, rs)
-        let c = await save(b, 't4h')
-    })(size, volume)
-    api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 35)
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't4h')
+        })(size, volume)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+    setTimeout(search1h, 1000 * 60 * 10, '5m', 100000, 35)
 }
 setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 35)
 app.get('/', function(req, res) {
