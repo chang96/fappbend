@@ -54,7 +54,8 @@ module.exports.tel = function(bot, Coin, User, api) {
                 let data = msg
                 let a = await datum
                 let auth = ['Cha_ng']
-                if (find(User, data) || auth.indexOf(`${data.from.username}` || anyone) !== -1) {
+                    //if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1 || anyone) {
+                if (anyone) {
                     api.sendMessage(msg.chat.id, `coin:${a.t15m}`)
                 } else {
                     api.sendMessage(msg.chat.id, 'array of coin')
@@ -72,7 +73,7 @@ module.exports.tel = function(bot, Coin, User, api) {
                 let data = msg
                 let a = await datum
                 let auth = ['Cha_ng']
-                if (find(User, data) || auth.indexOf(`${data.from.username}` || anyone) !== -1) {
+                if (anyone) {
                     api.sendMessage(msg.chat.id, `coin:${a.t1h}`)
                 } else {
                     api.sendMessage(msg.chat.id, 'array of coin')
@@ -89,7 +90,7 @@ module.exports.tel = function(bot, Coin, User, api) {
                 let data = msg
                 let a = await datum
                 let auth = ['Cha_ng']
-                if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1 || anyone) {
+                if (anyone) {
                     api.sendMessage(msg.chat.id, `coin:${a.t4h}`)
                 } else {
                     api.sendMessage(msg.chat.id, 'array of coin')
