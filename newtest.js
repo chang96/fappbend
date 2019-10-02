@@ -90,7 +90,7 @@ function testing1(arr) {
     }
 }
 
-function testingrsi(b) {
+function testingrsi(b, z) {
     if (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z) {
         return true
     } else return false
@@ -126,7 +126,7 @@ let found = async(size, volume, rs) => {
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
 
                     // if ((testrsi && testing1(mymyhist))) {
-                    if ((testingrsi(b))) {
+                    if ((testingrsi(b, z))) {
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         return `${candle.name}::`
                     }
