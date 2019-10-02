@@ -2,7 +2,7 @@ require('dotenv').config()
     //const telegram = require('telegram-bot-api');
 const ind = require('./newtest')
 const telegraf = require('telegraf');
-//const Bot = require('node-telegram-bot-api')
+const Bot = require('node-telegram-bot-api')
 const taapi = process.env.TAAPI
 const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
 const api = new telegram({ token: token })
@@ -10,14 +10,14 @@ const axios = require('axios')
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-const bot = new telegraf(token)
-    // let bot
-    // if (process.env.NODE_ENV === 'production') {
-    //     bot = new Bot(token);
-    //     bot.setWebHook('https://shrouded-beach-91632.herokuapp.com/' + bot.token);
-    // } else {
-    //     bot = new Bot(token, { polling: true });
-    // }
+    //const bot = new telegraf(token)
+let bot
+if (process.env.NODE_ENV === 'production') {
+    bot = new Bot(token);
+    bot.setWebHook('https://shrouded-beach-91632.herokuapp.com/' + bot.token);
+} else {
+    bot = new Bot(token, { polling: true });
+}
 const User = require('./model/user')
 const Coin = require('./model/coin')
 const bodyParser = require('body-parser')
