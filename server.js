@@ -61,34 +61,33 @@ const save = async function(dat, t) {
             }).then((d) => { console.log(`${t} saved`) })
     }
     //5m 15m 1h 4h // 1w
-let search5 = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
-            console.log('5min')
-            let c = await save(b, 't5m')
-            checking()
-        })(size, volume)
-        //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
-    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, 35)
-    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
-}
-let search5mstar = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
-            console.log('5min')
-            let c = await save(b, 't5m')
-            checking()
-        })(size, volume)
-        //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
-    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
-}
+    // let search5 = function(size, volume, rs) {
+    //         let a = (async(size, volume, rs) => {
+    //                 let b = await ind.founnd(size, volume, rs)
+    //                 console.log('5min')
+    //                 let c = await save(b, 't5m')
+    //                 checking()
+    //             })(size, volume)
+    //             //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
+    //         setTimeout(search15, 1000 * 60 * 2, '15m', 100000, 35)
+    //     }
+    // let search5mstar = function(size, volume, rs) {
+    //     let a = (async(size, volume, rs) => {
+    //             let b = await ind.founnd(size, volume, rs)
+    //             console.log('5min')
+    //             let c = await save(b, 't5m')
+    //             checking()
+    //         })(size, volume)
+    //         //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
+    //     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
+    // }
 let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't15m')
         })(size, volume)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search5mstar, 1000 * 60 * 3, '1h', 100000, 35)
+    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, 35)
 }
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -96,7 +95,7 @@ let search1h = function(size, volume, rs) {
             let c = await save(b, 't1h')
         })(size, volume)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search4h, 1000 * 60 * 10, '4h', 100000, 35)
+    setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, 35)
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -104,9 +103,9 @@ let search4h = function(size, volume, rs) {
             let c = await save(b, 't4h')
         })(size, volume)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1h, 1000 * 60 * 10, '5m', 100000, 35)
+    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
 }
-setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 35)
+setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.
