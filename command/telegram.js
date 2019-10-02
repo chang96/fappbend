@@ -16,7 +16,7 @@ let find = function(User, data) {
 }
 module.exports.tel = function(bot, Coin, User) {
 
-        bot.on('message', function(msg) {
+        bot.onText(/\/5mcoins/, function(msg) {
             Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
                 if (err)
                     return err
