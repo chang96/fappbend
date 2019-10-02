@@ -26,7 +26,7 @@ module.exports.tel = function(bot, Coin, User) {
                 console.log(data)
                 let auth = ['Cha_ng']
                 if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-                    bot.sendMessage(msg.chat.id, datum.t5m)
+                    bot.sendMessage(msg.chat.id, 'g')
                 } else {
                     bot.sendMessage(msg.chat.id, 'array of coin')
                 }
