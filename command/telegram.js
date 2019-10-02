@@ -14,7 +14,7 @@ let find = function(User, data) {
         else if (user) return user
     }).then(user => user.hasAccess)
 }
-module.exports.tel = function(bot, Coin, User) {
+module.exports.tel = function(bot, Coin, User, api) {
 
         bot.onText(/\/15mcoins/, function(msg) {
             Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
@@ -22,14 +22,13 @@ module.exports.tel = function(bot, Coin, User) {
                     return err
                 else return coin
             }).then((datum) => {
-                console.log(datum)
                 let data = msg
                 console.log(data)
                 let auth = ['Cha_ng']
                 if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-                    bot.sendMessage(msg.chat.id, datum)
+                    api.sendMessage(msg.chat.id, `coin:${datum}`)
                 } else {
-                    bot.sendMessage(msg.chat.id, 'array of coin')
+                    api.sendMessage(msg.chat.id, 'array of coin')
                 }
             })
 

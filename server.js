@@ -1,11 +1,11 @@
 require('dotenv').config()
-    //const telegram = require('telegram-bot-api');
+const telegram = require('telegram-bot-api');
 const ind = require('./newtest')
 const telegraf = require('telegraf');
 const Bot = require('node-telegram-bot-api')
 const taapi = process.env.TAAPI
 const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
-    //const api = new telegram({ token: token })
+const api = new telegram({ token: token })
 const axios = require('axios')
 const mongoose = require('mongoose')
 const express = require('express')
@@ -34,7 +34,7 @@ connection.once('open', function() {
     console.log('up!')
 }).catch(err => { return err })
 
-let tel = require('./command/telegram').tel(bot, Coin, User)
+let tel = require('./command/telegram').tel(bot, Coin, User, api)
     // let a = (async() => {
     //     let b = await ind.founnd
     //     console.log(b)
@@ -68,7 +68,7 @@ const save = async function(dat, t) {
     //                 let c = await save(b, 't5m')
     //                 checking()
     //             })(size, volume)
-    //             //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
+    //             //
     //         setTimeout(search15, 1000 * 60 * 2, '15m', 100000, 35)
     //     }
     // let search5mstar = function(size, volume, rs) {
