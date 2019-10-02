@@ -16,6 +16,7 @@ let find = function(User, data) {
 }
 module.exports.tel = function(bot, Coin, User, api) {
         bot.on('message', function(msg) {
+            let t = msg.text === '/15mcoins' ? 't15m' : msg.text === '/1hcoins' ? 't1h' : msg.text === '/4hcoins' ? 't4h' : 't15m'
             Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
                 if (err)
                     return err
@@ -25,7 +26,7 @@ module.exports.tel = function(bot, Coin, User, api) {
                 let a = await datum
                 let auth = ['Cha_ng']
                 if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-                    bot.sendMessage(msg.chat.id, `coin:${a}`)
+                    bot.sendMessage(msg.chat.id, `coin:${a[t]}`)
                 } else {
                     bot.sendMessage(msg.chat.id, 'array of coin')
                 }
