@@ -117,7 +117,8 @@ let found = async(size, volume, rs) => {
                     let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
 
-                    if ((testrsi && testing1(mymyhist))) {
+                    // if ((testrsi && testing1(mymyhist))) {
+                    if ((testrsi)) {
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         return `${candle.name}::`
                     }
