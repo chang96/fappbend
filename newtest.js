@@ -11,8 +11,10 @@ const binance = require('node-binance-api')().options({
     useServerTime: true
 })
 const eyo = require('./volume')
-
-// Authenticated client, can make signed calls
+const telegram = require('telegram-bot-api');
+const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
+const api = new telegram({ token: token })
+    // Authenticated client, can make signed calls
 const bi = Binance({
         apiKey: process.env.APIKEY,
         apiSecret: process.env.APISECRET,
@@ -119,6 +121,7 @@ let found = async(size, volume, rs) => {
 
                     // if ((testrsi && testing1(mymyhist))) {
                     if ((testrsi)) {
+                        api.sendMessage({ chat_id: 954135852, text: { name: candle.name, rsi: b[b.length - 1] } })
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         return `${candle.name}::`
                     }

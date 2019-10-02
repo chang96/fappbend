@@ -81,13 +81,14 @@ const save = async function(dat, t) {
     //         //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
     //     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
     // }
+const rsii = 50
 let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't15m')
         })(size, volume)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, 35)
+    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
 }
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -95,7 +96,7 @@ let search1h = function(size, volume, rs) {
             let c = await save(b, 't1h')
         })(size, volume)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, 35)
+    setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, rsii)
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -103,13 +104,13 @@ let search4h = function(size, volume, rs) {
             let c = await save(b, 't4h')
         })(size, volume)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
+    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
 }
-setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
+setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
-    1) Access candles 5m, 15m, 1h, 4h. Update is every 15mins.
-     /t5m to access 5min candle
+    1) Access candles 15m, 1h, 4h. Update is every 6mins.
+     /t15m to access 15min candle
     `)
     })
     // app.get('/getcoins/:volume', (req, res) => {
