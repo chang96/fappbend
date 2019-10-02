@@ -14,6 +14,7 @@ let find = function(User, data) {
         else if (user) return user
     }).then(user => user.hasAccess)
 }
+let anyone = true
 module.exports.tel = function(bot, Coin, User, api) {
         bot.onText(/\/start/, function(msg) {
             let mess = `WELCOME! \n Taapibot is a trading assistant. It outputs coins with approximately rsi less than 35, macd crossing over and more than $100,000 in volume on binance. This bot updates approximately every 7 - 8minutes. PLEASE NOTE THAT THIS IS NOT A TRADING BOT AND THE COIN(S) LISTED ARE NOT GUARRANTEED TO GROW IN VALUE. PRECAUTIONS LIKE SETTING STOP LOSS & DOING YOUR OWN RESEARCH SHOULD STILL BE DONE. /help to get started \n
@@ -21,112 +22,81 @@ module.exports.tel = function(bot, Coin, User, api) {
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.onText(/\/help/, function(msg) {
-            let mess = `/15mcoins to access 15min candles
+                let mess = `/15mcoins to access 15min candles
                 /1hcoins to access 1h candles
                 /4hcoins to access 4h candles `
-            bot.sendMessage(msg.chat.id, mess)
-        })
-        bot.on('message', function(msg) {
-            let t = msg.text === '/15mcoins' ? 't15m' : msg.text === '/1hcoins' ? 't1h' : msg.text === '/4hcoins' ? 't4h' :
-                Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-                    if (err)
-                        return err
-                    else return coin
-                }).then(async(datum) => {
-                    let data = msg
-                    let a = await datum
-                    let auth = ['Cha_ng']
-                    if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-                        bot.sendMessage(msg.chat.id, `coin:${a[t]}`)
-                    } else {
-                        bot.sendMessage(msg.chat.id, 'array of coin')
-                    }
-                })
+                bot.sendMessage(msg.chat.id, mess)
+            })
+            // bot.on('message', function(msg) {
+            //     let t = msg.text === '/15mcoins' ? 't15m' : msg.text === '/1hcoins' ? 't1h' : msg.text === '/4hcoins' ? 't4h' :
+            //         Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+            //             if (err)
+            //                 return err
+            //             else return coin
+            //         }).then(async(datum) => {
+            //             let data = msg
+            //             let a = await datum
+            //             let auth = ['Cha_ng']
+            //             if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
+            //                 bot.sendMessage(msg.chat.id, `coin:${a[t]}`)
+            //             } else {
+            //                 bot.sendMessage(msg.chat.id, 'array of coin')
+            //             }
+            //         })
+
+        // });
+        bot.onText(/\/15mcoins/, function(msg) {
+            Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+                if (err)
+                    return err
+                else return coin
+            }).then(async(datum) => {
+                let data = msg
+                let a = await datum
+                let auth = ['Cha_ng']
+                if (find(User, data) || auth.indexOf(`${data.from.username}` || anyone) !== -1) {
+                    api.sendMessage(msg.chat.id, `coin:${a.t15m}`)
+                } else {
+                    api.sendMessage(msg.chat.id, 'array of coin')
+                }
+            })
 
         });
-        // bot.onText(/\/15mcoins/, function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             api.sendMessage(msg.chat.id, `coin:${datum}`)
-        //         } else {
-        //             api.sendMessage(msg.chat.id, 'array of coin')
-        //         }
-        //     })
 
-        // });
+        bot.onText(/\/1hcoins/, function(msg) {
+            Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+                if (err)
+                    return err
+                else return coin
+            }).then(async(datum) => {
+                let data = msg
+                let a = await datum
+                let auth = ['Cha_ng']
+                if (find(User, data) || auth.indexOf(`${data.from.username}` || anyone) !== -1) {
+                    api.sendMessage(msg.chat.id, `coin:${a.t1h}`)
+                } else {
+                    api.sendMessage(msg.chat.id, 'array of coin')
+                }
+            })
 
-        // bot.command('/5mcoins', function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg.message
-        //         console.log(data)
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             msg.reply(datum.t5m)
-        //         } else {
-        //             msg.reply('array of coin')
-        //         }
-        //     })
+        });
+        bot.onText(/\/4hcoins/, function(msg) {
+            Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+                if (err)
+                    return err
+                else return coin
+            }).then(async(datum) => {
+                let data = msg
+                let a = await datum
+                let auth = ['Cha_ng']
+                if (find(User, data) || auth.indexOf(`${data.from.username}` || anyone) !== -1) {
+                    api.sendMessage(msg.chat.id, `coin:${a.t4h}`)
+                } else {
+                    api.sendMessage(msg.chat.id, 'array of coin')
+                }
+            })
 
-        // });
-        // bot.command('/15mcoins', function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg.message
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             msg.reply(datum.t15m)
-        //         } else {
-        //             msg.reply('array of coin')
-        //         }
-        //     })
-
-        // });
-        // bot.command('/1hcoins', function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg.message
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             msg.reply(datum.t1h)
-        //         } else {
-        //             msg.reply('array of coin')
-        //         }
-        //     })
-
-        // });
-        // bot.command('/4hcoins', function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg.message
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             msg.reply(datum.t4h)
-        //         } else {
-        //             msg.reply('array of coin')
-        //         }
-        //     })
-
-        // });
-        // bot.startPolling()
+        });
     }
     // module.exports.sending = async function(text) {
     //         let a = await text
