@@ -17,7 +17,7 @@ let find = function(User, data) {
 module.exports.tel = function(bot, Coin, User, api) {
         bot.onText(/\/start/, function(msg) {
             let mess = `WELCOME! \n Taapibot is a trading assistant. It outputs coins with approximately rsi less than 35, macd crossing over and more than $100,000 in volume on binance. This bot updates approximately every 7 - 8minutes. PLEASE NOTE THAT THIS IS NOT A TRADING BOT AND THE COIN(S) LISTED ARE NOT GUARRANTEED TO GROW IN VALUE. PRECAUTIONS LIKE SETTING STOP LOSS & DOING YOUR OWN RESEARCH SHOULD STILL BE DONE. /help to get started
-                        Happy longing! feedback @Cha_ng or @lo.ng`
+                        Happy longing! feedback @Cha_ng or @Lo.ng`
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.onText(/\/help/, function(msg) {
