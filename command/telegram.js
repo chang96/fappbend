@@ -16,71 +16,72 @@ let find = function(User, data) {
 }
 module.exports.tel = function(bot, Coin, User) {
 
-        bot.onText('/5mcoins', function(msg) {
+        bot.command('/5mcoins', function(msg) {
             Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
                 if (err)
                     return err
                 else return coin
             }).then((datum) => {
-                let data = msg
+                let data = msg.message
+                console.log(data)
                 let auth = ['Cha_ng']
                 if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-                    bot.sendMessage(data.chat.id, datum.t5m)
+                    msg.reply(datum.t5m)
                 } else {
-                    bot.sendMessage(data.chat.id, 'array of coin')
+                    msg.reply('array of coin')
                 }
             })
 
         });
-        // bot.command('/15mcoins', function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg.message
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             msg.reply(datum.t15m)
-        //         } else {
-        //             msg.reply('array of coin')
-        //         }
-        //     })
+        bot.command('/15mcoins', function(msg) {
+            Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+                if (err)
+                    return err
+                else return coin
+            }).then((datum) => {
+                let data = msg.message
+                let auth = ['Cha_ng']
+                if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
+                    msg.reply(datum.t15m)
+                } else {
+                    msg.reply('array of coin')
+                }
+            })
 
-        // });
-        // bot.command('/1hcoins', function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg.message
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             msg.reply(datum.t1h)
-        //         } else {
-        //             msg.reply('array of coin')
-        //         }
-        //     })
+        });
+        bot.command('/1hcoins', function(msg) {
+            Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+                if (err)
+                    return err
+                else return coin
+            }).then((datum) => {
+                let data = msg.message
+                let auth = ['Cha_ng']
+                if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
+                    msg.reply(datum.t1h)
+                } else {
+                    msg.reply('array of coin')
+                }
+            })
 
-        // });
-        // bot.command('/4hcoins', function(msg) {
-        //     Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        //         if (err)
-        //             return err
-        //         else return coin
-        //     }).then((datum) => {
-        //         let data = msg.message
-        //         let auth = ['Cha_ng']
-        //         if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-        //             msg.reply(datum.t4h)
-        //         } else {
-        //             msg.reply('array of coin')
-        //         }
-        //     })
+        });
+        bot.command('/4hcoins', function(msg) {
+            Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+                if (err)
+                    return err
+                else return coin
+            }).then((datum) => {
+                let data = msg.message
+                let auth = ['Cha_ng']
+                if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
+                    msg.reply(datum.t4h)
+                } else {
+                    msg.reply('array of coin')
+                }
+            })
 
-        // });
-        // bot.startPolling()
+        });
+        bot.startPolling()
     }
     // module.exports.sending = async function(text) {
     //         let a = await text

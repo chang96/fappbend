@@ -1,22 +1,23 @@
 require('dotenv').config()
-    //const telegram = require('telegram-bot-api');
+const telegram = require('telegram-bot-api');
 const ind = require('./newtest')
-    //const telegraf = require('telegraf');
-const Bot = require('node-telegram-bot-api')
+const telegraf = require('telegraf');
+//const Bot = require('node-telegram-bot-api')
 const taapi = process.env.TAAPI
 const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
+const api = new telegram({ token: token })
 const axios = require('axios')
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-    //const bot = new telegraf(token)
-let bot
-if (process.env.NODE_ENV === 'production') {
-    bot = new Bot(token);
-    bot.setWebHook(process.env.HEROKU_URL + bot.token);
-} else {
-    // bot = new Bot(token, { polling: true });
-}
+const bot = new telegraf(token)
+    //let bot
+    // if (process.env.NODE_ENV === 'production') {
+    //     bot = new Bot(token);
+    //     bot.setWebHook(process.env.HEROKU_URL + bot.token);
+    // } else {
+    //     // bot = new Bot(token, { polling: true });
+    // }
 const User = require('./model/user')
 const Coin = require('./model/coin')
 const bodyParser = require('body-parser')
@@ -67,6 +68,8 @@ let search5 = function(size, volume, rs) {
         let c = await save(b, 't5m')
         checking()
     })(size, volume)
+    api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
+
     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
 }
 let search15 = function(size, volume, rs) {
@@ -74,6 +77,7 @@ let search15 = function(size, volume, rs) {
         let b = await ind.founnd(size, volume, rs)
         let c = await save(b, 't15m')
     })(size, volume)
+    api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, 35)
 }
 let search1h = function(size, volume, rs) {
@@ -81,6 +85,7 @@ let search1h = function(size, volume, rs) {
         let b = await ind.founnd(size, volume, rs)
         let c = await save(b, 't1h')
     })(size, volume)
+    api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, 35)
 }
 let search4h = function(size, volume, rs) {
@@ -88,6 +93,7 @@ let search4h = function(size, volume, rs) {
         let b = await ind.founnd(size, volume, rs)
         let c = await save(b, 't4h')
     })(size, volume)
+    api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
     setTimeout(search4h, 1000 * 60 * 3, '5m', 100000, 35)
 }
 setTimeout(search5, 1000 * 60 * 3, '5m', 100000, 35)
