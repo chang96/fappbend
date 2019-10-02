@@ -90,6 +90,12 @@ function testing1(arr) {
     }
 }
 
+function testingrsi(b) {
+    if (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z) {
+        return true
+    } else return false
+}
+
 let found = async(size, volume, rs) => {
     let arr = []
     console.log(3)
@@ -116,12 +122,11 @@ let found = async(size, volume, rs) => {
                         // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
                     let z = rs
                         //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
-                    let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
+                        // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
 
                     // if ((testrsi && testing1(mymyhist))) {
-                    if ((testrsi)) {
-                        api.sendMessage({ chat_id: 954135852, text: { name: candle.name, rsi: b[b.length - 1] } })
+                    if ((testingrsi(b))) {
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         return `${candle.name}::`
                     }
