@@ -22,6 +22,7 @@ module.exports.tel = function(bot, Coin, User) {
                     return err
                 else return coin
             }).then((datum) => {
+                console.log(datum)
                 let data = msg
                 console.log(data)
                 let auth = ['Cha_ng']
