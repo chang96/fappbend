@@ -130,12 +130,22 @@ let found = async(size, volume, rs) => {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         //     return `${candle.name}::`
                         // }
+
                     if (testing(mymyhist) && rrssii) {
                         //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                             //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                             //arr.push({ name: candle.name })
-                        return candle.name
+                        return `${candle.name}:::`
+                    } else if ((rrssii && testing1(mymyhist))) {
+                        //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
+                        console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
+                            //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
+                            //arr.push({ name: candle.name })
+                        return `${candle.name}   `
+                    } else if (testing(mymyhist)) {
+                        console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
+                        return `${candle.name}:  `
                     } else {}
                 } catch (err) {
                     console.log(err)
