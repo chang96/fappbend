@@ -81,7 +81,7 @@ const save = async function(dat, t) {
     //         //api.sendMessage({ chat_id: 954135852, text: 'saved 5m' })
     //     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
     // }
-const rsii = 50
+const rsii = 35
 let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
