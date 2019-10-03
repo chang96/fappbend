@@ -52,7 +52,7 @@ const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
                 [t]: data,
-                [`time${t}`]: new Date().toLocaleTimeString()
+                [`time${t}`]: new Date().toTimeString()
             }, { useFindAndModify: false },
             async(err, coin) => {
                 console.log('...................................')
