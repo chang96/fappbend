@@ -28,21 +28,23 @@ module.exports.tel = function(bot, Coin, User, api) {
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.on('message', function(msg) {
-                    let t = msg.text === '/15mcoins' ? 't15m' : msg.text === '/1hcoins' ? 't1h' : msg.text === '/4hcoins' ? 't4h' : 'a'
-                    if (t === 'a') {
-                        console.log('ok')
-                    } else {
-                        Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-                                if (err)
-                                    return err
-                                else return coin
-                            }).then(async(datum) => {
-                                    let data = msg
-                                    let a = await datum
-                                    let auth = ['Cha_ng']
-                                        // if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-                                    if (anyone) {
-                                        bot.sendMessage(msg.chat.id, `lastupdated: ${a[`time${t}`]}\ncoin:${a[t]}`)
+            let t = msg.text === '/15mcoins' ? 't15m' : msg.text === '/1hcoins' ? 't1h' : msg.text === '/4hcoins' ? 't4h' : 'a'
+            if (t === 'a') {
+                console.log('ok')
+            } else {
+                Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+                    if (err)
+                        return err
+                    else return coin
+                }).then(async(datum) => {
+                    let data = msg
+                    let a = await datum
+                    let auth = ['Cha_ng']
+                        // if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
+                    if (anyone) {
+                        let u = `time${t}`
+                        console.log(u)
+                        bot.sendMessage(msg.chat.id, `i: ${a.timet15m} lastupdated: ${a[u]}\ncoin:${a[t]}`)
                     } else {
                         bot.sendMessage(msg.chat.id, 'array of coin')
                     }
