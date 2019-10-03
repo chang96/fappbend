@@ -209,7 +209,7 @@ app.get('/find', function(req, res) {
     })
 })
 app.get('/saving', function(req, res) {
-    let stuff = { t5m: ['BTCUSDT'], t15m: ['BTCUSDT'], t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], mymyid: 'string' }
+    let stuff = { t5m: ['BTCUSDT'], t15m: ['BTCUSDT'], t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], mymyid: 'string', timet15m: '', timet1h: '', timet4h: '' }
     let c = new Coin(stuff)
     c.save().then(console.log)
 })
