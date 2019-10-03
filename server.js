@@ -52,7 +52,7 @@ const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
                 [t]: data,
-                [`time${t}`]: new Date().toTimeString()
+                [`time${t}`]: new Date().toLocaleTimeString('Ng')
             }, { useFindAndModify: false },
             async(err, coin) => {
                 console.log('...................................')
@@ -107,7 +107,7 @@ let search4h = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
 }
-setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
+setTimeout(search15, 1000 * 60 * 0.5, '15m', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
