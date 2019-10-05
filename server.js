@@ -87,7 +87,7 @@ let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't15m')
-        })(size, volume)
+        })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
 }
@@ -95,7 +95,7 @@ let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't1h')
-        })(size, volume)
+        })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, rsii)
 }
@@ -103,7 +103,7 @@ let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't4h')
-        })(size, volume)
+        })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
 }
