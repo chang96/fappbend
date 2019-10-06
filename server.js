@@ -6,6 +6,7 @@ const Bot = require('node-telegram-bot-api')
 const taapi = process.env.TAAPI
 const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
 const api = new telegram({ token: token })
+module.exports.myapi = api
 const axios = require('axios')
 const mongoose = require('mongoose')
 const express = require('express')
@@ -48,6 +49,53 @@ function checking() {
         }
     })
 }
+const sortcoin = async function(coins) {
+    let rgx = /:::$/
+    let coin = await coins
+    return Promise.all(coin.map(async function(coi) {
+        let co = await coi
+        if (co.match(rgx)) {
+            return coi
+        }
+    })).then((arr) => {
+        //let r = []
+        return Promise.all(arr.filter(function(a) {
+            if ((a !== undefined)) {
+                return a
+            }
+            //return r
+        }))
+    })
+}
+const findSendme = async function(coins) {
+    let coin = await coins
+    let arr = ['t15m', 't1h', 't4h']
+    const rgx = /^t[0-9]/
+    const a = 't15m'
+    console.log(rgx.test(a))
+    return Promise.all(arr.map(async function(ar) {
+        //console.log(await sortcoin(coin[ar]))
+        return {
+            [ar]: await sortcoin(coin[ar])
+        }
+    }))
+
+}
+const sendMe = async function() {
+    await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+        if (err) return err
+        if (coin) {
+            //console.log(findSendme(coin))
+            //console.log(coin)
+            console.log(await findSendme(coin))
+            let a = await findSendme(coin)
+            let b = JSON.stringify(a)
+            bot.sendMessage(954135852, `now: ${b}`)
+
+        }
+    })
+}
+setInterval(sendMe, 1000 * 60 * 3.5)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -107,7 +155,7 @@ let search4h = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
 }
-setTimeout(search15, 1000 * 60 * 0.5, '15m', 100000, rsii)
+setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
