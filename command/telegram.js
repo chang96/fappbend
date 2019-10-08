@@ -22,7 +22,7 @@ module.exports.tel = function(bot, Coin, User, api) {
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.onText(/\/help/, function(msg) {
-            let mess = `/15mcoins to access 15min candles \n /1hcoins to access 1h candles \n /4hcoins to access 4h candles \n\n pairs with ':' have their MACD crossing over or close to crossing \n pairs with nothing have relatively low rsi and macd ticking up \n pairs with ':::' have low rsi and macd crossing over`
+            let mess = ` /1hcoins to access 1h candles \n /4hcoins to access 4h candles\n /1dcoins to access 1d candles\n /1wcoins to access 1w candles \n\n pairs with ':' have their MACD crossing over or close to crossing \n pairs with nothing have relatively low rsi and macd ticking up \n pairs with ':::' have low rsi and macd crossing over`
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.on('message', function(msg) {
