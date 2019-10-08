@@ -10,24 +10,38 @@ const coin = new Schema({
     //     type: Array,
     //     default: ['BTCUSDT']
     // },
-    timet15m: {
-        type: String
-    },
+    // timet15m: {
+    //     type: String
+    // },
     timet1h: {
         type: String
     },
     timet4h: {
         type: String
     },
-    t15m: {
-        type: Array,
-        default: ['BTCUSDT']
+    timet1d: {
+        type: String
     },
+    timet1w: {
+        type: String
+    },
+    // t15m: {
+    //     type: Array,
+    //     default: ['BTCUSDT']
+    // },
     t1h: {
         type: Array,
         default: ['BTCUSDT']
     },
     t4h: {
+        type: Array,
+        default: ['BTCUSDT']
+    },
+    t1d: {
+        type: Array,
+        default: ['BTCUSDT']
+    },
+    t1w: {
         type: Array,
         default: ['BTCUSDT']
     },
