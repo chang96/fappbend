@@ -11,8 +11,11 @@ let find = function(User, data) {
     return User.findOne({ username: data.from.username }, function(err, user) {
         if (err)
             return err
-        else if (user) return user
-    }).then(user => user.hasAccess)
+        else if (user) {
+            console.log(user)
+            return user.hasAccess
+        }
+    })
 }
 let anyone = true
 module.exports.tel = function(bot, Coin, User, api) {
