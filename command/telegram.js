@@ -14,7 +14,7 @@ let find = async function(User, data) {
         else if (user) {
             //console.log(user)
             let u = await user
-            return u.hasAccess
+            return u
         }
     })
     return a
