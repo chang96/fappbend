@@ -37,9 +37,10 @@ module.exports.tel = function(bot, Coin, User, api) {
                 }).then(async(datum) => {
                     let data = msg
                     let a = await datum
-                    let auth = ['Cha_ng']
-                        // if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
-                    if (anyone) {
+                        //let auth = ['Cha_ng']
+                        //if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
+                        //if (anyone) {
+                    if (find(User, data)) {
                         let u = `time${t}`
                             //console.log(u)
                         bot.sendMessage(msg.chat.id, `lastupdated: ${a[u]}\ncoin:${a[t]}`)
