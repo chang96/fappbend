@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 const User = require('./model/user')
 const Coin = require('./model/coin')
+const otherUser = require('./model/otherUser')
 const bodyParser = require('body-parser')
     // app.use(bot.webhookCallback('/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972'))
     // bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
@@ -35,7 +36,7 @@ connection.once('open', function() {
     console.log('up!')
 }).catch(err => { return err })
 
-let tel = require('./command/telegram').tel(bot, Coin, User, api)
+let tel = require('./command/telegram').tel(bot, Coin, User, api, otherUser)
     // let a = (async() => {
     //     let b = await ind.founnd
     //     console.log(b)

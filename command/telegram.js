@@ -23,8 +23,24 @@ let find = async function(User, data) {
     })
     return a
 }
+
+let see = async function(otherUser, data) {
+    let b = await otherUser.findOne({ username: data.from.username }, async function(err, otheruser) {
+        if (err) return err
+        else if (user) {
+            console.log('user present')
+            return 1
+        } else {
+            console.log('user not here')
+            let oUser = new otherUser({ username: data.from.username, date: new Date().toDateString() })
+            oUser.save().then(user => 1)
+
+        }
+    })
+    return b
+}
 let anyone = true
-module.exports.tel = function(bot, Coin, User, api) {
+module.exports.tel = function(bot, Coin, User, api, otherUser) {
         bot.onText(/\/start/, function(msg) {
             let mess = `WELCOME! \n Tabot is a trading assistant. It outputs coins with approximately rsi less than 35, macd crossing over and more than $100,000 in volume on binance. This bot updates approximately every 10 - 12 minutes. PLEASE NOTE THAT THIS IS NOT A TRADING BOT AND THE COIN(S) LISTED ARE NOT GUARRANTEED TO GROW IN VALUE. PRECAUTIONS LIKE SETTING STOP LOSS & DOING YOUR OWN RESEARCH SHOULD STILL BE DONE. /help to get started \n
                         Happy longing!  \n feedback @Cha_ng or https://t.me/joinchat/EIARYk24KBxEiEosp-t9WQ`
@@ -50,6 +66,7 @@ module.exports.tel = function(bot, Coin, User, api) {
                         //if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
                         //if (anyone) {
                         //console.log(find(User, data))
+                    let a = await see(otherUser, data)
                     let c = await find(User, data)
                     console.log(c)
                     if (anyone) {
