@@ -27,7 +27,7 @@ let find = async function(User, data) {
 let see = async function(otherUser, data) {
     let b = await otherUser.findOne({ username: data.from.username }, async function(err, otheruser) {
         if (err) return err
-        else if (user) {
+        else if (otheruser) {
             console.log('user present')
             return 1
         } else {
