@@ -56,9 +56,8 @@ module.exports.tel = function(bot, Coin, User, api) {
                         let u = `time${t}`
                             //console.log(u)
                         bot.sendMessage(msg.chat.id, `lastupdated: ${a[u]}\ncoin:${a[t]}`)
-                    }
-                    if (c == null) bot.sendMessage(msg.chat.id, 'subscribe to have access to the candles')
-                    if (c.hasAccess == true) {
+                    } else if (c == null) bot.sendMessage(msg.chat.id, 'subscribe to have access to the candles')
+                    else if (c.hasAccess == true) {
                         let u = `time${t}`
                             //console.log(u)
                         bot.sendMessage(msg.chat.id, `lastupdated: ${a[u]}\ncoin:${a[t]}`)
