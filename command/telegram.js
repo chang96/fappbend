@@ -44,7 +44,7 @@ module.exports.tel = function(bot, Coin, User, api) {
                         //if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
                         //if (anyone) {
                     if (find(User, data) == true) {
-                        console.log(find(User, data))
+                        console.log(find(User, data), 'gfhjkhgf')
                         let u = `time${t}`
                             //console.log(u)
                         bot.sendMessage(msg.chat.id, `lastupdated: ${a[u]}\ncoin:${a[t]}`)
