@@ -15,6 +15,8 @@ let find = async function(User, data) {
             //console.log(user)
             //let u = await user
             return user
+        } else {
+            return false
         }
     })
     return a
