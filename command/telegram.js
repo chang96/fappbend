@@ -13,8 +13,8 @@ let find = async function(User, data) {
             return err
         else if (user) {
             //console.log(user)
-            let u = await user
-            return u
+            //let u = await user
+            return user
         }
     })
     return a
