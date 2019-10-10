@@ -7,8 +7,8 @@
 //         enabled: true
 //     }
 // });
-let find = function(User, data) {
-    return User.findOne({ username: data.from.username }, async function(err, user) {
+let find = async function(User, data) {
+    let a = await User.findOne({ username: data.from.username }, async function(err, user) {
         if (err)
             return err
         else if (user) {
@@ -17,6 +17,7 @@ let find = function(User, data) {
             return u.hasAccess
         }
     })
+    return a
 }
 let anyone = true
 module.exports.tel = function(bot, Coin, User, api) {
