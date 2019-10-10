@@ -52,7 +52,7 @@ module.exports.tel = function(bot, Coin, User, api) {
                         //console.log(find(User, data))
                     let c = await find(User, data)
                     console.log(c)
-                    if (c == false) bot.sendMessage(msg.chat.id, 'subscribe to have access to the candles')
+                    if (c == null) bot.sendMessage(msg.chat.id, 'subscribe to have access to the candles')
                     if (c.hasAccess == true) {
                         let u = `time${t}`
                             //console.log(u)
