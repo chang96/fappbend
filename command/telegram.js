@@ -8,12 +8,13 @@
 //     }
 // });
 let find = function(User, data) {
-    return User.findOne({ username: data.from.username }, function(err, user) {
+    return User.findOne({ username: data.from.username }, async function(err, user) {
         if (err)
             return err
         else if (user) {
             //console.log(user)
-            return user.hasAccess
+            let u = await user
+            return u.hasAccess
         }
     })
 }
