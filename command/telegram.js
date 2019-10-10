@@ -66,7 +66,7 @@ module.exports.tel = function(bot, Coin, User, api, otherUser) {
                         //if (find(User, data) || auth.indexOf(`${data.from.username}`) !== -1) {
                         //if (anyone) {
                         //console.log(find(User, data))
-                    let a = await see(otherUser, data)
+                    let z = await see(otherUser, data)
                     let c = await find(User, data)
                     console.log(c)
                     if (anyone) {
