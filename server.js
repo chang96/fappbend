@@ -188,14 +188,14 @@ let search1d = function(size, volume, rs) {
     setTimeout(search1w, 1000 * 60 * 4, '1w', 100000, rsii)
 }
 search1w = function(size, volume, rs) {
-        let a = (async(size, volume, rs) => {
-                let b = await ind.founnd(size, volume, rs)
-                let c = await save(b, 't1w')
-            })(size, volume, rs)
-            //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-        setTimeout(search1h, 1000 * 60 * 4, '1h', 100000, rsii)
-    }
-    //setTimeout(search1h, 1000 * 60 * 2, '1h', 100000, rsii)
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't1w')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+    setTimeout(search1h, 1000 * 60 * 4, '1h', 100000, rsii)
+}
+setTimeout(search1h, 1000 * 60 * 2, '1h', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
