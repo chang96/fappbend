@@ -47,7 +47,7 @@ module.exports.tel = function(bot, Coin, User, api) {
                         //if (anyone) {
                         //console.log(find(User, data))
                     let c = await find(User, data)
-                    console.log(c)
+                    console.log(c.hasAccess)
                     if (c == true) {
                         let u = `time${t}`
                             //console.log(u)
