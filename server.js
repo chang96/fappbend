@@ -84,27 +84,27 @@ const findSendme = async function(coins) {
 
 }
 const sendMe = async function() {
-    await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
-        let arr = ['t1h', 't4h', 't1d', 't1w']
-        if (err) return err
-        if (coin) {
-            //console.log(findSendme(coin))
-            //console.log(coin)
-            console.log(await findSendme(coin))
-            let a = await findSendme(coin)
-            console.log(a)
-            let c = a.filter(function(e, i) {
-                if (e[arr[i]].length > 0)
-                    return e
-            })
-            let b = JSON.stringify(c)
-                //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            bot.sendMessage(954135852, `now: ${b}`)
+        await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+            let arr = ['t1h', 't4h', 't1d', 't1w']
+            if (err) return err
+            if (coin) {
+                //console.log(findSendme(coin))
+                //console.log(coin)
+                console.log(await findSendme(coin))
+                let a = await findSendme(coin)
+                console.log(a)
+                let c = a.filter(function(e, i) {
+                    if (e[arr[i]].length > 0)
+                        return e
+                })
+                let b = JSON.stringify(c)
+                    //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
+                bot.sendMessage(954135852, `now: ${b}`)
 
-        }
-    })
-}
-setInterval(sendMe, 1000 * 60 * 20)
+            }
+        })
+    }
+    //setInterval(sendMe, 1000 * 60 * 20)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
