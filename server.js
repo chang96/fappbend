@@ -227,6 +227,14 @@ app.get('/seeall', function(req, res) {
         }
     })
 })
+app.get('/seeallother', function(req, res) {
+    otherUser.find({}, function(err, users) {
+        if (err) return err
+        else {
+            res.send(users)
+        }
+    })
+})
 app.post('/' + token, function(req, res) {
     bot.processUpdate(req.body);
     res.sendStatus(200);
