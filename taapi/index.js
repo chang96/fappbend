@@ -24,6 +24,7 @@ module.exports.histogram = async(close, close1) => {
         // let [c, e] = await Promise.all([close, close1])
         //let d = await (ema.see(12, 12, c))
         macd = await diff.diff(c, e)
+        let macdLine = [...macd]
         let histogram = await hist.signal(macd)
             //return hist
         return histogram

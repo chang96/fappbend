@@ -13,8 +13,8 @@ module.exports.signal = async(diff) => {
             return mac - sig.emaarr[i]
         })
 
-        return a
-            //console.log(sig)
+        return { histogram: a, macd: macd, signal: sig }
+        //console.log(sig)
     } catch (err) {
         console.log(err)
     }

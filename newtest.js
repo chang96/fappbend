@@ -112,7 +112,9 @@ let found = async(size, volume, rs) => {
                 try {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
-                    let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200)
+                    let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200).histogram
+                    let mymysig = await mymacd.histogram(candle.pip100, candle.pip200).signal
+                    let mymymac = await mymacd.histogram(candle.pip100, candle.pip200).macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
@@ -146,6 +148,8 @@ let found = async(size, volume, rs) => {
                     } else if (testing(mymyhist)) {
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         return `${candle.name}:  `
+                    } else if (mymymac[mymymac.length - 1] > 0 && testing(mymyhist)) {
+                        return `${candle.name};;;   `
                     } else {}
                 } catch (err) {
                     console.log(err)
