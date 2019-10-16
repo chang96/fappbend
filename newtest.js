@@ -81,6 +81,15 @@ function testing(arr) {
     }
 }
 
+function testing0(arr) {
+    if (arr[arr.length - 1] >= arr[arr.length - 2]) {
+        //if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
+        return true
+    } else {
+        return false
+    }
+}
+
 function testing1(arr) {
     //if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
     if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
@@ -150,7 +159,7 @@ let found = async(size, volume, rs) => {
                     } else if (testing(mymyhist)) {
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         return `${candle.name}:  `
-                    } else if (mymymac[mymymac.length - 1] > 0 && testing(mymyhist)) {
+                    } else if (mymymac[mymymac.length - 1] >= 0 && testing0(mymyhist)) {
                         return `${candle.name};;;   `
                     } else {}
                 } catch (err) {
