@@ -113,10 +113,10 @@ let found = async(size, volume, rs) => {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
-                    console.log(mymyhist1)
-                    let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200).histogram
-                    let mymysig = await mymacd.histogram(candle.pip100, candle.pip200).signal
-                    let mymymac = await mymacd.histogram(candle.pip100, candle.pip200).macd
+                        //console.log(mymyhist1)
+                    let mymyhist = mymyhist1.histogram
+                        //let mymysig = mymyhist1.signal
+                    let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
