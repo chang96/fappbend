@@ -112,6 +112,8 @@ let found = async(size, volume, rs) => {
                 try {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
+                    let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
+                    console.log(mymyhist1)
                     let mymyhist = await mymacd.histogram(candle.pip100, candle.pip200).histogram
                     let mymysig = await mymacd.histogram(candle.pip100, candle.pip200).signal
                     let mymymac = await mymacd.histogram(candle.pip100, candle.pip200).macd
