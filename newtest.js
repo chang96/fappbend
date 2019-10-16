@@ -161,6 +161,8 @@ let found = async(size, volume, rs) => {
                         return `${candle.name}:  `
                     } else if (mymymac[mymymac.length - 1] >= 0 && testing0(mymyhist)) {
                         return `${candle.name};;;   `
+                    } else if (mymymac[mymymac.length - 1] >= 0 && testing1(mymyhist)) {
+                        return `${candle.name};;;;;  `
                     } else {}
                 } catch (err) {
                     console.log(err)
