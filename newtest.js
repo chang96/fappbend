@@ -159,10 +159,10 @@ let found = async(size, volume, rs) => {
                     } else if (testing(mymyhist)) {
                         console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         return `${candle.name}:  `
-                    } else if (mymymac[mymymac.length - 1] >= 0 && testing0(mymyhist)) {
-                        return `${candle.name};;;   `
                     } else if (mymymac[mymymac.length - 1] >= 0 && testing1(mymyhist)) {
                         return `${candle.name};;;;;  `
+                    } else if (mymymac[mymymac.length - 1] >= 0 && testing0(mymyhist)) {
+                        return `${candle.name};;;   `
                     } else {}
                 } catch (err) {
                     console.log(err)
