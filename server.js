@@ -99,9 +99,22 @@ const sendMe = async function() {
                 if (e[arr[i]].length > 0)
                     return e
             })
-            let b = JSON.stringify(c)
-                //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            b.length > 0 ? bot.sendMessage(954135852, `now: ${b}`) : console.log('ok')
+            let arr1 = JSON.stringify(c)
+            let arr2 = [...arr1]
+
+            function f(arr1, arr2) {
+                let c = []
+                let r = arr1.forEach(function(i, j) {
+                    i.forEach(function(f, k) {
+                        c.push((f === arr2[j][k]))
+                    })
+                })
+                return c.every(function(cee) {
+                    return cee == true
+                })
+            }
+            //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
+            f(arr1, arr2) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${arr1}`)
 
         }
     })
