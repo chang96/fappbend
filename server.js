@@ -54,7 +54,7 @@ function checking() {
 const sortcoin = async function(coins) {
     let rgx = /:::$/
     let coin = await coins
-    console.log(coin + '..........................................')
+        //console.log(coin + '..........................................')
     return Promise.all(coin.map(async function(coi) {
         let co = await coi
         if (co.match(rgx)) {
@@ -106,7 +106,7 @@ const sendMe = async function() {
         }
     })
 }
-setInterval(sendMe, 1000 * 60 * 0.4)
+setInterval(sendMe, 1000 * 60 * 14)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -201,14 +201,14 @@ let search1d = function(size, volume, rs) {
     setTimeout(search1w, 1000 * 60 * 2, '1w', 100000, rsii)
 }
 search1w = function(size, volume, rs) {
-        let a = (async(size, volume, rs) => {
-                let b = await ind.founnd(size, volume, rs)
-                let c = await save(b, 't1w')
-            })(size, volume, rs)
-            //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-        setTimeout(search15, 1000 * 60 * 2, '1h', 100000, rsii)
-    }
-    //setTimeout(search15, 1000 * 60 * 0.25, '15m', 100000, rsii)
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't1w')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+    setTimeout(search15, 1000 * 60 * 2, '1h', 100000, rsii)
+}
+setTimeout(search15, 1000 * 60 * 0.25, '15m', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
