@@ -106,7 +106,7 @@ const sendMe = async function() {
         }
     })
 }
-setInterval(sendMe, 1000 * 60 * 0.1)
+setInterval(sendMe, 1000 * 60 * 10)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
