@@ -110,6 +110,7 @@ const sendMe = async function() {
             let b = JSON.stringify(c)
             let arr1 = [...c]
 
+            console.log(arr1)
 
             function f(arr1) {
 
