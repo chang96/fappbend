@@ -94,45 +94,45 @@ let arr2 = [
     { 't1w': ['BTCUSDT'] }
 ]
 const sendMe = async function() {
-    await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
-        let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
-        if (err) return err
-        if (coin) {
-            //console.log(findSendme(coin))
-            //console.log(coin)
-            console.log(await findSendme(coin))
-            let a = await findSendme(coin)
-            console.log(a)
-            let c = a.filter(function(e, i) {
-                if (e[arr[i]].length > 0)
-                    return e
-            })
-            let b = JSON.stringify(c)
-            let arr1 = [...c]
-
-
-            function f(arr1) {
-
-                let c = []
-                arr1.forEach(function(obj, i) {
-                    for (const key1 in obj) {
-                        obj[key1].forEach(function(e, j) {
-                            c.push(e === arr2[i][key1][j])
-                        })
-                    }
+        await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+            let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+            if (err) return err
+            if (coin) {
+                //console.log(findSendme(coin))
+                //console.log(coin)
+                console.log(await findSendme(coin))
+                let a = await findSendme(coin)
+                console.log(a)
+                let c = a.filter(function(e, i) {
+                    if (e[arr[i]].length > 0)
+                        return e
                 })
-                arr2 = [...arr1]
-                return c.every(function(cee) {
-                    return cee == true
-                })
+                let b = JSON.stringify(c)
+                let arr1 = [...c]
+
+
+                function f(arr1) {
+
+                    let c = []
+                    arr1.forEach(function(obj, i) {
+                        for (const key1 in obj) {
+                            obj[key1].forEach(function(e, j) {
+                                c.push(e === arr2[i][key1][j])
+                            })
+                        }
+                    })
+                    arr2 = [...arr1]
+                    return c.every(function(cee) {
+                        return cee == true
+                    })
+                }
+                //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
+                f(arr1) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
+
             }
-            //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            f(arr1) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
-
-        }
-    })
-}
-setInterval(sendMe, 1000 * 60 * 1)
+        })
+    }
+    //setInterval(sendMe, 1000 * 60 * 0.3)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -243,14 +243,14 @@ let search1d = function(size, volume, rs) {
     setTimeout(search1w, 1000 * 60 * 2, '1w', 100000, rsii)
 }
 search1w = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
-            let c = await save(b, 't1w')
-        })(size, volume, rs)
-        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search3, 1000 * 60 * 2, '3m', 100000, rsii)
-}
-setTimeout(search3, 1000 * 60 * 0.25, '3m', 100000, rsii)
+        let a = (async(size, volume, rs) => {
+                let b = await ind.founnd(size, volume, rs)
+                let c = await save(b, 't1w')
+            })(size, volume, rs)
+            //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+        setTimeout(search3, 1000 * 60 * 2, '3m', 100000, rsii)
+    }
+    //setTimeout(search3, 1000 * 60 * 0.25, '3m', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
