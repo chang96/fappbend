@@ -108,7 +108,7 @@ const sendMe = async function() {
             let arr1 = [...c]
 
 
-            function f(arr1, arr2) {
+            function f(arr1) {
 
                 let c = []
                 arr1.forEach(function(obj, i) {
@@ -124,12 +124,12 @@ const sendMe = async function() {
                 })
             }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            f(arr1, arr2) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
+            f(arr1) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
 
         }
     })
 }
-setInterval(sendMe, 1000 * 60 * 2)
+setInterval(sendMe, 1000 * 60 * 0.4)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
