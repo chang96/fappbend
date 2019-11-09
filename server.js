@@ -119,7 +119,7 @@ const sendMe = async function() {
                     for (const key1 in obj) {
                         obj[key1].forEach(function(e, j) {
                             console.log(arr2[i][key1] + '.........')
-                            c.push(e === arr2[i][key1][j])
+                            arr2[i][key1] === undefined ? console.log('und') : c.push(e === arr2[i][key1][j])
                         })
                     }
                 })
