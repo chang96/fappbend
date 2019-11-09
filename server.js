@@ -117,6 +117,7 @@ const sendMe = async function() {
                 arr1.forEach(function(obj, i) {
                     for (const key1 in obj) {
                         obj[key1].forEach(function(e, j) {
+                            console.log(arr2[i])
                             c.push(e === arr2[i][key1][j])
                         })
                     }
