@@ -85,7 +85,11 @@ const findSendme = async function(coins) {
     }))
 
 }
-let arr2 = []
+let arr2 = [
+    { 't15m': ['BTCUSDT'] }, { 't30m': ['BTCUSDT'] },
+    { 't1h': ['BTCUSDT'] }, { 't4h': ['BTCUSDT'] }, { 't1d': ['BTCUSDT'] },
+    { 't1w': ['BTCUSDT'] }
+]
 const sendMe = async function() {
     await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         let arr = ['t15m', 't30m', 't1h', 't4h', 't1d', 't1w']
