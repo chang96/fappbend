@@ -101,12 +101,12 @@ const sendMe = async function() {
             })
             let b = JSON.stringify(c)
                 //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            bot.sendMessage(954135852, `now: ${b}`)
+            b.length > 0 ? bot.sendMessage(954135852, `now: ${b}`) : console.log('ok')
 
         }
     })
 }
-setInterval(sendMe, 1000 * 60 * 14)
+setInterval(sendMe, 1000 * 60 * 2)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
