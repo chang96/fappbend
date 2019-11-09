@@ -85,6 +85,7 @@ const findSendme = async function(coins) {
     }))
 
 }
+let arr2
 const sendMe = async function() {
     await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         let arr = ['t15m', 't30m', 't1h', 't4h', 't1d', 't1w']
@@ -101,15 +102,17 @@ const sendMe = async function() {
             })
             let b = JSON.stringify(c)
             let arr1 = [...c]
-            let arr2 = []
+
 
             function f(arr1, arr2) {
 
                 let c = []
-                arr1.forEach(function(i, j) {
-                    i.forEach(function(f, k) {
-                        c.push((f === arr2[j][k]))
-                    })
+                arr1.forEach(function(obj, i) {
+                    for (const key1 in obj) {
+                        obj[key1].forEach(function(e, j) {
+                            c.push(e === arr2[i][key1][j])
+                        })
+                    }
                 })
                 arr2 = [...arr1]
                 return c.every(function(cee) {
@@ -117,7 +120,7 @@ const sendMe = async function() {
                 })
             }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            f(arr1, arr2) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${arr1}`)
+            f(arr1, arr2) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
 
         }
     })
