@@ -99,16 +99,19 @@ const sendMe = async function() {
                 if (e[arr[i]].length > 0)
                     return e
             })
-            let arr1 = JSON.stringify(c)
-            let arr2 = [...arr1]
+            let b = JSON.stringify(c)
+            let arr1 = [...c]
+            let arr2 = []
 
             function f(arr1, arr2) {
+
                 let c = []
-                let r = arr1.forEach(function(i, j) {
+                arr1.forEach(function(i, j) {
                     i.forEach(function(f, k) {
                         c.push((f === arr2[j][k]))
                     })
                 })
+                arr2 = [...arr1]
                 return c.every(function(cee) {
                     return cee == true
                 })
