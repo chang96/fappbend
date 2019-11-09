@@ -10,6 +10,7 @@ module.exports.myapi = api
 const axios = require('axios')
 const mongoose = require('mongoose')
 const express = require('express')
+const eyo = require('./volume')
 const app = express()
     //const bot = new telegraf(token)
 let bot
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 //const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const connection = mongoose.connection
 connection.once('open', function() {
@@ -53,6 +54,7 @@ function checking() {
 const sortcoin = async function(coins) {
     let rgx = /:::$/
     let coin = await coins
+    console.log(coin + '..........................................')
     return Promise.all(coin.map(async function(coi) {
         let co = await coi
         if (co.match(rgx)) {
@@ -71,7 +73,7 @@ const sortcoin = async function(coins) {
 const findSendme = async function(coins) {
     let coin = await coins
     console.log(coin)
-    let arr = ['t1h', 't4h', 't1d', 't1w']
+    let arr = ['t15m', 't30m', 't1h', 't4h', 't1d', 't1w']
     const rgx = /^t[0-9]/
         // const a = 't15m'
         // console.log(rgx.test(a))
@@ -84,27 +86,27 @@ const findSendme = async function(coins) {
 
 }
 const sendMe = async function() {
-        await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
-            let arr = ['t1h', 't4h', 't1d', 't1w']
-            if (err) return err
-            if (coin) {
-                //console.log(findSendme(coin))
-                //console.log(coin)
-                console.log(await findSendme(coin))
-                let a = await findSendme(coin)
-                console.log(a)
-                let c = a.filter(function(e, i) {
-                    if (e[arr[i]].length > 0)
-                        return e
-                })
-                let b = JSON.stringify(c)
-                    //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-                bot.sendMessage(954135852, `now: ${b}`)
+    await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+        let arr = ['t15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+        if (err) return err
+        if (coin) {
+            //console.log(findSendme(coin))
+            //console.log(coin)
+            console.log(await findSendme(coin))
+            let a = await findSendme(coin)
+            console.log(a)
+            let c = a.filter(function(e, i) {
+                if (e[arr[i]].length > 0)
+                    return e
+            })
+            let b = JSON.stringify(c)
+                //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
+            bot.sendMessage(954135852, `now: ${b}`)
 
-            }
-        })
-    }
-    //setInterval(sendMe, 1000 * 60 * 20)
+        }
+    })
+}
+setInterval(sendMe, 1000 * 60 * 0.1)
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -140,37 +142,47 @@ const save = async function(dat, t) {
     //     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
     // }
 const rsii = 35
-    // let search15 = function(size, volume, rs) {
+let count
+    // let search3 = function(size, volume, rs) {
     //     let a = (async(size, volume, rs) => {
     //             let b = await ind.founnd(size, volume, rs)
-    //             let c = await save(b, 't15m')
+    //             let c = await save(b, 't3m')
     //         })(size, volume, rs)
     //         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    //     setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
+    //     setTimeout(search5, 1000 * 60 * 3, '5m', 100000, rsii)
     // }
-    // let search30 = function(size, volume, rs) {
+    // let search5 = function(size, volume, rs) {
     //     let a = (async(size, volume, rs) => {
     //             let b = await ind.founnd(size, volume, rs)
-    //             let c = await save(b, 't30m')
+    //             let c = await save(b, 't5m')
     //         })(size, volume, rs)
-    //         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    //     setTimeout(search45, 1000 * 60 * 4, '45m', 100000, rsii)
+    //         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    //     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
     // }
-    // let search45 = function(size, volume, rs) {
-    //     let a = (async(size, volume, rs) => {
-    //             let b = await ind.founnd(size, volume, rs)
-    //             let c = await save(b, 't45m')
-    //         })(size, volume, rs)
-    //         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    //     setTimeout(search1h, 1000 * 60 * 4, '1h', 100000, rsii)
-    // }
+let search15 = function(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't15m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search30, 1000 * 60 * 1.5, '30m', 100000, rsii)
+}
+let search30 = function(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd(size, volume, rs)
+            let c = await save(b, 't30m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
+    setTimeout(search1h, 1000 * 60 * 1.5, '1h', 100000, rsii)
+}
+
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't1h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search4h, 1000 * 60 * 4, '4h', 100000, rsii)
+    setTimeout(search4h, 1000 * 60 * 1.5, '4h', 100000, rsii)
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -178,7 +190,7 @@ let search4h = function(size, volume, rs) {
             let c = await save(b, 't4h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1d, 1000 * 60 * 4, '1d', 100000, rsii)
+    setTimeout(search1d, 1000 * 60 * 1.5, '1d', 100000, rsii)
 }
 let search1d = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -186,17 +198,17 @@ let search1d = function(size, volume, rs) {
             let c = await save(b, 't1d')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1w, 1000 * 60 * 4, '1w', 100000, rsii)
+    setTimeout(search1w, 1000 * 60 * 1.5, '1w', 100000, rsii)
 }
 search1w = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
-            let c = await save(b, 't1w')
-        })(size, volume, rs)
-        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1h, 1000 * 60 * 4, '1h', 100000, rsii)
-}
-setTimeout(search1h, 1000 * 60 * 0.25, '1h', 100000, rsii)
+        let a = (async(size, volume, rs) => {
+                let b = await ind.founnd(size, volume, rs)
+                let c = await save(b, 't1w')
+            })(size, volume, rs)
+            //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+        setTimeout(search1h, 1000 * 60 * 1.5, '1h', 100000, rsii)
+    }
+    //setTimeout(search3, 1000 * 60 * 0.25, '15m', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
@@ -219,6 +231,7 @@ app.get('/', function(req, res) {
     //         console.log(err)
     //     }
     // })
+
 app.get('/seeall', function(req, res) {
     User.find({}, function(err, users) {
         if (err) return err
@@ -308,9 +321,9 @@ app.get('/find', function(req, res) {
 app.get('/saving', function(req, res) {
     // timet30m: '', timet45m: '',
     //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
-    let stuff = { t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
+    let stuff = { t15m: ['BTCUSDT'], t30m: ['BTCUSDT'], t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
     let c = new Coin(stuff)
-    c.save().then(() => { res.send('done') })
+    c.save().then((c) => { res.send(c) })
 })
 let a = 't1m'
 app.get('/finding', function(req, res) {
