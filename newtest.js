@@ -183,7 +183,6 @@ let found = async(size, volume, rs) => {
                 try {
                     let smav = await v(candle.v, 20)
                     let vtday = candle.v3
-                    console.log(smav.length, vtday.length)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
                     let mymyhist = mymyhist1.histogram
