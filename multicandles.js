@@ -18,3 +18,8 @@ module.exports.mutlti = function(obj, r) { // collect the coins
     })
     return aaa
 }
+module.exports.changing = function(old, newarr) {
+    return newarr.every(function(n, i) {
+        return n == old[i]
+    })
+}

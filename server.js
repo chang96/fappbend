@@ -102,6 +102,7 @@ let arr2 = [
     { 't1h': ['BTCUSDT'] }, { 't4h': ['BTCUSDT'] }, { 't1d': ['BTCUSDT'] },
     { 't1w': ['ETHUSDT'] }
 ]
+let tradds2 = []
 const sendMe = async function() {
     await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
@@ -136,9 +137,12 @@ const sendMe = async function() {
             //     })
             // }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            let tradds = multi.mutlti(arr1, 5)
+            let tradds = multi.mutlti(arr1, 6)
 
-            multi.mutlti(arr1, 5).length > 0 ? bot.sendMessage(954135852, `now: ${tradds}`) : console.log('ok')
+            if (multi.mutlti(arr1, 5).length > 0 && !multi.changing(tradds2, tradds)) {
+                tradds2 = tradds
+                bot.sendMessage(954135852, `now: ${tradds}`)
+            } else console.log('ok')
 
         }
     })
