@@ -123,7 +123,7 @@ function testing2(arr) {
 }
 //
 function testing3(arr) {
-    if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0 && arr[arr.length - 11] < 0) {
+    if (arr[arr.length - 1] >= 0 && arr[arr.length - 17] < 0) {
         return true
     } else {
         return false
@@ -218,7 +218,7 @@ let found = async(size, volume, rs) => {
                         // else if (voltesting(vtday, smav)) {
                         //     return candle.name
                         // }
-                    if (histinc(mymyhist)) {
+                    if (histinc(mymyhist) || (tickingfromnegative(mymyhist) && mymymac[mymymac.length - 1] >= 0) || testing3(mymymac)) {
                         return candle.name
                     } else {}
 
