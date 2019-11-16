@@ -4,6 +4,7 @@ const ind = require('./newtest')
 const telegraf = require('telegraf');
 const Bot = require('node-telegram-bot-api')
 const taapi = process.env.TAAPI
+const multi = require('./multicandles')
 const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
 const api = new telegram({ token: token })
 module.exports.myapi = api
@@ -60,9 +61,9 @@ function checking() {
     })
 }
 const sortcoin = async function(coins) {
-    let rgx1 = /BTC:::$/
-    let rgx2 = /ETH:::$/
-    let rgx3 = /USDT:::$/
+    let rgx1 = /BTC$/
+    let rgx2 = /ETH$/
+    let rgx3 = /USDT$/
     let coin = await coins
         //console.log(coin + '..........................................')
     return Promise.all(coin.map(async function(coi) {
@@ -115,28 +116,28 @@ const sendMe = async function() {
                     return e
             })
             let b = JSON.stringify(c)
-            let arr1 = [...c]
+                // let arr1 = [...c]
 
-            function f(arr1) {
+            // function f(arr1) {
 
-                let c = []
-                arr1.forEach(function(obj, i) {
-                    console.log(obj)
-                    for (const key1 in obj) {
-                        obj[key1].forEach(function(e, j) {
-                            console.log(arr1[i][key1] + '......... ' + i)
-                            arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
-                        })
-                    }
-                })
-                arr2 = [...arr1]
-                console.log(arr2 + '**************')
-                return c.every(function(cee) {
-                    return cee == true
-                })
-            }
+            //     let c = []
+            //     arr1.forEach(function(obj, i) {
+            //         console.log(obj)
+            //         for (const key1 in obj) {
+            //             obj[key1].forEach(function(e, j) {
+            //                 console.log(arr1[i][key1] + '......... ' + i)
+            //                 arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
+            //             })
+            //         }
+            //     })
+            //     arr2 = [...arr1]
+            //     console.log(arr2 + '**************')
+            //     return c.every(function(cee) {
+            //         return cee == true
+            //     })
+            // }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            f(arr1) == true ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
+            multi.mutlti(arr1, 5).length > 0 ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
 
         }
     })
