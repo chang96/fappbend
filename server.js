@@ -116,7 +116,7 @@ const sendMe = async function() {
                     return e
             })
             let b = JSON.stringify(c)
-                // let arr1 = [...c]
+            let arr1 = [...c]
 
             // function f(arr1) {
 
