@@ -117,7 +117,6 @@ const sendMe = async function() {
             })
             let b = JSON.stringify(c)
             let arr1 = [...c]
-            console.log(c)
                 // function f(arr1) {
 
             //     let c = []
@@ -137,6 +136,7 @@ const sendMe = async function() {
             //     })
             // }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
+            console.log(multi.mutlti(arr1, 2))
             multi.mutlti(arr1, 2).length > 0 ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
 
         }
