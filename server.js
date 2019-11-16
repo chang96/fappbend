@@ -9,6 +9,14 @@ const api = new telegram({ token: token })
 module.exports.myapi = api
 const axios = require('axios')
 const mongoose = require('mongoose')
+    //const Binance = require('binance-api-node')()
+
+const binanceEx = require('node-binance-api')().options({
+    APIKEY: process.env.APIKEY,
+    APISECRET: process.env.APISECRET,
+    // getTime: xxx // time generator function, optional, defaults to () => Date.now()
+})
+
 const express = require('express')
 const eyo = require('./volume')
 const app = express()
@@ -53,7 +61,7 @@ function checking() {
 }
 const sortcoin = async function(coins) {
     let rgx1 = /BTC:::$/
-    let rgx2 = /ETC:::$/
+    let rgx2 = /ETH:::$/
     let rgx3 = /USDT:::$/
     let coin = await coins
         //console.log(coin + '..........................................')
@@ -74,7 +82,7 @@ const sortcoin = async function(coins) {
 }
 const findSendme = async function(coins) {
     let coin = await coins
-    console.log(coin)
+        //console.log(coin)
     let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
     const rgx = /^t[0-9]/
         // const a = 't15m'
@@ -91,7 +99,7 @@ let arr2 = [
     { 't3m': ['BTCUSDT'] }, { 't5m': ['BTCUSDT'] },
     { 't15m': ['BTCUSDT'] }, { 't30m': ['BTCUSDT'] },
     { 't1h': ['BTCUSDT'] }, { 't4h': ['BTCUSDT'] }, { 't1d': ['BTCUSDT'] },
-    { 't1w': ['BTCUSDT'] }
+    { 't1w': ['ETHUSDT'] }
 ]
 const sendMe = async function() {
     await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
@@ -100,9 +108,8 @@ const sendMe = async function() {
         if (coin) {
             //console.log(findSendme(coin))
             //console.log(coin)
-            console.log(await findSendme(coin))
+            //console.log(await findSendme(coin))
             let a = await findSendme(coin)
-                // console.log(a)
             let c = a.filter(function(e, i) {
                 if (e[arr[i]].length > 0)
                     return e
@@ -110,20 +117,20 @@ const sendMe = async function() {
             let b = JSON.stringify(c)
             let arr1 = [...c]
 
-            console.log(arr1)
-
             function f(arr1) {
 
                 let c = []
                 arr1.forEach(function(obj, i) {
+                    console.log(obj)
                     for (const key1 in obj) {
                         obj[key1].forEach(function(e, j) {
-                            //console.log(arr2[i][key1] + '.........')
-                            arr2[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1][j])
+                            console.log(arr1[i][key1] + '......... ' + i)
+                            arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
                         })
                     }
                 })
                 arr2 = [...arr1]
+                console.log(arr2 + '**************')
                 return c.every(function(cee) {
                     return cee == true
                 })
@@ -135,6 +142,65 @@ const sendMe = async function() {
     })
 }
 setInterval(sendMe, 1000 * 60 * 0.8)
+const findCoinToTrade = async() => {
+    return Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+        if (err) return err
+        else if (coin) {
+            return (coin)
+        }
+    })
+}
+
+async function filtering(a, time) {
+    let filtered = []
+
+    function removenonbtc(a) {
+        return a.filter(function(c, i) {
+            let regx = /BTC$/
+            if (c.match(regx)) {
+                return c
+            }
+        })
+    }
+
+    function removeColon(a) {
+        return a.map(function(c, i) {
+            let n = c.split('').length
+            if (c.split('')[n - 1] == ':' && c.split('')[n - 2] == ':')
+                return c.split('').splice(0, n - 3).join('')
+            else return c
+        })
+    }
+    let b = await a.forEach(function(c) {
+        time.forEach(function(t) {
+            c.hasOwnProperty(t) && c[t].length > 0 ? filtered.push({
+                [t]: removenonbtc(removeColon(c[t]))
+            }) : null
+        })
+    })
+    return filtered
+}
+
+let l = (async(time) => {
+
+    let availableFunds = {}
+    let a = await findSendme(findCoinToTrade())
+    let b = await filtering(a, time)
+        //let c = await biggestVolume(b)
+        // let funds = await binanceEx.balance(function(err, data) {
+        //     for (const coin in data) {
+        //         if (coin == 'BTC') {
+        //             availableFunds.BTC = data[coin].available
+        //         } else if (coin == 'ETH') {
+        //             availableFunds.ETH = data[coin].available
+        //         } else if (coin == 'USDT') {
+        //             availableFunds.USDT = data[coin].available
+        //         }
+        //     }
+        //     console.log(availableFunds)
+        // })
+    console.log(b)
+})(['t5m', 't15m', 't30m'])
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -189,7 +255,7 @@ let count
     // }
 let search3 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
+            let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -197,7 +263,7 @@ let search3 = function(size, volume, rs) {
 }
 let search5 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
+            let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -205,7 +271,7 @@ let search5 = function(size, volume, rs) {
 }
 let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
+            let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't15m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -245,14 +311,14 @@ let search1d = function(size, volume, rs) {
     setTimeout(search1w, 1000 * 60 * 2, '1w', 100000, rsii)
 }
 search1w = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
-            let c = await save(b, 't1w')
-        })(size, volume, rs)
-        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search3, 1000 * 60 * 2, '3m', 100000, rsii)
-}
-setTimeout(search3, 1000 * 60 * 0.25, '3m', 100000, rsii)
+        let a = (async(size, volume, rs) => {
+                let b = await ind.founnd(size, volume, rs)
+                let c = await save(b, 't1w')
+            })(size, volume, rs)
+            //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+        setTimeout(search3, 1000 * 60 * 2, '3m', 100000, rsii)
+    }
+    //setTimeout(search3, 1000 * 60 * 0.25, '3m', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.

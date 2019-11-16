@@ -36,18 +36,6 @@ let find = async(size, volume) => {
         // let eyoarr = await eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
-            // let a = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
-            // let a1 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
-            // let a2 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
-            // let b = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[2])))
-            // let c = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[3])))
-            // let d = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
             let close300 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
             then(data => data.data).then(data => data.map(datum => (datum[4])));
             let close100 = [...close300]
@@ -56,38 +44,18 @@ let find = async(size, volume) => {
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-                //close400.splice(0, 486)
-                //console.log(close400.length)
-                // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
-                // then(data => data.data).then(data => data.map(datum => (datum[4])));
-                // arr.push({ name: eyo, pip100: close100, pip200: close200 })
-                //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
-                // return arr
-                //return { name: eyo, pip100: close100, pip200: close200, rsi: d }
             return { name: eyo, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3 }
         })).catch(err => console.log(err))
 
 }
 
-let find1 = async(size, volume, eyoar) => {
+let find1 = async(size, volume) => {
     console.log(4)
     let arr = []
-        //let eyoarr = await eyo
-    let eyoarr = eyoar
+    let eyoarr = await eyo.volumeCheck(volume)
+        //let eyoarr = eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
-            // let a = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
-            // let a1 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
-            // let a2 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
-            // let b = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[2])))
-            // let c = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=1h&limit=32`).
-            // then(data => data.data).then(data => data.map(datum => (datum[3])))
-            // let d = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            // then(data => data.data).then(data => data.map(datum => (datum[4])))
             let close300 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
             then(data => data.data).then(data => data.map(datum => (datum[4])));
             let close100 = [...close300]
@@ -96,14 +64,6 @@ let find1 = async(size, volume, eyoar) => {
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-                //close400.splice(0, 486)
-                //console.log(close400.length)
-                // let close200 = axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
-                // then(data => data.data).then(data => data.map(datum => (datum[4])));
-                // arr.push({ name: eyo, pip100: close100, pip200: close200 })
-                //     // arr.push({ name: eyo, val: a, val1: b, val2: c, val3: d, pip100: close100, pip200: close200 })
-                // return arr
-                //return { name: eyo, pip100: close100, pip200: close200, rsi: d }
             return { name: eyo, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3 }
         })).catch(err => console.log(err))
 
@@ -220,15 +180,7 @@ let found = async(size, volume, rs) => {
         //console.log(candles)
     return Promise.all(
             candles.map(async function(candle) {
-                //let a = await tulind.indicators.macd.indicator([candle.val], [12, 26, 9])
-                // let mymyhist = await mymacd.histogram(candle.pip100, candle.pip100)
-                // mymyhist.splice(0, 450)
-                //     console.log(mymyhist)
-                // let b = await tulind.indicators.rsi.indicator([candle.pip100], [14])
-                //console.log(candle.pip100)
                 try {
-                    // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
-                    //console.log(b)
                     let smav = await v(candle.v, 20)
                     let vtday = candle.v3
                     console.log(smav.length, vtday.length)
@@ -242,77 +194,25 @@ let found = async(size, volume, rs) => {
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
-                    if (voltesting(vtday, smav) && tickingfromnegative(mymyhist)) {
-                        return `${candle.name}.T`
-                    } else if (voltesting(vtday, smav) && rsiLow(b)) {
-                        return `${candle.name}.R`
-                    } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
-                        return `${candle.name}.M0`
-                    } else if (voltesting(vtday, smav) && crossover(mymyhist)) {
-                        return `${candle.name}:::`
-                    } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
-                        return `${candle.name}:PH`
-                    } else if (voltesting(vtday, smav)) {
+                        // if (voltesting(vtday, smav) && tickingfromnegative(mymyhist)) {
+                        //     return `${candle.name}.T`
+                        // } else if (voltesting(vtday, smav) && rsiLow(b)) {
+                        //     return `${candle.name}.R`
+                        // } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
+                        //     return `${candle.name}.M0`
+                        // } else 
+                        // if (voltesting(vtday, smav) && crossover(mymyhist)) {
+                        //     return candle.name
+                        // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
+                        //     return candle.name
+                        // }
+                        // else if (voltesting(vtday, smav)) {
+                        //     return candle.name
+                        // }
+                    if (histinc(mymyhist)) {
                         return candle.name
                     } else {}
-                    // if (mymymac[mymymac.length - 1] > 0 && testing(mymyhist)) {
-                    //     return candle.name
-                    // } else if (mymymac[mymymac.length - 1] >= 0 && mymymac[mymymac.length - 2] < 0) {
-                    //     return candle.name..
-                    // } else if (mymymac[mymymac.length - 1] >= 0 && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2]) {
-                    //     return candle.name
-                    // } else {}
-                    // else if (testing3(mymymac)) {
-                    //     return candle.name
-                    // } 
 
-                    //b[b.length - 1] < 35 || b[b.length - 2] < 35 || b[b.length - 3] < 35 || b[b.length - 4] < 35 || b[b.length - 5] < 35 || b[b.length - 6] < 35 || b[b.length - 7] < 35)
-                    // console.log(b[b.length - 1] < 35, b[b.length - 2] < 35, b[b.length - 3] < 35, b[b.length - 4] < 35, b[b.length - 5] < 35, b[b.length - 6] < 35, b[b.length - 7] < 35)
-                    // let z = rs
-                    //     //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
-                    // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
-                    //     //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
-                    // if (testing(mymyhist)) {
-                    //     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                    //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
-                    //         //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                    //         //arr.push({ name: candle.name })
-                    //     return candle.name
-                    // } else if ((testrsi && testing1(mymyhist))) {
-                    //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
-                    //     return `${candle.name}::`
-                    let z = rs
-                        //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
-                        // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
-                        //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
-                    let rrssii = (b[b.length - 1] < 50 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
-                        // if ((testrsi && testing1(mymyhist))) {
-                        // if ((testingrsi(b, z))) {
-                        //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
-                        //     return `${candle.name}::`
-                        // }
-                        //if (testing(mymyhist) && rrssii) {
-                        // if ((rrssii && testing(mymyhist))) {
-                        //     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                        //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
-                        //         //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                        //         //arr.push({ name: candle.name })
-                        //     return `${candle.name}:::`
-
-                    // } else if ((rrssii && testing1(mymyhist))) {
-                    //     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                    //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
-                    //         //arr.push({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
-                    //         //arr.push({ name: candle.name })
-                    //     return `${candle.name}   `
-                    // } else if (testing(mymyhist)) {
-                    //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
-                    //     return `${candle.name}:  `
-                    // } else if (mymymac[mymymac.length - 1] >= 0 && testing2(mymyhist)) {
-                    //     return `${candle.name};;;;;  `
-                    // } else if (testing3(mymymac) || testing4(mymymac)) {
-                    //     return `${candle.name};;;   `
-                    // } else {}
                 } catch (err) {
                     console.log(err)
                 }
@@ -330,10 +230,10 @@ let found = async(size, volume, rs) => {
         //console.log(candles[0])
 }
 
-let found1 = async(size, volume, rs, eyoar) => {
+let found1 = async(size, volume, rs) => {
     let arr = []
     console.log(3)
-    let candles = await find1(size, volume, eyoar)
+    let candles = await find1(size, volume)
         //console.log(candles)
     return Promise.all(
             candles.map(async function(candle) {
@@ -385,28 +285,32 @@ let found1 = async(size, volume, rs, eyoar) => {
                         // }
                         //if (testing(mymyhist) && rrssii) {
 
-                    if (mymymac[mymymac.length - 1] < 0 && mymymac[mymymac.length - 13] < 0 && mymymac[mymymac.length - 1] > mymymac[mymymac.length - 2] &&
-                        mymymac[mymymac.length - 2] > mymymac[mymymac.length - 3] && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] &&
-                        mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3]) {
+                    // if (mymymac[mymymac.length - 1] < 0 && mymymac[mymymac.length - 13] < 0 && mymymac[mymymac.length - 1] > mymymac[mymymac.length - 2] &&
+                    //     mymymac[mymymac.length - 2] > mymymac[mymymac.length - 3] && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] &&
+                    //     mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3]) {
+                    //     return candle.name
+                    // } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 2] < 0) {
+                    //     return candle.name
+                    // } else if (mymyhist[mymyhist.length - 2] < 0 && mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3] && pricing(candle.pip)) {
+                    //     return candle.name
+                    // } else if (mymymac[mymymac.length - 1] > 0 && tickingfromnegative(mymyhist)) {
+                    //     return candle.name
+                    // } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] && mymyhist[mymyhist.length - 3] < 0) {
+                    //     return candle.name
+                    // } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] && mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3] && mymyhist[mymyhist.length - 4] < 0) {
+                    //     return candle.name
+                    // } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] && mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3] && mymyhist[mymyhist.length - 3] > mymyhist[mymyhist.length - 4] && mymyhist[mymyhist.length - 5] < 0) {
+                    //     return candle.name
+                    // } else if (tickingfromnegative(mymyhist) || crossover(mymyhist)) {
+                    //     return candle.name
+                    // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
+                    //     return candle.name
+                    // }
+                    if (voltesting(vtday, smav) && crossover(mymyhist)) {
                         return candle.name
-                    } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 2] < 0) {
-                        return candle.name
-                    } else if (mymyhist[mymyhist.length - 2] < 0 && mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3] && pricing(candle.pip)) {
-                        return candle.name
-                    } else if (mymymac[mymymac.length - 1] > 0 && tickingfromnegative(mymyhist)) {
-                        return candle.name
-                    } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] && mymyhist[mymyhist.length - 3] < 0) {
-                        return candle.name
-                    } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] && mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3] && mymyhist[mymyhist.length - 4] < 0) {
-                        return candle.name
-                    } else if (mymyhist[mymyhist.length - 1] >= 0 && mymyhist[mymyhist.length - 1] > mymyhist[mymyhist.length - 2] && mymyhist[mymyhist.length - 2] > mymyhist[mymyhist.length - 3] && mymyhist[mymyhist.length - 3] > mymyhist[mymyhist.length - 4] && mymyhist[mymyhist.length - 5] < 0) {
-                        return candle.name
-                    } else if (tickingfromnegative(mymyhist) || crossover(mymyhist)) {
-                        return candle.name
-                    } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
+                    } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
                         return candle.name
                     }
-
                     // if ((rrssii && testing(mymyhist))) {
                     //     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                     //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
@@ -459,10 +363,10 @@ module.exports.founnd = async(size, volume, rs) => {
     //console.log(a[0])
 }
 
-module.exports.founnd1 = async(size, volume, rs, eyoar) => {
+module.exports.founnd1 = async(size, volume, rs) => {
     try {
         console.log(2)
-        let a = await found1(size, volume, rs, eyoar)
+        let a = await found1(size, volume, rs)
         console.log(a)
         return a
     } catch (err) {
