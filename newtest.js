@@ -247,6 +247,7 @@ let found1 = async(size, volume, rs) => {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
                     let smav = v(candle.v, 20)
+                    console.log(smav)
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
@@ -375,5 +376,12 @@ module.exports.founnd1 = async(size, volume, rs) => {
     //console.log(a[0])
 }
 
-
+// TypeError: arr2.splice is not a function
+// 2019-11-16T16:06:51.281697+00:00 app[web.1]: at voltesting0 (/app/newtest.js:163:10)
+// 2019-11-16T16:06:51.281699+00:00 app[web.1]: at /app/newtest.js:311:32
+// 2019-11-16T16:06:51.281701+00:00 app[web.1]: at runMicrotasks (<anonymous>)
+// 2019-11-16T16:06:51.281703+00:00 app[web.1]: at processTicksAndRejections (internal/process/task_queues.js:93:5)
+// 2019-11-16T16:06:51.281705+00:00 app[web.1]: at async Promise.all (index 365)
+// 2019-11-16T16:06:51.281706+00:00 app[web.1]: at async Object.module.exports.founnd1 (/app/newtest.js:369:17)
+// 2019-11-16T16:06:51.281709+00:00 app[web.1]: at async /app/server.js:267:21
 //https://forms.gle/hwuRPE7DSn6gR3nW6
