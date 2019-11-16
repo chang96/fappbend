@@ -117,8 +117,8 @@ const sendMe = async function() {
             })
             let b = JSON.stringify(c)
             let arr1 = [...c]
-
-            // function f(arr1) {
+            console.log(c)
+                // function f(arr1) {
 
             //     let c = []
             //     arr1.forEach(function(obj, i) {
