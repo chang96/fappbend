@@ -142,7 +142,7 @@ const sendMe = async function() {
             if (multi.mutlti(arr1, 5).length > 0 && !multi.changing(tradds2, tradds)) {
                 tradds2 = tradds
                 bot.sendMessage(954135852, `now: ${tradds}`)
-            } else console.log('ok')
+            } else console.log(tradds)
 
         }
     })
