@@ -136,13 +136,14 @@ const sendMe = async function() {
             //     })
             // }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            console.log(multi.mutlti(arr1, 2))
-            multi.mutlti(arr1, 2).length > 0 ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
+            let tradds = multi.mutlti(arr1, 5)
+
+            multi.mutlti(arr1, 5).length > 0 ? bot.sendMessage(954135852, `now: ${tradds}`) : console.log('ok')
 
         }
     })
 }
-setInterval(sendMe, 1000 * 60 * 0.8)
+setInterval(sendMe, 1000 * 60 * 0.6)
 const findCoinToTrade = async() => {
     return Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         if (err) return err
