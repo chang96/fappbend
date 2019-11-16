@@ -103,46 +103,46 @@ let arr2 = [
     { 't1w': ['ETHUSDT'] }
 ]
 const sendMe = async function() {
-        await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
-            let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
-            if (err) return err
-            if (coin) {
-                //console.log(findSendme(coin))
-                //console.log(coin)
-                //console.log(await findSendme(coin))
-                let a = await findSendme(coin)
-                let c = a.filter(function(e, i) {
-                    if (e[arr[i]].length > 0)
-                        return e
-                })
-                let b = JSON.stringify(c)
-                    // let arr1 = [...c]
+    await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+        let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+        if (err) return err
+        if (coin) {
+            //console.log(findSendme(coin))
+            //console.log(coin)
+            //console.log(await findSendme(coin))
+            let a = await findSendme(coin)
+            let c = a.filter(function(e, i) {
+                if (e[arr[i]].length > 0)
+                    return e
+            })
+            let b = JSON.stringify(c)
+                // let arr1 = [...c]
 
-                // function f(arr1) {
+            // function f(arr1) {
 
-                //     let c = []
-                //     arr1.forEach(function(obj, i) {
-                //         console.log(obj)
-                //         for (const key1 in obj) {
-                //             obj[key1].forEach(function(e, j) {
-                //                 console.log(arr1[i][key1] + '......... ' + i)
-                //                 arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
-                //             })
-                //         }
-                //     })
-                //     arr2 = [...arr1]
-                //     console.log(arr2 + '**************')
-                //     return c.every(function(cee) {
-                //         return cee == true
-                //     })
-                // }
-                //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-                multi.mutlti(arr1, 5).length > 0 ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
+            //     let c = []
+            //     arr1.forEach(function(obj, i) {
+            //         console.log(obj)
+            //         for (const key1 in obj) {
+            //             obj[key1].forEach(function(e, j) {
+            //                 console.log(arr1[i][key1] + '......... ' + i)
+            //                 arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
+            //             })
+            //         }
+            //     })
+            //     arr2 = [...arr1]
+            //     console.log(arr2 + '**************')
+            //     return c.every(function(cee) {
+            //         return cee == true
+            //     })
+            // }
+            //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
+            multi.mutlti(arr1, 5).length > 0 ? console.log('ok') : bot.sendMessage(954135852, `now: ${b}`)
 
-            }
-        })
-    }
-    //setInterval(sendMe, 1000 * 60 * 0.8)
+        }
+    })
+}
+setInterval(sendMe, 1000 * 60 * 0.8)
 const findCoinToTrade = async() => {
     return Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         if (err) return err
@@ -182,26 +182,26 @@ async function filtering(a, time) {
     return filtered
 }
 
-let l = (async(time) => {
+// let l = (async(time) => {
 
-    let availableFunds = {}
-    let a = await findSendme(findCoinToTrade())
-    let b = await filtering(a, time)
-        //let c = await biggestVolume(b)
-        // let funds = await binanceEx.balance(function(err, data) {
-        //     for (const coin in data) {
-        //         if (coin == 'BTC') {
-        //             availableFunds.BTC = data[coin].available
-        //         } else if (coin == 'ETH') {
-        //             availableFunds.ETH = data[coin].available
-        //         } else if (coin == 'USDT') {
-        //             availableFunds.USDT = data[coin].available
-        //         }
-        //     }
-        //     console.log(availableFunds)
-        // })
-    console.log(b)
-})(['t5m', 't15m', 't30m'])
+//     let availableFunds = {}
+//     let a = await findSendme(findCoinToTrade())
+//     let b = await filtering(a, time)
+//         //let c = await biggestVolume(b)
+//         // let funds = await binanceEx.balance(function(err, data) {
+//         //     for (const coin in data) {
+//         //         if (coin == 'BTC') {
+//         //             availableFunds.BTC = data[coin].available
+//         //         } else if (coin == 'ETH') {
+//         //             availableFunds.ETH = data[coin].available
+//         //         } else if (coin == 'USDT') {
+//         //             availableFunds.USDT = data[coin].available
+//         //         }
+//         //     }
+//         //     console.log(availableFunds)
+//         // })
+//     console.log(b)
+// })(['t5m', 't15m', 't30m'])
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
