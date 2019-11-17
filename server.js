@@ -137,9 +137,9 @@ const sendMe = async function() {
             //     })
             // }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            let tradds = multi.mutlti(arr1, 6)
+            let tradds = multi.mutlti(arr1, 5, 't5m')
 
-            if (multi.mutlti(arr1, 5).length > 0 && !multi.changing(tradds2, tradds)) {
+            if (multi.mutlti(arr1, 5, 't5m').length > 0 && !multi.changing(tradds2, tradds)) {
                 tradds2 = tradds
                 bot.sendMessage(954135852, `now: ${tradds}`)
             } else console.log(tradds)
@@ -261,7 +261,7 @@ let count
     // }
 let search3 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
+            let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
