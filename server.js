@@ -104,50 +104,50 @@ let arr2 = [
 ]
 let tradds2 = []
 const sendMe = async function() {
-        await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
-            let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
-            if (err) return err
-            if (coin) {
-                //console.log(findSendme(coin))
-                //console.log(coin)
-                //console.log(await findSendme(coin))
-                let a = await findSendme(coin)
-                let c = a.filter(function(e, i) {
-                    if (e[arr[i]].length > 0)
-                        return e
-                })
-                let b = JSON.stringify(c)
-                let arr1 = [...c]
-                    // function f(arr1) {
+    await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+        let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+        if (err) return err
+        if (coin) {
+            //console.log(findSendme(coin))
+            //console.log(coin)
+            //console.log(await findSendme(coin))
+            let a = await findSendme(coin)
+            let c = a.filter(function(e, i) {
+                if (e[arr[i]].length > 0)
+                    return e
+            })
+            let b = JSON.stringify(c)
+            let arr1 = [...c]
+                // function f(arr1) {
 
-                //     let c = []
-                //     arr1.forEach(function(obj, i) {
-                //         console.log(obj)
-                //         for (const key1 in obj) {
-                //             obj[key1].forEach(function(e, j) {
-                //                 console.log(arr1[i][key1] + '......... ' + i)
-                //                 arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
-                //             })
-                //         }
-                //     })
-                //     arr2 = [...arr1]
-                //     console.log(arr2 + '**************')
-                //     return c.every(function(cee) {
-                //         return cee == true
-                //     })
-                // }
-                //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-                let tradds = multi.mutlti(arr1, 5, 't30m')
+            //     let c = []
+            //     arr1.forEach(function(obj, i) {
+            //         console.log(obj)
+            //         for (const key1 in obj) {
+            //             obj[key1].forEach(function(e, j) {
+            //                 console.log(arr1[i][key1] + '......... ' + i)
+            //                 arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
+            //             })
+            //         }
+            //     })
+            //     arr2 = [...arr1]
+            //     console.log(arr2 + '**************')
+            //     return c.every(function(cee) {
+            //         return cee == true
+            //     })
+            // }
+            //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
+            let tradds = multi.mutlti(arr1, 6, 't15m')
 
-                if (multi.mutlti(arr1, 5, 't30m').length > 0 && !multi.changing(tradds2, tradds)) {
-                    tradds2 = tradds
-                    bot.sendMessage(954135852, `now: ${tradds}`)
-                } else console.log(tradds)
+            if (multi.mutlti(arr1, 6, 't15m').length > 0 && !multi.changing(tradds2, tradds)) {
+                tradds2 = tradds
+                bot.sendMessage(954135852, `now: ${tradds}`)
+            } else console.log(tradds)
 
-            }
-        })
-    }
-    //setInterval(sendMe, 1000 * 60 * 0.6)
+        }
+    })
+}
+setInterval(sendMe, 1000 * 60 * 0.6)
 const findCoinToTrade = async() => {
     return Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         if (err) return err
