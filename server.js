@@ -261,7 +261,7 @@ let count
     // }
 let search3 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+            let b = await ind.founnd2(size, volume, rs)
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -269,7 +269,7 @@ let search3 = function(size, volume, rs) {
 }
 let search5 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+            let b = await ind.founnd2(size, volume, rs)
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -285,7 +285,7 @@ let search15 = function(size, volume, rs) {
 }
 let search30 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
+            let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't30m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })

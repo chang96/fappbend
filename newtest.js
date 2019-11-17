@@ -68,7 +68,25 @@ let find1 = async(size, volume) => {
         })).catch(err => console.log(err))
 
 }
+let find2 = async(size, volume) => {
+    console.log(4)
+    let arr = []
+    let eyoarr = await eyo.volumeCheck(volume)
+        //let eyoarr = eyoar
+    return Promise.all(
+        eyoarr.map(async function(eyo) {
+            let close300 = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=500`).
+            then(data => data.data).then(data => data.map(datum => (datum[4])));
+            let close100 = [...close300]
+            let close200 = [...close300]
+            let close400 = [...close300]
+            let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
+            then(data => data.data).then(data => data.map(datum => (datum[5])))
+            let v3 = volumepush.slice(19, 26)
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3 }
+        })).catch(err => console.log(err))
 
+}
 
 //(a[0][6] - a[1][6]) >= -0.9 * a[0][6] && (a[0][6] - a[1][6]) <= 0.7 && a[2][6] > -25 && b[0][17] < 40 && c[0][14] < c[1][14] && c[0][14] < 30
 // const testing = function(a) {
@@ -282,11 +300,11 @@ let found1 = async(size, volume, rs) => {
                         // } else if ((testrsi && testing1(mymyhist))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         //     return `${candle.name}::`
-                    let z = 30
+                    let z = 35
                         //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
                         // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
-                    let rrssii = (b[b.length - 1] < 45 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
+                    let rrssii = (b[b.length - 1] < 50 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
                         // if ((testrsi && testing1(mymyhist))) {
                         // if ((testingrsi(b, z))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
@@ -362,7 +380,61 @@ let found1 = async(size, volume, rs) => {
         //console.log(candles[0])
 }
 
+let found2 = async(size, volume, rs) => {
+    let arr = []
+    console.log(3)
+    let candles = await find(size, volume)
+        //console.log(candles)
+    return Promise.all(
+            candles.map(async function(candle) {
+                try {
+                    let smav = await v(candle.v, 20)
+                    let vtday = candle.v3
+                    let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
+                        //console.log(mymyhist1)
+                    let mymyhist = mymyhist1.histogram
+                        //let mymysig = mymyhist1.signal
+                    let mymymac = mymyhist1.macd
+                        //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
+                    let b = await myrsi.rsi(candle.pip)
+                        //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
+                        //console.log(c[1][14])
+                        //console.log(a[2].length)
+                        // if (voltesting(vtday, smav) && tickingfromnegative(mymyhist)) {
+                        //     return `${candle.name}.T`
+                        // } else if (voltesting(vtday, smav) && rsiLow(b)) {
+                        //     return `${candle.name}.R`
+                        // } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
+                        //     return `${candle.name}.M0`
+                        // } else 
+                        // if (voltesting(vtday, smav) && crossover(mymyhist)) {
+                        //     return candle.name
+                        // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
+                        //     return candle.name
+                        // }
+                        // else if (voltesting(vtday, smav)) {
+                        //     return candle.name
+                        // }
+                    if (histinc1(mymyhist) || (tickingfromnegative(mymyhist) && mymymac[mymymac.length - 1] >= 0)) {
+                        return candle.name
+                    } else {}
 
+                } catch (err) {
+                    console.log(err)
+                }
+                //return arr
+            })).then((arr) => {
+            //let r = []
+            return Promise.all(arr.filter(function(a) {
+                if ((a !== undefined)) {
+                    console.log(5)
+                    return a
+                }
+                //return r
+            }))
+        }).catch(err => console.log(err))
+        //console.log(candles[0])
+}
 
 module.exports.founnd = async(size, volume, rs) => {
     try {
@@ -388,12 +460,16 @@ module.exports.founnd1 = async(size, volume, rs) => {
     //console.log(a[0])
 }
 
-// TypeError: arr2.splice is not a function
-// 2019-11-16T16:06:51.281697+00:00 app[web.1]: at voltesting0 (/app/newtest.js:163:10)
-// 2019-11-16T16:06:51.281699+00:00 app[web.1]: at /app/newtest.js:311:32
-// 2019-11-16T16:06:51.281701+00:00 app[web.1]: at runMicrotasks (<anonymous>)
-// 2019-11-16T16:06:51.281703+00:00 app[web.1]: at processTicksAndRejections (internal/process/task_queues.js:93:5)
-// 2019-11-16T16:06:51.281705+00:00 app[web.1]: at async Promise.all (index 365)
-// 2019-11-16T16:06:51.281706+00:00 app[web.1]: at async Object.module.exports.founnd1 (/app/newtest.js:369:17)
-// 2019-11-16T16:06:51.281709+00:00 app[web.1]: at async /app/server.js:267:21
+module.exports.founnd2 = async(size, volume, rs) => {
+    try {
+        console.log(2)
+        let a = await found2(size, volume, rs)
+        console.log(a)
+        return a
+    } catch (err) {
+        console.log(err)
+    }
+    //console.log(a[0])
+}
+
 //https://forms.gle/hwuRPE7DSn6gR3nW6
