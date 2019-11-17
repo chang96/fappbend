@@ -137,9 +137,9 @@ const sendMe = async function() {
             //     })
             // }
             //if (b[1].length > 0 || b[2].length > 0 || b[3].length > 0 || b[4].length > 0)
-            let tradds = multi.mutlti(arr1, 4, 't5m')
+            let tradds = multi.mutlti(arr1, 6, 't5m')
 
-            if (multi.mutlti(arr1, 4, 't5m').length > 0 && !multi.changing(tradds2, tradds)) {
+            if (multi.mutlti(arr1, 6, 't5m').length > 0 && !multi.changing(tradds2, tradds)) {
                 tradds2 = tradds
                 bot.sendMessage(954135852, `now: ${tradds}`)
             } else console.log(tradds)

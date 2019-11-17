@@ -317,9 +317,11 @@ let found1 = async(size, volume, rs) => {
                     // }
                     if ((voltesting(vtday, smav) && crossover(mymyhist)) && rrssii) {
                         return candle.name
-                    } else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
-                        return candle.name
-                    } else if (rrssii) {
+                    }
+                    // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
+                    //     return candle.name
+                    // }
+                    else if (rrssii) {
                         return candle.name
                     }
                     // if ((rrssii && testing(mymyhist))) {
