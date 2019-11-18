@@ -333,15 +333,12 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && rrssii) {
+                    if ((voltesting(vtday, smav) && crossover(mymyhist))) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
                     //     return candle.name
                     // }
-                    else if (rrssii) {
-                        return candle.name
-                    }
                     // if ((rrssii && testing(mymyhist))) {
                     //     //console.log({ name: candle.name, ma: a[0][6], si: a[1][6], hi: a[2][6] })
                     //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
