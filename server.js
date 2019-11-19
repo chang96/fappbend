@@ -294,7 +294,7 @@ let search30 = function(size, volume, rs) {
 
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+            let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't1h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
