@@ -228,15 +228,18 @@ let found = async(size, volume, rs) => {
                         // } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
                         //     return `${candle.name}.M0`
                         // } else 
-                        // if (voltesting(vtday, smav) && crossover(mymyhist)) {
-                        //     return candle.name
-                        // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
-                        //     return candle.name
-                        // }
-                        // else if (voltesting(vtday, smav)) {
-                        //     return candle.name
-                        // }
-                    if (histinc(mymyhist) || tickingfromnegative(mymyhist) || (tickingfromnegative(mymyhist) && mymymac[mymymac.length - 1] >= 0)) {
+                    let z = 40
+                    let rrssii = (b[b.length - 1] < 55 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
+
+                    // if (voltesting(vtday, smav) && crossover(mymyhist)) {
+                    //     return candle.name
+                    // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
+                    //     return candle.name
+                    // }
+                    // else if (voltesting(vtday, smav)) {
+                    //     return candle.name
+                    // }
+                    if ((histinc(mymyhist) || tickingfromnegative(mymyhist) || (tickingfromnegative(mymyhist)))) {
                         return candle.name
                     } else {}
 
@@ -300,11 +303,11 @@ let found1 = async(size, volume, rs) => {
                         // } else if ((testrsi && testing1(mymyhist))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         //     return `${candle.name}::`
-                    let z = 35
+                    let z = 40
                         //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
                         // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
-                    let rrssii = (b[b.length - 1] < 50 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
+                    let rrssii = (b[b.length - 1] < 55 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
                         // if ((testrsi && testing1(mymyhist))) {
                         // if ((testingrsi(b, z))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
@@ -333,9 +336,11 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if ((voltesting(vtday, smav) && crossover(mymyhist))) {
+                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && rrssii) {
                         return candle.name
-                    } else if (crossover(mymyhist)) {
+                    } else if (crossover(mymyhist) && rrssii) {
+                        return candle.name
+                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist) && rrssii) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
@@ -414,7 +419,7 @@ let found2 = async(size, volume, rs) => {
                         // else if (voltesting(vtday, smav)) {
                         //     return candle.name
                         // }
-                    if (histinc1(mymyhist) || (tickingfromnegative(mymyhist) && mymymac[mymymac.length - 1] >= 0)) {
+                    if (histinc1(mymyhist) || (tickingfromnegative(mymyhist)) || voltesting(vtday, smav)) {
                         return candle.name
                     } else {}
 
