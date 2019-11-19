@@ -166,6 +166,28 @@ function histinc1(arr) {
     }
 }
 
+function histdec(arr) {
+    if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] < arr[arr.length - 2]) {
+        return true
+    } else if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] < arr[arr.length - 2] && arr[arr.length - 2] < arr[arr.length - 3]) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function histneg(arr) {
+    if (arr[arr.length - 1] < 0) {
+        return true
+    } else return false
+}
+
+function highrsi(arr) {
+    if (arr[arr.length - 1] > 65) {
+        return true
+    } else return false
+}
+
 function testing4(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] >= arr[arr.length - 2] && arr[arr.length - 3] > 0 && arr[arr.length - 9] < 0) {
         return true
@@ -239,7 +261,7 @@ let found = async(size, volume, rs) => {
                     // else if (voltesting(vtday, smav)) {
                     //     return candle.name
                     // }
-                    if ((histinc(mymyhist) || tickingfromnegative(mymyhist) || (tickingfromnegative(mymyhist)))) {
+                    if ((histinc(mymyhist) || tickingfromnegative(mymyhist) || crossover(mymyhist))) {
                         return candle.name
                     } else {}
 
@@ -336,11 +358,11 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && rrssii) {
+                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && !highrsi(b) && !histdec(mymyhist)) {
                         return candle.name
-                    } else if (crossover(mymyhist) && rrssii) {
+                    } else if (crossover(mymyhist) && !highrsi(b)) {
                         return candle.name
-                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist) && rrssii) {
+                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist) && !highrsi(b)) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
@@ -419,7 +441,7 @@ let found2 = async(size, volume, rs) => {
                         // else if (voltesting(vtday, smav)) {
                         //     return candle.name
                         // }
-                    if (histinc1(mymyhist) || (tickingfromnegative(mymyhist)) || voltesting(vtday, smav)) {
+                    if ((histinc1(mymyhist) || (tickingfromnegative(mymyhist)) || voltesting(vtday, smav)) && !histneg(mymyhist) && !histdec(mymyhist)) {
                         return candle.name
                     } else {}
 
