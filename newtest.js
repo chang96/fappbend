@@ -358,9 +358,9 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (!(voltesting(vtday, smav) && !crossover(mymyhist))) {
+                    if ((voltesting(vtday, smav) && crossover(mymyhist))) {
                         return candle.name
-                    } else if (!voltesting0(vtday, smav) && !tickingfromnegative(mymyhist)) {
+                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
