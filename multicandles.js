@@ -43,7 +43,7 @@ module.exports.mutlti = function(obj, r, ct) { // collect the coins
                 b++
             }
         })
-        aaa.indexOf(v) === -1 && b >= r ? aaa.push(v) : null
+        aaa.indexOf(v) === -1 && b <= r ? aaa.push(v) : null
     })
     return aaa
 }
