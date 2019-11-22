@@ -358,11 +358,11 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && !highrsi(b) && !histdec(mymyhist)) {
+                    if ((voltesting(vtday, smav) && crossover(mymyhist))) {
                         return candle.name
-                    } else if (crossover(mymyhist) && !highrsi(b)) {
+                    } else if (crossover(mymyhist)) {
                         return candle.name
-                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist) && !highrsi(b)) {
+                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
@@ -441,7 +441,7 @@ let found2 = async(size, volume, rs) => {
                         // else if (voltesting(vtday, smav)) {
                         //     return candle.name
                         // }
-                    if ((histinc1(mymyhist) || (tickingfromnegative(mymyhist)) || voltesting(vtday, smav)) && !histneg(mymyhist) && !histdec(mymyhist)) {
+                    if ((histinc1(mymyhist) || voltesting(vtday, smav))) {
                         return candle.name
                     } else {}
 
