@@ -85,9 +85,10 @@ module.exports.volumeCheck = async function(volume) {
 
         return Promise.all(s.data.map(async function(dat, i) {
             let a = await checkcoin(dat, volume)
-            if (a === true)
+            if (a === true) {
+                console.log(dat.symbol)
                 return dat.symbol
-            else {
+            } else {
                 //console.log('twale')
             }
         }))
