@@ -325,11 +325,11 @@ let found1 = async(size, volume, rs) => {
                         // } else if ((testrsi && testing1(mymyhist))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         //     return `${candle.name}::`
-                    let z = 40
+                    let z = 28
                         //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
                         // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
-                    let rrssii = (b[b.length - 1] < 55 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
+                    let rrssii = (b[b.length - 1] < 30 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
                         // if ((testrsi && testing1(mymyhist))) {
                         // if ((testingrsi(b, z))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
@@ -358,9 +358,9 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
+                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && rrssii && mymymac[mymymac.length - 1] < 0) {
                         return candle.name
-                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist) && mymymac[mymymac.length - 1] < 0) {
+                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist) && rrssii && mymymac[mymymac.length - 1] < 0) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
