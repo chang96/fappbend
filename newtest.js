@@ -439,7 +439,7 @@ let found2 = async(size, volume, rs) => {
                         // else if (voltesting(vtday, smav)) {
                         //     return candle.name
                         // }
-                    if (mymymac[mymymac.length - 1] > 0) {
+                    if (histinc1(mymyhist)) {
                         return candle.name
                     } else {}
 
