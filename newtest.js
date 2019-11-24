@@ -165,6 +165,8 @@ function histinc1(arr) {
         return true
     } else if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] > arr[arr.length - 3]) {
         return true
+    } else if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2]) {
+        return true
     } else {
         return false
     }
