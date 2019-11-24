@@ -161,9 +161,9 @@ function histinc(arr) {
 }
 
 function histinc1(arr) {
-    if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 3] < 0) {
+    if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2]) {
         return true
-    } else if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] > arr[arr.length - 3] && arr[arr.length - 4] < 0) {
+    } else if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] > arr[arr.length - 3]) {
         return true
     } else {
         return false
@@ -367,7 +367,7 @@ let found1 = async(size, volume, rs) => {
                     // }
                     if (voltesting(vtday, smav) && crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.emaarr[em.emaarr.length - 2]) {
                         return candle.name
-                    } else if (voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.emaarr[em.emaarr.length - 23] && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    } else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.emaarr[em.emaarr.length - 23] && candle.pip500[candle.pip500.length - 2] < em.ema) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
