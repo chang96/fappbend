@@ -83,26 +83,27 @@ const sortcoin = async function(coins) {
     })
 }
 const findSendme = async function(coins) {
-    let coin = await coins
-        //console.log(coin)
-    let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
-    const rgx = /^t[0-9]/
-        // const a = 't15m'
-        // console.log(rgx.test(a))
-    return Promise.all(arr.map(async function(ar) {
-        //console.log(await sortcoin(coin[ar]))
-        return {
-            [ar]: await sortcoin(coin[ar])
-        }
-    }))
+        let coin = await coins
+            //console.log(coin)
+        let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+        const rgx = /^t[0-9]/
+            // const a = 't15m'
+            // console.log(rgx.test(a))
+        return Promise.all(arr.map(async function(ar) {
+            //console.log(await sortcoin(coin[ar]))
+            return {
+                [ar]: await sortcoin(coin[ar])
+            }
+        }))
 
-}
-let arr2 = [{ 't1m': ['BTCUSDT'] },
-    { 't3m': ['BTCUSDT'] }, { 't5m': ['BTCUSDT'] },
-    { 't15m': ['BTCUSDT'] }, { 't30m': ['BTCUSDT'] },
-    { 't1h': ['BTCUSDT'] }, { 't4h': ['BTCUSDT'] }, { 't1d': ['BTCUSDT'] },
-    { 't1w': ['ETHUSDT'] }
-]
+    }
+    // let arr2 = [{ 't1m': ['BTCUSDT'] },
+    //     { 't3m': ['BTCUSDT'] }, { 't5m': ['BTCUSDT'] },
+    //     { 't15m': ['BTCUSDT'] }, { 't30m': ['BTCUSDT'] },
+    //     { 't1h': ['BTCUSDT'] }, { 't4h': ['BTCUSDT'] }, { 't1d': ['BTCUSDT'] },
+    //     { 't1w': ['ETHUSDT'] }
+    // ]
+let arr2 = []
 let tradds2 = []
 const sendMe = async function() {
     await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
@@ -120,30 +121,35 @@ const sendMe = async function() {
                 //console.log(c)
             let b = JSON.stringify(c)
             let arr1 = [...c]
+            console.log(arr2)
 
-            function f(arr0) {
-                let c = []
-                arr0.forEach(function(obj, i) {
-                    for (const key1 in obj) {
-                        obj[key1].forEach(function(e, j) {
-                            // console.log(arr1[i][key1] + '......... ' + i)
+            function f(oldArr, newArr) {
+                function o(obj) {
+                    let ar = [] // 
+                    obj.forEach(function(o) { //open up the arrays here
+                        for (const k in o) {
+                            ar = ar.concat(o[k])
+                            console.log(ar)
+                        }
+                    })
+                    return ar
+                }
+                let a = o(newArr)
+                let b = o(oldArr)
 
-                            arr0[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
-                        })
-                    }
-                })
-                arr2 = [...arr0]
-                return c.every(function(cee) {
-                    return cee == true
+                return a.every(function(c, i) {
+                    return c == b[i]
                 })
             }
-            console.log(f(c))
-            if (f(c)) {
 
+            if (f(arr2, arr1)) {
+                arr2 = arr1
                 console.log('same')
-            } else
+            } else {
+                arr2 = arr1
                 bot.sendMessage(954135852, `now: ${b}`)
-                // let tradds = multi.mutlti(arr1, 1, 't3m')
+            }
+            // let tradds = multi.mutlti(arr1, 1, 't3m')
 
             // if (multi.mutlti(arr1, 1, 't3m').length > 0 && !multi.changing(tradds2, tradds)) {
             //     tradds2 = tradds
