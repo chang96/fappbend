@@ -128,6 +128,8 @@ const sendMe = async function() {
                     for (const key1 in obj) {
                         obj[key1].forEach(function(e, j) {
                             // console.log(arr1[i][key1] + '......... ' + i)
+                            console.log(arr2)
+                            console.log(arr1)
                             arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
                         })
                     }
