@@ -114,10 +114,10 @@ const sendMe = async function() {
             //console.log(await findSendme(coin))
             let a = await findSendme(coin)
             let c = a.filter(function(e, i) {
-                if (e[arr[i]].length > 0)
-                    return e
-            })
-            console.log(c)
+                    if (e[arr[i]].length > 0)
+                        return e
+                })
+                //console.log(c)
             let b = JSON.stringify(c)
             let arr1 = [...c]
 
@@ -127,13 +127,12 @@ const sendMe = async function() {
                     console.log(obj)
                     for (const key1 in obj) {
                         obj[key1].forEach(function(e, j) {
-                            console.log(arr1[i][key1] + '......... ' + i)
+                            // console.log(arr1[i][key1] + '......... ' + i)
                             arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
                         })
                     }
                 })
                 arr2 = [...arr1]
-                console.log(arr2 + '**************')
                 return c.every(function(cee) {
                     return cee == true
                 })

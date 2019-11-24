@@ -31,7 +31,7 @@ const bi = Binance({
 // }).then(coins => coins.map(coin => coin.symbol))
 
 let find = async(size, volume) => {
-    console.log(4)
+    // console.log(4)
     let arr = []
     let eyoarr = await eyo.volumeCheck(volume)
         // let eyoarr = await eyoar
@@ -52,7 +52,7 @@ let find = async(size, volume) => {
 }
 
 let find1 = async(size, volume) => {
-    console.log(4)
+    // console.log(4)
     let arr = []
     let eyoarr = await eyo.volumeCheck(volume)
         //let eyoarr = eyoar
@@ -72,7 +72,7 @@ let find1 = async(size, volume) => {
 
 }
 let find2 = async(size, volume) => {
-    console.log(4)
+    // console.log(4)
     let arr = []
     let eyoarr = await eyo.volumeCheck(volume)
         //let eyoarr = eyoar
@@ -229,7 +229,7 @@ function rsiLow(arr) {
 }
 let found = async(size, volume, rs) => {
     let arr = []
-    console.log(3)
+        //console.log(3)
     let candles = await find(size, volume)
         //console.log(candles)
     return Promise.all(
@@ -278,7 +278,7 @@ let found = async(size, volume, rs) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
                 if ((a !== undefined)) {
-                    console.log(5)
+                    //console.log(5)
                     return a
                 }
                 //return r
@@ -289,7 +289,7 @@ let found = async(size, volume, rs) => {
 
 let found1 = async(size, volume, rs) => {
     let arr = []
-    console.log(3)
+        //console.log(3)
     let candles = await find1(size, volume)
         //console.log(candles)
     return Promise.all(
@@ -364,9 +364,9 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if ((voltesting(vtday, smav) && crossover(mymyhist))) {
+                    if (voltesting(vtday, smav) && crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
                         return candle.name
-                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) {
+                    } else if (voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
@@ -401,7 +401,7 @@ let found1 = async(size, volume, rs) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
                 if ((a !== undefined)) {
-                    console.log(5)
+                    // console.log(5)
                     return a
                 }
                 //return r
@@ -412,7 +412,7 @@ let found1 = async(size, volume, rs) => {
 
 let found2 = async(size, volume, rs) => {
     let arr = []
-    console.log(3)
+        //console.log(3)
     let candles = await find(size, volume)
         //console.log(candles)
     return Promise.all(
@@ -458,7 +458,7 @@ let found2 = async(size, volume, rs) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
                 if ((a !== undefined)) {
-                    console.log(5)
+                    //console.log(5)
                     return a
                 }
                 //return r
