@@ -5,7 +5,7 @@ const Coins = require('./model/coin')
 const axios = require('axios')
 const v = require('./vpush').v
 const myrsi = require('./taapiRSI/index')
-const ema = require('./taapi/ema/ema').see
+const ema = require('./taapi/ema/ema')
 const Binance = require('binance-api-node').default
 const binance = require('node-binance-api')().options({
     APIKEY: process.env.APIKEY,
@@ -239,7 +239,7 @@ let found = async(size, volume, rs) => {
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
-                    let ema = ema(55, 55, candle.pip500)
+                    let em = ema.see(55, 55, candle.pip500)
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
@@ -307,7 +307,7 @@ let found1 = async(size, volume, rs) => {
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
-                    let ema = ema(55, 55, candle.pip500)
+                    let em = ema.see(55, 55, candle.pip500)
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
@@ -422,7 +422,7 @@ let found2 = async(size, volume, rs) => {
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
-                    let ema = ema(55, 55, candle.pip500)
+                    let em = ema.see(55, 55, candle.pip500)
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
