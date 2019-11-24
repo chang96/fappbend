@@ -5,6 +5,7 @@ const Coins = require('./model/coin')
 const axios = require('axios')
 const v = require('./vpush').v
 const myrsi = require('./taapiRSI/index')
+const ema = require('./taapi/ema/ema').see
 const Binance = require('binance-api-node').default
 const binance = require('node-binance-api')().options({
     APIKEY: process.env.APIKEY,
@@ -41,10 +42,11 @@ let find = async(size, volume) => {
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
+            let close500 = [...close300]
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3 }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3 }
         })).catch(err => console.log(err))
 
 }
@@ -61,10 +63,11 @@ let find1 = async(size, volume) => {
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
+            let close500 = [...close300]
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3 }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3 }
         })).catch(err => console.log(err))
 
 }
@@ -80,10 +83,11 @@ let find2 = async(size, volume) => {
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
+            let close500 = [...close300]
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3 }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3 }
         })).catch(err => console.log(err))
 
 }
@@ -235,6 +239,7 @@ let found = async(size, volume, rs) => {
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
+                    let ema = ema(55, 55, candle.pip500)
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
@@ -302,6 +307,7 @@ let found1 = async(size, volume, rs) => {
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
+                    let ema = ema(55, 55, candle.pip500)
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
@@ -358,9 +364,9 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if ((voltesting(vtday, smav) && crossover(mymyhist)) && rrssii && mymymac[mymymac.length - 1] < 0) {
+                    if ((voltesting(vtday, smav) && crossover(mymyhist))) {
                         return candle.name
-                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist) && rrssii && mymymac[mymymac.length - 1] < 0) {
+                    } else if (voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) {
                         return candle.name
                     }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
@@ -416,6 +422,7 @@ let found2 = async(size, volume, rs) => {
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
+                    let ema = ema(55, 55, candle.pip500)
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
