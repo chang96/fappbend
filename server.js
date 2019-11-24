@@ -117,11 +117,11 @@ const sendMe = async function() {
                 if (e[arr[i]].length > 0)
                     return e
             })
+            console.log(c)
             let b = JSON.stringify(c)
             let arr1 = [...c]
 
             function f(arr1) {
-
                 let c = []
                 arr1.forEach(function(obj, i) {
                     console.log(obj)
@@ -138,13 +138,16 @@ const sendMe = async function() {
                     return cee == true
                 })
             }
+            if (f(c)) {
+                console.log('same')
+            } else
+                bot.sendMessage(954135852, `now: ${c}`)
+                // let tradds = multi.mutlti(arr1, 1, 't3m')
 
-            let tradds = multi.mutlti(arr1, 1, 't3m')
-
-            if (multi.mutlti(arr1, 1, 't3m').length > 0 && !multi.changing(tradds2, tradds)) {
-                tradds2 = tradds
-                bot.sendMessage(954135852, `now: ${tradds}`)
-            } else console.log(tradds)
+            // if (multi.mutlti(arr1, 1, 't3m').length > 0 && !multi.changing(tradds2, tradds)) {
+            //     tradds2 = tradds
+            //     bot.sendMessage(954135852, `now: ${tradds}`)
+            // } else console.log(tradds)
 
         }
     })
