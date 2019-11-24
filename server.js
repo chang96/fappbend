@@ -137,8 +137,9 @@ const sendMe = async function() {
                     return cee == true
                 })
             }
+            console.log(f(c))
             if (f(c)) {
-                console.log(f(c))
+
                 console.log('same')
             } else
                 bot.sendMessage(954135852, `now: ${b}`)
