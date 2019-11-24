@@ -129,7 +129,6 @@ const sendMe = async function() {
                     obj.forEach(function(o) { //open up the arrays here
                         for (const k in o) {
                             ar = ar.concat(o[k])
-                            console.log(ar)
                         }
                     })
                     return ar
@@ -143,9 +142,11 @@ const sendMe = async function() {
             }
 
             if (f(arr2, arr1)) {
+                console.log(arr2)
                 arr2 = arr1
                 console.log('same')
             } else {
+                console.log(arr2)
                 arr2 = arr1
                 bot.sendMessage(954135852, `now: ${b}`)
             }
