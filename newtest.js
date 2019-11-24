@@ -367,11 +367,15 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (voltesting(vtday, smav) && crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.emaarr[em.emaarr.length - 2]) {
-                        return candle.name
-                    } else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.emaarr[em.emaarr.length - 23] && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 5] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 23] < em.ema) {
+                    //     return candle.name
+                    // }
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
                         return candle.name
                     }
+                    // else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    //     return candle.name
+                    // }
                     // else if ((voltesting0(vtday, smav) && tickingfromnegative(mymyhist)) && rrssii) {
                     //     return candle.name
                     // }
