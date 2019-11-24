@@ -141,7 +141,7 @@ const sendMe = async function() {
             if (f(c)) {
                 console.log('same')
             } else
-                bot.sendMessage(954135852, `now: ${c}`)
+                bot.sendMessage(954135852, `now: ${b}`)
                 // let tradds = multi.mutlti(arr1, 1, 't3m')
 
             // if (multi.mutlti(arr1, 1, 't3m').length > 0 && !multi.changing(tradds2, tradds)) {
