@@ -121,20 +121,18 @@ const sendMe = async function() {
             let b = JSON.stringify(c)
             let arr1 = [...c]
 
-            function f(arr1) {
+            function f(arr0) {
                 let c = []
-                arr1.forEach(function(obj, i) {
-                    console.log(obj)
+                arr0.forEach(function(obj, i) {
                     for (const key1 in obj) {
                         obj[key1].forEach(function(e, j) {
                             // console.log(arr1[i][key1] + '......... ' + i)
-                            console.log(arr2)
-                            console.log(arr1)
-                            arr1[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
+
+                            arr0[i] === undefined ? console.log('und') : c.push(e === arr2[i][key1])
                         })
                     }
                 })
-                arr2 = [...arr1]
+                arr2 = [...arr0]
                 return c.every(function(cee) {
                     return cee == true
                 })

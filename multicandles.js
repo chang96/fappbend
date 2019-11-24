@@ -18,6 +18,18 @@
 //         })
 //         return aaa
 //     }
+module.exports.checking = function(obj) { // collect the coins
+    let arr = [] // 
+    obj.forEach(function(o) { //open up the arrays here
+        for (const k in o) {
+            arr = arr.concat(o[k])
+            arr2 = [...arr]
+        }
+    })
+    return arr.every(function(a, i) {
+        return a == arr2[i]
+    })
+}
 module.exports.mutlti = function(obj, r, ct) { // collect the coins
     let arr = [] // 
     let newarr = []
