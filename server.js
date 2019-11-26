@@ -65,9 +65,9 @@ const sortcoin = async function(coins) {
     let rgx1 = /BTC$/
     let rgx2 = /ETH$/
     let rgx3 = /USDT$/
-    let rgx4 = /...BTC$/
-    let rgx5 = /...ETH$/
-    let rgx6 = /...USDT$/
+    let rgx4 = /BTC...$/
+    let rgx5 = /ETH...$/
+    let rgx6 = /USDT...$/
     let coin = await coins
         //console.log(coin + '..........................................')
     return Promise.all(coin.map(async function(coi) {
