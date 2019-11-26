@@ -343,7 +343,7 @@ search1w = function(size, volume, rs) {
             let c = await save(b, 't1w')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search3, 1000 * 60 * 2, '3m', 250000, rsii)
+    setTimeout(search1, 1000 * 60 * 2, '1m', 250000, rsii)
 }
 setTimeout(search1, 1000 * 60 * 0.25, '1m', 250000, rsii)
 app.get('/', function(req, res) {
