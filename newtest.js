@@ -308,11 +308,12 @@ let found1 = async(size, volume, rs) => {
                     let smav = await v(candle.v, 20)
                     let vtday = candle.v3
                     let alpha = vtday[vtday.length - 1] / smav[smav.length - 1]
-                    console.log(alpha)
+
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
                     let em = await ema.see(55, 55, candle.pip500)
-
+                        //login n signup username mail pw public adress btc secret question secret answeer 3 investment plsn select plan sendmail for pending verification show paymnt whn done 
+                        //balance requst for cash out 
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
@@ -373,10 +374,13 @@ let found1 = async(size, volume, rs) => {
                     //     return candle.name
                     // }
                     if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
+                        console.log(alpha)
                         return `${alpha,candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && voltesting(vtday, smav) && histinc1(mymyhist)) {
+                        console.log(alpha)
                         return `${alpha,candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist) && voltesting(vtday, smav)) {
+                        console.log(alpha)
                         return `${alpha,candle.name}...`
                     }
                     // else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
