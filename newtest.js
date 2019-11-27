@@ -308,6 +308,7 @@ let found1 = async(size, volume, rs) => {
                     let smav = await v(candle.v, 20)
                     let vtday = candle.v3
                     let alpha = vtday[vtday.length - 1] / smav[smav.length - 1]
+                    console.log(alpha)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
                     let em = await ema.see(55, 55, candle.pip500)
