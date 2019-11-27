@@ -121,7 +121,7 @@ const sendMe = async function() {
             let a = await findSendme(coin)
             let c = a.filter(function(e, i) {
                 if (e[arr[i]].length > 0)
-                    return e + '\n'
+                    return e + '\n' + '\n' + '\n'
             })
             let b = JSON.stringify(c)
             let arr1 = [...c]
