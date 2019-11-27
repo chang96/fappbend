@@ -11,6 +11,8 @@ const ema = require('./taapi/ema/ema').see
 module.exports.myapi = api
 const axios = require('axios')
 const mongoose = require('mongoose')
+const drawtable = require('./tabulate/table')
+const datatable = require('./tabulate/table')
     //const Binance = require('binance-api-node')()
 
 const binanceEx = require('node-binance-api')().options({
@@ -118,10 +120,10 @@ const sendMe = async function() {
             //console.log(await findSendme(coin))
             let a = await findSendme(coin)
             let c = a.filter(function(e, i) {
-                    if (e[arr[i]].length > 0)
-                        return e
-                })
-                //console.log(c)
+                if (e[arr[i]].length > 0)
+                    return e
+            })
+            console.log(drawtable.drawTable(datatable.drawTable(c)))
             let b = JSON.stringify(c)
             let arr1 = [...c]
             console.log(arr2)
@@ -341,14 +343,14 @@ let search1d = function(size, volume, rs) {
     setTimeout(search1w, 1000 * 60 * 2, '1w', 250000, rsii)
 }
 search1w = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
-            let c = await save(b, 't1w')
-        })(size, volume, rs)
-        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1, 1000 * 60 * 2, '1m', 250000, rsii)
-}
-setTimeout(search1, 1000 * 60 * 0.25, '1m', 250000, rsii)
+        let a = (async(size, volume, rs) => {
+                let b = await ind.founnd1(size, volume, rs)
+                let c = await save(b, 't1w')
+            })(size, volume, rs)
+            //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+        setTimeout(search1, 1000 * 60 * 2, '1m', 250000, rsii)
+    }
+    //setTimeout(search1, 1000 * 60 * 0.25, '1m', 250000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.

@@ -18,7 +18,7 @@ function colWidth(rows) {
     })
 }
 
-module.exports = function drawTable(rows) {
+module.exports.drawTable = function drawTable(rows) {
     console.log(rows[0])
     let heights = rowHeight(rows);
     let widths = colWidth(rows);
@@ -91,7 +91,7 @@ UnderlinedCell.prototype.draw = function(width, height) {
 module.exports.dataTable = function dataTable(data) {
     let keys = Object.keys(data[0])
     let headers = keys.map(function(name) {
-        //console.log(new UnderlinedCell(new TextCell(name)))
+        console.log(new UnderlinedCell(new TextCell(name)))
         return new UnderlinedCell(new TextCell(name))
     })
     let body = data.map(function(row) {
