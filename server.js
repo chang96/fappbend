@@ -123,7 +123,6 @@ const sendMe = async function() {
                 if (e[arr[i]].length > 0)
                     return e
             })
-            console.log(drawtable.drawTable(datatable.drawTable(c)))
             let b = JSON.stringify(c)
             let arr1 = [...c]
             console.log(arr2)
