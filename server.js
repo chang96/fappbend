@@ -63,6 +63,7 @@ function checking() {
         }
     })
 }
+//c
 const sortcoin = async function(coins) {
     let rgx1 = /BTC$/
     let rgx2 = /ETH$/
