@@ -91,12 +91,14 @@ const sortcoin = async function(coins) {
 const findSendme = async function(coins) {
         let coin = await coins
             //console.log(coin)
-        let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+            //let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+        let arr = Object.keys(coin)
         const rgx = /^t[0-9]/
             // const a = 't15m'
             // console.log(rgx.test(a))
         return Promise.all(arr.map(async function(ar) {
             //console.log(await sortcoin(coin[ar]))
+
             return {
                 [ar]: await sortcoin(coin[ar])
             }
