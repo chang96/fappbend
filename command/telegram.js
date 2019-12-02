@@ -47,11 +47,11 @@ module.exports.tel = function(bot, Coin, User, api, otherUser) {
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.onText(/\/help/, function(msg) {
-            let mess = ` /1hcoins to access 1h candles \n /4hcoins to access 4h candles\n /1dcoins to access 1d candles\n /1wcoins to access 1w candles \n\n pairs with ':' have their MACD crossing over or close to crossing \n pairs with nothing have relatively low rsi and macd ticking up \n pairs with ':::' have low rsi and macd crossing over`
+            let mess = `/1mcoins to access 1m candles \n /3mcoins to access 3m candles \n /5mcoins to access 5m candles \n /15mcoins to access 15m candles \n /30mcoins to access 30m candles \n /1hcoins to access 1h candles \n /4hcoins to access 4h candles\n /1dcoins to access 1d candles\n /1wcoins to access 1w candles \n\n\n All pairs are crossing their 55 period EMA and have their macd historgram ticking up`
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.on('message', function(msg) {
-            let t = msg.text === '/1hcoins' ? 't1h' : msg.text === '/4hcoins' ? 't4h' : msg.text === '/1dcoins' ? 't1d' : msg.text === '/1wcoins' ? 't1w' : 'a'
+            let t = msg.text === '/1mcoins' ? 't1m' : msg.text === '/3mcoins' ? 't3m' : msg.text === '/5mcoins' ? 't5m' : msg.text === '/15mcoins' ? 't15m' : msg.text === '/30mcoins' ? 't30m' : msg.text === '/1hcoins' ? 't1h' : msg.text === '/4hcoins' ? 't4h' : msg.text === '/1dcoins' ? 't1d' : msg.text === '/1wcoins' ? 't1w' : 'a'
             if (t === 'a') {
                 console.log('ok')
             } else {
