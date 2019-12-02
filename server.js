@@ -51,11 +51,11 @@ connection.once('open', function() {
     console.log('up!')
 }).catch(err => { return err })
 
-io.on('connection', (socket) => {
-    console.log('someone on the line')
-})
-io.listen(PORT)
-console.log('listening on ' + PORT)
+// io.on('connection', (socket) => {
+//     console.log('someone on the line')
+// })
+// io.listen(PORT)
+// console.log('listening on ' + PORT)
 
 let tel = require('./command/telegram').tel(bot, Coin, User, api, otherUser)
     // let a = (async() => {
