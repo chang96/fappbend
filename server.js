@@ -239,7 +239,7 @@ const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
                 [t]: data,
-                [`time${t}`]: moment().format('LLL')
+                [`time${t}`]: moment().tz('Africa/Lagos')
             }, { useFindAndModify: false },
             async(err, coin) => {
                 console.log('...................................')
