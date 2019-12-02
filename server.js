@@ -42,8 +42,8 @@ const bodyParser = require('body-parser')
     // bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-
-//const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
+    //ete
+    //const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
 const PORT = process.env.PORT || 3001
 mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const connection = mongoose.connection
