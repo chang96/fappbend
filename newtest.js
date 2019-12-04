@@ -210,7 +210,7 @@ function pricing(arr) {
 
 function voltesting(arr1, arr2) {
     return arr1.some(function(a, i) {
-        return a >= arr2[i]
+        return 1.1 * a >= arr2[i]
     })
 }
 
@@ -218,7 +218,7 @@ function voltesting0(arr1, arr2) {
     arr1.splice(0, 4)
     arr2.splice(0, 4)
     return arr1.some(function(a, i) {
-        return a >= arr2[i]
+        return 1.1 * a >= arr2[i]
     })
 }
 
@@ -448,30 +448,30 @@ let found2 = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-                    console.log(candle.pip500[candle.pip500.length - 1] > em.ema, candle.pip500[candle.pip500.length - 1], em.ema)
-                        //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
-                        //console.log(c[1][14])
-                        //console.log(a[2].length)
-                        // if (voltesting(vtday, smav) && tickingfromnegative(mymyhist)) {
-                        //     return `${candle.name}.T`
-                        // } else if (voltesting(vtday, smav) && rsiLow(b)) {
-                        //     return `${candle.name}.R`
-                        // } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
-                        //     return `${candle.name}.M0`
-                        // } else 
-                        // if (voltesting(vtday, smav) && crossover(mymyhist)) {
-                        //     return candle.name
-                        // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
-                        //     return candle.name
-                        // }
+
+                    //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
+                    //console.log(c[1][14])
+                    //console.log(a[2].length)
+                    // if (voltesting(vtday, smav) && tickingfromnegative(mymyhist)) {
+                    //     return `${candle.name}.T`
+                    // } else if (voltesting(vtday, smav) && rsiLow(b)) {
+                    //     return `${candle.name}.R`
+                    // } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
+                    //     return `${candle.name}.M0`
+                    // } else 
+                    // if (voltesting(vtday, smav) && crossover(mymyhist)) {
+                    //     return candle.name
+                    // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
+                    //     return candle.name
+                    // }
                     if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
-                        console.log(alpha)
+
                         return `${alpha}${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && voltesting(vtday, smav) && histinc1(mymyhist)) {
-                        console.log(alpha)
+
                         return `${alpha}${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist) && voltesting(vtday, smav)) {
-                        console.log(alpha)
+
                         return `${alpha}${candle.name}...`
                     }
 
