@@ -446,6 +446,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
+                    console.log(candle.pip500[candle.pip500.length - 1] > em.ema, candle.pip500[candle.pip500.length - 1], em.ema)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
