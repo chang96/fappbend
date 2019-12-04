@@ -30,10 +30,10 @@ const bi = Binance({
 //     })
 // }).then(coins => coins.map(coin => coin.symbol))
 
-let find = async(size, volume) => {
+let find2 = async(size, volume, eyoar) => {
     // console.log(4)
     let arr = []
-    let eyoarr = await eyo.volumeCheck(volume)
+    let eyoarr = await eyoar
         // let eyoarr = await eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
@@ -71,7 +71,7 @@ let find1 = async(size, volume) => {
         })).catch(err => console.log(err))
 
 }
-let find2 = async(size, volume) => {
+let find = async(size, volume) => {
     // console.log(4)
     let arr = []
     let eyoarr = await eyo.volumeCheck(volume)
@@ -373,15 +373,17 @@ let found1 = async(size, volume, rs) => {
                     // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 5] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 23] < em.ema) {
                     //     return candle.name
                     // }
-                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
+                    if (histinc1(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
+                        return candle.name
+                    } else if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
                         console.log(alpha)
-                        return `${alpha}${candle.name}`
+                        return `${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && voltesting(vtday, smav) && histinc1(mymyhist)) {
                         console.log(alpha)
-                        return `${alpha}${candle.name}`
+                        return `${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist) && voltesting(vtday, smav)) {
                         console.log(alpha)
-                        return `${alpha}${candle.name}...`
+                        return `${candle.name}`
                     }
                     // else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
                     //     return candle.name
@@ -427,10 +429,10 @@ let found1 = async(size, volume, rs) => {
         //console.log(candles[0])
 }
 
-let found2 = async(size, volume, rs) => {
+let found2 = async(size, volume, rs, eyoar) => {
     let arr = []
         //console.log(3)
-    let candles = await find(size, volume)
+    let candles = await find2(size, volume, eyoar)
         //console.log(candles)
     return Promise.all(
             candles.map(async function(candle) {
@@ -460,12 +462,16 @@ let found2 = async(size, volume, rs) => {
                         // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
                         //     return candle.name
                         // }
-                        // else if (voltesting(vtday, smav)) {
-                        //     return candle.name
-                        // }
-                    if (histinc1(mymyhist)) {
-                        return candle.name
-                    } else {}
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
+                        console.log(alpha)
+                        return `${alpha}${candle.name}`
+                    } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && voltesting(vtday, smav) && histinc1(mymyhist)) {
+                        console.log(alpha)
+                        return `${alpha}${candle.name}`
+                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist) && voltesting(vtday, smav)) {
+                        console.log(alpha)
+                        return `${alpha}${candle.name}...`
+                    }
 
                 } catch (err) {
                     console.log(err)
@@ -508,10 +514,10 @@ module.exports.founnd1 = async(size, volume, rs) => {
     //console.log(a[0])
 }
 
-module.exports.founnd2 = async(size, volume, rs) => {
+module.exports.founnd2 = async(size, volume, rs, eyoar) => {
     try {
         console.log(2)
-        let a = await found2(size, volume, rs)
+        let a = await found2(size, volume, rs, eyoar)
         console.log(a)
         return a
     } catch (err) {

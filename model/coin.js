@@ -3,9 +3,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const coin = new Schema({
-    // candles:{
-    //     type: Object
-    // },
+    candles: {
+        type: Array,
+        default: []
+    },
     timet1m: {
         type: String
     },

@@ -42,12 +42,12 @@ let see = async function(otherUser, data) {
 let anyone = true
 module.exports.tel = function(bot, Coin, User, api, otherUser) {
         bot.onText(/\/start/, function(msg) {
-            let mess = `WELCOME! \n Tabot is a trading assistant. It outputs coins with approximately rsi less than 35, macd crossing over and more than $100,000 in volume on binance. This bot updates approximately every 10 - 12 minutes. PLEASE NOTE THAT THIS IS NOT A TRADING BOT AND THE COIN(S) LISTED ARE NOT GUARRANTEED TO GROW IN VALUE. PRECAUTIONS LIKE SETTING STOP LOSS & DOING YOUR OWN RESEARCH SHOULD STILL BE DONE. /help to get started \n
+            let mess = `WELCOME! \n Tabot is a trading assistant. It outputs coins crossing 55 period ema, macd crossing over and coins with more than $200,000 in volume on binance. This bot updates approximately every 2 - 5 minutes. PLEASE NOTE THAT THIS IS NOT A TRADING BOT AND THE COIN(S) LISTED ARE NOT GUARRANTEED TO GROW IN VALUE. PRECAUTIONS LIKE SETTING STOP LOSS & DOING YOUR OWN RESEARCH SHOULD STILL BE DONE. /help to get started \n
                         Happy longing!  \n feedback @Cha_ng or https://t.me/joinchat/EIARYk24KBxEiEosp-t9WQ`
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.onText(/\/help/, function(msg) {
-            let mess = `/1mcoins to access 1m candles \n /3mcoins to access 3m candles \n /5mcoins to access 5m candles \n /15mcoins to access 15m candles \n /30mcoins to access 30m candles \n /1hcoins to access 1h candles \n /4hcoins to access 4h candles\n /1dcoins to access 1d candles\n /1wcoins to access 1w candles \n\n\n All pairs are crossing their 55 period EMA and have their macd historgram ticking up`
+            let mess = `/1mcoins to access 1m candles \n/3mcoins to access 3m candles\n/5mcoins to access 5m candles\n/15mcoins to access 15m candles\n/30mcoins to access 30m candles\n/1hcoins to access 1h candles\n/4hcoins to access 4h candles\n/1dcoins to access 1d candles\n/1wcoins to access 1w candles \n\n\n All pairs are crossing their 55 period EMA and have their macd historgram ticking up`
             bot.sendMessage(msg.chat.id, mess)
         })
         bot.on('message', function(msg) {
