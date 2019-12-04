@@ -275,16 +275,20 @@ async function ccc() {
     let myarr = []
     let yourarr = []
     let a = await Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
-        if (err) return err
-        if (coin) {
-            return coin
-        }
+            if (err) return err
+            if (coin) {
+                return coin
+            }
 
-    })
-    await myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d, a.t1w)
-    await myarr.forEach(e => yourarr.indexOf(e) < 0 ? yourarr.push(e) : console.log('e de'))
-    console.log(yourarr)
-    return yourarr
+        }).then(a => {
+            myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d, a.t1w)
+            myarr.forEach(e => yourarr.indexOf(e) < 0 ? yourarr.push(e) : console.log('e de'))
+            return yourarr
+        })
+        // let b = await myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d, a.t1w)
+        // let c = await myarr.forEach(e => yourarr.indexOf(e) < 0 ? yourarr.push(e) : console.log('e de'))
+    console.log(a)
+    return a
 }
 let search1star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
