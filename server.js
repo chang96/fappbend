@@ -280,14 +280,14 @@ async function ccc() {
         }
 
     })
-    return myarr.concat(a.t30m, a.t1h, )
+    return myarr.concat(a.t30m, a.t1h)
 
 }
 let search1star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -297,7 +297,7 @@ let search3star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -307,7 +307,7 @@ let search5star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -317,7 +317,7 @@ let search1star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -327,7 +327,7 @@ let search3star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -337,7 +337,7 @@ let search5star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -347,7 +347,7 @@ let search1 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -357,7 +357,7 @@ let search3 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -367,7 +367,7 @@ let search5 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -377,7 +377,7 @@ let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cccc = await ccc()
             let cc = cccc.candles
-            let b = await ind.founnd2(size, volume, rs, cc)
+            let b = await ind.founnd2(size, volume, rs, ccc())
             let c = await save(b, 't15m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
