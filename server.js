@@ -281,8 +281,8 @@ async function ccc() {
             }
 
         }).then(a => {
-            console.log(a)
             myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d, a.t1w)
+            console.log(myarr)
             myarr.forEach(e => yourarr.indexOf(e) < 0 ? yourarr.push(e) : console.log('e de'))
             return yourarr
         })
