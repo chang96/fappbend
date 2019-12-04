@@ -281,8 +281,9 @@ async function ccc() {
         }
 
     })
-    myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d, a.t1w)
-    myarr.forEach(e => yourarr.indexOf(e) < 0 ? yourarr.push(e) : console.log('e de'))
+    await myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d, a.t1w)
+    await myarr.forEach(e => yourarr.indexOf(e) < 0 ? yourarr.push(e) : console.log('e de'))
+    console.log(yourarr)
     return yourarr
 }
 let search1star = function(size, volume, rs) {
