@@ -433,7 +433,6 @@ let found2 = async(size, volume, rs, eyoar) => {
     let arr = []
         //console.log(3)
     let candles = await find2(size, volume, eyoar)
-    console.log(candles)
     return Promise.all(
             candles.map(async function(candle) {
                 try {
