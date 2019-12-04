@@ -440,7 +440,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                     let vtday = candle.v3
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
-                    let em = ema.see(55, 55, candle.pip500)
+                    let em = await ema.see(55, 55, candle.pip500)
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
