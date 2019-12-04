@@ -438,6 +438,8 @@ let found2 = async(size, volume, rs, eyoar) => {
                 try {
                     let smav = await v(candle.v, 20)
                     let vtday = candle.v3
+                    let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
+                    let alpha = alph.toFixed(1)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
                     let em = await ema.see(55, 55, candle.pip500)
@@ -462,9 +464,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                         // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
                         //     return candle.name
                         // }
-                    if (candle.pip500[candle.pip500.length - 1] > em.ema) {
-                        return candle.name
-                    } else if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
                         console.log(alpha)
                         return `${alpha}${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && voltesting(vtday, smav) && histinc1(mymyhist)) {
