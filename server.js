@@ -277,6 +277,7 @@ async function ccc() {
     let a = await Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
             if (err) return err
             if (coin) {
+                console.log(coin)
                 return coin
             }
 
