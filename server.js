@@ -273,6 +273,7 @@ const rsii = 35
 let count
 async function ccc() {
     let myarr = []
+    let yourarr = []
     let a = await Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
         if (err) return err
         if (coin) {
@@ -280,7 +281,9 @@ async function ccc() {
         }
 
     })
-    return myarr.concat(a.t30m, a.t1h)
+    myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d, a.t1w)
+    myarr.forEach(e => yourarr.indexOf(e) < 0 ? yourarr.push(e) : console.log('e de'))
+    return yourarr
 
 }
 let search1star = function(size, volume, rs) {
@@ -537,7 +540,7 @@ app.get('/find', function(req, res) {
 app.get('/saving', function(req, res) {
     // timet30m: '', timet45m: '',
     //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
-    let stuff = { candles: [], t1m: ['BTCUSDT'], t5m: ['BTCUSDT'], t3m: ['BTCUSDT'], t15m: ['BTCUSDT'], t30m: ['BTCUSDT'], t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string', timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
+    let stuff = { t1m: ['BTCUSDT'], t5m: ['BTCUSDT'], t3m: ['BTCUSDT'], t15m: ['BTCUSDT'], t30m: ['BTCUSDT'], t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string', timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
     let c = new Coin(stuff)
     c.save().then((c) => { res.send(c) })
 })

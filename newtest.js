@@ -34,6 +34,7 @@ let find2 = async(size, volume, eyoar) => {
     // console.log(4)
     let arr = []
     let eyoarr = await eyoar
+    console.log(eyoarr + '&***********************')
         // let eyoarr = await eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
