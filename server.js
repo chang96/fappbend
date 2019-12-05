@@ -281,7 +281,7 @@ async function ccc() {
         }
 
     })
-    let b = await myarr.concat(a.t30m, a.t1h)
+    let b = await myarr.concat(a.t30m, a.t1h, a.t4h, a.t1d)
     let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 ? await yourarr.push(e) : console.log('e de'))
     console.log(yourarr)
     return yourarr
