@@ -271,7 +271,7 @@ let found = async(size, volume, rs) => {
                     //     return candle.name
                     // }
                     if (candle.pip500[candle.pip500.length - 1] > em.ema) {
-                        return `${alpha}${candle.name}`
+                        return `${candle.name}`
                     } else {}
 
                 } catch (err) {
