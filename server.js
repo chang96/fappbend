@@ -289,7 +289,7 @@ async function ccc() {
 }
 async function highest(array, n) {
     let highest = await array.sort(async function(a, b) {
-        return Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
+        return await Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
     }).slice(0, n)
     return highest
 }
