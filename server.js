@@ -388,6 +388,7 @@ let search30 = function(size, volume, rs) {
 
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
+            let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't1h')
         })(size, volume, rs)
