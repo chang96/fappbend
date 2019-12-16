@@ -292,7 +292,7 @@ async function highest(array, n) {
         let w = await Number(b.split('').slice(0, 3).join(''))
         let x = await Number(a.split('').slice(0, 3).join(''))
         console.log(w)
-        return w - x
+        return x - w
     }).slice(0, n)
     return highest
 }
