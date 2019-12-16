@@ -100,7 +100,8 @@ const findSendme = async function(coins) {
         let coin = await coins
             //console.log(coin)
         let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
-            //let arr = Object.keys(coin)
+
+        //let arr = Object.keys(coin)
         const rgx = /^t[0-9]/
             // const a = 't15m'
             // console.log(rgx.test(a))
@@ -286,11 +287,20 @@ async function ccc() {
     console.log(yourarr)
     return yourarr
 }
+async function highest(array, n) {
+    let highest = await array.sort(async function(a, b) {
+        let w = await Number(b.split('').slice(0, 3).join(''))
+        let x = await Number(a.split('').slice(0, 3).join(''))
+        return w - x
+    }).slice(0, n)
+    return highest
+}
 let search1star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't1m')
+            let d = await highest(b, 1)
+            let c = await save(d, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search3star, 1000 * 60 * 1.2, '3m', 100000, rsii)
@@ -299,7 +309,8 @@ let search3star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't3m')
+            let d = await highest(b, 1)
+            let c = await save(d, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search5star, 1000 * 60 * 1.2, '5m', 100000, rsii)
@@ -308,7 +319,8 @@ let search5star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't5m')
+            let d = await highest(b, 2)
+            let c = await save(d, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search30, 1000 * 60 * 1.2, '30m', 100000, rsii)
@@ -317,7 +329,8 @@ let search1star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't1m')
+            let d = await highest(b, 1)
+            let c = await save(d, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search3star0, 1000 * 60 * 1.2, '3m', 100000, rsii)
@@ -326,7 +339,8 @@ let search3star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't3m')
+            let d = await highest(b, 1)
+            let c = await save(d, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search5star0, 1000 * 60 * 1.2, '5m', 100000, rsii)
@@ -335,7 +349,8 @@ let search5star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't5m')
+            let d = await highest(b, 2)
+            let c = await save(d, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1d, 1000 * 60 * 1.2, '1d', 100000, rsii)
@@ -344,7 +359,8 @@ let search1 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't1m')
+            let d = await highest(b, 1)
+            let c = await save(d, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search3, 1000 * 60 * 1.2, '3m', 100000, rsii)
@@ -353,7 +369,8 @@ let search3 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't3m')
+            let d = await highest(b, 1)
+            let c = await save(d, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search5, 1000 * 60 * 1.2, '5m', 100000, rsii)
@@ -362,7 +379,8 @@ let search5 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't5m')
+            let d = await highest(b, 2)
+            let c = await save(d, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search15, 1000 * 60 * 1.2, '15m', 100000, rsii)
@@ -371,7 +389,8 @@ let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't15m')
+            let d = await highest(b, 4)
+            let c = await save(d, 't15m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1star, 1000 * 60 * 1.2, '1m', 100000, rsii)
@@ -380,7 +399,8 @@ let search30 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't30m')
+            let d = await highest(b, 4)
+            let c = await save(d, 't30m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search1h, 1000 * 60 * 1.2, '1h', 100000, rsii)
@@ -390,7 +410,8 @@ let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            let c = await save(b, 't1h')
+            let d = await highest(b, 4)
+            let c = await save(d, 't1h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search4h, 1000 * 60 * 1.2, '4h', 100000, rsii)
