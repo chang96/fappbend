@@ -288,9 +288,9 @@ async function ccc() {
     return yourarr
 }
 async function highest(array, n) {
-    let highest = await array.sort(async function(a, b) {
+    let highest = Promise.all(array.sort(async function(a, b) {
         return await Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
-    }).slice(0, n)
+    }).slice(0, n))
     return highest
 }
 let search1star = function(size, volume, rs) {
