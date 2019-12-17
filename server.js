@@ -236,6 +236,12 @@ async function filtering(a, time) {
 //         // })
 //     console.log(b)
 // })(['t5m', 't15m', 't30m'])
+function highest(array, n) {
+    let highest = array.sort(async function(a, b) {
+        return await Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
+    }).slice(0, n)
+    return highest
+}
 const save = async function(dat, t) {
         let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -287,16 +293,12 @@ async function ccc() {
     console.log(yourarr)
     return yourarr
 }
-async function highest(array, n) {
-    let highest = Promise.all(array.sort(async function(a, b) {
-        return await Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
-    }).slice(0, n))
-    return highest
-}
+
 let search1star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
+            console.log(b)
             let d = await highest(b, 1)
             let c = await save(d, 't1m')
         })(size, volume, rs)
