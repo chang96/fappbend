@@ -238,7 +238,7 @@ async function filtering(a, time) {
 // })(['t5m', 't15m', 't30m'])
 function highest(array, n) {
     let highest = array.sort(async function(a, b) {
-        console.log(a)
+        console.log(Number(a.split('').slice(0, 3).join('')))
         return await Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
     }).slice(0, n)
     return highest
