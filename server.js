@@ -137,7 +137,7 @@ const sendMe = async function() {
             })
             let b = JSON.stringify(c)
             let arr1 = [...c]
-            console.log(arr2)
+                //console.log(arr2)
 
             function f(oldArr, newArr) {
                 function o(obj) {
@@ -158,11 +158,11 @@ const sendMe = async function() {
             }
 
             if (f(arr2, arr1)) {
-                console.log(arr2)
+                // console.log(arr2)
                 arr2 = arr1
                 console.log('same')
             } else {
-                console.log(arr2)
+                // console.log(arr2)
                 arr2 = arr1
                 bot.sendMessage(954135852, `now: ${b}`)
             }
@@ -238,10 +238,10 @@ async function filtering(a, time) {
 // })(['t5m', 't15m', 't30m'])
 function highest(array, n) {
     let highes = array.sort(function(a, b) {
-        console.log(Number(a.split('').slice(0, 3).join('')), typeof Number(a.split('').slice(0, 3).join('')))
-        return Number(b.split('').slice(0, 3).join('')) - Number(a.split('').slice(0, 3).join(''))
-    })
-    console.log(highes + 'mmmm')
+            //  console.log(Number(a.split('').slice(0, 3).join('')), typeof Number(a.split('').slice(0, 3).join('')))
+            return Number(b.split('').slice(0, 3).join('')) - Number(a.split('').slice(0, 3).join(''))
+        })
+        // console.log(highes + 'mmmm')
     let highest = highes.slice(0, n)
     return highest
 }
