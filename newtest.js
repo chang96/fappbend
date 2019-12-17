@@ -270,7 +270,7 @@ let found = async(size, volume, rs) => {
                     // else if (voltesting(vtday, smav)) {
                     //     return candle.name
                     // }
-                    if (candle.pip500[candle.pip500.length - 1] > em.ema) {
+                    if (histinc1(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
                         return `${candle.name}`
                     } else {}
 
