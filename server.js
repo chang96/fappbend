@@ -426,7 +426,7 @@ let search1h = function(size, volume, rs) {
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+            let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't4h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
@@ -434,7 +434,7 @@ let search4h = function(size, volume, rs) {
 }
 let search1d = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+            let b = await ind.founnd(size, volume, rs)
             let c = await save(b, 't1d')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
