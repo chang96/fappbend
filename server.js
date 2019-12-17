@@ -298,7 +298,6 @@ let search1star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
-            console.log(b)
             let d = await highest(b, 1)
             let c = await save(d, 't1m')
         })(size, volume, rs)
@@ -360,7 +359,7 @@ let search1 = function(size, volume, rs) {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
             let d = await highest(b, 1)
-            console.log(d + 'aaaaaaaaaaaaaaaa')
+            console.log(b + 'aaaaaaaaaaaaaaaa')
             let c = await save(d, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
