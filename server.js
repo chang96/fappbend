@@ -239,9 +239,9 @@ async function filtering(a, time) {
 function highest(array, n) {
     let highes = array.sort(async function(a, b) {
         console.log(Number(a.split('').slice(0, 3).join('')))
-        return await Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
+        return Number(b.split('').slice(0, 3).join('')) - Number(a.split('').slice(0, 3).join(''))
     })
-    console.log(highes)
+    console.log(highes + 'mmmm')
     let highest = highes.slice(0, n)
     return highest
 }
