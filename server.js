@@ -279,6 +279,10 @@ const save = async function(dat, t) {
 const rsii = 35
 let count
 async function ccc() {
+    let rgx1 = /BTC$/
+    let rgx2 = /ETH$/
+    let rgx3 = /USDT$/
+    let rgx4 = /BNB$/
     let myarr = []
     let yourarr = []
     let a = await Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
@@ -289,8 +293,8 @@ async function ccc() {
 
     })
     let b = await myarr.concat(a.t4h, a.t1d, a.t1w)
-    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 ? await yourarr.push(e) : console.log('e de'))
-    console.log(yourarr)
+    let c = await b.forEach(async(e) => yourarr.indexOf(e) && !e.match(rgx4) < 0 ? await yourarr.push(e) : console.log('e de'))
+        // console.log(yourarr)
     return yourarr
 }
 
@@ -359,7 +363,7 @@ let search1 = function(size, volume, rs) {
             let cema = await ccc() // crossover on ema
             let b = await ind.founnd2(size, volume, rs, cema)
             let d = await highest(b, 1)
-            console.log(b + 'aaaaaaaaaaaaaaaa')
+                // console.log(b + 'aaaaaaaaaaaaaaaa')
             let c = await save(d, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
