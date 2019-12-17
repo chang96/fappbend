@@ -293,7 +293,7 @@ async function ccc() {
 
     })
     let b = await myarr.concat(a.t4h, a.t1d, a.t1w)
-    let c = await b.forEach(async(e) => yourarr.indexOf(e) && !e.match(rgx4) < 0 ? await yourarr.push(e) : console.log('e de'))
+    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) ? await yourarr.push(e) : console.log('e de'))
         // console.log(yourarr)
     return yourarr
 }
