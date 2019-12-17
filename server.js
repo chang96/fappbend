@@ -283,6 +283,7 @@ async function ccc() {
     let rgx2 = /ETH$/
     let rgx3 = /USDT$/
     let rgx4 = /BNB$/
+    let rgx5 = /^NaN/
     let myarr = []
     let yourarr = []
     let a = await Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
@@ -293,7 +294,7 @@ async function ccc() {
 
     })
     let b = await myarr.concat(a.t4h, a.t1d, a.t1w)
-    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) ? await yourarr.push(e) : console.log('e de'))
+    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : console.log('e de'))
         // console.log(yourarr)
     return yourarr
 }
