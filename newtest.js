@@ -161,11 +161,11 @@ function histinc(arr) {
 }
 
 function histinc1(arr) {
-    if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2]) {
+    if (arr[arr.length - 1] > arr[arr.length - 2]) {
         return true
-    } else if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] > arr[arr.length - 3]) {
+    } else if (arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] > arr[arr.length - 3]) {
         return true
-    } else if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2]) {
+    } else if (arr[arr.length - 1] > arr[arr.length - 2]) {
         return true
     } else {
         return false
@@ -270,7 +270,7 @@ let found = async(size, volume, rs) => {
                     // else if (voltesting(vtday, smav)) {
                     //     return candle.name
                     // }
-                    if (candle.pip500[candle.pip500.length - 1] > em.ema) {
+                    if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
                         return `${candle.name}`
                     } else {}
 
