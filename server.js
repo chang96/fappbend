@@ -124,7 +124,7 @@ let arr2 = []
 let tradds2 = []
 const sendMe = async function() {
     await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
-        let arr = ['t3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+        let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
         if (err) return err
         if (coin) {
             //console.log(findSendme(coin))
@@ -238,6 +238,7 @@ async function filtering(a, time) {
 // })(['t5m', 't15m', 't30m'])
 function highest(array, n) {
     let highest = array.sort(async function(a, b) {
+        console.log(a)
         return await Number(b.split('').slice(0, 3).join('')) - await Number(a.split('').slice(0, 3).join(''))
     }).slice(0, n)
     return highest
