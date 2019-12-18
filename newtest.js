@@ -172,6 +172,18 @@ function histinc1(arr) {
     }
 }
 
+function histinc2(arr) {
+    if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2]) {
+        return true
+    } else if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] > arr[arr.length - 3]) {
+        return true
+    } else if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2]) {
+        return true
+    } else {
+        return false
+    }
+}
+
 function histdec(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] < arr[arr.length - 2]) {
         return true
@@ -463,7 +475,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                     // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (histinc1(mymyhist)) {
+                    if (histinc2(mymyhist)) {
                         return `100${candle.name}`
                     } else if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
 
