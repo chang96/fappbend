@@ -463,7 +463,9 @@ let found2 = async(size, volume, rs, eyoar) => {
                     // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    if (histinc1(mymyhist)) {
+                        return candle.name
+                    } else if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
 
                         return `${alpha}${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
