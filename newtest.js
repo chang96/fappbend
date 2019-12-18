@@ -476,7 +476,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                     //     return candle.name
                     // }
                     if (histinc2(mymyhist)) {
-                        return `100${candle.name}`
+                        return `2.999${candle.name}`
                     } else if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
 
                         return `${alpha}${candle.name}`
