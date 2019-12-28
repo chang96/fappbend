@@ -282,9 +282,16 @@ let found = async(size, volume, rs) => {
                     // else if (voltesting(vtday, smav)) {
                     //     return candle.name
                     // }
-                    if (histinc1(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
-                        return `${candle.name}`
-                    } else {}
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+
+                        return `${alpha}${candle.name}`
+                    } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+
+                        return `${alpha}${candle.name}`
+                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
+
+                        return `${alpha}${candle.name}...`
+                    }
 
                 } catch (err) {
                     console.log(err)
@@ -325,7 +332,7 @@ let found1 = async(size, volume, rs) => {
                     let alpha = alph == NaN ? 0 : alph.toFixed(1)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
-                    let em = await ema.see(55, 55, candle.pip500)
+                    let em = await ema.see(9, 9, candle.pip500)
                         //login n signup username mail pw public adress btc secret question secret answeer 3 investment plsn select plan sendmail for pending verification show paymnt whn done 
                         //balance requst for cash out 
                     let mymyhist = mymyhist1.histogram
@@ -384,17 +391,15 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (candle.pip500[candle.pip500.length - 1] > em.ema) {
-                        return candle.name
-                    } else if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema && voltesting(vtday, smav)) {
-                        console.log(alpha)
-                        return `${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && voltesting(vtday, smav) && histinc1(mymyhist)) {
-                        console.log(alpha)
-                        return `${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist) && voltesting(vtday, smav)) {
-                        console.log(alpha)
-                        return `${candle.name}`
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+
+                        return `${alpha}${candle.name}`
+                    } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+
+                        return `${alpha}${candle.name}`
+                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
+
+                        return `${alpha}${candle.name}...`
                     }
                     // else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
                     //     return candle.name
@@ -475,9 +480,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                     // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (histinc2(mymyhist) && candle.pip500[candle.pip500.length - 1] < em.ema) {
-                        return `2.999${candle.name}`
-                    } else if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
 
                         return `${alpha}${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
