@@ -391,13 +391,13 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
 
                         return `${alpha}${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc(mymyhist)) {
 
                         return `${alpha}${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
+                    } else if (histinc(mymyhist) || crossover(mymyhist)) {
 
                         return `${alpha}${candle.name}...`
                     }
