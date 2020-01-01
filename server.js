@@ -135,6 +135,7 @@ const sendMe = async function() {
                 if (e[arr[i]].length > 0)
                     return e + '\n' + '\n' + '\n'
             })
+            c.splice(0, 3)
             let b = JSON.stringify(c)
             let arr1 = [...c]
                 //console.log(arr2)
@@ -404,7 +405,7 @@ let search1h = function(size, volume, rs) {
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
+            let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't4h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
@@ -412,7 +413,7 @@ let search4h = function(size, volume, rs) {
 }
 let search1d = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd(size, volume, rs)
+            let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't1d')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
