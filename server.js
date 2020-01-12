@@ -325,10 +325,10 @@ async function ccc1() {
     return yourarr
 }
 
-let cema = await ccc() // crossover on ema
-let b = await ind.founnd2(size, volume, rs, cema)
-let d = await highest(b, 1)
-let c = await save(d, 't1m')
+// let cema = await ccc() // crossover on ema
+// let b = await ind.founnd2(size, volume, rs, cema)
+// let d = await highest(b, 1)
+// let c = await save(d, 't1m')
 let search1star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd1(size, volume, rs)
