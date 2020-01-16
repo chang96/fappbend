@@ -285,13 +285,13 @@ let found = async(size, volume, rs, eyoar) => {
                     // }
                     if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
 
-                        return `${alpha}${candle.name}`
+                        return `${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
 
-                        return `${alpha}${candle.name}`
+                        return `${candle.name}`
                     } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
 
-                        return `${alpha}${candle.name}`
+                        return `${candle.name}`
                     }
 
                 } catch (err) {
@@ -485,7 +485,7 @@ let found2 = async(size, volume, rs, eyoar) => {
 
                     //     return `${alpha}${candle.name}`
                     // } else
-                    if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc(mymyhist)) {
+                    if (histinc(mymyhist)) {
                         return `${candle.name}`
                     }
                     //  else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
