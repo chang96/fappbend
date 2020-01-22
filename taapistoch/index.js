@@ -49,7 +49,7 @@ let stoch = async function(close) {
         let avg = k[i] + k[i + 1] + k[i + 2]
         d.push((avg) / 3)
     }
-    return { k: k.reverse(), d: d.reverse() }
+    return { k: k, d: d }
 }
 
 module.exports = { stochRSI: stoch }

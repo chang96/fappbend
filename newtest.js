@@ -418,7 +418,7 @@ let found1 = async(size, volume, rs) => {
                     //     return `${candle.name}`
                     // } else 
                     if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
-                        console.log(K[0], D[0], K[1], D[1])
+                        console.log(K[K.length - 1], D[D.length - 1], K[K.length - 2], D[D.length - 2])
                         return candle.name
                     }
 
