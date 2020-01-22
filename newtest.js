@@ -266,7 +266,7 @@ let found = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(stochClose)
+                    let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
@@ -352,7 +352,7 @@ let found1 = async(size, volume, rs) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(stochClose)
+                    let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
@@ -484,23 +484,25 @@ let found2 = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-
-                    //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
-                    //console.log(c[1][14])
-                    //console.log(a[2].length)
-                    // if (voltesting(vtday, smav) && tickingfromnegative(mymyhist)) {
-                    //     return `${candle.name}.T`
-                    // } else if (voltesting(vtday, smav) && rsiLow(b)) {
-                    //     return `${candle.name}.R`
-                    // } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
-                    //     return `${candle.name}.M0`
-                    // } else 
-                    // if (voltesting(vtday, smav) && crossover(mymyhist)) {
-                    //     return candle.name
-                    // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
-                    //     return candle.name
-                    // }
-                    // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    let stochs = await stochastic.stochRSI(candle.stochClose)
+                    let K = stochs.k
+                    let D = stochs.d
+                        //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
+                        //console.log(c[1][14])
+                        //console.log(a[2].length)
+                        // if (voltesting(vtday, smav) && tickingfromnegative(mymyhist)) {
+                        //     return `${candle.name}.T`
+                        // } else if (voltesting(vtday, smav) && rsiLow(b)) {
+                        //     return `${candle.name}.R`
+                        // } else if (voltesting(vtday, smav) && (crossover(mymyhist) || histinc(mymyhist)) && mymymac[mymymac.length - 1] < 0) {
+                        //     return `${candle.name}.M0`
+                        // } else 
+                        // if (voltesting(vtday, smav) && crossover(mymyhist)) {
+                        //     return candle.name
+                        // } else if (voltesting0(vtday, smav) && histinc(mymyhist)) {
+                        //     return candle.name
+                        // }
+                        // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
 
                     //     return `${alpha}${candle.name}`
                     // } else
