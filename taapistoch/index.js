@@ -43,13 +43,13 @@ let stoch = async function(close) {
     })
     for (let i = 0; i < allStochs.length - 2; i++) {
         let avg = allStochs[i] + allStochs[i + 1] + allStochs[i + 2]
-        k.push(avg / 3)
+        k.push((avg * 100) / 3)
     }
     for (let i = 0; i < k.length - 2; i++) {
         let avg = k[i] + k[i + 1] + k[i + 2]
-        d.push(avg / 3)
+        d.push((avg * 100) / 3)
     }
-    return { k: k[k.length - 1] * 100, d: d[d.length - 1] * 100 }
+    return { k: k.reverse(), d: d.reverse() }
 }
 
 module.exports = { stochRSI: stoch }

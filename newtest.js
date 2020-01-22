@@ -301,7 +301,7 @@ let found = async(size, volume, rs, eyoar) => {
 
                     //     return `${candle.name}`
                     // } else
-                    if (tickingfromnegative(mymyhist) && K >= D) {
+                    if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
                         return candle.name
                     }
 
@@ -407,17 +407,17 @@ let found1 = async(size, volume, rs) => {
                     //     return candle.name
                     // }
                     //.............................
-                    // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
+                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
 
-                    //     return `${candle.name}`
-                    // } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+                        return `${candle.name}`
+                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
 
-                    //     return `${candle.name}`
-                    // } else if (histinc(mymyhist) || crossover(mymyhist)) {
+                        return `${candle.name}`
+                    } else if (histinc(mymyhist) || crossover(mymyhist)) {
 
-                    //     return `${candle.name}`
-                    // }else 
-                    if (tickingfromnegative(mymyhist) && K >= D) {
+                        return `${candle.name}`
+                    } else if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
+                        console.log(K[0], D[0], K[1], D[1])
                         return candle.name
                     }
 
@@ -508,7 +508,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                     // } else
                     if ((histinc(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) || (candle.pip500[candle.pip500.length - 1] > em.ema && tickingfromnegative(mymyhist))) {
                         return `${candle.name}`
-                    } else if (K >= D) {
+                    } else if (K[0] >= D[0]) {
                         return candle.name
                     }
                     //  else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
