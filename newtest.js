@@ -6,6 +6,7 @@ const axios = require('axios')
 const v = require('./vpush').v
 const myrsi = require('./taapiRSI/index')
 const ema = require('./taapi/ema/ema')
+const stochastic = require('./taapistoch/index')
 const Binance = require('binance-api-node').default
 const binance = require('node-binance-api')().options({
     APIKEY: process.env.APIKEY,
@@ -43,10 +44,11 @@ let find2 = async(size, volume, eyoar) => {
             let close200 = [...close300]
             let close400 = [...close300]
             let close500 = [...close300]
+            let stochClose = [...close300]
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3 }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose }
         })).catch(err => console.log(err))
 
 }
@@ -64,10 +66,11 @@ let find1 = async(size, volume) => {
             let close200 = [...close300]
             let close400 = [...close300]
             let close500 = [...close300]
+            let stochClose = [...close300]
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3 }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose }
         })).catch(err => console.log(err))
 
 }
@@ -84,10 +87,11 @@ let find = async(size, volume) => {
             let close200 = [...close300]
             let close400 = [...close300]
             let close500 = [...close300]
+            let stochClose = [...close300]
             let volumepush = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3 }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose }
         })).catch(err => console.log(err))
 
 }
@@ -262,6 +266,9 @@ let found = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
+                    let stochs = await stochastic.stochRSI(stochClose)
+                    let K = stochs.k
+                    let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
@@ -283,15 +290,19 @@ let found = async(size, volume, rs, eyoar) => {
                     // else if (voltesting(vtday, smav)) {
                     //     return candle.name
                     // }
-                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
+                    //...............................................
+                    // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
 
-                        return `${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+                    //     return `${candle.name}`
+                    // } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
 
-                        return `${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
+                    //     return `${candle.name}`
+                    // } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
 
-                        return `${candle.name}`
+                    //     return `${candle.name}`
+                    // } else
+                    if (tickingfromnegative(mymyhist) && K >= D) {
+                        return candle.name
                     }
 
                 } catch (err) {
@@ -341,6 +352,9 @@ let found1 = async(size, volume, rs) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
+                    let stochs = await stochastic.stochRSI(stochClose)
+                    let K = stochs.k
+                    let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
@@ -392,16 +406,21 @@ let found1 = async(size, volume, rs) => {
                     // } else if (mymymac[mymymac.length - 1] && tickingfromnegative(mymyhist)) {
                     //     return candle.name
                     // }
-                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
+                    //.............................
+                    // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
 
-                        return `${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+                    //     return `${candle.name}`
+                    // } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
 
-                        return `${candle.name}`
-                    } else if (histinc(mymyhist) || crossover(mymyhist)) {
+                    //     return `${candle.name}`
+                    // } else if (histinc(mymyhist) || crossover(mymyhist)) {
 
-                        return `${candle.name}`
+                    //     return `${candle.name}`
+                    // }else 
+                    if (tickingfromnegative(mymyhist) && K >= D) {
+                        return candle.name
                     }
+
                     // else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
                     //     return candle.name
                     // }
@@ -487,6 +506,8 @@ let found2 = async(size, volume, rs, eyoar) => {
                     // } else
                     if ((histinc(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) || (candle.pip500[candle.pip500.length - 1] > em.ema && tickingfromnegative(mymyhist))) {
                         return `${candle.name}`
+                    } else if (K >= D) {
+                        return candle.name
                     }
                     //  else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
 
