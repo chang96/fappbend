@@ -266,7 +266,7 @@ let found = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(candle.stochClose)
+                    let stochs = await stochastic.stochRSI(await candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
@@ -352,7 +352,7 @@ let found1 = async(size, volume, rs) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(candle.stochClose)
+                    let stochs = await stochastic.stochRSI(await candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
