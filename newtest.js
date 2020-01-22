@@ -407,16 +407,17 @@ let found1 = async(size, volume, rs) => {
                     //     return candle.name
                     // }
                     //.............................
-                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
+                    // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
 
-                        return `${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+                    //     return `${candle.name}`
+                    // } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
 
-                        return `${candle.name}`
-                    } else if (histinc(mymyhist) || crossover(mymyhist)) {
+                    //     return `${candle.name}`
+                    // } else if (histinc(mymyhist) || crossover(mymyhist)) {
 
-                        return `${candle.name}`
-                    } else if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
+                    //     return `${candle.name}`
+                    // } else 
+                    if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
                         console.log(K[0], D[0], K[1], D[1])
                         return candle.name
                     }
