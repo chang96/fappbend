@@ -9,6 +9,7 @@ const multi = require('./multicandles')
 const token = '935256153:AAEpl7pwiov2O228UzGt9N2t6ZoEJWa-lsc' //process.env.TELE_BOT
 const api = new telegram({ token: token })
 const ema = require('./taapi/ema/ema').see
+const cors = require('cors')
 module.exports.myapi = api
 const axios = require('axios')
 const mongoose = require('mongoose')
@@ -42,6 +43,7 @@ const bodyParser = require('body-parser')
     // bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(cors())
     //ete
     //const pair = ['BTCUSDT', 'ETHUSDT', 'GVTETH', 'BNBETH', 'CELRETH', 'MATICETH', 'MATICUSDT', 'CELRUSDT', ]
 const PORT = process.env.PORT || 3001

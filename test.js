@@ -96,6 +96,13 @@
 // })()
 
 // //module.exports = {indicator
+const axios = require('axios')
+const coin = 'ETHUSDT'
+const time = '1w'
+let close = axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=500`).
+then(data => data.data).then(data => data.map(datum => (datum[4])));
+const stoch = require('./taapistoch/index')
 
-console.log(new Date(1568992282682))
-1568992282682
+let m = (async function() {
+    console.log(await stoch.stochRSI(close))
+})()
