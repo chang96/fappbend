@@ -16,7 +16,8 @@ let pushing = async function(ar, n) {
 }
 
 const stochParams = async function(close) {
-    const current = await RSI.rsi(close)
+    let clos = await close
+    const current = await RSI.rsi(clos)
     let sortArr = (await pushing(current, 14))
         //currentRSI = current[current.length - 1]
     let stochs = sortArr.map(function(arr) {
@@ -33,7 +34,8 @@ const stochParams = async function(close) {
 let stoch = async function(close) {
     let k = []
     let d = []
-    let stochParam = await stochParams(close)
+    let clos = await close
+    let stochParam = await stochParams(clos)
         // console.log(stochParam)
     let allStochs = stochParam.map(function(param) {
         let num = param.currentRSI.toFixed(4) - param.lowest.toFixed(4)

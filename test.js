@@ -97,7 +97,7 @@
 
 // //module.exports = {indicator
 const axios = require('axios')
-const coin = 'ETHUSDT'
+const coin = 'BTTUSDT'
 const time = '1w'
 let close = axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=500`).
 then(data => data.data).then(data => data.map(datum => (datum[4])));
