@@ -47,7 +47,7 @@ let stoch = async function(close) {
     }
     for (let i = 0; i < k.length - 2; i++) {
         let avg = k[i] + k[i + 1] + k[i + 2]
-        d.push((avg * 100) / 3)
+        d.push((avg) / 3)
     }
     return { k: k.reverse(), d: d.reverse() }
 }
