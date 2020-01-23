@@ -266,7 +266,7 @@ let found = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(await candle.stochClose)
+                    let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
@@ -352,7 +352,7 @@ let found1 = async(size, volume, rs) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(await candle.stochClose)
+                    let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
@@ -418,7 +418,7 @@ let found1 = async(size, volume, rs) => {
                     //     return `${candle.name}`
                     // } else 
                     if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
-                        console.log(K[K.length - 1], D[D.length - 1], K[K.length - 2], D[D.length - 2], candle.name)
+                        console.log(K[0], D[0], K[1], D[1], candle.name)
                         return candle.name
                     }
 
