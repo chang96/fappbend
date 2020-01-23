@@ -97,12 +97,20 @@
 
 // //module.exports = {indicator
 const axios = require('axios')
-const coin = 'CVCETH'
-const time = '1w'
-let close = axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=500`).
-then(data => data.data).then(data => data.map(datum => (datum[4])));
+const coins = ['ETHUSDT', 'ETCUSDT', 'BTCUSDT']
+    // const time = '1w'
+    // let close = axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=500`).
+    // then(data => data.data).then(data => data.map(datum => (datum[4])));
 const stoch = require('./taapistoch/index')
 
 let m = (async function() {
-    console.log(await stoch.stochRSI(close))
+    coins.map(async function(coin) {
+        let coi = await coin
+        const time = '1w'
+        let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coi}&interval=${time}&limit=500`).
+        then(data => data.data).then(data => data.map(datum => (datum[4])));
+        let a = (await stoch.stochRSI(close))
+        console.log(a)
+    })
+
 })()

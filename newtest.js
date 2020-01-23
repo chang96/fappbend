@@ -353,8 +353,8 @@ let found1 = async(size, volume, rs) => {
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                     let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
-                    let K = stochs.k
-                    let D = stochs.d
+                    let K = await stochs.k
+                    let D = await stochs.d
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
