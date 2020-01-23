@@ -92,5 +92,4 @@ let stoch = async function(close) {
     let xx = await p(allStochs)
     return xx
 }
-
 module.exports = { stochRSI: stoch }
