@@ -265,7 +265,7 @@ let found = async(size, volume, rs, eyoar) => {
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                    let b = await myrsi.rsi(candle.pip)
+                        //let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
@@ -351,7 +351,7 @@ let found1 = async(size, volume, rs) => {
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                    let b = await myrsi.rsi(candle.pip)
+                        // let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = await stochs.k
                     let D = await stochs.d
@@ -419,7 +419,7 @@ let found1 = async(size, volume, rs) => {
                     // } else 
                     if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
                         console.log(K[0], D[0], K[1], D[1], candle.name)
-                        return `${candle.name }`
+                        return `${K[0], D[0], K[1], D[1]}${candle.name }`
                     }
 
                     //// else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
@@ -484,7 +484,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                    let b = await myrsi.rsi(candle.pip)
+                        // let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
