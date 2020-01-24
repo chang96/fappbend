@@ -125,62 +125,62 @@ const findSendme = async function(coins) {
 let arr2 = []
 let tradds2 = []
 const sendMe = async function() {
-    await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
-        let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
-        if (err) return err
-        if (coin) {
-            //console.log(findSendme(coin))
-            //console.log(coin)
-            //console.log(await findSendme(coin))
-            let a = await findSendme(coin)
-            let c = a.filter(function(e, i) {
-                if (e[arr[i]].length > 0)
-                    return e + '\n' + '\n' + '\n'
-            })
-            c.splice(0, 2)
-            c.splice(4, 1)
-            let b = JSON.stringify(c)
-            let arr1 = [...c]
-                //console.log(arr2)
-
-            function f(oldArr, newArr) {
-                function o(obj) {
-                    let ar = [] // 
-                    obj.forEach(function(o) { //open up the arrays here
-                        for (const k in o) {
-                            ar = ar.concat(o[k])
-                        }
-                    })
-                    return ar
-                }
-                let a = o(newArr)
-                let b = o(oldArr)
-
-                return a.every(function(c, i) {
-                    return c == b[i]
+        await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
+            let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
+            if (err) return err
+            if (coin) {
+                //console.log(findSendme(coin))
+                //console.log(coin)
+                //console.log(await findSendme(coin))
+                let a = await findSendme(coin)
+                let c = a.filter(function(e, i) {
+                    if (e[arr[i]].length > 0)
+                        return e + '\n' + '\n' + '\n'
                 })
+                c.splice(0, 2)
+                c.splice(4, 1)
+                let b = JSON.stringify(c)
+                let arr1 = [...c]
+                    //console.log(arr2)
+
+                function f(oldArr, newArr) {
+                    function o(obj) {
+                        let ar = [] // 
+                        obj.forEach(function(o) { //open up the arrays here
+                            for (const k in o) {
+                                ar = ar.concat(o[k])
+                            }
+                        })
+                        return ar
+                    }
+                    let a = o(newArr)
+                    let b = o(oldArr)
+
+                    return a.every(function(c, i) {
+                        return c == b[i]
+                    })
+                }
+
+                if (f(arr2, arr1)) {
+                    // console.log(arr2)
+                    arr2 = arr1
+                    console.log('same')
+                } else {
+                    // console.log(arr2)
+                    arr2 = arr1
+                    bot.sendMessage(954135852, `now: ${b}`)
+                }
+                // let tradds = multi.mutlti(arr1, 1, 't3m')
+
+                // if (multi.mutlti(arr1, 1, 't3m').length > 0 && !multi.changing(tradds2, tradds)) {
+                //     tradds2 = tradds
+                //     bot.sendMessage(954135852, `now: ${tradds}`)
+                // } else console.log(tradds)
+
             }
-
-            if (f(arr2, arr1)) {
-                // console.log(arr2)
-                arr2 = arr1
-                console.log('same')
-            } else {
-                // console.log(arr2)
-                arr2 = arr1
-                bot.sendMessage(954135852, `now: ${b}`)
-            }
-            // let tradds = multi.mutlti(arr1, 1, 't3m')
-
-            // if (multi.mutlti(arr1, 1, 't3m').length > 0 && !multi.changing(tradds2, tradds)) {
-            //     tradds2 = tradds
-            //     bot.sendMessage(954135852, `now: ${tradds}`)
-            // } else console.log(tradds)
-
-        }
-    })
-}
-setInterval(sendMe, 1000 * 60 * 0.6)
+        })
+    }
+    //setInterval(sendMe, 1000 * 60 * 0.6)
 const findCoinToTrade = async() => {
     return Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         if (err) return err
