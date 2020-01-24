@@ -419,7 +419,7 @@ let found1 = async(size, volume, rs) => {
                     // } else 
                     if (tickingfromnegative(mymyhist) && K[0] >= D[0]) {
                         console.log(K[0], D[0], K[1], D[1], candle.name)
-                        return `${K[0], D[0], K[1], D[1]}${candle.name }`
+                        return `${candle.name }`
                     }
 
                     //// else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
