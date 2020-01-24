@@ -111,7 +111,7 @@ const stoch = require('./taapistoch/index')
 let m = (async function() {
     coins.map(async function(coin) {
         let coi = await coin
-        const time = '1w'
+        const time = ''
         let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coi}&interval=${time}&limit=500`).
         then(data => data.data).then(data => data.map(datum => (datum[4])));
         let a = (await stoch.stochRSI(close))
