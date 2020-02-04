@@ -106,7 +106,10 @@ function crossover(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
         //if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
         return true
-    } else {
+    } else if(arr[arr.length - 1] >= 0 && arr[arr.length - 2] >= 0 &&  arr[arr.length - 3] < 0) {
+        //if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
+        return true
+    }  else {
         return false
     }
 }
@@ -251,7 +254,11 @@ function stochstrat(K, D) {
         return true
     } else if (K[0] >= D[0] && K[1] >= D[1] && K[2] < D[2]) {
         return true
-    } else {
+    }
+    // else if (K[0] >= D[0] && K[1] >= D[1] && K[2] >= D[2] && K[3] < D[3]) {
+    //     return true
+    // }
+     else {
         return false
     }
 }
@@ -311,7 +318,7 @@ let found = async(size, volume, rs, eyoar) => {
 
                     //     return `${candle.name}`
                     // } else
-                    if (stochstrat(K, D)) {
+                    if (stochstrat(K, D) || crossover(mymyhist)) {
                         return candle.name
                     }
 
@@ -426,7 +433,7 @@ let found1 = async(size, volume, rs) => {
                     } else if (histinc(mymyhist) || crossover(mymyhist)) {
 
                         return `${candle.name}`
-                    } else if (tickingfromnegative(mymyhist) || K[0] >= D[0] || stochstrat(K, D)) {
+                    } else if (stochstrat(K, D)) {
                         //console.log(K[0], D[0], K[1], D[1], candle.name)
                         return `${candle.name }`
                     }
@@ -516,7 +523,7 @@ let found2 = async(size, volume, rs, eyoar) => {
 
                     //     return `${alpha}${candle.name}`
                     // } else
-                    if ((histinc(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) || (candle.pip500[candle.pip500.length - 1] > em.ema && tickingfromnegative(mymyhist))) {
+                    if ( crossover(mymyhist) || (candle.pip500[candle.pip500.length - 1] > em.ema)) {
                         return `${candle.name}`
                     } else if (stochstrat(K, D) || K[0] > D[0]) {
                         return candle.name

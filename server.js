@@ -327,6 +327,27 @@ async function ccc1() {
         // console.log(yourarr)
     return yourarr
 }
+async function ccc2(tf) {
+    let rgx1 = /BTC$/
+    let rgx2 = /ETH$/
+    let rgx3 = /USDT$/
+    let rgx4 = /BNB$/
+    let rgx5 = /^NaN/
+    let myarr = []
+    let yourarr = []
+    let a = await Coin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+        if (err) return err
+        if (coin) {
+            return coin
+        }
+
+    })
+    let b = await myarr.concat(a[tf])
+    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
+        // console.log(yourarr)
+    return yourarr
+}
+
 
 // let cema = await ccc() // crossover on ema
 // let b = await ind.founnd2(size, volume, rs, cema)
@@ -342,7 +363,9 @@ let search1star = function(size, volume, rs) {
 }
 let search3star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+            //let b = await ind.founnd1(size, volume, rs)
+            let cema = await ccc()
+            let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -350,8 +373,8 @@ let search3star = function(size, volume, rs) {
 }
 let search5star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema1 = await ccc1()
-            let b = await ind.founnd(size, volume, rs, cema1)
+            let cema1 = await ccc2('t3m')
+            let b = await ind.founnd2(size, volume, rs, cema1)
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -367,7 +390,9 @@ let search1star0 = function(size, volume, rs) {
 }
 let search3star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+            //let b = await ind.founnd1(size, volume, rs)
+            let cema = await ccc()
+            let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -375,8 +400,8 @@ let search3star0 = function(size, volume, rs) {
 }
 let search5star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema1 = await ccc1()
-            let b = await ind.founnd(size, volume, rs, cema1)
+            let cema1 = await ccc2('t3m')
+            let b = await ind.founnd2(size, volume, rs, cema1)
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -392,7 +417,8 @@ let search1 = function(size, volume, rs) {
 }
 let search3 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -400,8 +426,8 @@ let search3 = function(size, volume, rs) {
 }
 let search5 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema1 = await ccc1()
-            let b = await ind.founnd(size, volume, rs, cema1)
+            let cema1 = await ccc()
+            let b = await ind.founnd2(size, volume, rs, cema1)
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -409,8 +435,8 @@ let search5 = function(size, volume, rs) {
 }
 let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema1 = await ccc1()
-            let b = await ind.founnd(size, volume, rs, cema1)
+            let cema1 = await ccc2('t5m')
+            let b = await ind.founnd2(size, volume, rs, cema1)
             let c = await save(b, 't15m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -418,7 +444,7 @@ let search15 = function(size, volume, rs) {
 }
 let search30 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema = await ccc()
+            let cema = await ccc2('t15m')
             let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't30m')
         })(size, volume, rs)
@@ -428,8 +454,8 @@ let search30 = function(size, volume, rs) {
 
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema = await ccc()
-            let b = await ind.founnd2(size, volume, rs, cema)
+            let cema = await ccc2('t30m')
+            let b = await ind.founnd(size, volume, rs, cema)
             let c = await save(b, 't1h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
