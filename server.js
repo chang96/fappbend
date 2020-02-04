@@ -139,7 +139,7 @@ const sendMe = async function() {
                     return e + '\n' + '\n' + '\n'
             })
             c.splice(0, 5)
-            c.splice(4, 1)
+            c.splice(5, 2)
             let b = JSON.stringify(c)
             let arr1 = [...c]
                 //console.log(arr2)
