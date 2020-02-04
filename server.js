@@ -139,7 +139,7 @@ const sendMe = async function() {
                     return e + '\n' + '\n' + '\n'
             })
             c.splice(0, 5)
-            c.splice(5, 2)
+            c.splice(6, 2)
             
             let b = JSON.stringify(c)
             console.log(b  +'oooooo')
