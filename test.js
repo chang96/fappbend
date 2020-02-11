@@ -115,7 +115,7 @@ let m = (async function() {
         let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coi}&interval=${time}&limit=500`).
         then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
         let a = (await stoch.stochRSI(close))
-        console.log(a, coin)
+        console.log(close, coin)
     })
 
 })()

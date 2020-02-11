@@ -40,7 +40,7 @@ let find2 = async(size, volume, eyoar) => {
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => (data.data)).then(data => data.map(datum => (datum[4])));
+            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
@@ -62,7 +62,7 @@ let find1 = async(size, volume) => {
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => (data.data)).then(data => data.map(datum => (datum[4])));
+            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
