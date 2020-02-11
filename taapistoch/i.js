@@ -21,13 +21,13 @@ const stochParams = async function(close) {
     const current = await RSI.rsi(clo)
     let sortArr = (await pushing(current, 14))
         //currentRSI = current[current.length - 1]
-    console.log(sortArr)
+    //console.log(sortArr)
     let stochs = sortArr.map(function(arr) {
         currentRSI = arr[arr.length - 1]
         descendingRSI = arr.sort(function(a, b) {
             return b - a
         })
-        console.log({ highest: descendingRSI[0] / 100, lowest: descendingRSI[descendingRSI.length - 1] / 100, currentRSI: currentRSI / 100 })
+        //console.log({ highest: descendingRSI[0] / 100, lowest: descendingRSI[descendingRSI.length - 1] / 100, currentRSI: currentRSI / 100 })
         return { highest: descendingRSI[0] / 100, lowest: descendingRSI[descendingRSI.length - 1] / 100, currentRSI: currentRSI / 100 }
     })
     return stochs

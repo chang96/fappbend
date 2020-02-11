@@ -437,7 +437,7 @@ let search5 = function(size, volume, rs) {
 let search15 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema1 = await ccc2('t5m')
-            let b = await ind.founnd2(size, volume, rs, cema1)
+            let b = await ind.founnd(size, volume, rs, cema1)
             let c = await save(b, 't15m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -445,8 +445,8 @@ let search15 = function(size, volume, rs) {
 }
 let search30 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t15m')
-            let b = await ind.founnd2(size, volume, rs, cema)
+            let cema = await ccc2('t5m')
+            let b = await ind.founnd(size, volume, rs, cema)
             let c = await save(b, 't30m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })

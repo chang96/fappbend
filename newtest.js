@@ -13,6 +13,7 @@ const binance = require('node-binance-api')().options({
     APISECRET: process.env.APISECRET,
     useServerTime: true
 })
+const ha = require('./HA')
 const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
@@ -29,7 +30,7 @@ const bi = Binance({
     //             return coin
 
 //     })
-// }).then(coins => coins.map(coin => coin.symbol))
+// }).then(coins => coins.map(coin => coin.symbol))ha.HeikinAshi(data.data)
 
 let find2 = async(size, volume, eyoar) => {
     // console.log(4)
@@ -39,7 +40,7 @@ let find2 = async(size, volume, eyoar) => {
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => data.data).then(data => data.map(datum => (datum[4])));
+            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
@@ -61,7 +62,7 @@ let find1 = async(size, volume) => {
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => data.data).then(data => data.map(datum => (datum[4])));
+            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
@@ -82,7 +83,7 @@ let find = async(size, volume) => {
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => data.data).then(data => data.map(datum => (datum[4])));
+            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[4])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]

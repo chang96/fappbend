@@ -101,19 +101,19 @@ const c = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ETHBTC', 'XRPBTC', 'EOSBTC', 'ETCBT
     'QTUMBTC', 'OMGBTC', 'NANOBTC', 'KMDBTC', 'XVGBTC', 'WAVESBTC', 'ZILBTC', 'ENJBTC', 'VIBBTC', 'DLTBTC', 'DNTBTC', 'MCOBTC', 'KAVABTC', 'CELRBTC', 'MATICBTC', 'FETBTC', 'FUNBTC', 'ADABTC', 'BATBTC', 'FTMBTC', 'QLCBTC', 'GVTBTC', 'LENDBTC', 'QKCBTC', 'MFTBTC', 'BCHABCBTC', 'ONTBTC', 'ATOMBTC',
     'IOSTBTC', 'RDNBTC', 'BQXBTC', 'ARPABTC', 'CHZBTC', 'RVNBTC', 'KAVABTC', 'ZECBTC', 'IOTABTC', 'AGIBTC', 'DCRBTC', 'PIVXBTC', 'LSKBTC', 'STEEMBTC', 'BEAMBTC', 'LOOMBTC', 'THETABTC', 'XEMBTC', 'STXBTC', 'TNTBTC', 'ICXBTC', 'NULSBTC', 'TOMOBTC', 'ERDBTC', 'SNMBTC', 'MDABTC', 'GOBTC', 'WABIBTC', 'ELFBTC'
 ]
-const coins = ['BTCUSDT', 'ETHUSDT']
+const coins = ['FETUSDT']
 
 // const time = '1w'
 // let close = axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=500`).
 // then(data => data.data).then(data => data.map(datum => (datum[4])));
 const stoch = require('./taapistoch/index')
-
+const ha = require('./HA')
 let m = (async function() {
     coins.map(async function(coin) {
         let coi = await coin
-        const time = ''
+        const time = '1w'
         let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coi}&interval=${time}&limit=500`).
-        then(data => data.data).then(data => data.map(datum => (datum[4])));
+        then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
         let a = (await stoch.stochRSI(close))
         console.log(a, coin)
     })
