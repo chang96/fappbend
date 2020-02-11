@@ -13,7 +13,7 @@ const binance = require('node-binance-api')().options({
     APISECRET: process.env.APISECRET,
     useServerTime: true
 })
-const ha = require('./HA')
+const ha = require('./HA').HeikinAshi
 const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
