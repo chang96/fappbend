@@ -6,8 +6,9 @@ const axios = require('axios')
 // return (d)
 // }
 // n()
-const HAcandles = []
+
 const HA = async (par)=>{
+    const HAcandles = []
     let parr =await par
     parr.forEach(async(c, i)=>{
        i == 0? await initHAcalc(c) : await continueHA(c, HAcandles)
