@@ -524,7 +524,7 @@ let found2 = async(size, volume, rs, eyoar) => {
 
                     //     return `${alpha}${candle.name}`
                     // } else
-                    if ( crossover(mymyhist) || (candle.pip500[candle.pip500.length - 1] > em.ema)) {
+                    if ( crossover(mymyhist)) {
                         return `${candle.name}`
                     } else if (stochstrat(K, D) || K[0] > D[0]) {
                         return candle.name
