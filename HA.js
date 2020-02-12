@@ -45,7 +45,7 @@ const continueHA = async(h, ha)=>{
     const HAopen =  rHAopen/2
     const HAhigh = Math.max(high, HAopen, HAclose)
     const HAlow = Math.min (low, HAopen , HAclose)
-    HAcandles.push([HAopen, HAhigh, HAlow, HAclose])
+    ha.push([HAopen, HAhigh, HAlow, HAclose])
 }
 
 
