@@ -11,12 +11,12 @@ const HA = async (par)=>{
     const HAcandles = []
     let parr =await par
     parr.forEach(async(c, i)=>{
-       i == 0? await initHAcalc(c) : await continueHA(c, HAcandles)
+       i == 0? await initHAcalc(c, HAcandles) : await continueHA(c, HAcandles)
     })
     return HAcandles
 }
 
-const initHAcalc = async (h)=>{
+const initHAcalc = async (h,HAcandles)=>{
     let p = await h
     const open = Number(p[1])
     const high =Number(p[2])
