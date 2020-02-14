@@ -445,7 +445,7 @@ let search15 = function(size, volume, rs) {
 }
 let search30 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t5m')
+            let cema = await ccc2('t15m')
             let b = await ind.founnd(size, volume, rs, cema)
             let c = await save(b, 't30m')
         })(size, volume, rs)

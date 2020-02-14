@@ -319,7 +319,7 @@ let found = async(size, volume, rs, eyoar) => {
 
                     //     return `${candle.name}`
                     // } else
-                    if (stochstrat(K, D) || crossover(mymyhist)) {
+                    if (stochstrat(K, D) || crossover(mymyhist) || K[0] > D[0] ) {
                         return candle.name
                     }
 
