@@ -356,7 +356,8 @@ async function ccc2(tf) {
 // let c = await save(d, 't1m')
 let search1star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -383,7 +384,8 @@ let search5star = function(size, volume, rs) {
 }
 let search1star0 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -410,7 +412,8 @@ let search5star0 = function(size, volume, rs) {
 }
 let search1 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let b = await ind.founnd1(size, volume, rs)
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
@@ -445,7 +448,7 @@ let search15 = function(size, volume, rs) {
 }
 let search30 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t15m')
+            let cema = await ccc2('t5m')
             let b = await ind.founnd(size, volume, rs, cema)
             let c = await save(b, 't30m')
         })(size, volume, rs)
@@ -455,7 +458,7 @@ let search30 = function(size, volume, rs) {
 
 let search1h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t30m')
+            let cema = await ccc2('t5m')
             let b = await ind.founnd(size, volume, rs, cema)
             let c = await save(b, 't1h')
         })(size, volume, rs)

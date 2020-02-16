@@ -94,7 +94,11 @@
 //     //     setTimeout(indicators(), 1000 * 60 * 60 * 3)
 //     // }
 // })()
-
+const stoch = require('./taapistoch/index')
+const ha = require('./HA')
+const renko = require('./renko').renko
+const assert = require('assert')
+const moment = require('moment-timezone')
 // //module.exports = {indicator
 const axios = require('axios')
 const c = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ETHBTC', 'XRPBTC', 'EOSBTC', 'ETCBTC', 'LTCBTC', 'LINKBTC', 'BNBBTC', 'XLMBTC', 'TRXBTC', 'XLMBTC', 'NEOBTC', 'XTZBTC', 'DASHBTC', 'IOTABTC',
@@ -102,20 +106,49 @@ const c = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ETHBTC', 'XRPBTC', 'EOSBTC', 'ETCBT
     'IOSTBTC', 'RDNBTC', 'BQXBTC', 'ARPABTC', 'CHZBTC', 'RVNBTC', 'KAVABTC', 'ZECBTC', 'IOTABTC', 'AGIBTC', 'DCRBTC', 'PIVXBTC', 'LSKBTC', 'STEEMBTC', 'BEAMBTC', 'LOOMBTC', 'THETABTC', 'XEMBTC', 'STXBTC', 'TNTBTC', 'ICXBTC', 'NULSBTC', 'TOMOBTC', 'ERDBTC', 'SNMBTC', 'MDABTC', 'GOBTC', 'WABIBTC', 'ELFBTC'
 ]
 const coins = ['FETUSDT']
-
-// const time = '1w'
-// let close = axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=500`).
-// then(data => data.data).then(data => data.map(datum => (datum[4])));
-const stoch = require('./taapistoch/index')
-const ha = require('./HA')
-let m = (async function() {
-    coins.map(async function(coin) {
-        let coi = await coin
-        const time = '1w'
-        let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coi}&interval=${time}&limit=500`).
-        then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
-        let a = (await stoch.stochRSI(close))
-        console.log(close, coin)
+async function ff(f){
+    let fff = await f
+    let n = {open:[],low:[], high:[], close:[], timestamp:[], volume:[]}
+    fff.forEach(c=>{
+        n.timestamp.push(Number(c[0]))
+        n.open.push(Number(c[1]))
+        n.high.push(Number(c[2]))
+        n.low.push(Number(c[3]))
+        n.close.push(Number(c[4]))
+        n.volume.push(Number(c[5]))
     })
+    const period = 14
+const result = renko(Object.assign({}, n, {period: period, useATR:true}))
+return result
+}
+ let m = (async function() {
+//     coins.map(async function(coin) {
+//         let coi = await coin
+//         const time = '1w'
+//         let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coi}&interval=${time}&limit=500`).
+//         then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
+//         let a = (await stoch.stochRSI(close))
+//         console.log(close, coin)
+//     })
 
-})()
+try {const coin = 'CHZUSDT'
+const time = '4h'
+let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=1000`).then(data => ha.HeikinAshi(data.data)).then(d =>d )//[d,d.timestamp,d.close])
+//.then(data => data.map(datum => Number(datum)));
+//console.log(close)
+//const data = {"clclose
+//let rr = []
+console.log(close)
+//console.log(close[0].timestamp.map(t=>moment.tz(t, "Africa/Lagos").format()))
+// for(let i = 0; i<close[2].length; i++){
+//     console.log(close[2][i +1])
+//     close[2][i + 1] - close[2][i] >=0 ? rr.push('+') :rr.push('-')
+// }
+// rr.pop()
+// console.log(rr.reverse())
+//console.log(await stoch.stochRSI(close[2]))
+ } catch(e){
+     console.log(e)
+ }
+
+ })()

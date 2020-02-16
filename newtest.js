@@ -14,6 +14,7 @@ const binance = require('node-binance-api')().options({
     useServerTime: true
 })
 const ha = require('./HA')
+const renko = require('./renko').renko
 const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
@@ -39,8 +40,11 @@ let find2 = async(size, volume, eyoar) => {
         // let eyoarr = await eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
-            let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
+            let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=1000`).
+            then(data => (data.data))
+            let close300 = ha.HeikinAshi(bars)
+            // let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
+            // then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
@@ -49,7 +53,7 @@ let find2 = async(size, volume, eyoar) => {
             let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose, forrenko:bars }
         })).catch(err => console.log(err))
 
 }
@@ -61,8 +65,11 @@ let find1 = async(size, volume) => {
         //let eyoarr = eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
-            let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
+            let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=1000`).
+            then(data => (data.data))
+            let close300 = ha.HeikinAshi(bars)
+            // let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
+            // then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
@@ -71,7 +78,7 @@ let find1 = async(size, volume) => {
             let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose, forrenko:bars }
         })).catch(err => console.log(err))
 
 }
@@ -82,8 +89,11 @@ let find = async(size, volume) => {
         //let eyoarr = eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
-            let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
-            then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
+            let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=1000`).
+            then(data => (data.data))
+            let close300 = ha.HeikinAshi(bars)
+            // let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
+            // then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
@@ -92,7 +102,7 @@ let find = async(size, volume) => {
             let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose }
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose, forrenko:bars }
         })).catch(err => console.log(err))
 
 }
@@ -314,13 +324,13 @@ let found = async(size, volume, rs, eyoar) => {
                     //     return `${candle.name}`
                     // } else if (candle.pip500[candle.pip500.length - 2] < em.ema && candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
 
-                    //     return `${candle.name}`
+                    //     return `${candle.name}`&
                     // } else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
 
                     //     return `${candle.name}`
                     // } else
-                    if (stochstrat(K, D) || crossover(mymyhist) || K[0] > D[0] ) {
-                        return candle.name
+                    if(renkobars[0] == '+' &&renkobars[1] == '-' ){
+                        return `${candle.name}`
                     }
 
                 } catch (err) {
@@ -373,6 +383,7 @@ let found1 = async(size, volume, rs) => {
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = await stochs.k
                     let D = await stochs.d
+                    let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
@@ -425,19 +436,25 @@ let found1 = async(size, volume, rs) => {
                     //     return candle.name
                     // }
                     //.............................
-                    if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
 
-                        return `${candle.name}`
-                    } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
 
+                    if(renkobars[0] == '+'){
                         return `${candle.name}`
-                    } else if (histinc(mymyhist) || crossover(mymyhist)) {
-
-                        return `${candle.name}`
-                    } else if (stochstrat(K, D) || K[0] > D[0]) {
-                        //console.log(K[0], D[0], K[1], D[1], candle.name)
-                        return `${candle.name }`
                     }
+
+                    // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
+
+                    //     return `${candle.name}`
+                    // } else if (candle.pip500[candle.pip500.length - 1] > em.ema && histinc1(mymyhist)) {
+
+                    //     return `${candle.name}`
+                    // } else if (histinc(mymyhist) || crossover(mymyhist)) {
+
+                    //     return `${candle.name}`
+                    // } else if (stochstrat(K, D) || K[0] > D[0]) {
+                    //     //console.log(K[0], D[0], K[1], D[1], candle.name)
+                    //     return `${candle.name }`
+                    // }
 
                     //// else if (histinc1(mymyhist) && voltesting0(vtday, smav) && candle.pip500[candle.pip500.length - 1] > em.ema && candle.pip500[candle.pip500.length - 23] < em.ema && candle.pip500[candle.pip500.length - 2] < em.ema) {
                     //     return candle.name
@@ -524,10 +541,8 @@ let found2 = async(size, volume, rs, eyoar) => {
 
                     //     return `${alpha}${candle.name}`
                     // } else
-                    if ( crossover(mymyhist)) {
+                    if(renkobars[0] == '+'){
                         return `${candle.name}`
-                    } else if (stochstrat(K, D) || K[0] > D[0]) {
-                        return candle.name
                     }
                     //  else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
 

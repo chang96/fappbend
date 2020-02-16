@@ -18,6 +18,8 @@ const HA = async (par)=>{
 
 const initHAcalc = async (h,HAcandles)=>{
     let p = await h
+    const timestamp = Number(p[0])
+    const volume = Number(p[5])
     const open = Number(p[1])
     const high =Number(p[2])
     const low =Number(p[3])
@@ -28,13 +30,16 @@ const initHAcalc = async (h,HAcandles)=>{
     const HAopen =  rHAopen/2
     const HAhigh = Math.max(high, HAopen, HAclose)
     const HAlow = Math.min(low, HAopen , HAclose)
-    HAcandles.push([HAopen, HAhigh, HAlow, HAclose])
+    HAcandles.push([timestamp, HAopen, HAhigh, HAlow, HAclose, volume])
+    //HAcandles.push([HAopen, HAhigh, HAlow, HAclose])
 }
 
 const continueHA = async(h, ha)=>{
     let p = await h
-    const haopen = ha[ha.length - 1][0]
-    const haclose = ha[ha.length - 1][3]
+    const timestamp = Number(p[0])
+    const volume = Number(p[5])
+    const haopen = ha[ha.length - 1][1]
+    const haclose = ha[ha.length - 1][4]
     const open = Number(p[1])
     const high =Number(p[2])
     const low =Number(p[3])
@@ -45,7 +50,8 @@ const continueHA = async(h, ha)=>{
     const HAopen =  rHAopen/2
     const HAhigh = Math.max(high, HAopen, HAclose)
     const HAlow = Math.min (low, HAopen , HAclose)
-    ha.push([HAopen, HAhigh, HAlow, HAclose])
+     ha.push([timestamp, HAopen, HAhigh, HAlow, HAclose, volume])
+    //ha.push([HAopen, HAhigh, HAlow, HAclose])
 }
 
 
