@@ -282,10 +282,10 @@ let found = async(size, volume, rs, eyoar) => {
     return Promise.all(
             candles.map(async function(candle) {
                 try {
-                    let smav = await v(candle.v, 20)
-                    let vtday = candle.v3
-                    let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
-                    let alpha = alph == NaN ? 0 : alph.toFixed(1)
+                    //let smav = await v(candle.v, 20)
+                    //let vtday = candle.v3
+                    //let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
+                    //let alpha = alph == NaN ? 0 : alph.toFixed(1)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
                     let em = await ema.see(55, 55, candle.pip500)
@@ -366,10 +366,10 @@ let found1 = async(size, volume, rs) => {
                 try {
                     // let [mymyhist, b] = Promise.all([tulind.indicators.rsi.indicator([candle.pip100], [14]), mymacd.histogram(candle.pip100, candle.pip100)])
                     //console.log(b)
-                    let smav = await v(candle.v, 20)
-                    let vtday = candle.v3
-                    let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
-                    let alpha = alph == NaN ? 0 : alph.toFixed(1)
+                    //let smav = await v(candle.v, 20)
+                    //let vtday = candle.v3
+                    //let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
+                    //let alpha = alph == NaN ? 0 : alph.toFixed(1)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
                     let em = await ema.see(9, 9, candle.pip500)
@@ -507,10 +507,10 @@ let found2 = async(size, volume, rs, eyoar) => {
     return Promise.all(
             candles.map(async function(candle) {
                 try {
-                    let smav = await v(candle.v, 20)
-                    let vtday = candle.v3
-                    let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
-                    let alpha = alph == NaN ? 0 : alph.toFixed(1)
+                    //let smav = await v(candle.v, 20)
+                    //let vtday = candle.v3
+                    //let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
+                    //let alpha = alph == NaN ? 0 : alph.toFixed(1)
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
                         //console.log(mymyhist1)
                     let em = await ema.see(55, 55, candle.pip500)
