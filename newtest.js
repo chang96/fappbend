@@ -51,7 +51,7 @@ let find2 = async(size, volume, eyoar) => {
             let close500 = [...close300]
             let stochClose = [...close300]
             //let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
-            then(data => data.data).then(data => data.map(datum => (datum[5])))
+            //then(data => data.data).then(data => data.map(datum => (datum[5])))
             //let v3 = volumepush.slice(19, 26) v: volumepush, v3: v3,
             return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, stochClose: stochClose, forrenko:bars }
         })).catch(err => console.log(err))
@@ -76,7 +76,7 @@ let find1 = async(size, volume) => {
             let close500 = [...close300]
             let stochClose = [...close300]
             //let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
-            then(data => data.data).then(data => data.map(datum => (datum[5])))
+            //then(data => data.data).then(data => data.map(datum => (datum[5])))
             //let v3 = volumepush.slice(19, 26)
             return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, stochClose: stochClose, forrenko:bars }
         })).catch(err => console.log(err))
@@ -99,9 +99,9 @@ let find = async(size, volume) => {
             let close400 = [...close300]
             let close500 = [...close300]
             let stochClose = [...close300]
-            let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
-            then(data => data.data).then(data => data.map(datum => (datum[5])))
-            let v3 = volumepush.slice(19, 26)
+            //let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
+            //then(data => data.data).then(data => data.map(datum => (datum[5])))
+            //let v3 = volumepush.slice(19, 26)
             return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose, forrenko:bars }
         })).catch(err => console.log(err))
 
