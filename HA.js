@@ -1,25 +1,14 @@
-const axios = require('axios')
-// async function n(){ 
-// let d = await axios.get(`https://api.binance.com/api/v3/klines?symbol=MATICUSDT&interval=1h&limit=500`).
-// then(data => data.data);
-// //const d = [[9,9,4,5],[8,9,4,5],[8,9,4,3] ]
-// return (d)
-// }
-// n()
-
 const HA = async (par)=>{
     const HAcandles = []
     let parr =await par
-    parr.forEach(async(c, i)=>{
-       i == 0? await initHAcalc(c, HAcandles) : await continueHA(c, HAcandles)
+    parr.map(async(c, i, r)=>{
+       i == 0? await initHAcalc(c) : await continueHA(c, r[i-1])
     })
     return HAcandles
 }
 
-const initHAcalc = async (h,HAcandles)=>{
+const initHAcalc = async (h)=>{
     let p = await h
-    const timestamp = Number(p[0])
-    const volume = Number(p[5])
     const open = Number(p[1])
     const high =Number(p[2])
     const low =Number(p[3])
@@ -30,16 +19,13 @@ const initHAcalc = async (h,HAcandles)=>{
     const HAopen =  rHAopen/2
     const HAhigh = Math.max(high, HAopen, HAclose)
     const HAlow = Math.min(low, HAopen , HAclose)
-    HAcandles.push([timestamp, HAopen, HAhigh, HAlow, HAclose, volume])
-    //HAcandles.push([HAopen, HAhigh, HAlow, HAclose])
+    return ([HAopen, HAhigh, HAlow, HAclose])
 }
 
 const continueHA = async(h, ha)=>{
     let p = await h
-    const timestamp = Number(p[0])
-    const volume = Number(p[5])
-    const haopen = ha[ha.length - 1][1]
-    const haclose = ha[ha.length - 1][4]
+    const haopen = ha[ha.length - 1][0]
+    const haclose = ha[ha.length - 1][3]
     const open = Number(p[1])
     const high =Number(p[2])
     const low =Number(p[3])
@@ -50,8 +36,7 @@ const continueHA = async(h, ha)=>{
     const HAopen =  rHAopen/2
     const HAhigh = Math.max(high, HAopen, HAclose)
     const HAlow = Math.min (low, HAopen , HAclose)
-     ha.push([timestamp, HAopen, HAhigh, HAlow, HAclose, volume])
-    //ha.push([HAopen, HAhigh, HAlow, HAclose])
+    return ([HAopen, HAhigh, HAlow, HAclose])
 }
 
 

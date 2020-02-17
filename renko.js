@@ -16,7 +16,9 @@ async function renkobars(f){
         })
         return n
     }
-    
+    function usenp(){
+        
+    }
     const period = 14
 const result = renko(Object.assign({}, np(), {period: period, useATR:true}))
 for(let i = 0; i<result.close.length; i++){
