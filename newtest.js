@@ -297,6 +297,7 @@ let found = async(size, volume, rs, eyoar) => {
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
+                    let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
@@ -522,6 +523,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
+                    let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
                         //console.log(a[2].length)
