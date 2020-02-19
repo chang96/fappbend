@@ -294,9 +294,9 @@ let found = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                    // let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(candle.stochClose)
-                    let K = stochs.k
-                    let D = stochs.d
+                    //let stochs = await stochastic.stochRSI(candle.stochClose)
+                    //let K = stochs.k
+                    //let D = stochs.d
                     let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
@@ -381,9 +381,9 @@ let found1 = async(size, volume, rs) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                    // let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(candle.stochClose)
-                    let K = await stochs.k
-                    let D = await stochs.d
+                    //let stochs = await stochastic.stochRSI(candle.stochClose)
+                    //let K = await stochs.k
+                    //let D = await stochs.d
                     let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
@@ -520,9 +520,9 @@ let found2 = async(size, volume, rs, eyoar) => {
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
                    // let b = await myrsi.rsi(candle.pip)
-                    let stochs = await stochastic.stochRSI(candle.stochClose)
-                    let K = stochs.k
-                    let D = stochs.d
+                    //let stochs = await stochastic.stochRSI(candle.stochClose)
+                    //let K = stochs.k
+                    //let D = stochs.d
                     let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
