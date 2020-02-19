@@ -489,7 +489,7 @@ let search1w = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
     setTimeout(search1, 1000 * 60 * 1.8, '1m', 100000, rsii)
 }
-setTimeout(search4h, 1000 * 60 * 0.25, '4h', 100000, rsii)
+setTimeout(search1w, 1000 * 60 * 0.25, '1w', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
