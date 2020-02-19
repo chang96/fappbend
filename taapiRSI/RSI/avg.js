@@ -58,3 +58,4 @@ module.exports.AVG = async function(candles) {
         console.log(err)
     }
 }
+//
