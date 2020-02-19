@@ -293,7 +293,7 @@ let found = async(size, volume, rs, eyoar) => {
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                    let b = await myrsi.rsi(candle.pip)
+                   // let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
@@ -309,7 +309,7 @@ let found = async(size, volume, rs, eyoar) => {
                         //     return `${candle.name}.M0`
                         // } else 
                     let z = 40
-                    let rrssii = (b[b.length - 1] < 55 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
+                   // let rrssii = (b[b.length - 1] < 55 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
 
                     // if (voltesting(vtday, smav) && crossover(mymyhist)) {
                     //     return candle.name
@@ -380,7 +380,7 @@ let found1 = async(size, volume, rs) => {
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                    let b = await myrsi.rsi(candle.pip)
+                   // let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = await stochs.k
                     let D = await stochs.d
@@ -407,7 +407,7 @@ let found1 = async(size, volume, rs) => {
                         //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
                         // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
-                    let rrssii = (b[b.length - 1] < 30 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
+                    //let rrssii = (b[b.length - 1] < 30 && (b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z))
                         // if ((testrsi && testing1(mymyhist))) {
                         // if ((testingrsi(b, z))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
@@ -519,7 +519,7 @@ let found2 = async(size, volume, rs, eyoar) => {
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                    let b = await myrsi.rsi(candle.pip)
+                   // let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = stochs.k
                     let D = stochs.d
