@@ -97,6 +97,7 @@
 const stoch = require('./taapistoch/index')
 const ha = require('./HA')
 const renko = require('./renko').renko
+const hi = require('technicalindicators/dist/index').HeikinAshi
 const assert = require('assert')
 const moment = require('moment-timezone')
 // //module.exports = {indicator
@@ -131,14 +132,14 @@ return result
 //         console.log(close, coin)
 //     })
 
-try {const coin = 'CHZUSDT'
+try {const coin = 'ETHUSDT'
 const time = '4h'
 let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=1000`).then(data => ha.HeikinAshi(data.data)).then(d =>d )//[d,d.timestamp,d.close])
 //.then(data => data.map(datum => Number(datum)));
 //console.log(close)
 //const data = {"clclose
 //let rr = []
-console.log(close)
+console.log(close.reverse())
 //console.log(close[0].timestamp.map(t=>moment.tz(t, "Africa/Lagos").format()))
 // for(let i = 0; i<close[2].length; i++){
 //     console.log(close[2][i +1])
