@@ -182,7 +182,7 @@ const sendMe = async function() {
         }
     })
 }
-setInterval(sendMe, 1000 * 60 * 0.6)
+setInterval(sendMe, 1000 * 60 * 60 * 8)
 const findCoinToTrade = async() => {
     return Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         if (err) return err
