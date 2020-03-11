@@ -25,6 +25,18 @@ const coin = new Schema({
     timet1h: {
         type: String
     },
+    timept5m: {
+        type: String
+    },
+    timept15m: {
+        type: String
+    },
+    timept30m: {
+        type: String
+    },
+    timept1h: {
+        type: String
+    },
     timet4h: {
         type: String
     },

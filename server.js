@@ -632,7 +632,9 @@ app.get('/saving', function(req, res) {
     //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
     let stuff = { t1m: ['BTCUSDT'], t5m: ['BTCUSDT'], t3m: ['BTCUSDT'], t15m: ['BTCUSDT'], t30m: ['BTCUSDT'], t1h: ['BTCUSDT'],
     pt5m: ['BTCUSDT'], pt15m: ['BTCUSDT'], pt30m: ['BTCUSDT'], pt1h: ['BTCUSDT'],
-    t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string', timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
+    t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string'
+    , timept5m: '', timept15m: '', timept30m: '', timept1h: '',
+    timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
     let c = new Coin(stuff)
     c.save().then((c) => { res.send(c) })
 })
