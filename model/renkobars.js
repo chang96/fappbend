@@ -58,22 +58,6 @@ const coin = new Schema({
         type: Array,
         default: ['BTCUSDT']
     },
-    pt5m: {
-        type: Array,
-        default: ['BTCUSDT']
-    },
-    pt15m: {
-        type: Array,
-        default: ['BTCUSDT']
-    },
-    pt30m: {
-        type: Array,
-        default: ['BTCUSDT']
-    },
-    pt1h: {
-        type: Array,
-        default: ['BTCUSDT']
-    },
     t4h: {
         type: Array,
         default: ['BTCUSDT']

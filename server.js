@@ -349,7 +349,7 @@ async function ccc2(tf) {
     return yourarr
 }
 
-
+let timecounting = 0
 // let cema = await ccc() // crossover on ema
 // let b = await ind.founnd2(size, volume, rs, cema)
 // let d = await highest(b, 1)
@@ -375,9 +375,9 @@ let search3star = function(size, volume, rs) {
 }
 let search5star = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
-            let cema1 = await ccc2('t3m')
-            let b = await ind.founnd2(size, volume, rs, cema1)
-            let c = await save(b, 't5m')
+            //let cema1 = await ccc2('t3m')
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 'pt5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search30, 1000 * 60 * 1.8, '30m', 100000, rsii)
@@ -438,30 +438,58 @@ let search5 = function(size, volume, rs) {
     setTimeout(search15, 1000 * 60 * 1.8, '15m', 100000, rsii)
 }
 let search15 = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
+    timecounting++
+    if (timecounting%2 == 1){
+        let a = (async(size, volume, rs) => {
             let cema1 = await ccc2('t5m')
             let b = await ind.founnd(size, volume, rs, cema1)
             let c = await save(b, 't15m')
         })(size, volume, rs)
+    } else{
+        let a = (async(size, volume, rs) => {
+            //let cema1 = await ccc2('t5m')
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 'pt15m')
+        })(size, volume, rs)
+    }
+   
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1star, 1000 * 60 * 1.8, '1m', 100000, rsii)
 }
 let search30 = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t5m')
+    if(timecounting%2 == 1){
+        let a = (async(size, volume, rs) => {
+            let cema = await ccc2('t15m')
             let b = await ind.founnd(size, volume, rs, cema)
             let c = await save(b, 't30m')
         })(size, volume, rs)
+    } else {
+        let a = (async(size, volume, rs) => {
+            //let cema = await ccc2('t5m')
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 'pt30m')
+        })(size, volume, rs)
+    }
+    
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search1h, 1000 * 60 * 1.8, '1h', 100000, rsii)
 }
 
 let search1h = function(size, volume, rs) {
-    let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t5m')
+    if(timecounting % 2 == 1){
+        let a = (async(size, volume, rs) => {
+            let cema = await ccc2('t15m')
             let b = await ind.founnd(size, volume, rs, cema)
             let c = await save(b, 't1h')
+        })(size, volume, rs) 
+    } else{
+        let a = (async(size, volume, rs) => {
+            //let cema = await ccc2('t5m')
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 'pt1h')
         })(size, volume, rs)
+    }
+    
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search4h, 1000 * 60 * 1.8, '4h', 100000, rsii)
 }
@@ -602,7 +630,9 @@ app.get('/find', function(req, res) {
 app.get('/saving', function(req, res) {
     // timet30m: '', timet45m: '',
     //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
-    let stuff = { t1m: ['BTCUSDT'], t5m: ['BTCUSDT'], t3m: ['BTCUSDT'], t15m: ['BTCUSDT'], t30m: ['BTCUSDT'], t1h: ['BTCUSDT'], t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string', timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
+    let stuff = { t1m: ['BTCUSDT'], t5m: ['BTCUSDT'], t3m: ['BTCUSDT'], t15m: ['BTCUSDT'], t30m: ['BTCUSDT'], t1h: ['BTCUSDT'],
+    pt5m: ['BTCUSDT'], pt15m: ['BTCUSDT'], pt30m: ['BTCUSDT'], pt1h: ['BTCUSDT'],
+    t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string', timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
     let c = new Coin(stuff)
     c.save().then((c) => { res.send(c) })
 })
