@@ -14,7 +14,7 @@ const binance = require('node-binance-api')().options({
     useServerTime: true
 })
 const ha = require('./HA')
-const renko = require('./renko').renko
+const renko = require('./screnko').renko
 const eyo = require('./volume')
 
 // Authenticated client, can make signed calls
@@ -330,8 +330,8 @@ let found = async(size, volume, rs, eyoar) => {
 
                     //     return `${candle.name}`
                     // } else
-                    if(renkobars[0] == '+' &&renkobars[1] == '-' ){
-                        return `${candle.name}`
+                    if(renkobars[1][0] == '+' &&renkobars[1][1] == '-' ){
+                        return {name:`${candle.name}`, candle: renkobars[0] }
                     }
 
                 } catch (err) {
@@ -439,8 +439,8 @@ let found1 = async(size, volume, rs) => {
                     //.............................
 
 
-                    if(renkobars[0] == '+'){
-                        return `${candle.name}`
+                    if(renkobars[1][0] == '+'){
+                        return {name:`${candle.name}`, candle: renkobars[0] } 
                     }
 
                     // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
@@ -543,8 +543,8 @@ let found2 = async(size, volume, rs, eyoar) => {
 
                     //     return `${alpha}${candle.name}`
                     // } else
-                    if(renkobars[0] == '+'){
-                        return `${candle.name}`
+                    if(renkobars[1][0] == '+'){
+                        return {name:`${candle.name}`, candle: renkobars[0] }
                     }
                     //  else if (candle.pip500[candle.pip500.length - 1] > em.ema && crossover(mymyhist)) {
 
