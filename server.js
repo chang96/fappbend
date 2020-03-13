@@ -303,7 +303,11 @@ async function ccc() {
 
     })
     let b = await myarr.concat(a.t4h, a.t1d, a.t1w)
-    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
+    let nameArr = Promise.all(b.map(async (n)=>{
+        let name = await n.name
+        return name
+    }))
+    let c = await nameArr.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
         // console.log(yourarr)
     return yourarr
 }
@@ -324,7 +328,11 @@ async function ccc1() {
 
     })
     let b = await myarr.concat(a.t30m, a.t1h)
-    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
+    let nameArr = Promise.all(b.map(async (n)=>{
+        let name = await n.name
+        return name
+    }))
+    let c = await nameArr.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
         // console.log(yourarr)
     return yourarr
 }
@@ -344,7 +352,11 @@ async function ccc2(tf) {
 
     })
     let b = await myarr.concat(a[tf])
-    let c = await b.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
+    let nameArr = Promise.all(b.map(async (n)=>{
+        let name = await n.name
+        return name
+    }))
+    let c = await nameArr.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
         // console.log(yourarr)
     return yourarr
 }
