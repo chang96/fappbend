@@ -303,10 +303,11 @@ async function ccc() {
 
     })
     let b = await myarr.concat(a.t4h, a.t1d, a.t1w)
-    let nameArr = Promise.all(b.map(async (n)=>{
+    let nameArr = await Promise.all(b.map(async (n)=>{
         let name = await n.name
         return name
     }))
+    console.log(nameArr)
     let c = await nameArr.forEach(async(e) => yourarr.indexOf(e) < 0 && !e.match(rgx4) && !e.match(rgx5) ? await yourarr.push(e) : null)
         // console.log(yourarr)
     return yourarr
@@ -621,8 +622,8 @@ app.get('/coins/:t', function(req, res) {
     Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
         if (err) return err
         if (coin) {
-            console.log(coin[t])
-            res.send(coin[t])
+            //console.log(coin[t])
+            res.send(coin[t].map(c=> c.name))
         }
     })
 })
