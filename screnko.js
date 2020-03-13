@@ -35,4 +35,4 @@ pn.pop()
 return [forchart, pn.reverse()]
 } 
 
-//module.exports.renko = renkobars
+module.exports.renko = renkobars
