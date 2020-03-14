@@ -89,7 +89,7 @@ module.exports.volumeCheck = async function(volume) {
 
                 return dat.symbol
             } else {
-                console.log('')
+              //  console.log('')
             }
         })).then((arr) => {
             //let r = []
