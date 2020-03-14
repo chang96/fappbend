@@ -273,6 +273,9 @@ function stochstrat(K, D) {
         return false
     }
 }
+let rgx1 = /BTC$/
+let rgx2 = /ETH$/
+let rgx3 = /USDT$/
 let found = async(size, volume, rs, eyoar) => {
     let arr = []
         //console.log(3)
@@ -341,7 +344,7 @@ let found = async(size, volume, rs, eyoar) => {
             })).then((arr) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
-                if ((a !== undefined)) {
+                if ((a !== undefined)&& (a.match(rgx1) || a.match(rgx3)) ) {
                     //console.log(5)
                     return a
                 }
@@ -491,7 +494,7 @@ let found1 = async(size, volume, rs) => {
             })).then((arr) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
-                if ((a !== undefined)) {
+                if ((a !== undefined) && (a.match(rgx1) || a.match(rgx3)) ) {
                     // console.log(5)
                     return a
                 }
@@ -558,7 +561,7 @@ let found2 = async(size, volume, rs, eyoar) => {
             })).then((arr) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
-                if ((a !== undefined)) {
+                if ((a !== undefined) && (a.match(rgx1) || a.match(rgx3)) )  {
                     //console.log(5)
                     return a
                 }
