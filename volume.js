@@ -39,10 +39,10 @@ async function checkcoin(coins, volume) {
     try {
         const prices = await getprice()
         const coin = await coins
-        const rgETH = /[ETH]$/
-        const rgBTC = /[BTC]$/
-        const rgBNB = /[BNB]$/
-        const rgUSDT = /[USDT]$/
+        const rgETH = /ETH$/
+        const rgBTC = /BTC$/
+        const rgBNB = /BNB$/
+        const rgUSDT = /USDT$/
             //console.log(coin)
         if (  await coin.symbol.match(rgETH) && await coin.quoteVolume * prices.ETH >= volume) {
             return false
