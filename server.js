@@ -623,7 +623,7 @@ app.get('/coins/:t', function(req, res) {
         if (err) return err
         if (coin) {
             console.log(coin[t])
-            res.send(JSON.stringify(coin[t].map(c=> c.name)))
+            res.send((coin[t].map(c=> c.name)))
         }
     })
 })
