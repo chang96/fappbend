@@ -89,11 +89,9 @@ module.exports.volumeCheck = async function(volume) {
 
                 return dat.symbol
             } else {
-                //console.log('twale')
+                console.log('')
             }
-        }))
-
-        .then((arr) => {
+        })).then((arr) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
                 if ((a !== undefined)) {
