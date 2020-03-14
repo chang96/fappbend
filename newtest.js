@@ -344,7 +344,7 @@ let found = async(size, volume, rs, eyoar) => {
             })).then((arr) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
-                if ((a !== undefined)&& (a.match(rgx1) || a.match(rgx3)) ) {
+                if ((a !== undefined)&& (  await a.match(rgx1) ||  await a.match(rgx3)) ) {
                     //console.log(5)
                     return a
                 }
@@ -493,8 +493,8 @@ let found1 = async(size, volume, rs) => {
                 //return arr
             })).then((arr) => {
             //let r = []
-            return Promise.all(arr.filter(function(a) {
-                if ((a !== undefined) && (a.match(rgx1) || a.match(rgx3)) ) {
+            return Promise.all(arr.filter( async function(a) {
+                if ((a !== undefined) && ( await a.match(rgx1) || await a.match(rgx3)) ) {
                     // console.log(5)
                     return a
                 }
@@ -561,7 +561,7 @@ let found2 = async(size, volume, rs, eyoar) => {
             })).then((arr) => {
             //let r = []
             return Promise.all(arr.filter(function(a) {
-                if ((a !== undefined) && (a.match(rgx1) || a.match(rgx3)) )  {
+                if ((a !== undefined) && (  await a.match(rgx1) || await  a.match(rgx3)) )  {
                     //console.log(5)
                     return a
                 }
