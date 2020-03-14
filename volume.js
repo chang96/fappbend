@@ -50,10 +50,10 @@ async function checkcoin(coins, volume) {
         } else if (  await coin.symbol.match(rgBNB) &&  await coin.quoteVolume * prices.BNB >= volume) {
             return false
 
-        } else if (coin.symbol.match(rgBTC) && coin.quoteVolume * prices.BTC >= volume) {
+        } else if ( await coin.symbol.match(rgBTC) &&  await coin.quoteVolume * prices.BTC >= volume) {
             return true
 
-        } else if (coin.symbol.match(rgUSDT) && coin.quoteVolume * 1 >= volume) {
+        } else if ( await coin.symbol.match(rgUSDT) &&  await coin.quoteVolume * 1 >= volume) {
             return true
 
         } else {
