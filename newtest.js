@@ -493,8 +493,8 @@ let found1 = async(size, volume, rs) => {
                 //return arr
             })).then((arr) => {
             //let r = []
-            return Promise.all(arr.filter( async function(a) {
-                if ((a !== undefined) ) {
+            return Promise.all(arr.filter(function(a) {
+                if ((a !== undefined)) {
                     // console.log(5)
                     return a
                 }
