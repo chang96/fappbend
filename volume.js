@@ -44,11 +44,11 @@ async function checkcoin(coins, volume) {
         const rgBNB = /[BNB]$/
         const rgUSDT = /[USDT]$/
             //console.log(coin)
-        if (coin.symbol.match(rgETH) && coin.quoteVolume * prices.ETH >= volume) {
-            return true
+        if (  await coin.symbol.match(rgETH) && await coin.quoteVolume * prices.ETH >= volume) {
+            return false
 
-        } else if (coin.symbol.match(rgBNB) && coin.quoteVolume * prices.BNB >= volume) {
-            return true
+        } else if (  await coin.symbol.match(rgBNB) &&  await coin.quoteVolume * prices.BNB >= volume) {
+            return false
 
         } else if (coin.symbol.match(rgBTC) && coin.quoteVolume * prices.BTC >= volume) {
             return true
