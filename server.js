@@ -451,7 +451,7 @@ let search5star0 = function(size, volume, rs) {
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search1w, 1000 * 60 * 1.8, '1d', 100000, rsii)
+    setTimeout(search1w, 1000 * 60 * 1.8, '1w', 100000, rsii)
 }
 let search1 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -534,7 +534,7 @@ let search1h = function(size, volume, rs) {
     }
     
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search1star0, 1000 * 60 * 1.8, '4h', 100000, rsii)
+    setTimeout(search1star0, 1000 * 60 * 1.8, '1m', 100000, rsii)
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -542,7 +542,7 @@ let search4h = function(size, volume, rs) {
             let c = await save(b, 't4h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1d, 1000 * 60 * 1.8, '1m', 100000, rsii)
+    setTimeout(search1d, 1000 * 60 * 1.8, '1d', 100000, rsii)
 }
 let search1d = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -550,7 +550,7 @@ let search1d = function(size, volume, rs) {
             let c = await save(b, 't1d')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1, 1000 * 60 * 1.8, '1w', 100000, rsii)
+    setTimeout(search1, 1000 * 60 * 1.8, '1m', 100000, rsii)
 }
 let search1w = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -558,7 +558,7 @@ let search1w = function(size, volume, rs) {
             let c = await save(b, 't1w')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search4h, 1000 * 60 * 1.8, '1m', 100000, rsii)
+    setTimeout(search4h, 1000 * 60 * 1.8, '4h', 100000, rsii)
 }
 setTimeout(search1w, 1000 * 60 * 0.25, '1w', 100000, rsii)
 app.get('/', function(req, res) {
