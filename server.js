@@ -699,6 +699,23 @@ app.get('/find', function(req, res) {
             res.send(coin)
     })
 })
+
+app.get('/findbig', function(req, res) {
+
+    bigcoin.find({}, function(err, coin) {
+        if (coin)
+            res.send(coin)
+    })
+})
+
+app.get('/findpure', function(req, res) {
+
+    purecoin.find({}, function(err, coin) {
+        if (coin)
+            res.send(coin)
+    })
+})
+
 app.get('/savecoin', function(req, res) {
     // timet30m: '', timet45m: '',
     //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
