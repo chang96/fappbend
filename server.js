@@ -714,7 +714,7 @@ app.get('/savebigcoin', function(req, res) {
     let stuff = {
     t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'bigcoin'
     ,timet4h: '', timet1d: '', timet1w: '' }
-    let c = new Coin(stuff)
+    let c = new bigcoin(stuff)
     c.save().then((c) => { res.send(c) })
 })
 
@@ -725,7 +725,7 @@ app.get('/savepurecoin', function(req, res) {
     pt5m: ['BTCUSDT'], pt15m: ['BTCUSDT'], pt30m: ['BTCUSDT'], pt1h: ['BTCUSDT'], mymyid: 'purecoin'
     , timept5m: '', timept15m: '', timept30m: '', timept1h: '',
      }
-    let c = new Coin(stuff)
+    let c = new purecoin(stuff)
     c.save().then((c) => { res.send(c) })
 })
 let a = 't1m'
