@@ -39,4 +39,4 @@ const purecoin = new Schema({
 
 }, { strict: false })
 
-module.exports = mongoose.model('coin', purecoin)
+module.exports = mongoose.model('purecoin', purecoin)
