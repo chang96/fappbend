@@ -653,7 +653,7 @@ app.get('/coins/:t', function(req, res) {
     console.log(t)
     if (ctimes.indexOf(t) >= 0){
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
-            if (err) return err
+            if (err) res.send(err)
             if (coin) {
                 console.log(coin[t])
                 res.send((coin[t].map(c=> c.name)))
