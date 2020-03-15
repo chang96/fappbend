@@ -451,7 +451,7 @@ let search5star0 = function(size, volume, rs) {
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search1d, 1000 * 60 * 1.8, '1d', 100000, rsii)
+    setTimeout(search1w, 1000 * 60 * 1.8, '1d', 100000, rsii)
 }
 let search1 = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -534,7 +534,7 @@ let search1h = function(size, volume, rs) {
     }
     
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search4h, 1000 * 60 * 1.8, '4h', 100000, rsii)
+    setTimeout(search1star0, 1000 * 60 * 1.8, '4h', 100000, rsii)
 }
 let search4h = function(size, volume, rs) {
     let a = (async(size, volume, rs) => {
