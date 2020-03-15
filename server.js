@@ -393,7 +393,7 @@ async function ccc2(tf) {
         // console.log(yourarr)
     return yourarr
 }
-
+//h
 let timecounting = 0
 // let cema = await ccc() // crossover on ema
 // let b = await ind.founnd2(size, volume, rs, cema)
