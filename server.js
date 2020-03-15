@@ -384,7 +384,7 @@ async function ccc2(tf) {
     })
     let b = await myarr.concat(a[tf])
     console.log(b[0].name)
-    let nameArr = Promise.all(b.map(async (n)=>{
+    let nameArr = await Promise.all(b.map(async (n)=>{
         let name = await n.name
         return name
     }))
