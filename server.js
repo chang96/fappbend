@@ -655,7 +655,7 @@ app.get('/coins/:t', function(req, res) {
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
             if (err) res.send(err)
             if (coin) {
-                console.log(coin[t])
+               // console.log(coin[t])
                 res.send((coin[t].map(c=> c.name)))
             }
         })
