@@ -325,7 +325,7 @@ async function ccc() {
     let rgx5 = /^NaN/
     let myarr = []
     let yourarr = []
-    let a = await bigcoin.findOne({ 'mymyid': 'string' }, function(err, coin) {
+    let a = await bigcoin.findOne({ 'mymyid': 'bigcoin' }, function(err, coin) {
         if (err) return err
         if (coin) {
             return coin
