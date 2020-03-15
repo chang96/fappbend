@@ -37,6 +37,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 const User = require('./model/user')
 const Coin = require('./model/coin')
+const bigcoin = require('./model/bigcoin')
+const purecoin = require('./model/purecoin')
 const otherUser = require('./model/otherUser')
 const bodyParser = require('body-parser')
     // app.use(bot.webhookCallback('/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972'))
@@ -252,7 +254,10 @@ function highest(array, n) {
     return highest
 }
 const save = async function(dat, t) {
-        let data = await dat
+    let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
+    let btimes = ['t4h', 't1d', 't1w']
+        if (ctimes.indexOf(t) >= 0 ){
+            let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
                 [t]: data,
                 [`time${t}`]: moment().tz('Africa/Lagos').format('YYYY-MM-DD HH:mm')
@@ -263,6 +268,31 @@ const save = async function(dat, t) {
                     return err
 
             }).then((d) => { console.log(`${t} saved`) })
+        } else if (btimes.indexOf(t) >= 0 ){
+            let data = await dat
+        bigcoin.findOneAndUpdate({ 'mymyid': 'bigcoin' }, {
+                [t]: data,
+                [`time${t}`]: moment().tz('Africa/Lagos').format('YYYY-MM-DD HH:mm')
+            }, { useFindAndModify: false },
+            async(err, coin) => {
+                console.log('...................................')
+                if (err)
+                    return err
+
+            }).then((d) => { console.log(`${t} saved`) })
+        } else {
+            let data = await dat
+        purecoin.findOneAndUpdate({ 'mymyid': 'purecoin' }, {
+                [t]: data,
+                [`time${t}`]: moment().tz('Africa/Lagos').format('YYYY-MM-DD HH:mm')
+            }, { useFindAndModify: false },
+            async(err, coin) => {
+                console.log('...................................')
+                if (err)
+                    return err
+
+            }).then((d) => { console.log(`${t} saved`) })
+        }
     }
     //5m 15m 1h 4h // 1w
     // let search5 = function(size, volume, rs) {
@@ -618,19 +648,48 @@ app.post('/updateuser', function(req, res) {
 })
 app.get('/coins/:t', function(req, res) {
     let t = req.params.t
+    let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
+    let btimes = ['t4h', 't1d', 't1w']
     console.log(t)
-    Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
-        if (err) return err
-        if (coin) {
-            //console.log(coin[t])
-            res.send((coin[t].map(c=> c.name)))
-        }
-    })
+    if (ctimes.indexOf(t) >= 0){
+        Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+                //console.log(coin[t])
+                res.send((coin[t].map(c=> c.name)))
+            }
+        })
+    } else if (btimes.indexOf(t) >= 0){
+        bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+                //console.log(coin[t])
+                res.send((coin[t].map(c=> c.name)))
+            }
+        })
+    } else {
+        purecoin.findOne({ 'mymyid': 'purecoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+                //console.log(coin[t])
+                res.send((coin[t].map(c=> c.name)))
+            }
+        })
+    }
+   
 })
-app.get('/delete', function(req, res) {
-    Coin.deleteMany({}, function(err, r) {
+app.get('/delete',async function(req, res) {
+    await Coin.deleteMany({}, function(err, r) {
         if (err) console.log(err)
-        else res.send('deleted')
+        //else res.send('deleted')
+    })
+    await purecoin.deleteMany({}, function(err, r) {
+        if (err) console.log(err)
+        //else res.send('deleted')
+    })
+    await bigcoin.deleteMany({}, function(err, r) {
+        if (err) console.log(err)
+        else res.send('all deleted')
     })
 })
 app.get('/find', function(req, res) {
@@ -640,14 +699,32 @@ app.get('/find', function(req, res) {
             res.send(coin)
     })
 })
-app.get('/saving', function(req, res) {
+app.get('/savecoin', function(req, res) {
     // timet30m: '', timet45m: '',
     //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
     let stuff = { t1m: ['BTCUSDT'], t5m: ['BTCUSDT'], t3m: ['BTCUSDT'], t15m: ['BTCUSDT'], t30m: ['BTCUSDT'], t1h: ['BTCUSDT'],
-    pt5m: ['BTCUSDT'], pt15m: ['BTCUSDT'], pt30m: ['BTCUSDT'], pt1h: ['BTCUSDT'],
-    t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'string'
+    mymyid: 'string',
+    timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '' }
+    let c = new Coin(stuff)
+    c.save().then((c) => { res.send(c) })
+})
+app.get('/savebigcoin', function(req, res) {
+    // timet30m: '', timet45m: '',
+    //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
+    let stuff = {
+    t4h: ['BTCUSDT'], t1d: ['BTCUSDT'], t1w: ['BTCUSDT'], mymyid: 'bigcoin'
+    ,timet4h: '', timet1d: '', timet1w: '' }
+    let c = new Coin(stuff)
+    c.save().then((c) => { res.send(c) })
+})
+
+app.get('/savepurecoin', function(req, res) {
+    // timet30m: '', timet45m: '',
+    //t30m: ['BTCUSDT'], t45m: ['BTCUSDT'],
+    let stuff = {
+    pt5m: ['BTCUSDT'], pt15m: ['BTCUSDT'], pt30m: ['BTCUSDT'], pt1h: ['BTCUSDT'], mymyid: 'purecoin'
     , timept5m: '', timept15m: '', timept30m: '', timept1h: '',
-    timet1m: '', timet3m: '', timet5m: '', timet15m: '', timet30m: '', timet1h: '', timet4h: '', timet1d: '', timet1w: '' }
+     }
     let c = new Coin(stuff)
     c.save().then((c) => { res.send(c) })
 })

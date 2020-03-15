@@ -2,54 +2,41 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const coin = new Schema({
-    timet1m: {
+const purecoin = new Schema({
+    
+    timept5m: {
         type: String
     },
-    timet3m: {
+    timept15m: {
         type: String
     },
-    timet5m: {
+    timept30m: {
         type: String
     },
-    timet15m: {
+    timept1h: {
         type: String
     },
-    timet30m: {
-        type: String
-    },
-    timet1h: {
-        type: String
-    },
-    t1m: {
+    pt5m: {
         type: Array,
         default: ['BTCUSDT']
     },
-    t3m: {
+    pt15m: {
         type: Array,
         default: ['BTCUSDT']
     },
-    t5m: {
+    pt30m: {
         type: Array,
         default: ['BTCUSDT']
     },
-    t15m: {
-        type: Array,
-        default: ['BTCUSDT']
-    },
-    t30m: {
-        type: Array,
-        default: ['BTCUSDT']
-    },
-    t1h: {
+    pt1h: {
         type: Array,
         default: ['BTCUSDT']
     },
     mymyid: {
         type: String,
-        default: 'string'
+        default: 'purecoin'
     },
 
 }, { strict: false })
 
-module.exports = mongoose.model('coin', coin)
+module.exports = mongoose.model('coin', purecoin)
