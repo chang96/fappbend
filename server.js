@@ -787,6 +787,14 @@ app.get('/removefromtrade', async function(req, res) {
         })
         res.send(a)
     })
+
+app.get('/re',  async function(req, res){
+    let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=ETHBTC&interval=1w&limit=1000`).
+            then(data => (data.data)).then(data => data.map(datum => {
+    return {date: moment.tz((datum[0]), 'Africa/Lagos').format(),  open: datum[1], high:datum[2], low:datum[4], close:datum[4], volume:datum[5]};
+    }))
+    res.send(close300)
+})
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
     //         let b = await ind.find('15m', 1000000)
