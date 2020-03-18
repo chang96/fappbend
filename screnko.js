@@ -24,7 +24,7 @@ const result = renko(Object.assign({}, np(), {period: period, useATR:true}))
 let forchart = []
 for(let i = 0; i<result.close.length; i++){
     //console.log(close[2][i +1])
-    forchart.push({date:moment.tz((result.timestamp[i]), 'Africa/Lagos').format('LL'), open:result.open[i], high:result.high[i], low:result.low[i],
+    forchart.push({date:moment.tz((result.timestamp[i]), 'Africa/Lagos').format('MMMM DD YYYY, hh:mm:ss'), open:result.open[i], high:result.high[i], low:result.low[i],
         close:result.close[i], volume:result.volume[i]})
    result.close[i + 1] - result.close[i] >=0 ? pn.push('+') :pn.push('-')
 }
