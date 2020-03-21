@@ -796,9 +796,9 @@ app.get('/re',  async function(req, res){
     res.send(close300)
 })
 app.get('/lastprice', async function(req, res){
-    let price = await axios.get('https://api.binance.com/api/v3/avgPrice?symbol=ETHBTC').then(d=> d)
-    console.log(price)
-    res.send(price.price)
+    let price = await axios.get('https://api.binance.com/api/v3/avgPrice?symbol=ETHBTC').then(d=> d.data)
+    //console.log(price)
+    res.send({"price": price.price})
 })
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
