@@ -796,9 +796,11 @@ app.get('/re',  async function(req, res){
     res.send(close300)
 })
 app.get('/lastprice', async function(req, res){
-    let price = await axios.get('https://api.binance.com/api/v3/avgPrice?symbol=ETHBTC').then(d=> d.data)
-    //console.log(price)
-    res.send({"price": price.price})
+    let price = await axios.get('https://api.binance.com/api/v3/klines?symbol=ETHBTC&interval=1w&limit=1').
+    then(data => (data.data)).then(data => data.map(datum => {
+return {date: moment.tz((datum[0]), 'Africa/Lagos').format(),  open: datum[1], high:datum[2], low:datum[4], close:datum[4], volume:datum[5]};
+}))
+    res.send(price)
 })
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
