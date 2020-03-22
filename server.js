@@ -45,7 +45,12 @@ const bodyParser = require('body-parser')
     // bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(cors())
+//app.use(cors())
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
 //ik
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -700,7 +705,7 @@ app.get('/delete',async function(req, res) {
         else res.send('all deleted')
     })
 })
-app.get('/find', function(req, res) {
+app.get('/find', cors(corsOptions), function(req, res) {
 
     Coin.find({}, function(err, coin) {
         if (coin)
