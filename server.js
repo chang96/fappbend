@@ -695,7 +695,7 @@ app.get('/delete',async function(req, res) {
         else res.send('all deleted')
     })
 })
-app.get('/find', function(req, res) {
+app.get('/find', cors(), function(req, res) {
 
     Coin.find({}, function(err, coin) {
         if (coin)
@@ -703,7 +703,7 @@ app.get('/find', function(req, res) {
     })
 })
 
-app.get('/findbig', function(req, res) {
+app.get('/findbig', cors(), function(req, res) {
 
     bigcoin.find({}, function(err, coin) {
         if (coin)
@@ -711,7 +711,7 @@ app.get('/findbig', function(req, res) {
     })
 })
 
-app.get('/findpure', function(req, res) {
+app.get('/findpure', cors(), function(req, res) {
 
     purecoin.find({}, function(err, coin) {
         if (coin)
