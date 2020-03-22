@@ -45,7 +45,7 @@ const bodyParser = require('body-parser')
     // bot.telegram.setWebhook('https://webhook.site/49f0b2e1-2c27-4fe7-a08c-4d3bb43a3972')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(cors())
+//app.use(cors())
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -699,7 +699,7 @@ app.get('/delete',async function(req, res) {
         else res.send('all deleted')
     })
 })
-app.get('/find', cors(), function(req, res) {
+app.get('/find', function(req, res) {
 
     Coin.find({}, function(err, coin) {
         if (coin)
@@ -707,7 +707,7 @@ app.get('/find', cors(), function(req, res) {
     })
 })
 
-app.get('/findbig', cors(), function(req, res) {
+app.get('/findbig', function(req, res) {
 
     bigcoin.find({}, function(err, coin) {
         if (coin)
@@ -715,7 +715,7 @@ app.get('/findbig', cors(), function(req, res) {
     })
 })
 
-app.get('/findpure', cors(), function(req, res) {
+app.get('/findpure', function(req, res) {
 
     purecoin.find({}, function(err, coin) {
         if (coin)
