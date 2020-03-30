@@ -691,6 +691,7 @@ app.get('/coins/:t', function(req, res) {
     }
    
 })
+//
 app.get('/delete', async function(req, res) {
     await Coin.deleteMany({}, function(err, r) {
         if (err) console.log(err)
