@@ -691,7 +691,7 @@ app.get('/coins/:t', function(req, res) {
     }
    
 })
-app.get('/delete',async function(req, res) {
+app.get('/delete', async function(req, res) {
     await Coin.deleteMany({}, function(err, r) {
         if (err) console.log(err)
         //else res.send('deleted')
@@ -705,7 +705,7 @@ app.get('/delete',async function(req, res) {
         else res.send('all deleted')
     })
 })
-app.get('/find', cors(corsOptions), function(req, res) {
+app.get('/find', function(req, res) {
 
     Coin.find({}, function(err, coin) {
         if (coin)
