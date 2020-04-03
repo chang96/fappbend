@@ -289,10 +289,10 @@ let found = async(size, volume, rs, eyoar) => {
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
                         //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                   // let b = await myrsi.rsi(candle.pip)
-                    //let stochs = await stochastic.stochRSI(candle.stochClose)
-                    //let K = stochs.k
-                    //let D = stochs.d
+                   let b = await myrsi.rsi(candle.pip)
+                   let stochs = await stochastic.stochRSI(candle.stochClose)
+                    let K = stochs.k
+                    let D = stochs.d
                     let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
@@ -354,7 +354,6 @@ let found1 = async(size, volume, rs) => {
         //console.log(candles)
     return Promise.all(
             candles.map(async function(candle) {
-                //let a = await tulind.indicators.macd.indicator([candle.val], [12, 26, 9])
                 // let mymyhist = await mymacd.histogram(candle.pip100, candle.pip100)
                 // mymyhist.splice(0, 450)
                 //     console.log(mymyhist)
@@ -375,11 +374,10 @@ let found1 = async(size, volume, rs) => {
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
-                        //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                   // let b = await myrsi.rsi(candle.pip)
-                    //let stochs = await stochastic.stochRSI(candle.stochClose)
-                    //let K = await stochs.k
-                    //let D = await stochs.d
+                   let b = await myrsi.rsi(candle.pip)
+                    let stochs = await stochastic.stochRSI(candle.stochClose)
+                    let K = await stochs.k
+                    let D = await stochs.d
                     let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
@@ -514,11 +512,10 @@ let found2 = async(size, volume, rs, eyoar) => {
                     let mymyhist = mymyhist1.histogram
                         //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
-                        //let b = await tulind.indicators.rsi.indicator([candle.pip], [14])
-                   // let b = await myrsi.rsi(candle.pip)
-                    //let stochs = await stochastic.stochRSI(candle.stochClose)
-                    //let K = stochs.k
-                    //let D = stochs.d
+                   let b = await myrsi.rsi(candle.pip)
+                    let stochs = await stochastic.stochRSI(candle.stochClose)
+                    let K = stochs.k
+                    let D = stochs.d
                     let renkobars = await renko(candle.forrenko)
                         //let c = await tulind.indicators.stoch.indicator([candle.val1, candle.val2, candle.val3], [14, 3, 3])
                         //console.log(c[1][14])
