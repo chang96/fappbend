@@ -457,9 +457,10 @@ let found1 = async(size, volume, rs) => {
 
                     if(renkobars[1][0] == '+'){
                         return {name:`${candle.name}` } 
-                    } else if(aK[0] > aD[0] && aK[1] < aD[1]){
-                        return {name:`ashi${candle.name}` } 
-                    }
+                    } 
+                    // else if(aK[0] > aD[0] && aK[1] < aD[1]){
+                    //     return {name:`ashi${candle.name}` } 
+                    // }
 
                     // if (crossover(mymyhist) && candle.pip500[candle.pip500.length - 1] > em.ema) {
 
