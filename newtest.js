@@ -457,7 +457,7 @@ let found1 = async(size, volume, rs) => {
 
                     if(renkobars[1][0] == '+'){
                         return {name:`${candle.name}` } 
-                    } else if(aK[0] > aD[0] && ak[1] < aD[1]){
+                    } else if(aK[0] > aD[0] && aK[1] < aD[1]){
                         return {name:`ashi${candle.name}` } 
                     }
 
