@@ -23,25 +23,18 @@ const bi = Binance({
         apiSecret: process.env.APISECRET,
         // getTime: xxx // time generator function, optional, defaults to () => Date.now()
     })
-    // const rgETH = /[ETH]$/
-    // const eyo = bi.exchangeInfo().then(time => (time.symbols)).then(coins => {
-    //     return coins.filter(function(coin) {
-    //         //let num = coin.symbol.split('').length
-    //         if (coin.symbol.match(rgETH))
-    //             return coin
-
-//     })
-// }).then(coins => coins.map(coin => coin.symbol))ha.HeikinAshi(data.data)
+   
 
 let find2 = async(size, volume, eyoar) => {
-    // console.log(4)
     let arr = []
     let eyoarr = await eyoar
-        // let eyoarr = await eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=1000`).
-            then(data => (data.data))
+            then(data => ha.HeikinAshi(data.data))
+            // let open300 = await (bars.map(datum => (datum[1])))
+            // let high300 = await (bars.map(datum => (datum[2])))
+            // let low300 = await 
             let close300 = await (bars.map(datum => (datum[4])))
             // let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
             // then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
@@ -66,7 +59,7 @@ let find1 = async(size, volume) => {
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=1000`).
-            then(data => (data.data))
+            then(data => ha.HeikinAshi(data.data))
             let close300 = await (bars.map(datum => (datum[4])))
             // let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
             // then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));
@@ -90,7 +83,7 @@ let find = async(size, volume) => {
     return Promise.all(
         eyoarr.map(async function(eyo) {
             let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=1000`).
-            then(data => (data.data))
+            then(data => ha.HeikinAshi(data.data))
             let close300 =await (bars.map(datum => (datum[4])))
             // let close300 = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=500`).
             // then(data => ha.HeikinAshi(data.data)).then(data => data.map(datum => (datum[3])));

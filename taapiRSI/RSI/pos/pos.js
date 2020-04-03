@@ -1,4 +1,4 @@
-let pos = async function(a) {
+async function pos(a) {
     try {
         let c = await a
         let pos = []

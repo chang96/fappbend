@@ -88,7 +88,7 @@ function checking() {
     })
 }
 //c
-const sortcoin = async function(coins) {
+async function sortcoin(coins) {
     let rgx1 = /BTC$/
     let rgx2 = /ETH$/
     let rgx3 = /USDT$/
@@ -112,7 +112,7 @@ const sortcoin = async function(coins) {
         }))
     })
 }
-const findSendme = async function(coins) {
+async function findSendme(coins) {
         let coin = await coins
             //console.log(coin)
         let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
@@ -138,7 +138,7 @@ const findSendme = async function(coins) {
     // ]
 let arr2 = []
 let tradds2 = []
-const sendMe = async function() {
+async function sendMe() {
     await Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         let arr = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h', 't4h', 't1d', 't1w']
         if (err) return err
@@ -196,7 +196,7 @@ const sendMe = async function() {
     })
 }
 //setInterval(sendMe, 1000 * 60 * 0.6)
-const findCoinToTrade = async() => {
+  async function findCoinToTrade() {
     return Coin.findOne({ mymyid: 'string' }, async function(err, coin) {
         if (err) return err
         else if (coin) {
@@ -264,7 +264,7 @@ function highest(array, n) {
     let highest = highes.slice(0, n)
     return highest
 }
-const save = async function(dat, t) {
+    async function save(dat, t) {
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
     let btimes = ['t4h', 't1d', 't1w']
         if (ctimes.indexOf(t) >= 0 ){
@@ -410,7 +410,7 @@ let timecounting = 0
 // let b = await ind.founnd2(size, volume, rs, cema)
 // let d = await highest(b, 1)
 // let c = await save(d, 't1m')
-let search1star = function(size, volume, rs) {
+ function search1star(size, volume, rs) {
     let a = (async(size, volume, rs) => {
         let cema = await ccc()
         let b = await ind.founnd2(size, volume, rs, cema)
@@ -419,7 +419,7 @@ let search1star = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search3star, 1000 * 60 * 10, '3m', 100000, rsii)
 }
-let search3star = function(size, volume, rs) {
+ function search3star(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             //let b = await ind.founnd1(size, volume, rs)
             let cema = await ccc()
@@ -429,7 +429,7 @@ let search3star = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search5star, 1000 * 60 * 10, '5m', 100000, rsii)
 }
-let search5star = function(size, volume, rs) {
+ function search5star(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             //let cema1 = await ccc2('t3m')
             let b = await ind.founnd1(size, volume, rs)
@@ -438,7 +438,7 @@ let search5star = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search30, 1000 * 60 * 10, '30m', 100000, rsii)
 }
-let search1star0 = function(size, volume, rs) {
+ function search1star0(size, volume, rs) {
     let a = (async(size, volume, rs) => {
         let cema = await ccc()
         let b = await ind.founnd2(size, volume, rs, cema)
@@ -447,7 +447,7 @@ let search1star0 = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search3star0, 1000 * 60 * 10, '3m', 100000, rsii)
 }
-let search3star0 = function(size, volume, rs) {
+ function search3star0(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             //let b = await ind.founnd1(size, volume, rs)
             let cema = await ccc()
@@ -457,7 +457,7 @@ let search3star0 = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search5star0, 1000 * 60 * 10, '5m', 100000, rsii)
 }
-let search5star0 = function(size, volume, rs) {
+ function search5star0(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema1 = await ccc2('t3m')
             let b = await ind.founnd2(size, volume, rs, cema1)
@@ -466,7 +466,7 @@ let search5star0 = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1w, 1000 * 60 * 10, '1w', 100000, rsii)
 }
-let search1 = function(size, volume, rs) {
+ function search1(size, volume, rs) {
     let a = (async(size, volume, rs) => {
         let cema = await ccc()
         let b = await ind.founnd2(size, volume, rs, cema)
@@ -475,7 +475,7 @@ let search1 = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search3, 1000 * 60 * 10, '3m', 100000, rsii)
 }
-let search3 = function(size, volume, rs) {
+ function search3(size, volume, rs) {
     let a = (async(size, volume, rs) => {
         let cema = await ccc()
         let b = await ind.founnd2(size, volume, rs, cema)
@@ -484,7 +484,7 @@ let search3 = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search5, 1000 * 60 * 10, '5m', 100000, rsii)
 }
-let search5 = function(size, volume, rs) {
+ function search5(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let cema1 = await ccc()
             let b = await ind.founnd2(size, volume, rs, cema1)
@@ -493,7 +493,7 @@ let search5 = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search15, 1000 * 60 * 10, '15m', 100000, rsii)
 }
-let search15 = function(size, volume, rs) {
+ function search15(size, volume, rs) {
     timecounting++
     if (timecounting%2 == 1){
         let a = (async(size, volume, rs) => {
@@ -512,7 +512,7 @@ let search15 = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1star, 1000 * 60 * 10, '1m', 100000, rsii)
 }
-let search30 = function(size, volume, rs) {
+ function search30(size, volume, rs) {
     if(timecounting%2 == 1){
         let a = (async(size, volume, rs) => {
             let cema = await ccc2('t15m')
@@ -531,7 +531,7 @@ let search30 = function(size, volume, rs) {
     setTimeout(search1h, 1000 * 60 * 10, '1h', 100000, rsii)
 }
 
-let search1h = function(size, volume, rs) {
+ function search1h(size, volume, rs) {
     if(timecounting % 2 == 1){
         let a = (async(size, volume, rs) => {
             let cema = await ccc2('t15m')
@@ -549,7 +549,7 @@ let search1h = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search1star0, 1000 * 60 * 10, '1m', 100000, rsii)
 }
-let search4h = function(size, volume, rs) {
+ function search4h(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't4h')
@@ -557,7 +557,7 @@ let search4h = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
     setTimeout(search1d, 1000 * 60 * 10, '1d', 100000, rsii)
 }
-let search1d = function(size, volume, rs) {
+function search1d(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't1d')
@@ -565,7 +565,7 @@ let search1d = function(size, volume, rs) {
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
     setTimeout(search1, 1000 * 60 * 10, '1m', 100000, rsii)
 }
-let search1w = function(size, volume, rs) {
+function search1w(size, volume, rs) {
     let a = (async(size, volume, rs) => {
             let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 't1w')

@@ -7,7 +7,7 @@
 // }
 // n()
 
-const HA = async (par)=>{
+ async function HA(par){
    try{ 
     let HAcandles = []
     let init = []
@@ -34,7 +34,7 @@ const HA = async (par)=>{
    }
 }
 
-const initHAcalc = async (h)=>{
+async function initHAcalc (h){
     let p = await h
     const open = Number(p[1])
     const high =Number(p[2])
@@ -49,7 +49,7 @@ const initHAcalc = async (h)=>{
     return ([HAopen, HAhigh, HAlow, HAclose])
 }
 
-const continueHA = async(h, has)=>{
+    async function continueHA(h, has){
     let p = await h
     let ha = await has
    // console.log(p)

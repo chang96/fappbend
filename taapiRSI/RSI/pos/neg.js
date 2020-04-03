@@ -1,4 +1,4 @@
-let neg = async function(a) {
+ async function neg(a) {
     try {
         let c = await a
         let neg = []

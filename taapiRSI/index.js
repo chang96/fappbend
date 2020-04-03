@@ -1,12 +1,9 @@
-const binance = require('binance')
-const axios = require('axios')
-const neg = require('./RSI/avg')
-const pos = require('./RSI/avg')
-const coin = 'FETUSDT'
+
+// const neg = require('./RSI/avg')
+// const pos = require('./RSI/avg')
+// const coin = 'FETUSDT'
 const RSI = require('./RSI/avg')
-const time = '1w'
-let close = axios.get(`https://api.binance.com/api/v1/klines?symbol=${coin}&interval=${time}&limit=500`).
-then(data => data.data).then(data => data.map(datum => (datum[4])));
+
 
 // let a = (async(close) => {
 //     try {

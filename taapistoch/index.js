@@ -5,7 +5,7 @@ const RSI = require('../taapiRSI/index')
     // let close = axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=500`).
     // then(data => data.data).then(data => data.map(datum => (datum[4])));
 
-let pushing = async function(ar, n) {
+   async function pushing(ar, n) {
     async function s(ar, n) {
         let arr = await ar
         let sortArr = []
@@ -41,7 +41,7 @@ let pushing = async function(ar, n) {
 //         // return stochs
 // }
 
-const stochParams = async function(close) {
+    async function stochParams(close) {
     let clos = await close
     let clo = [...clos]
     const current = await RSI.rsi(clo)
@@ -59,7 +59,7 @@ const stochParams = async function(close) {
     return stochs
 }
 
-let stoch = async function(close) {
+    async function stoch(close) {
     let k = []
     let d = []
     let clos = await close
