@@ -141,6 +141,13 @@ function crossover(arr) {
     }
 }
 
+function crossunder(arr){
+    if (arr[arr.length - 1] < 0 && arr[arr.length - 2] >= 0) {
+        //if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
+        return true
+    }
+}
+
 function testing0(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 1] > arr[arr.length - 2]) {
         //if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
@@ -381,23 +388,32 @@ let found1 = async(size, volume, rs) => {
                 // let b = await tulind.indicators.rsi.indicator([candle.pip100], [14])
                 //console.log(candle.pip100)
                 try {
-                    let smav = await v(candle.v, 20)
-                    let vtday = candle.v3
-                    let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
-                    let alpha = alph == NaN ? 0 : alph.toFixed(1)
+                    // let smav = await v(candle.v, 20)
+                    // let vtday = candle.v3
+                    // let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
+                    // let alpha = alph == NaN ? 0 : alph.toFixed(1)
+                    let currentPrice = candle.pip[candle.pip.length -1]
+                    let secondToTheLastPrice = candle.pip[candle.pip.length - 2]
+                    let acurrentPrice = candle.apip[candle.apip.length -1]
+                    let asecondToTheLastPrice = candle.apip[candle.apip.length -2]
                     let mymyhist1 = await mymacd.histogram(candle.pip100, candle.pip200)
-                        //console.log(mymyhist1)
-                    let em = await ema.see(9, 9, candle.pip500)
-                        //login n signup username mail pw public adress btc secret question secret answeer 3 investment plsn select plan sendmail for pending verification show paymnt whn done 
-                        //balance requst for cash out 
+                    let em55 = await ema.see(55, 55, candle.pip500)
+                    let em99  = await ema.see(99, 99, candle.pip500)
+                    let em200 = await ema.see(200, 200, candle.pip500)
                     let mymyhist = mymyhist1.histogram
-                        //let mymysig = mymyhist1.signal
                     let mymymac = mymyhist1.macd
-                   let b = await myrsi.rsi(candle.pip)
+                    let b = await myrsi.rsi(candle.pip)
                     let stochs = await stochastic.stochRSI(candle.stochClose)
                     let K = await stochs.k
                     let D = await stochs.d
                     let renkobars = await renko(candle.forrenko)
+                    let amymyhist1 = await mymacd.histogram(candle.apip100, candle.apip200)
+                    let aem55 = await ema.see(55, 55, candle.apip500)
+                    let aem99  = await ema.see(99, 99, candle.apip500)
+                    let aem200 = await ema.see(200, 200, candle.apip500)
+                    let amymyhist = mymyhist1.histogram
+                    let amymymac = mymyhist1.macd
+                    let ab = await myrsi.rsi(candle.apip)
                     let astochs = await stochastic.stochRSI(candle.astochClose)
                     let aK = await astochs.k
                     let aD = await astochs.d
@@ -419,7 +435,6 @@ let found1 = async(size, volume, rs) => {
                         // } else if ((testrsi && testing1(mymyhist))) {
                         //     console.log({ name: candle.name, hi: mymyhist[mymyhist.length - 1], rsi: b[b.length - 1] })
                         //     return `${candle.name}::`
-                    let z = 28
                         //console.log((b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z))
                         // let testrsi = (b[b.length - 1] <= z || b[b.length - 2] <= z || b[b.length - 3] <= z)
                         //&& (b[b.length - 1] < z || b[b.length - 2] < z || b[b.length - 3] < z || b[b.length - 4] < z || b[b.length - 5] < z || b[b.length - 6] < z || b[b.length - 7] < z)
@@ -456,7 +471,96 @@ let found1 = async(size, volume, rs) => {
 
 
                     if(renkobars[1][0] == '+'){
-                        return {name:`${candle.name}` } 
+                        return {name:`${candle.name}`, desc:'r++'} 
+                    } 
+                    if(renkobars[1][0] == '+' && renkobars[1][1] == '-'){
+                        return {name:`${candle.name}`, desc:'-r+'} 
+                    }
+                    if(renkobars[1][0] == '-'){
+                        return {name:`${candle.name}`, desc:'r-'} 
+                    } 
+                    if(renkobars[1][0] == '-' && renkobars[1][1] == '+'){
+                        return {name:`${candle.name}`, desc:'+r-'} 
+                    }
+                    if(currentPrice >= em55 && secondToTheLastPrice < em55){
+                        return {name:`${candle.name}`, desc:'+em55'} 
+                    }
+                    if(currentPrice >= em99 && secondToTheLastPrice < em99 ){
+                        return {name:`${candle.name}`, desc:'+em99'} 
+                    }
+                    if(currentPrice >= em200 && secondToTheLastPrice < em200){
+                        return {name:`${candle.name}`, desc:'+em200'} 
+                    }
+                    if(currentPrice < em55 && secondToTheLastPrice >= em55 ){
+                        return {name:`${candle.name}`, desc:'-em55'} 
+                    }
+                    if(currentPrice < em99 && secondToTheLastPrice >= em99 ){
+                        return {name:`${candle.name}`, desc:'-em99'} 
+                    }
+                    if(currentPrice < em200 && secondToTheLastPrice >= em200 ){
+                        return {name:`${candle.name}`, desc:'-em200'} 
+                    }
+                    if(K[0] >= D[0] && K[1] < D[1]){
+                        return {name:`${candle.name}`, desc:'+str'} 
+                    }
+                    if(K[0] >= D[0] && K[1] < D[1] && K[0] >= 50){
+                        return {name:`${candle.name}`, desc:'+str50'} 
+                    }
+                    if(K[0] < D[0] && K[1] >= D[1]){
+                        return {name:`${candle.name}`, desc:'-str'} 
+                    }
+                    if(crossover(mymyhist)){
+                        return {name: `${candle.name}`, desc:'hist+'}
+                    }
+                    if(crossunder(mymyhist)){
+                        return {name: `${candle.name}`, desc: 'hist-'}
+                    }
+                    if(b <= 30 ){
+                        return {name: `${candle.name}`, desc: '<rsi'}
+                    } 
+                    if(b >= 70 ){
+                        return {name: `${candle.name}`, desc: '>rsi'}
+                    } 
+
+                    
+                    if(acurrentPrice >= aem55 && asecondToTheLastPrice < aem55){
+                        return {name:`${candle.name}`, desc:'+aem55'} 
+                    }
+                    if(acurrentPrice >= aem99 && asecondToTheLastPrice < aem99 ){
+                        return {name:`${candle.name}`, desc:'+em99'} 
+                    }
+                    if(acurrentPrice >= aem200 && asecondToTheLastPrice < aem200){
+                        return {name:`${candle.name}`, desc:'+aem200'} 
+                    }
+                    if(acurrentPrice < aem55 && asecondToTheLastPrice >= aem55 ){
+                        return {name:`${candle.name}`, desc:'-aem55'} 
+                    }
+                    if(acurrentPrice < em99 && asecondToTheLastPrice >= aem99 ){
+                        return {name:`${candle.name}`, desc:'-aem99'} 
+                    }
+                    if(acurrentPrice < aem200 && asecondToTheLastPrice >= aem200 ){
+                        return {name:`${candle.name}`, desc:'-aem200'} 
+                    }
+                    if(aK[0] >= aD[0] && aK[1] < aD[1]){
+                        return {name:`${candle.name}`, desc:'+astr'} 
+                    }
+                    if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 50){
+                        return {name:`${candle.name}`, desc:'+astr50'} 
+                    }
+                    if(aK[0] < aD[0] && aK[1] >= aD[1]){
+                        return {name:`${candle.name}`, desc:'-astr'} 
+                    }
+                    if(crossover(amymyhist)){
+                        return {name: `${candle.name}`, desc:'ahist+'}
+                    }
+                    if(crossunder(amymyhist)){
+                        return {name: `${candle.name}`, desc: 'ahist-'}
+                    }
+                    if(ab <= 30 ){
+                        return {name: `${candle.name}`, desc: '<arsi'}
+                    } 
+                    if(ab >= 70 ){
+                        return {name: `${candle.name}`, desc: '>arsi'}
                     } 
                     // else if(aK[0] > aD[0] && aK[1] < aD[1]){
                     //     return {name:`ashi${candle.name}` } 
