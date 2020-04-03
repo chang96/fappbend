@@ -85,7 +85,7 @@ let find1 = async(size, volume) => {
             //let volumepush = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
             //then(data => data.data).then(data => data.map(datum => (datum[5])))
             //let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, stochClose: stochClose, forrenko:bars,
+            return { name: eyo, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3, pip500: close500, stochClose: stochClose, forrenko:bars,
                 apip100: aclose100, apip200: aclose200, apip: aclose400, apip500: aclose500, astochClose: astochClose,
             }
         })).catch(err => console.log(err))
