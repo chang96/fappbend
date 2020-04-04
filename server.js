@@ -835,7 +835,7 @@ app.get('/renko', function(req, res){
             if (err) return err
             if (coin) {
                 console.log(coin[t])
-                res.send((coin[t].filter(c=> c.desc === it )))
+                res.send((coin[t].filter(c=> c.desc === '-r+' )))
             }
         })
     } else {
