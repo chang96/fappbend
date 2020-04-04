@@ -264,8 +264,8 @@ return finalArr
     var finalAr = []
     candles.forEach(async function(candle){
         let fa = await fn(candle)
-       // console.log(fa)
-        finalAr.concat([...fa])
+       console.log(fa)
+        finalAr.push(...fa)
     })
     console.log(finalAr)
     return finalAr
