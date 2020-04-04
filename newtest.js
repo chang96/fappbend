@@ -123,7 +123,7 @@ let find = async(size, volume) => {
 
 }
 
-async function mymap (candle, finalArr){
+async function mymap (candle){
     let finalArr = []
     try {
         // let smav = await v(candle.v, 20)
