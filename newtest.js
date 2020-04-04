@@ -124,6 +124,7 @@ let find = async(size, volume) => {
 }
 
 async function mymap (candle){
+     console.log(candle.name)
     let finalArr = []
     try {
         // let smav = await v(candle.v, 20)
@@ -264,7 +265,6 @@ async function callCandles(fn, candles) {
     //console.log(candles)
     var finalAr = []
     (candles.forEach(async function(candle){
-        console.log(candle.name)
         let fa = await fn(candle)
         finalAr = [...fa]
     }))
