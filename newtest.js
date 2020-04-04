@@ -165,7 +165,7 @@ async function mymap (candle){
             await  finalArr.push({name:`${candle.name}`, desc:'-r+'})
         }
         if(renkobars[1][0] == '-'){
-            await finalArr.push({name:`${candle.name}`, desc:'r-'})
+            await finalArr.push({name:`${candle.name}`, desc:'r--'})
         } 
         if(renkobars[1][0] == '-' && renkobars[1][1] == '+'){
             await finalArr.push({name:`${candle.name}`, desc:'+r-'})

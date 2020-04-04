@@ -815,6 +815,39 @@ return {date: moment.tz((datum[0]), 'Africa/Lagos').format(),  open: datum[1], h
 }))
     res.send(price)
 })
+
+app.get('/renko', function(req, res){
+    let t = req.query.time
+    let it = req.query.indicatortype
+    let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
+    let btimes = ['t4h', 't1d', 't1w']
+    console.log(t)
+    if (ctimes.indexOf(t) >= 0){
+        Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
+            if (err) res.send(err)
+            if (coin) {
+               // console.log(coin[t])
+                res.send((coin[t].map(c=> c.name)))
+            }
+        })
+    } else if (btimes.indexOf(t) >= 0){
+        bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+                //console.log(coin[t])
+                res.send((coin[t].filter(c=> c.desc === it )))
+            }
+        })
+    } else {
+        purecoin.findOne({ 'mymyid': 'purecoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+                //console.log(coin[t])
+                res.send((coin[t].map(c=> c.name)))
+            }
+        })
+    }
+})
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
     //         let b = await ind.find('15m', 1000000)
