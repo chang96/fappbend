@@ -819,6 +819,7 @@ return {date: moment.tz((datum[0]), 'Africa/Lagos').format(),  open: datum[1], h
 app.get('/renko', function(req, res){
     let t = req.query.time
     let it = req.query.indicatortype
+    console.log(it)
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
     let btimes = ['t4h', 't1d', 't1w']
     console.log(t)
