@@ -362,6 +362,7 @@ let found1 = async(size, volume, rs) => {
     let arr = []
     let candles = await find1(size, volume)
     let r = await callCandles(mymap, candles)
+    console.log(r)
     return r
    }catch(e){
        console.log(e)
