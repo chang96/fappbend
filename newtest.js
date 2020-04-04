@@ -360,8 +360,8 @@ let found = async(size, volume, rs, eyoar) => {
 let found1 = async(size, volume, rs) => {
     let arr = []
     let candles = await find1(size, volume)
-    //console.log(candles)
-    return Promise.all(callCandles(mymap, candles))
+    console.log(callCandles(mymap, candles))
+    return (callCandles(mymap, candles))
     // return Promise.all(
     //         candles.map(async function(candle) {
                
