@@ -268,7 +268,7 @@ async function callCandles(fn, candles) {
         
     })
   
-    return finalArr
+    return finalAr
 }
 function crossover(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
