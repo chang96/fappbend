@@ -261,10 +261,10 @@ return finalArr
 async function callCandles(fn, candles) {
     //let candles =  promisedCandles
     //console.log(candles)
-    var finalAr = []
+    let finalAr = []
     await candles.forEach(async function(candle){
         let fa = await fn(candle)
-      // console.log(fa)
+       console.log(fa)
       await finalAr.concat(fa)
         console.log(finalAr)
     })
