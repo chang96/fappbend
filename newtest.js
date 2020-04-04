@@ -262,13 +262,12 @@ async function callCandles(fn, candles) {
     //let candles =  promisedCandles
     //console.log(candles)
     let finalAr = []
-    await candles.forEach(async function(candle){
+    candles.forEach(async function(candle){
         let fa = await fn(candle)
       await finalAr.push(...fa)
         
     })
-  console.log(finalAr)
-    return finalAr
+  return Promise.all(finalAr).catch(e=> console.log(e))
 }
 function crossover(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
