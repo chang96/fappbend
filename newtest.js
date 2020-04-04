@@ -262,7 +262,7 @@ return finalArr
 async function callCandles(fn, candles) {
     //let candles =  promisedCandles
     let finalArr = []
-    Promise.all(candles.forEach(async function(candle){
+    (candles.forEach(async function(candle){
         await fn(candle,finalArr)
     }))
     return finalArr
@@ -357,7 +357,8 @@ let found = async(size, volume, rs, eyoar) => {
 let found1 = async(size, volume, rs) => {
     let arr = []
     let candles = await find1(size, volume)
-    return (callCandles(mymap, candles))
+    //console.log(candles)
+    return Promise.all(callCandles(mymap, candles))
     // return Promise.all(
     //         candles.map(async function(candle) {
                
