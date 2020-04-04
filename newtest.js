@@ -264,9 +264,10 @@ return finalArr
     var finalAr = []
     candles.forEach(async function(candle){
         let fa = await fn(candle)
-        console.log(fa)
+       // console.log(fa)
         finalAr = [...fa]
     })
+    console.log(finalAr)
     return finalAr
 }
 function crossover(arr) {
