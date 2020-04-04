@@ -160,96 +160,96 @@ async function mymap (candle, finalArr){
 
 
         if(renkobars[1][0] == '+'){
-            finalArr.push({name:`${candle.name}`, desc:'r++'})
+            await finalArr.push({name:`${candle.name}`, desc:'r++'})
         } 
         if(renkobars[1][0] == '+' && renkobars[1][1] == '-'){
-            finalArr.push({name:`${candle.name}`, desc:'-r+'})
+            await  finalArr.push({name:`${candle.name}`, desc:'-r+'})
         }
         if(renkobars[1][0] == '-'){
-            finalArr.push({name:`${candle.name}`, desc:'r-'})
+            await finalArr.push({name:`${candle.name}`, desc:'r-'})
         } 
         if(renkobars[1][0] == '-' && renkobars[1][1] == '+'){
-            finalArr.push({name:`${candle.name}`, desc:'+r-'})
+            await finalArr.push({name:`${candle.name}`, desc:'+r-'})
         }
         if(currentPrice >= em55 && secondToTheLastPrice < em55){
-            finalArr.push({name:`${candle.name}`, desc:'+em55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'+em55'} )
         }
         if(currentPrice >= em99 && secondToTheLastPrice < em99 ){
-            finalArr.push({name:`${candle.name}`, desc:'+em99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'+em99'} )
         }
         if(currentPrice >= em200 && secondToTheLastPrice < em200){
-            finalArr.push({name:`${candle.name}`, desc:'+em200'} )
+            await finalArr.push({name:`${candle.name}`, desc:'+em200'} )
         }
         if(currentPrice < em55 && secondToTheLastPrice >= em55 ){
-            finalArr.push({name:`${candle.name}`, desc:'-em55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'-em55'} )
         }
         if(currentPrice < em99 && secondToTheLastPrice >= em99 ){
-            finalArr.push({name:`${candle.name}`, desc:'-em99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'-em99'} )
         }
         if(currentPrice < em200 && secondToTheLastPrice >= em200 ){
-            finalArr.push({name:`${candle.name}`, desc:'-em200'}) 
+            await finalArr.push({name:`${candle.name}`, desc:'-em200'}) 
         }
         if(K[0] >= D[0] && K[1] < D[1]){
-            finalArr.push({name:`${candle.name}`, desc:'+str'} )
+            await finalArr.push({name:`${candle.name}`, desc:'+str'} )
         }
         if(K[0] >= D[0] && K[1] < D[1] && K[0] >= 50){
-            finalArr.push({name:`${candle.name}`, desc:'+str50'}) 
+            await finalArr.push({name:`${candle.name}`, desc:'+str50'}) 
         }
         if(K[0] < D[0] && K[1] >= D[1]){
-            finalArr.push({name:`${candle.name}`, desc:'-str'} )
+            await finalArr.push({name:`${candle.name}`, desc:'-str'} )
         }
         if(crossover(mymyhist)){
-            finalArr.push({name: `${candle.name}`, desc:'hist+'})
+            await finalArr.push({name: `${candle.name}`, desc:'hist+'})
         }
         if(crossunder(mymyhist)){
-            finalArr.push({name: `${candle.name}`, desc: 'hist-'})
+            await finalArr.push({name: `${candle.name}`, desc: 'hist-'})
         }
         if(b <= 30 ){
-            finalArr.push({name: `${candle.name}`, desc: '<rsi'})
+            await  finalArr.push({name: `${candle.name}`, desc: '<rsi'})
         } 
         if(b >= 70 ){
-            finalArr.push({name: `${candle.name}`, desc: '>rsi'})
+            await finalArr.push({name: `${candle.name}`, desc: '>rsi'})
         } 
 
         
         if(acurrentPrice >= aem55 && asecondToTheLastPrice < aem55){
-            finalArr.push({name:`${candle.name}`, desc:'+aem55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'+aem55'} )
         }
         if(acurrentPrice >= aem99 && asecondToTheLastPrice < aem99 ){
-            finalArr.push({name:`${candle.name}`, desc:'+em99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'+em99'} )
         }
         if(acurrentPrice >= aem200 && asecondToTheLastPrice < aem200){
             finalArr.push({name:`${candle.name}`, desc:'+aem200'} )
         }
         if(acurrentPrice < aem55 && asecondToTheLastPrice >= aem55 ){
-            finalArr.push({name:`${candle.name}`, desc:'-aem55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'-aem55'} )
         }
         if(acurrentPrice < em99 && asecondToTheLastPrice >= aem99 ){
-            finalArr.push({name:`${candle.name}`, desc:'-aem99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'-aem99'} )
         }
         if(acurrentPrice < aem200 && asecondToTheLastPrice >= aem200 ){
-            finalArr.push({name:`${candle.name}`, desc:'-aem200'}) 
+            await finalArr.push({name:`${candle.name}`, desc:'-aem200'}) 
         }
         if(aK[0] >= aD[0] && aK[1] < aD[1]){
-            finalArr.push({name:`${candle.name}`, desc:'+astr'} )
+            await finalArr.push({name:`${candle.name}`, desc:'+astr'} )
         }
         if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 50){
-            finalArr.push({name:`${candle.name}`, desc:'+astr50'}) 
+            await finalArr.push({name:`${candle.name}`, desc:'+astr50'}) 
         }
         if(aK[0] < aD[0] && aK[1] >= aD[1]){
-            finalArr.push({name:`${candle.name}`, desc:'-astr'} )
+            await finalArr.push({name:`${candle.name}`, desc:'-astr'} )
         }
         if(crossover(amymyhist)){
-            finalArr.push({name: `${candle.name}`, desc:'ahist+'})
+            await finalArr.push({name: `${candle.name}`, desc:'ahist+'})
         }
         if(crossunder(amymyhist)){
-            finalArr.push({name: `${candle.name}`, desc: 'ahist-'})
+            await  finalArr.push({name: `${candle.name}`, desc: 'ahist-'})
         }
         if(ab <= 30 ){
-            finalArr.push( {name: `${candle.name}`, desc: '<arsi'})
+            await finalArr.push( {name: `${candle.name}`, desc: '<arsi'})
         } 
         if(ab >= 70 ){
-            finalArr.push({name: `${candle.name}`, desc: '>arsi'})
+            await finalArr.push({name: `${candle.name}`, desc: '>arsi'})
         } 
     } catch (err) {
         console.log(err)
