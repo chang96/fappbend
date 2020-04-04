@@ -264,13 +264,11 @@ async function callCandles(fn, candles) {
     let finalAr = []
     await candles.forEach(async function(candle){
         let fa = await fn(candle)
-       console.log(fa)
-       
       await finalAr.push(...fa)
-        console.log(finalAr)
+        
     })
-    console.log(finalAr)
-    return 
+  
+    return finalArr
 }
 function crossover(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
@@ -360,11 +358,14 @@ let found = async(size, volume, rs, eyoar) => {
 }
 
 let found1 = async(size, volume, rs) => {
+   try{
     let arr = []
     let candles = await find1(size, volume)
     let r = await callCandles(mymap, candles)
-    console.log(r)
     return r
+   }catch(e){
+       console.log(e)
+    }
     // return Promise.all(
     //         candles.map(async function(candle) {
                
@@ -499,13 +500,13 @@ let found1 = async(size, volume, rs) => {
     //             }
     //         }))
             
-            .then((arr) => {
-            return Promise.all(arr.filter(function(a) {
-                if ((a !== undefined)) {
-                    return a
-                }
-            }))
-        }).catch(err => console.log(err))
+        //     .then((arr) => {
+        //     return Promise.all(arr.filter(function(a) {
+        //         if ((a !== undefined)) {
+        //             return a
+        //         }
+        //     }))
+        // }). catch(e) => console.log(e)
 }
 
 let found2 = async(size, volume, rs, eyoar) => {
