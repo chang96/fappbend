@@ -834,7 +834,7 @@ app.get('/renko', function(req, res){
         bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
             if (err) return err
             if (coin) {
-                //console.log(coin[t])
+                console.log(coin[t])
                 res.send((coin[t].filter(c=> c.desc === it )))
             }
         })
