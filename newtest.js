@@ -267,7 +267,7 @@ async function callCandles(fn, candles) {
       await finalAr.push(...fa)
         
     })
-  
+  console.log(finalAr)
     return finalAr
 }
 function crossover(arr) {
