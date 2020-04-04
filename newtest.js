@@ -262,12 +262,22 @@ async function callCandles(fn, candles) {
     //let candles =  promisedCandles
     //console.log(candles)
     let finalAr = []
-    candles.forEach(async function(candle){
+    for(let i =0; i<candles.length; i++){
+        if(i === candles.length - 1){
+            let fa = await fn(candles[i])
+            await finalAr.push(...fa)
+            return finalAr
+        } 
         let fa = await fn(candle)
-      await finalAr.push(...fa)
+        await finalAr.push(...fa)
+
+    }
+    // await candles.forEach(async function(candle){
+    //     let fa = await fn(candle)
+    //   await finalAr.push(...fa)
         
-    })
-  return Promise.all(finalAr).catch(e=> console.log(e))
+    // })
+//   return Promise.all(finalAr).catch(e=> console.log(e))
 }
 function crossover(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
