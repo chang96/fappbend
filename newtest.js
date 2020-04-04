@@ -265,11 +265,12 @@ async function callCandles(fn, candles) {
     await candles.forEach(async function(candle){
         let fa = await fn(candle)
        console.log(fa)
-      await finalAr.concat(fa)
+       
+      await finalAr.push(...fa)
         console.log(finalAr)
     })
     console.log(finalAr)
-    return finalAr
+    return 
 }
 function crossover(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
