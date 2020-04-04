@@ -264,6 +264,7 @@ async function callCandles(fn, candles) {
     //console.log(candles)
     var finalAr = []
     (candles.forEach(async function(candle){
+        console.log(candle.name)
         let fa = await fn(candle)
         finalAr = [...fa]
     }))
