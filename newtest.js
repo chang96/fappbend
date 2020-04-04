@@ -261,11 +261,11 @@ return finalArr
 
 async function callCandles(fn, candles) {
     //let candles =  promisedCandles
-    let finalArr = []
+    let finalAr = []
     (candles.forEach(async function(candle){
-        await fn(candle,finalArr)
+        await fn(candle,finalAr)
     }))
-    return finalArr
+    return finalAr
 }
 function crossover(arr) {
     if (arr[arr.length - 1] >= 0 && arr[arr.length - 2] < 0) {
