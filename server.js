@@ -822,6 +822,7 @@ app.get('/renko', function(req, res){
     console.log(it)
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
     let btimes = ['t4h', 't1d', 't1w']
+    let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
     console.log(t)
     if (ctimes.indexOf(t) >= 0){
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
@@ -835,11 +836,11 @@ app.get('/renko', function(req, res){
         bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
             if (err) return err
             if (coin) {
-                console.log(coin[t])
-                res.send((coin[t].filter(c=> c.desc === '-r+' )))
+              //  console.log(coin[t])
+                res.send((coin[t].filter(c=> c.desc === t )))
             }
         })
-    } else {
+    } else if(ptimes.indexOf(t) >= 0) {
         purecoin.findOne({ 'mymyid': 'purecoin' }, (err, coin) => {
             if (err) return err
             if (coin) {
@@ -847,6 +848,8 @@ app.get('/renko', function(req, res){
                 res.send((coin[t].map(c=> c.name)))
             }
         })
+    } else{
+        res.send('paramter not supported')
     }
 })
     // app.get('/store', function(req, res) {
