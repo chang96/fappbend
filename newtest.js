@@ -264,10 +264,10 @@ async function callCandles(fn, candles) {
     //let candles =  promisedCandles
     //console.log(candles)
     var finalAr = []
-    (candles.forEach(async function(candle){
+    candles.forEach(async function(candle){
         let fa = await fn(candle)
         finalAr = [...fa]
-    }))
+    })
     return finalAr
 }
 function crossover(arr) {
