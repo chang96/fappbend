@@ -262,9 +262,9 @@ return finalArr
 async function callCandles(fn, candles) {
     //let candles =  promisedCandles
     let finalArr = []
-    candles.forEach(async function(candle){
+    Promise.all(candles.forEach(async function(candle){
         await fn(candle,finalArr)
-    })
+    }))
     return finalArr
 }
 function crossover(arr) {
