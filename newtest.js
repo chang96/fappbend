@@ -268,7 +268,7 @@ async function callCandles(fn, candles) {
             await finalAr.push(...fa)
             return finalAr
         } 
-        let fa = await fn(candle)
+        let fa = await fn(candle[i])
         await finalAr.push(...fa)
 
     }
