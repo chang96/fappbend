@@ -155,7 +155,6 @@ async function mymap (candle){
         let astochs = await stochastic.stochRSI(candle.astochClose)
         let aK = await astochs.k
         let aD = await astochs.d
-           console.log(b)
           
 
 
@@ -254,7 +253,7 @@ async function mymap (candle){
     } catch (err) {
         console.log(err)
     }
-
+console.log(finalArr)
 return finalArr
 }
 
