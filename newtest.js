@@ -145,13 +145,28 @@ async function mymap (candle){
         let K = await stochs.k
         let D = await stochs.d
         let renkobars = await renko(candle.forrenko)
+        let renkobars00s = [...renkobars[0]]
+        let renkobars000 = [...renkobars[0]]
+        let renkobars100 = [...renkobars[0]]
+        let renkobars200 = [...renkobars[0]]
+        let renkobars300 = [...renkobars[0]]
+        let rmymyhist1 = await mymacd.histogram(renkobars100, renkobars200)  
+        let rcurrentPrice = renkobars100[renkobars100.length -1]
+        let rsecondToTheLastPrice = renkobars100[ renkobars100.length - 2 ]
+        let rem20 = await ema.see(20, 20, renkobars300)
+        let rem55 = await ema.see(55, 55, renkobars300)
+        let rmymyhist = rmymyhist1.histogram
+        let rb = await myrsi.rsi(renkobars000)
+        let rstochs = await stochastic.stochRSI(renkobars00s)
+        let rK = await rstochs.k
+        let rD = await rstochs.d
         let amymyhist1 = await mymacd.histogram(candle.apip100, candle.apip200)
         let aem55 = await ema.see(55, 55, candle.apip500)
         let aem99  = await ema.see(99, 99, candle.apip500)
         let aem200 = await ema.see(200, 200, candle.apip500)
-        let amymyhist = mymyhist1.histogram
-        let amymymac = mymyhist1.macd
-        let ab = await myrsi.rsi(candle.apip)
+        let amymyhist = amymyhist1.histogram
+        let amymymac = amymyhist1.macd
+        let ab = await amyrsi.rsi(candle.apip)
         let astochs = await stochastic.stochRSI(candle.astochClose)
         let aK = await astochs.k
         let aD = await astochs.d
@@ -170,32 +185,58 @@ async function mymap (candle){
         if(renkobars[1][0] == '-' && renkobars[1][1] == '+'){
             await finalArr.push({name:`${candle.name}`, desc:'+r-'})
         }
+
+        if(rcurrentPrice >= rem20){ //rsecondToTheLastPrice < rem20
+            await finalArr.push({name:`${candle.name}`, desc:'rem20+'} )
+        }
+        if(rcurrentPrice >= rem55  ){//&& rsecondToTheLastPrice < rem55
+            await finalArr.push({name:`${candle.name}`, desc:'rem55+'} )
+        }
+        if(rK[0] >= rD[0] && rK[1] < rD[1]){
+            await finalArr.push({name:`${candle.name}`, desc:'rstr+'} )
+        }
+        if(rK[0] >= rD[0] && rK[1] < rD[1] && rK[0] >= 20){
+            await finalArr.push({name:`${candle.name}`, desc:'rstr20+'}) 
+        }
+        if(crossover(rmymyhist)){
+            await finalArr.push({name: `${candle.name}`, desc:'rhist+'})
+        }
+        if(crossunder(rmymyhist)){
+            await finalArr.push({name: `${candle.name}`, desc: 'rhist-'})
+        }
+        if(rb <= 30 ){
+            await  finalArr.push({name: `${candle.name}`, desc: 'rrsi-'})
+        } 
+        if(rb >= 70 ){
+            await finalArr.push({name: `${candle.name}`, desc: 'rrsi+'})
+        } 
+
         if(currentPrice >= em55 && secondToTheLastPrice < em55){
-            await finalArr.push({name:`${candle.name}`, desc:'+em55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'em55+'} )
         }
         if(currentPrice >= em99 && secondToTheLastPrice < em99 ){
-            await finalArr.push({name:`${candle.name}`, desc:'+em99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'em99+'} )
         }
         if(currentPrice >= em200 && secondToTheLastPrice < em200){
-            await finalArr.push({name:`${candle.name}`, desc:'+em200'} )
+            await finalArr.push({name:`${candle.name}`, desc:'em200+'} )
         }
         if(currentPrice < em55 && secondToTheLastPrice >= em55 ){
-            await finalArr.push({name:`${candle.name}`, desc:'-em55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'em55-'} )
         }
         if(currentPrice < em99 && secondToTheLastPrice >= em99 ){
-            await finalArr.push({name:`${candle.name}`, desc:'-em99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'em99-'} )
         }
         if(currentPrice < em200 && secondToTheLastPrice >= em200 ){
-            await finalArr.push({name:`${candle.name}`, desc:'-em200'}) 
+            await finalArr.push({name:`${candle.name}`, desc:'em200-'}) 
         }
         if(K[0] >= D[0] && K[1] < D[1]){
-            await finalArr.push({name:`${candle.name}`, desc:'+str'} )
+            await finalArr.push({name:`${candle.name}`, desc:'str+'} )
         }
         if(K[0] >= D[0] && K[1] < D[1] && K[0] >= 50){
-            await finalArr.push({name:`${candle.name}`, desc:'+str50'}) 
+            await finalArr.push({name:`${candle.name}`, desc:'str50+'}) 
         }
         if(K[0] < D[0] && K[1] >= D[1]){
-            await finalArr.push({name:`${candle.name}`, desc:'-str'} )
+            await finalArr.push({name:`${candle.name}`, desc:'str-'} )
         }
         if(crossover(mymyhist)){
             await finalArr.push({name: `${candle.name}`, desc:'hist+'})
@@ -204,39 +245,39 @@ async function mymap (candle){
             await finalArr.push({name: `${candle.name}`, desc: 'hist-'})
         }
         if(b <= 30 ){
-            await  finalArr.push({name: `${candle.name}`, desc: '<rsi'})
+            await  finalArr.push({name: `${candle.name}`, desc: 'rsi-'})
         } 
         if(b >= 70 ){
-            await finalArr.push({name: `${candle.name}`, desc: '>rsi'})
+            await finalArr.push({name: `${candle.name}`, desc: 'rsi+'})
         } 
 
         
         if(acurrentPrice >= aem55 && asecondToTheLastPrice < aem55){
-            await finalArr.push({name:`${candle.name}`, desc:'+aem55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'aem55+'} )
         }
         if(acurrentPrice >= aem99 && asecondToTheLastPrice < aem99 ){
-            await finalArr.push({name:`${candle.name}`, desc:'+em99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'em99+'} )
         }
         if(acurrentPrice >= aem200 && asecondToTheLastPrice < aem200){
-            finalArr.push({name:`${candle.name}`, desc:'+aem200'} )
+            finalArr.push({name:`${candle.name}`, desc:'aem200+'} )
         }
         if(acurrentPrice < aem55 && asecondToTheLastPrice >= aem55 ){
-            await finalArr.push({name:`${candle.name}`, desc:'-aem55'} )
+            await finalArr.push({name:`${candle.name}`, desc:'aem55-'} )
         }
         if(acurrentPrice < em99 && asecondToTheLastPrice >= aem99 ){
-            await finalArr.push({name:`${candle.name}`, desc:'-aem99'} )
+            await finalArr.push({name:`${candle.name}`, desc:'aem99-'} )
         }
         if(acurrentPrice < aem200 && asecondToTheLastPrice >= aem200 ){
-            await finalArr.push({name:`${candle.name}`, desc:'-aem200'}) 
+            await finalArr.push({name:`${candle.name}`, desc:'aem200-'}) 
         }
         if(aK[0] >= aD[0] && aK[1] < aD[1]){
-            await finalArr.push({name:`${candle.name}`, desc:'+astr'} )
+            await finalArr.push({name:`${candle.name}`, desc:'astr+'} )
         }
-        if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 50){
-            await finalArr.push({name:`${candle.name}`, desc:'+astr50'}) 
+        if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 20){
+            await finalArr.push({name:`${candle.name}`, desc:'astr20+'}) 
         }
         if(aK[0] < aD[0] && aK[1] >= aD[1]){
-            await finalArr.push({name:`${candle.name}`, desc:'-astr'} )
+            await finalArr.push({name:`${candle.name}`, desc:'astr-'} )
         }
         if(crossover(amymyhist)){
             await finalArr.push({name: `${candle.name}`, desc:'ahist+'})
@@ -245,10 +286,10 @@ async function mymap (candle){
             await  finalArr.push({name: `${candle.name}`, desc: 'ahist-'})
         }
         if(ab <= 30 ){
-            await finalArr.push( {name: `${candle.name}`, desc: '<arsi'})
+            await finalArr.push( {name: `${candle.name}`, desc: 'arsi-'})
         } 
         if(ab >= 70 ){
-            await finalArr.push({name: `${candle.name}`, desc: '>arsi'})
+            await finalArr.push({name: `${candle.name}`, desc: 'arsi+'})
         } 
     } catch (err) {
         console.log(err)
