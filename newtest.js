@@ -145,11 +145,11 @@ async function mymap (candle){
         let K = await stochs.k
         let D = await stochs.d
         let renkobars = await renko(candle.forrenko)
-        let renkobars00s = [...renkobars[0]]
-        let renkobars000 = [...renkobars[0]]
-        let renkobars100 = [...renkobars[0]]
-        let renkobars200 = [...renkobars[0]]
-        let renkobars300 = [...renkobars[0]]
+        let renkobars00s = [...renkobars[2]]
+        let renkobars000 = [...renkobars[2]]
+        let renkobars100 = [...renkobars[2]]
+        let renkobars200 = [...renkobars[2]]
+        let renkobars300 = [...renkobars[2]]
         let rmymyhist1 = await mymacd.histogram(renkobars100, renkobars200)  
         let rcurrentPrice = renkobars100[renkobars100.length -1]
         let rsecondToTheLastPrice = renkobars100[ renkobars100.length - 2 ]

@@ -32,7 +32,7 @@ for(let i = 0; i<result.close.length; i++){
 pn.pop()
 //console.log(pn.reverse())
 //return result
-return [forchart, pn.reverse()]
+return [forchart, pn.reverse(), result.close]
 } 
 
 module.exports.renko = renkobars
