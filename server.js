@@ -822,17 +822,14 @@ return {date: moment.tz((datum[0]), 'Africa/Lagos').format(),  open: datum[1], h
 app.get('/renko', function(req, res){
     let t = req.query.time
     let it = req.query.indicatortype
-    console.log(it)
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
     let btimes = ['t4h', 't1d', 't1w']
     let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
-    console.log(t)
     if (ctimes.indexOf(t) >= 0){
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
             if (err) res.send(err)
             if (coin) {
-               // console.log(coin[t])
-                res.send((coin[t].map(c=> c.name)))
+                res.send((coin[t].filter(c=> c.desc === it)))
             }
         })
     } else if (btimes.indexOf(t) >= 0){
@@ -848,7 +845,7 @@ app.get('/renko', function(req, res){
             if (err) return err
             if (coin) {
                 //console.log(coin[t])
-                res.send((coin[t].map(c=> c.name)))
+                res.send((coin[t].filter(c=> c.desc === it)))
             }
         })
     } else{
