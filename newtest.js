@@ -166,7 +166,7 @@ async function mymap (candle){
         let aem200 = await ema.see(200, 200, candle.apip500)
         let amymyhist = amymyhist1.histogram
         let amymymac = amymyhist1.macd
-        let ab = await amyrsi.rsi(candle.apip)
+        let ab = await myrsi.rsi(candle.apip)
         let astochs = await stochastic.stochRSI(candle.astochClose)
         let aK = await astochs.k
         let aD = await astochs.d
