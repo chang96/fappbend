@@ -33,8 +33,8 @@ for(let i = 0; i<result.close.length; i++){
 }
 
 pn.pop()
-let renkoLastClose = forchart[forchart.length - 1] === undefined? null : Number(forchart[forchart.length - 1].close)
-let renkoLastOpen = forchart[forchart.length - 1] === undefined? null :  Number(forchart[forchart.length - 1].open)
+let renkoLastClose = forchart[forchart.length - 1] === undefined? lastPrice : Number(forchart[forchart.length - 1].close)
+let renkoLastOpen = forchart[forchart.length - 1] === undefined? lastPrice :  Number(forchart[forchart.length - 1].open)
 let atr = Math.abs(renkoLastClose - renkoLastOpen)
 let mx = Math.max(renkoLastOpen, renkoLastClose) - atr
 let mn = Math.min(renkoLastOpen, renkoLastClose) + atr
