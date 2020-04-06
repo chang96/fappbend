@@ -33,7 +33,7 @@ for(let i = 0; i<result.close.length; i++){
 }
 
 pn.pop()
-console.log(forchart[forchart.length - 1])
+console.log(forchart[forchart.length - 1].close)
 // let renkoLastBarObj = forchart[forchart.length - 1]
 // let renkoLastClose = renkoLastBarObj.close
 // let renkoLastOpen = renkoLastBarObj.open
