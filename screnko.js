@@ -34,7 +34,7 @@ for(let i = 0; i<result.close.length; i++){
 
 pn.pop()
 let renkoLastBarObj = forchart[forchart.length - 1]
-console.log(JSON.stringify(renkoLastBarObj) + '  789089  ')
+console.log(JSON.parse(renkoLastBarObj) + '  789089  ')
 let renkoLastClose = renkoLastBarObj.close
 let renkoLastOpen = renkoLastBarObj.open
 let atr = Math.abs(renkoLastClose - renkoLastOpen)
