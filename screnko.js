@@ -1,9 +1,14 @@
 const renko = require('technicalindicators/dist/index').renko
 const assert = require('assert')
 const moment = require('moment-timezone')
+async function addLastBar(){
+    
+}
 async function renkobars(f){
     let pn = []
     let fff = await f
+    let lastPriceArr = fff[fff.length - 1]
+    let lastPrice = lastPriceArr[4]
     function np(){
         let n = {open:[],low:[], high:[], close:[], timestamp:[], volume:[]}
         fff.forEach(c=>{
@@ -16,9 +21,7 @@ async function renkobars(f){
         })
         return n
     }
-    function usenp(){
-        
-    }
+   
     const period = 14
 const result = renko(Object.assign({}, np(), {period: period, useATR:true}))
 let forchart = []
@@ -30,6 +33,14 @@ for(let i = 0; i<result.close.length; i++){
 }
 
 pn.pop()
+let renkoLastBarObj = forchart[forchart.length - 1]
+let renkoLastClose = renkoLastBarObj.close
+let renkoLastOpen = renkoLastBarObj.open
+let atr = Math.abs(renkoLastClose - renkoLastOpen)
+let mx = Math.max(renkoLastOpen, renkoLastClose) - atr
+let mn = Math.min(renkoLastOpen, renkoLastClose) + atr
+let b = lastPrice > mn || lastPrice < mx ? result.close.push(lastPrice) : null
+
 //console.log(pn.reverse())
 //return result
 return [forchart, pn.reverse(), result.close]
