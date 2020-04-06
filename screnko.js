@@ -33,13 +33,14 @@ for(let i = 0; i<result.close.length; i++){
 }
 
 pn.pop()
-// let renkoLastBarObj = forchart[forchart.length - 1]
-// let renkoLastClose = renkoLastBarObj.close
-// let renkoLastOpen = renkoLastBarObj.open
-// let atr = Math.abs(renkoLastClose - renkoLastOpen)
-// let mx = Math.max(renkoLastOpen, renkoLastClose) - atr
-// let mn = Math.min(renkoLastOpen, renkoLastClose) + atr
-// let b = lastPrice > mn || lastPrice < mx ? result.close.push(lastPrice) : null
+console.log(forchart)
+let renkoLastBarObj = forchart[forchart.length - 1]
+let renkoLastClose = renkoLastBarObj.close
+let renkoLastOpen = renkoLastBarObj.open
+let atr = Math.abs(renkoLastClose - renkoLastOpen)
+let mx = Math.max(renkoLastOpen, renkoLastClose) - atr
+let mn = Math.min(renkoLastOpen, renkoLastClose) + atr
+let b = lastPrice > mn || lastPrice < mx ? result.close.push(lastPrice) : null
 
 //console.log(pn.reverse())
 //return result
