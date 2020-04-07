@@ -201,6 +201,12 @@ async function mymap (candle){
         if(rK[0] >= rD[0] && rK[1] < rD[1] && rK[0] >= 20 && renkobars[1][0] == '+'){
             await finalArr.push({name:`${candle.name}`, desc:'rstr20+'}) 
         }
+        if(rK[0] >= rD[0] && rK[1] < rD[1] && rK[0] >= 10 && rK[0] <= 80 && renkobars[1][0] == '+'){
+            await finalArr.push({name:`${candle.name}`, desc:'rstr1080+'}) 
+        }
+        if(rK[0] >= rD[0] && rK[1] < rD[1] && rK[0] >= 10 && rK[0] <= 90 && renkobars[1][0] == '+'){
+            await finalArr.push({name:`${candle.name}`, desc:'rstr1090+'}) 
+        }
         if(crossover(rmymyhist && renkobars[1][0] == '+')){
             await finalArr.push({name: `${candle.name}`, desc:'rhist+'})
         }
@@ -278,6 +284,12 @@ async function mymap (candle){
         }
         if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 20){
             await finalArr.push({name:`${candle.name}`, desc:'astr20+'}) 
+        }
+        if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 20 && aK[0] <= 80 ){
+            await finalArr.push({name:`${candle.name}`, desc:'astr2080+'}) 
+        }
+        if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 10 && aK[0] <= 90 ){
+            await finalArr.push({name:`${candle.name}`, desc:'astr1090+'}) 
         }
         if(aK[0] < aD[0] && aK[1] >= aD[1]){
             await finalArr.push({name:`${candle.name}`, desc:'astr-'} )
