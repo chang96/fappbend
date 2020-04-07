@@ -417,7 +417,7 @@ let timecounting = 0
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search3star, 1000 * 60 * 10, '3m', 100000, rsii)
+    setTimeout(search3star, 1000 * 60 * 3, '3m', 100000, rsii)
 }
  function search3star(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -427,7 +427,7 @@ let timecounting = 0
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search5star, 1000 * 60 * 10, '5m', 100000, rsii)
+    setTimeout(search5star, 1000 * 60 * 3, '5m', 100000, rsii)
 }
  function search5star(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -436,7 +436,7 @@ let timecounting = 0
             let c = await save(b, 'pt5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search30, 1000 * 60 * 10, '30m', 100000, rsii)
+    setTimeout(search30, 1000 * 60 * 3, '30m', 100000, rsii)
 }
  function search1star0(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -445,7 +445,7 @@ let timecounting = 0
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search3star0, 1000 * 60 * 10, '3m', 100000, rsii)
+    setTimeout(search3star0, 1000 * 60 * 3, '3m', 100000, rsii)
 }
  function search3star0(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -455,7 +455,7 @@ let timecounting = 0
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search5star0, 1000 * 60 * 10, '5m', 100000, rsii)
+    setTimeout(search5star0, 1000 * 60 * 3, '5m', 100000, rsii)
 }
  function search5star0(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -464,7 +464,7 @@ let timecounting = 0
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search1w, 1000 * 60 * 10, '1w', 100000, rsii)
+    setTimeout(search1w, 1000 * 60 * 3, '1w', 100000, rsii)
 }
  function search1(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -473,7 +473,7 @@ let timecounting = 0
             let c = await save(b, 't1m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search3, 1000 * 60 * 10, '3m', 100000, rsii)
+    setTimeout(search3, 1000 * 60 * 3, '3m', 100000, rsii)
 }
  function search3(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -482,7 +482,7 @@ let timecounting = 0
             let c = await save(b, 't3m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search5, 1000 * 60 * 10, '5m', 100000, rsii)
+    setTimeout(search5, 1000 * 60 * 3, '5m', 100000, rsii)
 }
  function search5(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -491,7 +491,7 @@ let timecounting = 0
             let c = await save(b, 't5m')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search15, 1000 * 60 * 10, '15m', 100000, rsii)
+    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
 }
  function search15(size, volume, rs) {
     timecounting++
@@ -510,7 +510,7 @@ let timecounting = 0
     }
    
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-    setTimeout(search1star, 1000 * 60 * 10, '1m', 100000, rsii)
+    setTimeout(search1star, 1000 * 60 * 3, '1m', 100000, rsii)
 }
  function search30(size, volume, rs) {
     if(timecounting%2 == 1){
@@ -528,7 +528,7 @@ let timecounting = 0
     }
     
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search1h, 1000 * 60 * 10, '1h', 100000, rsii)
+    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
 }
 
  function search1h(size, volume, rs) {
@@ -547,7 +547,7 @@ let timecounting = 0
     }
     
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-    setTimeout(search1star0, 1000 * 60 * 10, '1m', 100000, rsii)
+    setTimeout(search1star0, 1000 * 60 * 3, '1m', 100000, rsii)
 }
  function search4h(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -555,7 +555,7 @@ let timecounting = 0
             let c = await save(b, 't4h')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1d, 1000 * 60 * 10, '1d', 100000, rsii)
+    setTimeout(search1d, 1000 * 60 * 3, '1d', 100000, rsii)
 }
 function search1d(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -563,7 +563,7 @@ function search1d(size, volume, rs) {
             let c = await save(b, 't1d')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search1, 1000 * 60 * 10, '1m', 100000, rsii)
+    setTimeout(search1, 1000 * 60 * 3, '1m', 100000, rsii)
 }
 function search1w(size, volume, rs) {
     let a = (async(size, volume, rs) => {
@@ -571,9 +571,9 @@ function search1w(size, volume, rs) {
             let c = await save(b, 't1w')
         })(size, volume, rs)
         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-    setTimeout(search4h, 1000 * 60 * 10, '4h', 100000, rsii)
+    setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, rsii)
 }
-setTimeout(search1w, 1000 * 60 * 0.11, '1w', 100000, rsii)
+setTimeout(search1w, 1000 * 60 * 0.9, '1w', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
