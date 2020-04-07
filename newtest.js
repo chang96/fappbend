@@ -191,14 +191,14 @@ async function mymap (candle){
         }
         if(rcurrentPrice >= rem55  ){//&& rsecondToTheLastPrice < rem55
             await finalArr.push({name:`${candle.name}`, desc:'rem55+'} )
-        }
-        if(rK[0] >= rD[0] && rK[1] < rD[1]){
+        } 
+        if(rK[0] >= rD[0] && rK[1] < rD[1] && renkobars[1][0] == '+' ){
             await finalArr.push({name:`${candle.name}`, desc:'rstr+'} )
         }
-        if(rK[0] >= rD[0] && rK[1] < rD[1] && rK[0] >= 20){
+        if(rK[0] >= rD[0] && rK[1] < rD[1] && rK[0] >= 20 && renkobars[1][0] == '+'){
             await finalArr.push({name:`${candle.name}`, desc:'rstr20+'}) 
         }
-        if(crossover(rmymyhist)){
+        if(crossover(rmymyhist && renkobars[1][0] == '+')){
             await finalArr.push({name: `${candle.name}`, desc:'rhist+'})
         }
         if(crossunder(rmymyhist)){
