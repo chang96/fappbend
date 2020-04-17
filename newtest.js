@@ -185,7 +185,12 @@ async function mymap (candle){
         if(renkobars[1][0] == '-' && renkobars[1][1] == '+'){
             await finalArr.push({name:`${candle.name}`, desc:'+r-'})
         }
-
+        if(renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 15){
+            await finalArr.push({name:`${candle.name}`, desc: 'xr15'})
+        }
+        if(renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 1){
+            await finalArr.push({name:`${candle.name}`, desc: 'xr1'})
+        }
         if(rcurrentPrice >= rem20){ //rsecondToTheLastPrice < rem20
             await finalArr.push({name:`${candle.name}`, desc:'rem20+'} )
         }
@@ -265,7 +270,7 @@ async function mymap (candle){
             await finalArr.push({name:`${candle.name}`, desc:'aem55+'} )
         }
         if(acurrentPrice >= aem99 && asecondToTheLastPrice < aem99 ){
-            await finalArr.push({name:`${candle.name}`, desc:'em99+'} )
+            await finalArr.push({name:`${candle.name}`, desc:'aem99+'} )
         }
         if(acurrentPrice >= aem200 && asecondToTheLastPrice < aem200){
             finalArr.push({name:`${candle.name}`, desc:'aem200+'} )
@@ -279,16 +284,16 @@ async function mymap (candle){
         if(acurrentPrice < aem200 && asecondToTheLastPrice >= aem200 ){
             await finalArr.push({name:`${candle.name}`, desc:'aem200-'}) 
         }
-        if(aK[0] >= aD[0] && aK[1] < aD[1]){
+        if(stochstrat(ak, aD)){
             await finalArr.push({name:`${candle.name}`, desc:'astr+'} )
         }
-        if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 20){
+        if(stochstrat(aK, aD) && aK[0] >= 20){
             await finalArr.push({name:`${candle.name}`, desc:'astr20+'}) 
         }
-        if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 20 && aK[0] <= 80 ){
+        if(stochstrat(aK, aD) && aK[0] >= 20 && aK[0] <= 80 ){
             await finalArr.push({name:`${candle.name}`, desc:'astr2080+'}) 
         }
-        if(aK[0] >= aD[0] && aK[1] < aD[1] && aK[0] >= 10 && aK[0] <= 90 ){
+        if(stochstrat(aK, aD) && aK[0] >= 10 && aK[0] <= 90 ){
             await finalArr.push({name:`${candle.name}`, desc:'astr1090+'}) 
         }
         if(aK[0] < aD[0] && aK[1] >= aD[1]){
