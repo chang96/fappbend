@@ -852,6 +852,41 @@ app.get('/renko', function(req, res){
         res.send('paramter not supported')
     }
 })
+
+app.get('/gettwo', function(req, res){
+    let t = req.query.time
+    let itone = req.query.indicatortypeone
+    let ittwo = req.query.indicatortypetwo
+    let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
+    let btimes = ['t4h', 't1d', 't1w']
+    let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
+    if (ctimes.indexOf(t) >= 0){
+        Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
+            if (err) res.send(err)
+            if (coin) {
+                res.send((coin[t].filter(c=> c.desc === itone || c.desc === ittwo)))
+            }
+        })
+    } else if (btimes.indexOf(t) >= 0){
+        bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+              //  console.log(coin[t])
+                res.send((coin[t].filter(c=> c.desc === itone || c.desc === ittwo )))
+            }
+        })
+    } else if(ptimes.indexOf(t) >= 0) {
+        purecoin.findOne({ 'mymyid': 'purecoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+                //console.log(coin[t])
+                res.send((coin[t].filter(c=> c.desc === itone || c.desc === ittwo )))
+            }
+        })
+    } else{
+        res.send('paramter not supported')
+    }
+})
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
     //         let b = await ind.find('15m', 1000000)
