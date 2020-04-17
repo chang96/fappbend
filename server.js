@@ -854,6 +854,7 @@ app.get('/renko', function(req, res){
 })
 
 app.get('/gettwo', function(req, res){
+    let rgx = /USDT$/
     let t = req.query.time
     let itone = req.query.indicatortypeone
     let ittwo = req.query.indicatortypetwo
@@ -864,7 +865,7 @@ app.get('/gettwo', function(req, res){
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
             if (err) res.send(err)
             if (coin) {
-                res.send((coin[t].filter(c=> c.desc === itone || c.desc === ittwo)))
+                res.send((coin[t].filter(c=> (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
             }
         })
     } else if (btimes.indexOf(t) >= 0){
@@ -872,7 +873,7 @@ app.get('/gettwo', function(req, res){
             if (err) return err
             if (coin) {
               //  console.log(coin[t])
-                res.send((coin[t].filter(c=> c.desc === itone || c.desc === ittwo )))
+                res.send((coin[t].filter(c=> (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
             }
         })
     } else if(ptimes.indexOf(t) >= 0) {
@@ -880,7 +881,7 @@ app.get('/gettwo', function(req, res){
             if (err) return err
             if (coin) {
                 //console.log(coin[t])
-                res.send((coin[t].filter(c=> c.desc === itone || c.desc === ittwo )))
+                res.send((coin[t].filter(c=> (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
             }
         })
     } else{
