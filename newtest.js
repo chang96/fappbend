@@ -284,7 +284,7 @@ async function mymap (candle){
         if(acurrentPrice < aem200 && asecondToTheLastPrice >= aem200 ){
             await finalArr.push({name:`${candle.name}`, desc:'aem200-'}) 
         }
-        if(stochstrat(ak, aD)){
+        if(stochstrat(aK, aD)){
             await finalArr.push({name:`${candle.name}`, desc:'astr+'} )
         }
         if(stochstrat(aK, aD) && aK[0] >= 20){
