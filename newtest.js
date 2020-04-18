@@ -125,7 +125,7 @@ let find = async(size, volume) => {
 
 async function mymap (candle, size){
     let finalArr = []
-    console.log(size)
+    console.log(size + 'unddddd')
     const bigTime = ['1h', '4h', '1d', '1w']
     try {
         // let smav = await v(candle.v, 20)
@@ -330,7 +330,6 @@ return finalArr
 
 async function callCandles(fn, candles, size) {
     //let candles =  promisedCandles
-    console.log(size + 'ccc')
     let finalAr = []
     for(let i =0; i<candles.length; i++){
         if(i === candles.length - 1){
