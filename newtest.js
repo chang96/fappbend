@@ -123,8 +123,9 @@ let find = async(size, volume) => {
 
 }
 
-async function mymap (candle){
+async function mymap (candle, size){
     let finalArr = []
+    const bigTime = ['1h', '4h', '1d', '1w']
     try {
         // let smav = await v(candle.v, 20)
         // let vtday = candle.v3
@@ -170,7 +171,14 @@ async function mymap (candle){
         let astochs = await stochastic.stochRSI(candle.astochClose)
         let aK = await astochs.k
         let aD = await astochs.d
-          
+        if(bigTime.indexOf(size) !== -1){
+            if(xstochStrat(rK, rD, 15) && renkobars[1][0] == '+' ){
+                await finalArr.push({name:`${candle.name}`, desc: 'rbplus'})
+            }
+            if(xstochStrat(aK, aD)){
+                await finalArr.push({name:`${candle.name}`, desc: 'abplus'})
+            }
+        }
 
 
         if(renkobars[1][0] == '+'){
@@ -319,13 +327,13 @@ return finalArr
 }
 
 
-async function callCandles(fn, candles) {
+async function callCandles(fn, candles, size) {
     //let candles =  promisedCandles
     //console.log(candles)
     let finalAr = []
     for(let i =0; i<candles.length; i++){
         if(i === candles.length - 1){
-            let fa = await fn(candles[i])
+            let fa = await fn(candles[i], size)
             await finalAr.push(...fa)
             return finalAr
         } 
@@ -386,6 +394,24 @@ function stochstrat(K, D) {
         return false
     }
 }
+function xstochStrat (K, D, cap = 20){
+    var result
+    for(let i = 0; i < K.length; i++){
+        //console.log(K[i] > D[i])
+        if(K[i] > D[i] && K[i-1] < D[i-1] && K[i]>=cap){
+            //console.log(K[i] > D[i] && K[i-1] < D[i-1] && K[i]>=cap, i, '+')
+            return true
+        }
+        
+        if(K[i] > D[i] && K[i-1] < D[i-1] && K[i]<cap){
+            //console.log(K[i] > D[i] && K[i-1] < D[i-1] && K[i]<cap, i, '-')
+            return false
+        }
+        if(i == 25)
+        return false
+
+    }
+}
 let rgx1 = /BTC$/
 let rgx2 = /ETH$/
 let rgx3 = /USDT$/
@@ -393,7 +419,7 @@ let found = async(size, volume, rs, eyoar) => {
     try{
     let arr = []
     candles = await find2(size, volume, eyoar)
-    let r = await callCandles(mymap, candles)
+    let r = await callCandles(mymap, candles, size)
     return r
     } catch(e){
         console.log(e)
@@ -437,7 +463,7 @@ let found1 = async(size, volume, rs) => {
    try{
     let arr = []
     let candles = await find1(size, volume)
-    let r = await callCandles(mymap, candles)
+    let r = await callCandles(mymap, candles, size)
    // console.log(r)
     return r
    }catch(e){
@@ -450,7 +476,7 @@ let found2 = async(size, volume, rs, eyoar) => {
     try{
         let arr = []
         let candles = await find2(size, volume, eyoar)
-        let r = await callCandles(mymap, candles)
+        let r = await callCandles(mymap, candles, size)
         return r
     } catch(e){
         console.log(e)
