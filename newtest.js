@@ -330,7 +330,7 @@ return finalArr
 
 async function callCandles(fn, candles, size) {
     //let candles =  promisedCandles
-    //console.log(candles)
+    console.log(size)
     let finalAr = []
     for(let i =0; i<candles.length; i++){
         if(i === candles.length - 1){
