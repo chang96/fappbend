@@ -330,7 +330,7 @@ return finalArr
 
 async function callCandles(fn, candles, size) {
     //let candles =  promisedCandles
-    console.log(size)
+    console.log(size + 'ccc')
     let finalAr = []
     for(let i =0; i<candles.length; i++){
         if(i === candles.length - 1){
@@ -461,7 +461,6 @@ let found = async(size, volume, rs, eyoar) => {
 }
 
 let found1 = async(size, volume, rs) => {
-    console.log(size + 'jkj')
    try{
     let arr = []
     let candles = await find1(size, volume)
