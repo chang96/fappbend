@@ -125,6 +125,7 @@ let find = async(size, volume) => {
 
 async function mymap (candle, size){
     let finalArr = []
+    console.log(size)
     const bigTime = ['1h', '4h', '1d', '1w']
     try {
         // let smav = await v(candle.v, 20)
@@ -220,7 +221,7 @@ async function mymap (candle, size){
         if(rK[0] >= rD[0] && rK[1] < rD[1] && rK[0] >= 10 && rK[0] <= 90 && renkobars[1][0] == '+'){
             await finalArr.push({name:`${candle.name}`, desc:'rstr1090+'}) 
         }
-        if(crossover(rmymyhist && renkobars[1][0] == '+')){
+        if(crossover(rmymyhist) && renkobars[1][0] == '+'){
             await finalArr.push({name: `${candle.name}`, desc:'rhist+'})
         }
         if(crossunder(rmymyhist)){
