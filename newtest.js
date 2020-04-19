@@ -125,7 +125,6 @@ let find = async(size, volume) => {
 
 async function mymap (candle, size){
     let finalArr = []
-    console.log(size + 'unddddd')
     const bigTime = ['1h', '4h', '1d', '1w']
     try {
         // let smav = await v(candle.v, 20)
@@ -398,6 +397,7 @@ function xstochStrat (K, D, cap = 20){
     var result
     for(let i = 0; i < K.length; i++){
         //console.log(K[i] > D[i])
+        if(K[0] < D[0]) return false
         if(K[i] > D[i] && K[i-1] < D[i-1] && K[i]>=cap){
             //console.log(K[i] > D[i] && K[i-1] < D[i-1] && K[i]>=cap, i, '+')
             return true
