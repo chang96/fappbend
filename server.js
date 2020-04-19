@@ -860,6 +860,7 @@ app.get('/gettwo', function(req, res){
     let ittwo = req.query.indicatortypetwo
     let itthree = 'rstr20+'
     let itfour = 'astr20+'
+    let itfive = 'xr15'
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
     let btimes = ['t4h', 't1d', 't1w']
     let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
@@ -875,7 +876,7 @@ app.get('/gettwo', function(req, res){
             if (err) return err
             if (coin) {
               //  console.log(coin[t])
-                res.send((coin[t].filter(c=>  (c.desc === itthree && c.name.match(rgx))||
+                res.send((coin[t].filter(c=>  (c.desc === itthree && c.name.match(rgx)) ||
                 (c.desc === itfour && c.name.match(rgx)) || (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
             }
         })

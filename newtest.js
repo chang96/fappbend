@@ -193,7 +193,7 @@ async function mymap (candle, size){
         if(renkobars[1][0] == '-' && renkobars[1][1] == '+'){
             await finalArr.push({name:`${candle.name}`, desc:'+r-'})
         }
-        if(renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 15){
+        if(renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20){
             await finalArr.push({name:`${candle.name}`, desc: 'xr15'})
         }
         if(renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 1){
