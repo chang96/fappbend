@@ -398,12 +398,12 @@ function xstochStrat (K, D, cap = 20){
     for(let i = 0; i < K.length; i++){
         //console.log(K[i] > D[i])
         if(K[0] < D[0]) return false
-        if(K[i] > D[i] && K[i-1] < D[i-1] && K[i]>=cap){
+        if(K[i] >= D[i] && K[i+1] <= D[i+1] && K[i]>=cap){
             //console.log(K[i] > D[i] && K[i-1] < D[i-1] && K[i]>=cap, i, '+')
             return true
         }
         
-        if(K[i] > D[i] && K[i-1] < D[i-1] && K[i]<cap){
+        if(K[i] > D[i] && K[i+1] < D[i+1] && K[i]<cap){
             //console.log(K[i] > D[i] && K[i-1] < D[i-1] && K[i]<cap, i, '-')
             return false
         }
