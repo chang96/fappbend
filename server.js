@@ -875,7 +875,8 @@ app.get('/gettwo', function(req, res){
             if (err) return err
             if (coin) {
               //  console.log(coin[t])
-                res.send((coin[t].filter(c=> (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
+                res.send((coin[t].filter(c=>  (c.desc === itthree && c.name.match(rgx))||
+                (c.desc === itfour && c.name.match(rgx)) || (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
             }
         })
     } else if(ptimes.indexOf(t) >= 0) {
@@ -886,10 +887,7 @@ app.get('/gettwo', function(req, res){
 
                 res.send((coin[t].filter(c=> {
                     
-                    return (c.desc === itthree && c.name.match(rgx))||
-                    (c.desc === itfour && c.name.match(rgx)) ||
-                     (c.desc === itone && c.name.match(rgx)) || 
-                     (c.desc === ittwo && c.name.match(rgx))
+                    return (c.desc === itone && c.name.match(rgx)) ||  (c.desc === ittwo && c.name.match(rgx))
                 })))
             }
         })
