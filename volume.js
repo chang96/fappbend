@@ -43,10 +43,15 @@ async function checkcoin(coins, volume) {
         const rgBTC = /BTC$/
         const rgBNB = /BNB$/
         const rgUSDT = /USDT$/
+        const rgBEAR = /BEAR/
+        const rgBULL = /BULL/
+        const forbidden = ['EURUSDT', 'PAXUSDT', 'USDCUSDT', 'USDSUSDT', 'TUSDUSDT', 'BUSDUSDT', '', '', '', '', '']
             //console.log(coin)
         if (  await coin.symbol.match(rgETH) && await coin.quoteVolume * prices.ETH >= volume) {
             return false
 
+        } else if(await coin.symbol.match(rgBEAR) || await coin.symbol.match(rgBULL) || forbidden.indexOf(coin.symbol) !== -1 ){
+            return false
         } else if (  await coin.symbol.match(rgBNB) &&  await coin.quoteVolume * prices.BNB >= volume) {
             return false
 
