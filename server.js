@@ -531,7 +531,7 @@ let timecounting = 0
     setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
 }
 
- function search1h(size, volume, rs) {
+ function search1h(size, volume, rs) {  
     if(timecounting % 2 == 1){
         let a = (async(size, volume, rs) => {
             let cema = await ccc2('t15m')
@@ -858,6 +858,8 @@ app.get('/gettwo', function(req, res){
     let t = req.query.time
     let itone = req.query.indicatortypeone
     let ittwo = req.query.indicatortypetwo
+    let itthree = 'rstr20+'
+    let itfour = 'astr20+'
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
     let btimes = ['t4h', 't1d', 't1w']
     let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
@@ -881,7 +883,14 @@ app.get('/gettwo', function(req, res){
             if (err) return err
             if (coin) {
                 //console.log(coin[t])
-                res.send((coin[t].filter(c=> (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
+
+                res.send((coin[t].filter(c=> {
+                    
+                    return (c.desc === itthree && c.name.match(rgx))||
+                    (c.desc === itfour && c.name.match(rgx)) ||
+                     (c.desc === itone && c.name.match(rgx)) || 
+                     (c.desc === ittwo && c.name.match(rgx))
+                })))
             }
         })
     } else{
