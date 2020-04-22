@@ -495,56 +495,56 @@ let timecounting = 0
 }
  function search15(size, volume, rs) {
     timecounting++
-    if (timecounting%2 == 1){
-        let a = (async(size, volume, rs) => {
-            let cema1 = await ccc2('t5m')
-            let b = await ind.founnd(size, volume, rs, cema1)
-            let c = await save(b, 't15m')
-        })(size, volume, rs)
-    } else{
+    // if (timecounting%2 == 1){
+    //     let a = (async(size, volume, rs) => {
+    //         let cema1 = await ccc2('t5m')
+    //         let b = await ind.founnd(size, volume, rs, cema1)
+    //         let c = await save(b, 't15m')
+    //     })(size, volume, rs)
+    // } else{
         let a = (async(size, volume, rs) => {
             //let cema1 = await ccc2('t5m')
             let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 'pt15m')
         })(size, volume, rs)
-    }
+  //  }
    
         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
     setTimeout(search1star, 1000 * 60 * 3, '1m', 100000, rsii)
 }
  function search30(size, volume, rs) {
-    if(timecounting%2 == 1){
-        let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t15m')
-            let b = await ind.founnd(size, volume, rs, cema)
-            let c = await save(b, 't30m')
-        })(size, volume, rs)
-    } else {
+    // if(timecounting%2 == 1){
+    //     let a = (async(size, volume, rs) => {
+    //         let cema = await ccc2('t15m')
+    //         let b = await ind.founnd(size, volume, rs, cema)
+    //         let c = await save(b, 't30m')
+    //     })(size, volume, rs)
+    // } else {
         let a = (async(size, volume, rs) => {
             //let cema = await ccc2('t5m')
             let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 'pt30m')
         })(size, volume, rs)
-    }
+   // }
     
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
 }
 
  function search1h(size, volume, rs) {  
-    if(timecounting % 2 == 1){
-        let a = (async(size, volume, rs) => {
-            let cema = await ccc2('t15m')
-            let b = await ind.founnd(size, volume, rs, cema)
-            let c = await save(b, 't1h')
-        })(size, volume, rs) 
-    } else{
+    // if(timecounting % 2 == 1){
+    //     let a = (async(size, volume, rs) => {
+    //         let cema = await ccc2('t15m')
+    //         let b = await ind.founnd(size, volume, rs, cema)
+    //         let c = await save(b, 't1h')
+    //     })(size, volume, rs) 
+    // } else{
         let a = (async(size, volume, rs) => {
             //let cema = await ccc2('t5m')
             let b = await ind.founnd1(size, volume, rs)
             let c = await save(b, 'pt1h')
         })(size, volume, rs)
-    }
+  //  }
     
         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
     setTimeout(search1star0, 1000 * 60 * 3, '1m', 100000, rsii)

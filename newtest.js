@@ -298,8 +298,8 @@ async function mymap (candle, size){
         if(stochstrat(aK, aD) && aK[0] >= 20){
             await finalArr.push({name:`${candle.name}`, desc:'astr20+'}) 
         }
-        if(stochstrat(aK, aD) && aK[0] >= 20 && aK[0] <= 80 ){
-            await finalArr.push({name:`${candle.name}`, desc:'astr2080+'}) 
+        if(stochstrat(aK, aD) && aK[0] >= 40 && aK[0] <= 80 ){
+            await finalArr.push({name:`${candle.name}`, desc:'astr4080+'}) 
         }
         if(stochstrat(aK, aD) && aK[0] >= 10 && aK[0] <= 90 ){
             await finalArr.push({name:`${candle.name}`, desc:'astr1090+'}) 
