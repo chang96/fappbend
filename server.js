@@ -413,196 +413,202 @@ let timecounting = 0
 
 
 
-let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '4h', '1m', '3m', '5m','1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m', '1m', '3m', '5m', '1h', '1m', '3m', '5m','4h','1m', '3m', '5m', '15m', '1d','1m', '3m', '5m','30m', '1w']
-let i = 44
-function delay(time){
-    let now = Date.now() + time 
-    while(Date.now() < now){}
+// let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '4h', '1m', '3m', '5m','1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m', '1m', '3m', '5m', '1h', '1m', '3m', '5m','4h','1m', '3m', '5m', '15m', '1d','1m', '3m', '5m','30m', '1w']
+// let othertfs = ['15m', '30m', '1h', '4h']
+// let bigtfs  = ['1d', '1w']
+// let count = 0
+// let i = 44
+// let j = 0
+// let k = 0
+// let tfs = ['1m', '3m', '5m', l]
+// function delay(time){
+//     let now = Date.now() + time 
+//     while(Date.now() < now){}
+// }
+
+//     function getCandles(size, volume, rs) {
+//         if(i == 57)
+//         i=0
+//         let a = (async(size, volume, rs) => {
+//             //let cema = await ccc()
+//             let b = await ind.founnd1(size, volume, rs)
+//                 let c = await save(b, `t${tfs[i]}`)
+//             })(size, volume, rs)
+//             i++
+
+//             getCandles(tfs[i], 100000, 24)
+//             delay(1000 * 60 * 1.4)
+//         // setTimeout(function(){
+//         //     return getCandles
+//         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
+//     }
+
+//     getCandles(tfs[i], 1000000, 25)
+
+ function search1star(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
+            let c = await save(b, 't1m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search3star, 1000 * 60 * 3, '3m', 100000, rsii)
+}
+ function search3star(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            //let b = await ind.founnd1(size, volume, rs)
+            let cema = await ccc()
+            let b = await ind.founnd2(size, volume, rs, cema)
+            let c = await save(b, 't3m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search5star, 1000 * 60 * 3, '5m', 100000, rsii)
+}
+ function search5star(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            //let cema1 = await ccc2('t3m')
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 'pt5m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search30, 1000 * 60 * 3, '30m', 100000, rsii)
+}
+ function search1star0(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
+            let c = await save(b, 't1m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search3star0, 1000 * 60 * 3, '3m', 100000, rsii)
+}
+ function search3star0(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            //let b = await ind.founnd1(size, volume, rs)
+            let cema = await ccc()
+            let b = await ind.founnd2(size, volume, rs, cema)
+            let c = await save(b, 't3m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search5star0, 1000 * 60 * 3, '5m', 100000, rsii)
+}
+ function search5star0(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let cema1 = await ccc2('t3m')
+            let b = await ind.founnd2(size, volume, rs, cema1)
+            let c = await save(b, 't5m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search1w, 1000 * 60 * 3, '1w', 100000, rsii)
+}
+ function search1(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
+            let c = await save(b, 't1m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search3, 1000 * 60 * 3, '3m', 100000, rsii)
+}
+ function search3(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+        let cema = await ccc()
+        let b = await ind.founnd2(size, volume, rs, cema)
+            let c = await save(b, 't3m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search5, 1000 * 60 * 3, '5m', 100000, rsii)
+}
+ function search5(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let cema1 = await ccc()
+            let b = await ind.founnd2(size, volume, rs, cema1)
+            let c = await save(b, 't5m')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
+}
+ function search15(size, volume, rs) {
+    timecounting++
+    // if (timecounting%2 == 1){
+    //     let a = (async(size, volume, rs) => {
+    //         let cema1 = await ccc2('t5m')
+    //         let b = await ind.founnd(size, volume, rs, cema1)
+    //         let c = await save(b, 't15m')
+    //     })(size, volume, rs)
+    // } else{
+        let a = (async(size, volume, rs) => {
+            //let cema1 = await ccc2('t5m')
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 'pt15m')
+        })(size, volume, rs)
+  //  }
+   
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
+    setTimeout(search1star, 1000 * 60 * 3, '1m', 100000, rsii)
+}
+ function search30(size, volume, rs) {
+    // if(timecounting%2 == 1){
+    //     let a = (async(size, volume, rs) => {
+    //         let cema = await ccc2('t15m')
+    //         let b = await ind.founnd(size, volume, rs, cema)
+    //         let c = await save(b, 't30m')
+    //     })(size, volume, rs)
+    // } else {
+        let a = (async(size, volume, rs) => {
+            //let cema = await ccc2('t5m')
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 'pt30m')
+        })(size, volume, rs)
+   // }
+    
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
+    setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
 }
 
-    function getCandles(size, volume, rs) {
-        if(i == 57){
-            i=0
-        }
+ function search1h(size, volume, rs) {  
+    // if(timecounting % 2 == 1){
+    //     let a = (async(size, volume, rs) => {
+    //         let cema = await ccc2('t15m')
+    //         let b = await ind.founnd(size, volume, rs, cema)
+    //         let c = await save(b, 't1h')
+    //     })(size, volume, rs) 
+    // } else{
         let a = (async(size, volume, rs) => {
-            //let cema = await ccc()
+            //let cema = await ccc2('t5m')
             let b = await ind.founnd1(size, volume, rs)
-                let c = await save(b, `t${tfs[i]}`)
-            })(size, volume, rs)
-            i++
-            delay(1000 * 60 * 1.4)
-            getCandles(tfs[i], 100000, 24)
-        // setTimeout(function(){
-        //     return getCandles
-        // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
-    }
-
-    getCandles('1h', 1000000, 25)
-
-//  function search1star(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//         let cema = await ccc()
-//         let b = await ind.founnd2(size, volume, rs, cema)
-//             let c = await save(b, 't1m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search3star, 1000 * 60 * 3, '3m', 100000, rsii)
-// }
-//  function search3star(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             //let b = await ind.founnd1(size, volume, rs)
-//             let cema = await ccc()
-//             let b = await ind.founnd2(size, volume, rs, cema)
-//             let c = await save(b, 't3m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search5star, 1000 * 60 * 3, '5m', 100000, rsii)
-// }
-//  function search5star(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             //let cema1 = await ccc2('t3m')
-//             let b = await ind.founnd1(size, volume, rs)
-//             let c = await save(b, 'pt5m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search30, 1000 * 60 * 3, '30m', 100000, rsii)
-// }
-//  function search1star0(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//         let cema = await ccc()
-//         let b = await ind.founnd2(size, volume, rs, cema)
-//             let c = await save(b, 't1m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search3star0, 1000 * 60 * 3, '3m', 100000, rsii)
-// }
-//  function search3star0(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             //let b = await ind.founnd1(size, volume, rs)
-//             let cema = await ccc()
-//             let b = await ind.founnd2(size, volume, rs, cema)
-//             let c = await save(b, 't3m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search5star0, 1000 * 60 * 3, '5m', 100000, rsii)
-// }
-//  function search5star0(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             let cema1 = await ccc2('t3m')
-//             let b = await ind.founnd2(size, volume, rs, cema1)
-//             let c = await save(b, 't5m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search1w, 1000 * 60 * 3, '1w', 100000, rsii)
-// }
-//  function search1(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//         let cema = await ccc()
-//         let b = await ind.founnd2(size, volume, rs, cema)
-//             let c = await save(b, 't1m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search3, 1000 * 60 * 3, '3m', 100000, rsii)
-// }
-//  function search3(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//         let cema = await ccc()
-//         let b = await ind.founnd2(size, volume, rs, cema)
-//             let c = await save(b, 't3m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search5, 1000 * 60 * 3, '5m', 100000, rsii)
-// }
-//  function search5(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             let cema1 = await ccc()
-//             let b = await ind.founnd2(size, volume, rs, cema1)
-//             let c = await save(b, 't5m')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, rsii)
-// }
-//  function search15(size, volume, rs) {
-//     timecounting++
-//     // if (timecounting%2 == 1){
-//     //     let a = (async(size, volume, rs) => {
-//     //         let cema1 = await ccc2('t5m')
-//     //         let b = await ind.founnd(size, volume, rs, cema1)
-//     //         let c = await save(b, 't15m')
-//     //     })(size, volume, rs)
-//     // } else{
-//         let a = (async(size, volume, rs) => {
-//             //let cema1 = await ccc2('t5m')
-//             let b = await ind.founnd1(size, volume, rs)
-//             let c = await save(b, 'pt15m')
-//         })(size, volume, rs)
-//   //  }
-   
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 15m' })
-//     setTimeout(search1star, 1000 * 60 * 3, '1m', 100000, rsii)
-// }
-//  function search30(size, volume, rs) {
-//     // if(timecounting%2 == 1){
-//     //     let a = (async(size, volume, rs) => {
-//     //         let cema = await ccc2('t15m')
-//     //         let b = await ind.founnd(size, volume, rs, cema)
-//     //         let c = await save(b, 't30m')
-//     //     })(size, volume, rs)
-//     // } else {
-//         let a = (async(size, volume, rs) => {
-//             //let cema = await ccc2('t5m')
-//             let b = await ind.founnd1(size, volume, rs)
-//             let c = await save(b, 'pt30m')
-//         })(size, volume, rs)
-//    // }
+            let c = await save(b, 'pt1h')
+        })(size, volume, rs)
+  //  }
     
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-//     setTimeout(search1h, 1000 * 60 * 3, '1h', 100000, rsii)
-// }
-
-//  function search1h(size, volume, rs) {  
-//     // if(timecounting % 2 == 1){
-//     //     let a = (async(size, volume, rs) => {
-//     //         let cema = await ccc2('t15m')
-//     //         let b = await ind.founnd(size, volume, rs, cema)
-//     //         let c = await save(b, 't1h')
-//     //     })(size, volume, rs) 
-//     // } else{
-//         let a = (async(size, volume, rs) => {
-//             //let cema = await ccc2('t5m')
-//             let b = await ind.founnd1(size, volume, rs)
-//             let c = await save(b, 'pt1h')
-//         })(size, volume, rs)
-//   //  }
-    
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
-//     setTimeout(search1star0, 1000 * 60 * 3, '1m', 100000, rsii)
-// }
-//  function search4h(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             let b = await ind.founnd1(size, volume, rs)
-//             let c = await save(b, 't4h')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-//     setTimeout(search1d, 1000 * 60 * 3, '1d', 100000, rsii)
-// }
-// function search1d(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             let b = await ind.founnd1(size, volume, rs)
-//             let c = await save(b, 't1d')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-//     setTimeout(search1, 1000 * 60 * 3, '1m', 100000, rsii)
-// }
-// function search1w(size, volume, rs) {
-//     let a = (async(size, volume, rs) => {
-//             let b = await ind.founnd1(size, volume, rs)
-//             let c = await save(b, 't1w')
-//         })(size, volume, rs)
-//         //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
-//     setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, rsii)
-// }
-// setTimeout(search1w, 1000 * 60 * 0.9, '1w', 100000, rsii)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 1h' })
+    setTimeout(search1star0, 1000 * 60 * 3, '1m', 100000, rsii)
+}
+ function search4h(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 't4h')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+    setTimeout(search1d, 1000 * 60 * 3, '1d', 100000, rsii)
+}
+function search1d(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 't1d')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+    setTimeout(search1, 1000 * 60 * 3, '1m', 100000, rsii)
+}
+function search1w(size, volume, rs) {
+    let a = (async(size, volume, rs) => {
+            let b = await ind.founnd1(size, volume, rs)
+            let c = await save(b, 't1w')
+        })(size, volume, rs)
+        //api.sendMessage({ chat_id: 954135852, text: 'saved 4h' })
+    setTimeout(search4h, 1000 * 60 * 3, '4h', 100000, rsii)
+}
+setTimeout(search1w, 1000 * 60 * 0.9, '1w', 100000, rsii)
 app.get('/', function(req, res) {
         res.send(`
     1) Access candles 15m, 1h, 4h. Update is every 6mins.
