@@ -414,13 +414,7 @@ let timecounting = 0
 
 
 let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '4h', '1m', '3m', '5m','1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m', '1m', '3m', '5m', '1h', '1m', '3m', '5m','4h','1m', '3m', '5m', '15m', '1d','1m', '3m', '5m','30m', '1w']
-let othertfs = ['15m', '30m', '1h', '4h']
-let bigtfs  = ['1d', '1w']
-let count = 0
 let i = 44
-let j = 0
-let k = 0
-let tfs = ['1m', '3m', '5m', l]
 function delay(time){
     let now = Date.now() + time 
     while(Date.now() < now){}
