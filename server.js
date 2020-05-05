@@ -436,7 +436,7 @@ function delay(time){
             })(size, volume, rs)
             i++
             setTimeout(getCandles, 1000 * 60 * 1.5, tfs[i], 100000, rsii)
-            getCandles(tfs[i], 100000, 24)
+            //getCandles(tfs[i], 100000, 24)
         // setTimeout(function(){
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
