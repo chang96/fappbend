@@ -435,9 +435,8 @@ function delay(time){
                 let c = await save(b, `t${tfs[i]}`)
             })(size, volume, rs)
             i++
-
-            getCandles(tfs[i], 100000, 24)
             setTimeout(getCandles, 1000 * 60 * 1.5, tfs[i], 100000, rsii)
+            getCandles(tfs[i], 100000, 24)
         // setTimeout(function(){
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
