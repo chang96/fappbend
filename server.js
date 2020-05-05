@@ -437,7 +437,7 @@ function delay(time){
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
 
-    getCandles(tfs[i], 1000000, 25)
+    getCandles('t1h', 1000000, 25)
 
 //  function search1star(size, volume, rs) {
 //     let a = (async(size, volume, rs) => {
