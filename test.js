@@ -135,7 +135,7 @@ return result
 try {const coin = 'ETHUSDT'
 const time = '4h'
 let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=1000`).then(data => ha.HeikinAshi(data.data)).then(d =>d )//[d,d.timestamp,d.close])
-//.then(data => data.map(datum => Number(datum)));
+.then(data => data.map(datum => Number(datum[3])));
 //console.log(close)
 //const data = {"clclose
 //let rr = []
@@ -147,7 +147,8 @@ console.log(close.reverse())
 // }
 // rr.pop()
 // console.log(rr.reverse())
-//console.log(await stoch.stochRSI(close[2]))
+let st = await stoch.stochRSI(close)
+console.log(st.k[st.k.length - 1])
  } catch(e){
      console.log(e)
  }
