@@ -427,6 +427,7 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
 // }
 
     function getCandles(size, volume, rs) {
+
         if(i == 57)
         i=0
         let a = (async(size, volume, rs) => {
@@ -441,8 +442,8 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
-    setTimeout(getCandles, 1000 * 60 * 1.5, tfs[44], 100000, rsii)
-    getCandles(tfs[i], 1000000, 25)
+    setTimeout(getCandles, 1000 * 60 * 1.5, tfs[50], 100000, rsii)
+    // getCandles(tfs[i], 1000000, 25)
 
     
 // let dt = 1.5 //delay time
