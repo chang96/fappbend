@@ -437,8 +437,9 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
                 let c = await save(b, `t${size}`)
                 console.log(size + '************************************************')
             })(size, volume, rs)
-            i++
+            
             setTimeout(getCandles, 1000 * 60 * 1.5, tfs[i], 100000, rsii)
+            i++
             //getCandles(tfs[i], 100000, 24)
         // setTimeout(function(){
         //     return getCandles
