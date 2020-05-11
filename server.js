@@ -327,7 +327,7 @@ function highest(array, n) {
     //     setTimeout(search15, 1000 * 60 * 3, '15m', 100000, 35)
     // }
 const rsii = 35
-let count
+//let count
 async function ccc() {
     let rgx1 = /BTC$/
     let rgx2 = /ETH$/
