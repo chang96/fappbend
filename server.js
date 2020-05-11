@@ -428,7 +428,7 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
 
     function getCandles(size, volume, rs) {
         console.log('i:' + i)
-        if(i == 57)
+        if(i == 57 || tfs[i] == undefined)
         i=0
         let a = (async(size, volume, rs) => {
             //let cema = await ccc()
