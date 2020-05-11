@@ -429,7 +429,7 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
     function getCandles(size, volume, rs) {
         console.log('i:' + i)
         if(size == undefined || tfs[i] == undefined || i >= 57){
-            size = '5m'
+            size = '1m'
             i = 0
         }
         let a = (async(size, volume, rs) => {
