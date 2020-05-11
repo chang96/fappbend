@@ -417,7 +417,7 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
 // let othertfs = ['15m', '30m', '1h', '4h']
 // let bigtfs  = ['1d', '1w']
  let count = 0
- let i = 50
+ let i = 55
 // let j = 0
 // let k = 0
 // let tfs = ['1m', '3m', '5m', l]
@@ -428,8 +428,10 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
 
     function getCandles(size, volume, rs) {
         console.log('i:' + i)
-        if(i == 57 || tfs[i] == undefined)
-        i=0
+        if(size == undefined || tfs[i] == undefined || i >= 57){
+            size = '5m'
+            i = 0
+        }
         let a = (async(size, volume, rs) => {
             //let cema = await ccc()
             let b = await ind.founnd1(size, volume, rs)
@@ -437,15 +439,14 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
                 let c = await save(b, `t${size}`)
                 console.log(size + '************************************************')
             })(size, volume, rs)
-            
-            setTimeout(getCandles, 1000 * 60 * 1.5, tfs[i], 100000, rsii)
             i++
+            setTimeout(getCandles, 1000 * 60 * 1.5, tfs[i], 100000, rsii)
             //getCandles(tfs[i], 100000, 24)
         // setTimeout(function(){
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
-    setTimeout(getCandles, 1000 * 60 * 1.5, tfs[50], 100000, rsii)
+    setTimeout(getCandles, 1000 * 60 * 1.5, tfs[55], 100000, rsii)
 
     
 // let dt = 1.5 //delay time
