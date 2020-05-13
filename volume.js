@@ -56,10 +56,10 @@ async function checkcoin(coins, volume) {
             return false
 
         } else if ( await coin.symbol.match(rgBTC) &&  await coin.quoteVolume * prices.BTC >= volume) {
-            return true
+            return {use: true, v: await coin.quoteVolume * prices.BTC}
 
         } else if ( await coin.symbol.match(rgUSDT) &&  await coin.quoteVolume * 1 >= volume) {
-            return true
+            return {use: true, v: await coin.quoteVolume * 1}
 
         } else {
             return false
@@ -90,9 +90,9 @@ module.exports.volumeCheck = async function(volume) {
 
         return Promise.all(s.data.map(async function(dat, i) {
             let a = await checkcoin(dat, volume)
-            if (a === true) {
+            if (a.use == true) {
 
-                return dat.symbol
+                return {symbol: dat.symbol, volume: a.v}
             } else {
               //  console.log('')
             }
