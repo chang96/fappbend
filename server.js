@@ -435,9 +435,9 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
         let a = (async(size, volume, rs) => {
             //let cema = await ccc()
             let b = await ind.founnd1(size, volume, rs)
-            console.log(tfs[i], size + '..................................................')
+            //console.log(tfs[i], size + '..................................................')
                 let c = await save(b, `t${size}`)
-                console.log(size + '************************************************')
+              //  console.log(size + '************************************************')
             })(size, volume, rs)
             i++
             setTimeout(getCandles, 1000 * 60 * 1.5, tfs[i], 100000, rsii)
