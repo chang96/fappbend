@@ -173,11 +173,12 @@ async function mymap (candle, size){
         let aK = await astochs.k
         let aD = await astochs.d
         if(bigTime.indexOf(size) !== -1){
+            //crossing up from a given stoch
             if(xstochStrat(rK, rD, 15) && renkobars[1][0] == '+' ){
-                await finalArr.push({name:`${candle.name}`, desc: 'rbplus'})
+                await finalArr.push({name:`${candle.name}`, desc: 'rbplus', volume: qv})
             }
             if(xstochStrat(aK, aD)){
-                await finalArr.push({name:`${candle.name}`, desc: 'abplus'})
+                await finalArr.push({name:`${candle.name}`, desc: 'abplus', volume: qv})
             }
         }
 
