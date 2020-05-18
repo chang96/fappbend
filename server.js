@@ -868,20 +868,20 @@ app.get('/renko', function(req, res){
     if (ctimes.indexOf(t) >= 0){
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
             if (err) res.send(err)
-            if (coin == null){
+            else if (coin == null || coin =='null' ){
                 res.send([])
             }
-            if (coin) {
+            else if (coin) {
                 res.send((coin[t].filter(c=> c.desc === it)))
             }
         })
     } else if (btimes.indexOf(t) >= 0){
         bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
             if (err) return err
-            if (coin == null){
+            else if (coin == null || coin =='null'){
                 res.send([])
             }
-            if (coin) {
+            else if (coin) {
               //  console.log(coin[t])
                 res.send((coin[t].filter(c=> c.desc === it )))
             }
@@ -889,10 +889,10 @@ app.get('/renko', function(req, res){
     } else if(ptimes.indexOf(t) >= 0) {
         purecoin.findOne({ 'mymyid': 'purecoin' }, (err, coin) => {
             if (err) return err
-            if (coin == null){
+            else if (coin == null || coin =='null' ){
                 res.send([])
             }
-            if (coin) {
+            else if (coin) {
                 //console.log(coin[t])
                 res.send((coin[t].filter(c=> c.desc === it)))
             }
