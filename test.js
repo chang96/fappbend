@@ -96,6 +96,7 @@
 // })()
 const stoch = require('./taapistoch/index')
 const ha = require('./HA')
+const rha = require(('./rHA'))
 const renko = require('./renko').renko
 const hi = require('technicalindicators/dist/index').HeikinAshi
 const assert = require('assert')
@@ -134,12 +135,12 @@ return result
 
 try {const coin = 'ETHUSDT'
 const time = '4h'
-let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${coin}&interval=${time}&limit=1000`).then(data => ha.HeikinAshi(data.data)).then(d =>d )//[d,d.timestamp,d.close])
-.then(data => data.map(datum => Number(datum[3])));
+let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=4h&limit=1000`).then(data => rha.HeikinAshi(data.data))//.then(d =>d )//[d,d.timestamp,d.close])
+.then(data => data.map(datum => (datum[4])));
 //console.log(close)
 //const data = {"clclose
 //let rr = []
-console.log(close.reverse())
+//console.log(close.reverse())
 //console.log(close[0].timestamp.map(t=>moment.tz(t, "Africa/Lagos").format()))
 // for(let i = 0; i<close[2].length; i++){
 //     console.log(close[2][i +1])
@@ -148,7 +149,7 @@ console.log(close.reverse())
 // rr.pop()
 // console.log(rr.reverse())
 let st = await stoch.stochRSI(close)
-console.log(st.k[st.k.length - 1])
+console.log(st.k[0])
  } catch(e){
      console.log(e)
  }

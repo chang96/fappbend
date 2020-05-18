@@ -14,6 +14,7 @@ const binance = require('node-binance-api')().options({
     useServerTime: true
 })
 const ha = require('./HA')
+const rha = require('./rHA')
 const renko = require('./screnko').renko
 const eyo = require('./volume')
 
@@ -96,28 +97,31 @@ let find = async(size, volume) => {
     // console.log(4)
     let arr = []
     let eyoarr = await eyo.volumeCheck(volume)
+        //let eyoarr = eyoar
     return Promise.all(
         eyoarr.map(async function(eyo) {
-            let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=1000`).
+            let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo.symbol}&interval=${size}&limit=1000`).
             then(data => (data.data))
             let forHa = [...bars]
-            let ashi = await ha.HeikinAshi(forHa)
-            let aclose300 =await (ashi.map(datum => (datum[3])))
+            let ashi = await rha.HeikinAshi(forHa)
+            let aclose300 =await (ashi.map(datum => (datum[4])))
             let aclose100 = [...aclose300]
             let aclose200 = [...aclose300]
             let aclose400 = [...aclose300]
             let aclose500 = [...aclose300]
             let astochClose = [...aclose300]
-            let close300 =await (bars.map(datum => (datum[4])))
+            let close300 = await (bars.map(datum => (datum[4])))
             let close100 = [...close300]
             let close200 = [...close300]
             let close400 = [...close300]
             let close500 = [...close300]
             let stochClose = [...close300]
-            let volumepush = [...bars].map(datum => (datum[5]))//await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).then(data => data.data)
+            let qv = eyo.volume // quote volume in usdt
+            let volumepush = [...bars].map(datum => (datum[5]))//await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
+            // then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
-            return { name: eyo, pip100: close100, pip200: close200, pip: close400, pip500: close500, v: volumepush, v3: v3, stochClose: stochClose, forrenko:bars,
-                apip100: aclose100, apip200: aclose200, apip: aclose400, apip500: aclose500, astochClose: astochClose,
+            return { name: eyo.symbol, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3, pip500: close500, stochClose: stochClose, forrenko:[...ashi],
+                apip100: aclose100, apip200: aclose200, apip: aclose400, apip500: aclose500, astochClose: astochClose,qv: qv
             }
         })).catch(err => console.log(err))
 
@@ -474,10 +478,10 @@ let found1 = async(size, volume, rs) => {
    
 }
 
-let found2 = async(size, volume, rs, eyoar) => {
+let found2 = async(size, volume, rs) => {
     try{
         let arr = []
-        let candles = await find2(size, volume, eyoar)
+        let candles = await find(size, volume,)
         let r = await callCandles(mymap, candles, size)
         return r
     } catch(e){
@@ -541,10 +545,10 @@ module.exports.founnd1 = async(size, volume, rs) => {
     }
 }
 
-module.exports.founnd2 = async(size, volume, rs, eyoar) => {
+module.exports.founnd2 = async(size, volume, rs) => {
     try {
         console.log(2)
-        let a = await found2(size, volume, rs, eyoar)
+        let a = await found2(size, volume, rs)
         console.log(a)
         return a
     } catch (err) {
