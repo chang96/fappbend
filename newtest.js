@@ -205,10 +205,10 @@ async function mymap (candle, size){
         if(renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 1){
             await finalArr.push({name:`${candle.name}`, desc: 'xr1', volume: qv})
         }
-        if(rcurrentPrice >= rem20){ //rsecondToTheLastPrice < rem20
+        if(rcurrentPrice >= rem20.ema && rsecondToTheLastPrice < rem20.ema){ //rsecondToTheLastPrice < rem20
             await finalArr.push({name:`${candle.name}`, desc:'rem20+', volume: qv} )
         }
-        if(rcurrentPrice >= rem55  ){//&& rsecondToTheLastPrice < rem55
+        if(rcurrentPrice >= rem55.ema && rsecondToTheLastPrice < rem55.ema ){//&& rsecondToTheLastPrice < rem55
             await finalArr.push({name:`${candle.name}`, desc:'rem55+', volume: qv} )
         } 
         if(rK[0] >= rD[0] && rK[1] < rD[1] && renkobars[1][0] == '+' ){
@@ -232,29 +232,29 @@ async function mymap (candle, size){
         if(crossunder(rmymyhist)){
             await finalArr.push({name: `${candle.name}`, desc: 'rhist-', volume: qv})
         }
-        if(rb <= 30 ){
+        if(rb[rb.length - 1] <= 30 ){
             await  finalArr.push({name: `${candle.name}`, desc: 'rrsi-', volume: qv})
         } 
-        if(rb >= 70 ){
+        if(rb[rb.length - 1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'rrsi+', volume: qv})
         } 
 
-        if(currentPrice >= em55 && secondToTheLastPrice < em55){
+        if(currentPrice >= em55.ema && secondToTheLastPrice < em55.ema){
             await finalArr.push({name:`${candle.name}`, desc:'em55+', volume: qv} )
         }
-        if(currentPrice >= em99 && secondToTheLastPrice < em99 ){
+        if(currentPrice >= em99.ema && secondToTheLastPrice < em99.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'em99+', volume: qv} )
         }
-        if(currentPrice >= em200 && secondToTheLastPrice < em200){
+        if(currentPrice >= em200.ema && secondToTheLastPrice < em200.ema){
             await finalArr.push({name:`${candle.name}`, desc:'em200+', volume: qv} )
         }
-        if(currentPrice < em55 && secondToTheLastPrice >= em55 ){
+        if(currentPrice < em55.ema && secondToTheLastPrice >= em55.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'em55-', volume: qv} )
         }
-        if(currentPrice < em99 && secondToTheLastPrice >= em99 ){
+        if(currentPrice < em99.ema && secondToTheLastPrice >= em99.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'em99-', volume: qv} )
         }
-        if(currentPrice < em200 && secondToTheLastPrice >= em200 ){
+        if(currentPrice < em200.ema && secondToTheLastPrice >= em200.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'em200-', volume: qv}) 
         }
         if(K[0] >= D[0] && K[1] < D[1]){
@@ -272,30 +272,30 @@ async function mymap (candle, size){
         if(crossunder(mymyhist)){
             await finalArr.push({name: `${candle.name}`, desc: 'hist-', volume: qv})
         }
-        if(b <= 30 ){
+        if(b[b.length -1] <= 30 ){
             await  finalArr.push({name: `${candle.name}`, desc: 'rsi-', volume: qv})
         } 
-        if(b >= 70 ){
+        if(b[b.length -1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'rsi+', volume: qv})
         } 
 
         
-        if(acurrentPrice >= aem55 && asecondToTheLastPrice < aem55){
+        if(acurrentPrice >= aem55.ema && asecondToTheLastPrice < aem55.ema){
             await finalArr.push({name:`${candle.name}`, desc:'aem55+', volume: qv} )
         }
-        if(acurrentPrice >= aem99 && asecondToTheLastPrice < aem99 ){
+        if(acurrentPrice >= aem99.ema && asecondToTheLastPrice < aem99.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'aem99+', volume: qv} )
         }
-        if(acurrentPrice >= aem200 && asecondToTheLastPrice < aem200){
+        if(acurrentPrice >= aem200.ema && asecondToTheLastPrice < aem200.ema){
             finalArr.push({name:`${candle.name}`, desc:'aem200+', volume: qv} )
         }
-        if(acurrentPrice < aem55 && asecondToTheLastPrice >= aem55 ){
+        if(acurrentPrice < aem55.ema && asecondToTheLastPrice >= aem55.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'aem55-', volume: qv} )
         }
-        if(acurrentPrice < em99 && asecondToTheLastPrice >= aem99 ){
+        if(acurrentPrice < em99.ema && asecondToTheLastPrice >= aem99.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'aem99-', volume: qv} )
         }
-        if(acurrentPrice < aem200 && asecondToTheLastPrice >= aem200 ){
+        if(acurrentPrice < aem200.ema && asecondToTheLastPrice >= aem200.ema ){
             await finalArr.push({name:`${candle.name}`, desc:'aem200-', volume: qv}) 
         }
         if(stochstrat(aK, aD)){
@@ -319,10 +319,10 @@ async function mymap (candle, size){
         if(crossunder(amymyhist)){
             await  finalArr.push({name: `${candle.name}`, desc: 'ahist-', volume: qv})
         }
-        if(ab <= 30 ){
+        if(ab[ab.length - 1] <= 30 ){
             await finalArr.push( {name: `${candle.name}`, desc: 'arsi-', volume: qv})
         } 
-        if(ab >= 70 ){
+        if(ab[ab.length - 1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'arsi+', volume: qv})
         } 
     } catch (err) {
