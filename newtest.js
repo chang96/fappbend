@@ -254,7 +254,7 @@ async function mymap (candle, size){
         if(currentPrice < em99.ema && secondToTheLastPrice >= em99.ema && getSome([...candle.pip], em99.ema, 3, 13, 'down') ){
             await finalArr.push({name:`${candle.name}`, desc:'em99-', volume: qv} )
         }
-        if(currentPrice < em200.ema && secondToTheLastPrice >= em200.ema && getSome([...candle.pip], rem200.ema, 3, 13, 'down') ){
+        if(currentPrice < em200.ema && secondToTheLastPrice >= em200.ema && getSome([...candle.pip], em200.ema, 3, 13, 'down') ){
             await finalArr.push({name:`${candle.name}`, desc:'em200-', volume: qv}) 
         }
         if(K[0] >= D[0] && K[1] < D[1]){
