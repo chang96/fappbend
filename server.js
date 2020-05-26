@@ -702,7 +702,7 @@ app.post('/updateuser', function(req, res) {
 app.get('/coins/:t', function(req, res) {
     let t = req.params.t
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
-    let btimes = ['2h', 't4h', 't1d', 't1w']
+    let btimes = ['t2h', 't4h', 't1d', 't1w']
     let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
     //console.log(t)
     if (ctimes.indexOf(t) >= 0){
@@ -863,7 +863,7 @@ app.get('/renko', function(req, res){
     let t = req.query.time
     let it = req.query.indicatortype
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
-    let btimes = ['t4h', 't1d', 't1w']
+    let btimes = ['t2h', 't4h', 't1d', 't1w']
     let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
     if (ctimes.indexOf(t) >= 0){
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
@@ -911,7 +911,7 @@ app.get('/gettwo', function(req, res){
     let itfour = 'astr20+'
     let itfive = 'xr15'
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
-    let btimes = ['t4h', 't1d', 't1w']
+    let btimes = ['t2h', 't4h', 't1d', 't1w']
     let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
     if (ctimes.indexOf(t) >= 0){
         Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
