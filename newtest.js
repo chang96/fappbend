@@ -129,7 +129,7 @@ let find = async(size, volume) => {
 
 async function mymap (candle, size){
     let finalArr = []
-    const bigTime = ['1h', '4h', '1d', '1w']
+    const bigTime = ['1h', '2h', '4h', '1d', '1w']
     try {
         // let smav = await v(candle.v, 20)
         // let vtday = candle.v3

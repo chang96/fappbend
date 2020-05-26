@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const bigcoin = new Schema({
+    timet2h: {
+        type : String
+    },
     timet4h: {
         type: String
     },
@@ -11,6 +14,10 @@ const bigcoin = new Schema({
     },
     timet1w: {
         type: String
+    },
+    t2h: {
+        type: Array,
+        default: ['BTCUSDT']
     },
     t4h: {
         type: Array,

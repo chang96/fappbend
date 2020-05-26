@@ -413,7 +413,7 @@ let timecounting = 0
 
 
 
-let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '4h', '1m', '3m', '5m','1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m', '1m', '3m', '5m', '1h', '1m', '3m', '5m','4h','1m', '3m', '5m', '15m', '1d','1m', '3m', '5m','30m', '1w']
+let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '5m', '1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m', '3m', '2h','1m', '3m', '5m', '4h', '1m', '3m', '5m','1h','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m', '1m', '3m', '5m', '1h', '1m', '3m', '5m','4h','1m', '3m', '5m', '15m', '2h', '1d','1m', '3m', '5m','30m', '1w']
 // let othertfs = ['15m', '30m', '1h', '4h']
 // let bigtfs  = ['1d', '1w']
  let count = 0
@@ -428,7 +428,7 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
 
     function getCandles(size, volume, rs) {
         console.log('i:' + i)
-        if(size == undefined || tfs[i] == undefined || i >= 57){
+        if(size == undefined || tfs[i] == undefined || i >= tfs.length){
             size = '1m'
             i = 0
         }
@@ -446,7 +446,7 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
-    setTimeout(getCandles, 1000 * 60 * 1.5, '4h', 100000, rsii)
+    setTimeout(getCandles, 1000 * 60 * 1.5, '2h', 100000, rsii)
 
     
 // let dt = 1.5 //delay time
