@@ -266,7 +266,7 @@ function highest(array, n) {
 }
     async function save(dat, t) {
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
-    let btimes = ['t4h', 't1d', 't1w']
+    let btimes = ['2h', 't4h', 't1d', 't1w']
         if (ctimes.indexOf(t) >= 0 ){
             let data = await dat
         Coin.findOneAndUpdate({ 'mymyid': 'string' }, {
@@ -702,7 +702,7 @@ app.post('/updateuser', function(req, res) {
 app.get('/coins/:t', function(req, res) {
     let t = req.params.t
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
-    let btimes = ['t4h', 't1d', 't1w']
+    let btimes = ['2h', 't4h', 't1d', 't1w']
     let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
     //console.log(t)
     if (ctimes.indexOf(t) >= 0){
