@@ -272,6 +272,9 @@ async function mymap (candle, size){
         if(crossunder(mymyhist)){
             await finalArr.push({name: `${candle.name}`, desc: 'hist-', volume: qv})
         }
+        if(histinc(mymyhist)){
+            await finalArr.push({name: candle.name, desc: 'histickup', volume: qv})
+        }
         if(b[b.length -1] <= 30 ){
             await  finalArr.push({name: `${candle.name}`, desc: 'rsi-', volume: qv})
         } 
@@ -318,6 +321,9 @@ async function mymap (candle, size){
         }
         if(crossunder(amymyhist)){
             await  finalArr.push({name: `${candle.name}`, desc: 'ahist-', volume: qv})
+        }
+        if(histinc(amymyhist)){
+            await finalArr.push({name: candle.name, desc: 'ahistickup', volume: qv})
         }
         if(ab[ab.length - 1] <= 30 ){
             await finalArr.push( {name: `${candle.name}`, desc: 'arsi-', volume: qv})
@@ -377,6 +383,14 @@ function crossunder(arr){
     if (arr[arr.length - 1] < 0 && arr[arr.length - 2] >= 0) {
         //if (arr[arr.length - 1] < 0 && arr[arr.length - 1] > arr[arr.length - 2] && arr[arr.length - 2] < 0 && arr[arr.length - 2] > arr[arr.length - 3]) {
         return true
+    }
+}
+
+function histinc(arr) {
+    if (arr[arr.length - 1] <= 0 && arr[arr.length - 1] > arr[arr.length - 2]  && arr[arr.length - 2] > arr[arr.length - 3]) { //arr[arr.length - 1] >= 0 &&
+        return true
+    } else {
+        return false
     }
 }
 
