@@ -1,5 +1,4 @@
 require('dotenv').config()
-const tulind = require('tulind')
 const mymacd = require('./taapi/index')
 const Coins = require('./model/coin')
 const axios = require('axios')
