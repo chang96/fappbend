@@ -907,7 +907,7 @@ app.get('/gettwo', function(req, res){
     let t = req.query.time
     let itone = req.query.indicatortypeone
     let ittwo = req.query.indicatortypetwo
-    let itthree = 'rstr20+'
+    let itthree = 'ahistickup'
     let itfour = 'astr20+'
     let itfive = 'xr15'
     let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
