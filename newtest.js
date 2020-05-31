@@ -228,6 +228,9 @@ async function mymap (candle, size){
         if(crossover(rmymyhist) && renkobars[1][0] == '+'){
             await finalArr.push({name: `${candle.name}`, desc:'rhist+', volume: qv})
         }
+        if(histinc(rmymyhist)){
+            await finalArr.push({name: candle.name, desc: 'rhistickup', volume: qv})
+        }
         if(crossunder(rmymyhist)){
             await finalArr.push({name: `${candle.name}`, desc: 'rhist-', volume: qv})
         }
