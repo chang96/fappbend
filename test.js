@@ -97,10 +97,12 @@
 const stoch = require('./taapistoch/index')
 const ha = require('./HA')
 const rha = require(('./rHA'))
-const renko = require('./renko').renko
+const renko = require('./screnko').renko
 const hi = require('technicalindicators/dist/index').HeikinAshi
 const assert = require('assert')
 const moment = require('moment-timezone')
+const rsi = require('./taapiRSI/index').rsi
+const macd = require('./taapi/index').histogram
 // //module.exports = {indicator
 const axios = require('axios')
 const c = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ETHBTC', 'XRPBTC', 'EOSBTC', 'ETCBTC', 'LTCBTC', 'LINKBTC', 'BNBBTC', 'XLMBTC', 'TRXBTC', 'XLMBTC', 'NEOBTC', 'XTZBTC', 'DASHBTC', 'IOTABTC',
@@ -108,21 +110,42 @@ const c = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ETHBTC', 'XRPBTC', 'EOSBTC', 'ETCBT
     'IOSTBTC', 'RDNBTC', 'BQXBTC', 'ARPABTC', 'CHZBTC', 'RVNBTC', 'KAVABTC', 'ZECBTC', 'IOTABTC', 'AGIBTC', 'DCRBTC', 'PIVXBTC', 'LSKBTC', 'STEEMBTC', 'BEAMBTC', 'LOOMBTC', 'THETABTC', 'XEMBTC', 'STXBTC', 'TNTBTC', 'ICXBTC', 'NULSBTC', 'TOMOBTC', 'ERDBTC', 'SNMBTC', 'MDABTC', 'GOBTC', 'WABIBTC', 'ELFBTC'
 ]
 const coins = ['FETUSDT']
-async function ff(f){
-    let fff = await f
-    let n = {open:[],low:[], high:[], close:[], timestamp:[], volume:[]}
-    fff.forEach(c=>{
-        n.timestamp.push(Number(c[0]))
-        n.open.push(Number(c[1]))
-        n.high.push(Number(c[2]))
-        n.low.push(Number(c[3]))
-        n.close.push(Number(c[4]))
-        n.volume.push(Number(c[5]))
+// async function ff(f){
+//     let fff = await f
+//     let n = {open:[],low:[], high:[], close:[], timestamp:[], volume:[]}
+//     fff.forEach(c=>{
+//         n.timestamp.push(Number(c[0]))
+//         n.open.push(Number(c[1]))
+//         n.high.push(Number(c[2]))
+//         n.low.push(Number(c[3]))
+//         n.close.push(Number(c[4]))
+//         n.volume.push(Number(c[5]))
+//     })
+//     const period = 14
+// const result = renko(Object.assign({}, n, {period: period, useATR:true}))
+// console.log(result.close.reverse()[0])
+// return result
+// }
+function meanDev(array, lookback, percent){
+    let cap = percent * array[0]
+    let arr = array.splice(0, lookback)
+    let sum = arr.reduce(function(a, b, i){
+        return Number (a)+ Number (b)
     })
-    const period = 14
-const result = renko(Object.assign({}, n, {period: period, useATR:true}))
-return result
+    let avg = sum/arr.length
+    console.log(avg)
+    let deviation = arr.map(function(price){
+        return Math.abs(Number (price) - Number (avg))
+    }).reduce(function(a, b){
+        return Number (a)+ Number (b)
+    })
+    let meanDeviation = deviation/arr.length
+    console.log(meanDeviation)
+    let result =  meanDeviation <= cap ? true: false
+    return result
 }
+
+// console.log(meanDev(prices, 8, 0.01))
  let m = (async function() {
 //     coins.map(async function(coin) {
 //         let coi = await coin
@@ -135,8 +158,22 @@ return result
 
 try {const coin = 'ETHUSDT'
 const time = '4h'
-let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=4h&limit=1000`).then(data => rha.HeikinAshi(data.data))//.then(d =>d )//[d,d.timestamp,d.close])
-.then(data => data.map(datum => (datum[4])));
+let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=1000`).then(data => renko(data.data))//.then(d =>d )//[d,d.timestamp,d.close])
+//.then(data => data.map(datum => (datum[4])));
+let closea = await axios.get(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=1000`).then(data => (data.data)).then(data=> data.map(datum => datum[4]))
+// let n = {open:[],low:[], high:[], close:[], timestamp:[], volume:[]}
+// close.forEach(c=>{
+//     n.timestamp.push(Number(c[0]))
+//     n.open.push(Number(c[1]))
+//     n.high.push(Number(c[2]))
+//     n.low.push(Number(c[3]))
+//     n.close.push(Number(c[4]))
+//     n.volume.push(Number(c[5]))
+// })
+// const period = 14
+// const result = renko(Object.assign({}, n, {period: period, useATR:true}))
+// console.log(close[2].reverse())                             
+
 //console.log(close)
 //const data = {"clclose
 //let rr = []
@@ -148,8 +185,13 @@ let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=ETHUSD
 // }
 // rr.pop()
 // console.log(rr.reverse())
-let st = await stoch.stochRSI(close)
-console.log(st.k[0])
+let ranging = meanDev(closea.slice().reverse(), 10, 1/100)
+let rs = await rsi([...close[2]])
+let mac = await macd([...close[2]], [...close[2]])
+let st = await stoch.stochRSI(close[2])
+console.log(mac.histogram.reverse()[0])
+console.log(rs.reverse()[0])
+console.log(ranging)
  } catch(e){
      console.log(e)
  }

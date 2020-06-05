@@ -240,6 +240,26 @@ async function mymap (candle, size){
         if(rb[rb.length - 1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'rrsi+', volume: qv})
         } 
+        if(lowRSI(rb, 30, 7) && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
+            if(lowRSI(rb, 25, 7) && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
+                if(lowRSI(rb, 20, 7) && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
+                    await finalArr.push({name: candle.name, desc: 'rrsistoch<20', volume: qv})
+                } else {
+                    await finalArr.push({name: candle.name, desc: 'rrsistoch<25', volume: qv})
+                }
+            } else {
+                await finalArr.push({name: candle.name, desc: 'rrsistoch<30', volume: qv})
+            }
+            
+        } 
+        if(lowRSI(rb, 25, 7) ){
+            if(lowRSI(rb, 20, 7) ){
+                    await finalArr.push({name: candle.name, desc: 'rrsi<20', volume: qv})
+                }
+             else {
+                await finalArr.push({name: candle.name, desc: 'rrsi<25', volume: qv})
+            }     
+        } 
 
         if(currentPrice >= em55.ema && secondToTheLastPrice < em55.ema && getSome([...candle.pip], em55.ema, 3, 13, 'up')){
             await finalArr.push({name:`${candle.name}`, desc:'em55+', volume: qv} )
@@ -332,7 +352,28 @@ async function mymap (candle, size){
         } 
         if(ab[ab.length - 1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'arsi+', volume: qv})
+        }
+        if(lowRSI(ab, 30, 10) && stochstrat(aK, aD) && aK[0] >= 20){
+            if(lowRSI(ab, 25, 10) && stochstrat(aK, aD) && aK[0] >= 20){
+                if(lowRSI(ab, 20, 10) && stochstrat(aK, aD) && aK[0] >= 20){
+                    await finalArr.push({name: candle.name, desc: 'arsistoch<20', volume: qv})
+                } else {
+                    await finalArr.push({name: candle.name, desc: 'arsistoch<25', volume: qv})
+                }
+            } else {
+                await finalArr.push({name: candle.name, desc: 'arsistoch<30', volume: qv})
+            }
+            
         } 
+        if(lowRSI(ab, 25, 10) ){
+            if(lowRSI(ab, 20, 10) ){
+                    await finalArr.push({name: candle.name, desc: 'arsi<20', volume: qv})
+                }
+             else {
+                await finalArr.push({name: candle.name, desc: 'arsi<25', volume: qv})
+            }     
+        } 
+       
     } catch (err) {
         console.log(err)
     }
@@ -396,7 +437,11 @@ function histinc(arr) {
     }
 }
 
-
+function lowRSI(arr, cap, lookback){
+    return arr.reverse().slice(0, lookback).some(function(rsi){
+        return rsi <= cap
+    })
+}
 
 function voltesting(arr1, arr2) {
     return arr1.some(function(a, i) {
