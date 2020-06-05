@@ -133,7 +133,7 @@ async function mymap (candle, size){
         // let smav = await v(candle.v, 20)
         // let vtday = candle.v3
         // let alph = vtday[vtday.length - 1] / smav[smav.length - 1]
-        // let alpha = alph == NaN ? 0 : alph.toFixed(1)
+        // let alpha = alph == NaN ? 0 : alph.toFixed(1) //
         let qv = candle.qv
         let currentPrice = candle.pip[candle.pip.length -1]
         let secondToTheLastPrice = candle.pip[candle.pip.length - 2]
