@@ -240,9 +240,9 @@ async function mymap (candle, size){
         if(rb[rb.length - 1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'rrsi+', volume: qv})
         } 
-        if(lowRSI(rb, 30, 7) && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
-            if(lowRSI(rb, 25, 7) && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
-                if(lowRSI(rb, 20, 7) && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
+        if(lowRSI(rb, 30, 7)== true && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
+            if(lowRSI(rb, 25, 7)== true && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
+                if(lowRSI(rb, 20, 7)== true && renkobars[1][0] == '+' && renkobars[1][1] == '-' && rK[0] >= 20 ){
                     await finalArr.push({name: candle.name, desc: 'rrsistoch<20', volume: qv})
                 } else {
                     await finalArr.push({name: candle.name, desc: 'rrsistoch<25', volume: qv})
@@ -353,9 +353,9 @@ async function mymap (candle, size){
         if(ab[ab.length - 1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'arsi+', volume: qv})
         }
-        if(lowRSI(ab, 30, 10) && stochstrat(aK, aD) && aK[0] >= 20){
-            if(lowRSI(ab, 25, 10) && stochstrat(aK, aD) && aK[0] >= 20){
-                if(lowRSI(ab, 20, 10) && stochstrat(aK, aD) && aK[0] >= 20){
+        if(lowRSI(ab, 30, 10) == true && stochstrat(aK, aD) && aK[0] >= 20){
+            if(lowRSI(ab, 25, 10) == true && stochstrat(aK, aD) && aK[0] >= 20){
+                if(lowRSI(ab, 20, 10) == true && stochstrat(aK, aD) && aK[0] >= 20){
                     await finalArr.push({name: candle.name, desc: 'arsistoch<20', volume: qv})
                 } else {
                     await finalArr.push({name: candle.name, desc: 'arsistoch<25', volume: qv})
@@ -365,8 +365,8 @@ async function mymap (candle, size){
             }
             
         } 
-        if(lowRSI(ab, 25, 10) ){
-            if(lowRSI(ab, 20, 10) ){
+        if(lowRSI(ab, 25, 10) == true ){
+            if(lowRSI(ab, 20, 10) == true){
                     await finalArr.push({name: candle.name, desc: 'arsi<20', volume: qv})
                 }
              else {
@@ -438,7 +438,7 @@ function histinc(arr) {
 }
 
 function lowRSI(arr, cap, lookback){
-    return arr.reverse().slice(0, lookback).some(function(rsi){
+    return [...arr].reverse().slice(0, lookback).some(function(rsi){
         return rsi <= cap
     })
 }

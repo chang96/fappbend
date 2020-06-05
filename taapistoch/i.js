@@ -19,7 +19,7 @@ const RSI = require('../taapiRSI/index')
     let clos = await close
     let clo = [...clos]
     const current = await RSI.rsi(clo)
-    let sortArr = (await pushing(current, 14))
+    let sortArr = await pushing([...current], 14)
         //currentRSI = current[current.length - 1]
     //console.log(sortArr)
     let stochs = sortArr.map(function(arr) {
