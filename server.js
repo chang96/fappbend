@@ -446,7 +446,7 @@ let tfs = ['1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m','1m'
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
-    setTimeout(getCandles, 1000 * 60 * 1.5, '1h', 100000, rsii)
+    setTimeout(getCandles, 1000 * 60 * 1.5, '2h', 100000, rsii)
 
     
 // let dt = 1.5 //delay time
