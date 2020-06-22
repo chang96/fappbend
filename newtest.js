@@ -353,6 +353,12 @@ async function mymap (candle, size){
         if(ab[ab.length - 1] > 30 ){
             await finalArr.push({name: `${candle.name}`, desc: 'arsi+', volume: qv})
         }
+        if(lowRSI(ab, 35, 10)){
+            await finalArr.push({name: `${candle.name}`, desc: 'lowrsi', volume: qv})
+        }
+        if(lowRSI(ab, 35, 10) && stochstrat(aK, aD) && aK[0] >= 20 ){
+            await finalArr.push({name: `${candle.name}`, desc: 'lowrsiplusstoch', volume: qv})
+        }
         if(lowRSI(ab, 30, 10) == true && stochstrat(aK, aD) && aK[0] >= 20){
             if(lowRSI(ab, 25, 10) == true && stochstrat(aK, aD) && aK[0] >= 20){
                 if(lowRSI(ab, 20, 10) == true && stochstrat(aK, aD) && aK[0] >= 20){
