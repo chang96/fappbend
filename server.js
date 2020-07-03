@@ -73,7 +73,7 @@ connection.once('open', function() {
 // io.listen(PORT)
 // console.log('listening on ' + PORT)
 
-let tel = require('./command/telegram').tel(bot, Coin, User, api, otherUser)
+// let tel = require('./command/telegram').tel(bot, Coin, User, api, otherUser)
     // let a = (async() => {
     //     let b = await ind.founnd
     //     console.log(b)
