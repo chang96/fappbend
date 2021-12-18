@@ -41,11 +41,11 @@ const RSI = require('../taapiRSI/index')
 //         // return stochs
 // }
 
-    async function stochParams(close) {
+    async function stochParams(close, n) {
     let clos = await close
     let clo = [...clos]
-    const current = await RSI.rsi(clo)
-    let sortArr = await pushing([...current], 14)
+    const current = await RSI.rsi(clo, n)
+    let sortArr = await pushing([...current], n)
         //currentRSI = current[current.length - 1]
         //console.log(sortArr)
     let stochs = Promise.all(sortArr.map(function(arr) {
@@ -59,11 +59,11 @@ const RSI = require('../taapiRSI/index')
     return stochs
 }
 
-    async function stoch(close) {
+    async function stoch(close, n) {
     let k = []
     let d = []
     let clos = await close
-    let stochParam = await stochParams(clos)
+    let stochParam = await stochParams(clos, n)
         // console.log(stochParam)
     let allStochs = Promise.all(stochParam.map(async function(para) {
             let param = await para

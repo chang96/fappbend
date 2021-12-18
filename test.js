@@ -103,6 +103,7 @@ const assert = require('assert')
 const moment = require('moment-timezone')
 const rsi = require('./taapiRSI/index').rsi
 const macd = require('./taapi/index').histogram
+const ema = require('./taapi/ema/ema')
 // //module.exports = {indicator
 const axios = require('axios')
 const c = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ETHBTC', 'XRPBTC', 'EOSBTC', 'ETCBTC', 'LTCBTC', 'LINKBTC', 'BNBBTC', 'XLMBTC', 'TRXBTC', 'XLMBTC', 'NEOBTC', 'XTZBTC', 'DASHBTC', 'IOTABTC',
@@ -158,9 +159,13 @@ function meanDev(array, lookback, percent){
 
 try {const coin = 'ETHUSDT'
 const time = '4h'
-let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=1000`).then(data => renko(data.data))//.then(d =>d )//[d,d.timestamp,d.close])
+// let close = await axios.get(`https://api.binance.com/api/v3/klines?symbol=COCOSUSDT&interval=3m&limit=1000`).then(data => renko(data.data))//.then(d =>d )//[d,d.timestamp,d.close])
 //.then(data => data.map(datum => (datum[4])));
-let closea = await axios.get(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=1000`).then(data => (data.data)).then(data=> data.map(datum => datum[4]))
+let closea = await axios.get(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=15m&limit=1000`).then(async data =>{
+
+//  await atr(data.data)
+ return data.data
+}).then(data=> data.map(datum => datum[4]))
 // let n = {open:[],low:[], high:[], close:[], timestamp:[], volume:[]}
 // close.forEach(c=>{
 //     n.timestamp.push(Number(c[0]))
@@ -185,15 +190,37 @@ let closea = await axios.get(`https://api.binance.com/api/v3/klines?symbol=BTCUS
 // }
 // rr.pop()
 // console.log(rr.reverse())
-let ranging = meanDev(closea.slice().reverse(), 10, 1/100)
-let rs = await rsi([...close[2]])
-let mac = await macd([...close[2]], [...close[2]])
-let st = await stoch.stochRSI(close[2])
-console.log(mac.histogram.reverse()[0])
+
+// let ranging = meanDev(closea.slice().reverse(), 10, 1/100)
+let rs = await rsi([...closea], 6)
+// let mac = await macd([...closea], [...closea])
+let st = await stoch.stochRSI([...closea] ,6)
+// console.log(mac.histogram.reverse()[0])
 console.log(rs.reverse()[0])
-console.log(ranging)
+ console.log(st.k[0])
  } catch(e){
      console.log(e)
  }
 
  })()
+
+
+ const atr = async function (candles, ex ){
+    const arrtr = candles.map(((candles, i, arr)=>{
+        if(i === 0){
+            let a = Number(candles[2] - candles[3])
+            let b = Math.abs(Number(candles[1] - arr[0][4]))
+            let c = Math.abs(Number(candles[3] - arr[0][4]))
+            return Math.max(a, b, c)
+        } else {
+            let a = Number(candles[2] - candles[3])
+            let b = Math.abs(Number(candles[1] - arr[i-1][4]))
+            let c = Math.abs(Number(candles[3] - arr[i-1][4]))
+            return Math.max(a, b, c)
+        }
+      
+ })) 
+ let x = await ema.see(14, 14, arrtr)
+ console.log(x.ema +'kkkkkkk')
+ return x
+}

@@ -24,7 +24,19 @@ async function renkobars(f){
     }
    
     const period = 14
-const result = renko(Object.assign({}, np(), {period: period, useATR:true}))
+    let price = fff[fff.length -1][4]
+    let rgx = /$0/
+    Number(price)
+    if(price <= 0.01){
+        let zeros  =  price.split('').length
+        let myatr = 1/Math.pow(10, zeros-2)
+        console.log(myatr, zeros, price)
+       // var result = renko(Object.assign({}, np(), {brickSize : myatr, useATR : false }))
+        var result = renko(Object.assign({}, np(), {period: period, useATR:true}))
+    } else {
+        var result = renko(Object.assign({}, np(), {period: period, useATR:true}))
+    }
+
 let forchart = []
 for(let i = 0; i<result.close.length; i++){
     //console.log(close[2][i +1])
@@ -43,7 +55,7 @@ pn.pop()
 
 //console.log(renkoLastClose, renkoLastOpen)
 //return result
-return [forchart, pn.reverse(), result.close]
+return [forchart, pn.reverse(), result.close, result.volume]
 } 
 
 module.exports.renko = renkobars

@@ -23,7 +23,7 @@ const binanceEx = require('node-binance-api')().options({
     APISECRET: process.env.APISECRET,
     // getTime: xxx // time generator function, optional, defaults to () => Date.now()
 })
-
+const f = require("./fapp/vvolume")
 const express = require('express')
 const eyo = require('./volume')
 const app = express()
@@ -449,7 +449,7 @@ let tfs = ['1d', '1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
-    setTimeout(getCandles, 1000 * 60 * 1.2, '30m', 100000, rsii)
+    // setTimeout(getCandles, 1000 * 60 * 1.2, '30m', 100000, rsii)
 
     
 // let dt = 1.5 //delay time
@@ -947,6 +947,55 @@ app.get('/gettwo', function(req, res){
     } else{
         res.send('paramter not supported')
     }
+})
+app.get('/gettwo', function(req, res){
+    let rgx = /BTC$|USDT$/
+    let t = req.query.time
+    let itone = req.query.indicatortypeone
+    let ittwo = req.query.indicatortypetwo
+    let itthree = 'rhistickup'
+    let itfour = 'astr20+'
+    let itfive = 'xr15'
+    let ctimes = ['t1m', 't3m', 't5m', 't15m', 't30m', 't1h']
+    let btimes = ['t2h', 't4h', 't1d', 't1w']
+    let ptimes = ['pt5m', 'pt15m', 'pt30m', 'pt1h']
+    if (ctimes.indexOf(t) >= 0){
+        Coin.findOne({ 'mymyid': 'string' }, (err, coin) => {
+            if (err) res.send(err)
+            if (coin) {
+                res.send((coin[t].filter(c=> (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
+            }
+        })
+    } else if (btimes.indexOf(t) >= 0){
+        bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+              //  console.log(coin[t])
+                res.send((coin[t].filter(c=>  (c.desc === itthree && c.name.match(rgx)) ||
+                (c.desc === itfour && c.name.match(rgx)) || (c.desc === itone && c.name.match(rgx)) || (c.desc === ittwo && c.name.match(rgx)))))
+            }
+        })
+    } else if(ptimes.indexOf(t) >= 0) {
+        purecoin.findOne({ 'mymyid': 'purecoin' }, (err, coin) => {
+            if (err) return err
+            if (coin) {
+                //console.log(coin[t])
+
+                res.send((coin[t].filter(c=> {
+                    
+                    return (c.desc === itone && c.name.match(rgx)) ||  (c.desc === ittwo && c.name.match(rgx))
+                })))
+            }
+        })
+    } else{
+        res.send('paramter not supported')
+    }
+})
+
+app.get("/getallwithvolume", async function (req, res){
+    const result = await f.f()
+    console.log(result.length)
+    res.send(result)
 })
     // app.get('/store', function(req, res) {
     //     let a = (async() => {

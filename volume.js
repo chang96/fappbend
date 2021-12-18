@@ -45,7 +45,7 @@ async function checkcoin(coins, volume) {
         const rgUSDT = /USDT$/
         const rgBEAR = /BEAR/
         const rgBULL = /BULL/
-        const forbidden = ['EURUSDT', 'PAXUSDT', 'USDCUSDT', 'USDSUSDT', 'TUSDUSDT', 'BUSDUSDT', '', '', '', '', '']
+        const forbidden = ['EURUSDT', 'PAXUSDT', 'USDCUSDT', 'USDSUSDT', 'TUSDUSDT', 'BUSDUSDT', 'BTCDOWNUSDT', 'BTCUPUSDT', '', '', '']
             //console.log(coin)
         if (  await coin.symbol.match(rgETH) && await coin.quoteVolume * prices.ETH >= volume) {
             return false
@@ -56,7 +56,7 @@ async function checkcoin(coins, volume) {
             return false
 
         } else if ( await coin.symbol.match(rgBTC) &&  await coin.quoteVolume * prices.BTC >= volume) {
-            return {use: true, v: await coin.quoteVolume * prices.BTC}
+            return false
 
         } else if ( await coin.symbol.match(rgUSDT) &&  await coin.quoteVolume * 1 >= volume) {
             return {use: true, v: await coin.quoteVolume * 1}

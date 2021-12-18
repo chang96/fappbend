@@ -42,11 +42,11 @@
 let neg = require('./pos/neg')
 let pos = require('./pos/pos')
 
-module.exports.AVG = async function(candles) {
+module.exports.AVG = async function(candles, l) {
     try {
         let data = await candles
-        let ne = await neg.neg(data)
-        let po = await pos.pos(data)
+        let ne = await neg.neg(data, l)
+        let po = await pos.pos(data, l)
             //console.log([ne], [po])
         return Promise.all(ne.negArr.map(async function(n, i) {
 

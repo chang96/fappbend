@@ -17,20 +17,20 @@ async function pos(a) {
 
 
 
-module.exports.pos = async function(arr) {
+module.exports.pos = async function(arr, n) {
     try {
         let posArr = []
         let ups = await pos(arr)
             //console.log(ups.length)
-        let first14 = ups.slice(0, 14)
-        ups.splice(0, 14)
-        let sum = first14.reduce(function(a, b) {
+        let firstn = ups.slice(0, n)
+        ups.splice(0, n)
+        let sum = firstn.reduce(function(a, b) {
                 return a + b
             }, 0)
             //console.log(ups.length)
-        let avg = (sum) / 14
+        let avg = (sum) / n
         posArr.push(avg)
-        let alpha = 1 / 14
+        let alpha = 1 / n
         let beta = 1 - alpha
         let avgt = ups.reduce(function(b, a) {
             let avgnow = (alpha * a) + (beta * b)

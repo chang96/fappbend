@@ -128,6 +128,7 @@ let find = async(size, volume) => {
 
 async function mymap (candle, size){
     let finalArr = []
+    const smallTime = ['5m', '15m', '30m']
     const bigTime = ['1h', '2h', '4h', '1d', '1w']
     try {
         // let smav = await v(candle.v, 20)
@@ -145,10 +146,15 @@ async function mymap (candle, size){
         let em200 = await ema.see(200, 200, candle.pip500)
         let mymyhist = mymyhist1.histogram
         let mymymac = mymyhist1.macd
-        let b = await myrsi.rsi(candle.pip)
-        let stochs = await stochastic.stochRSI(candle.stochClose)
+        let b = await myrsi.rsi(candle.pip, 14)
+        let stochs = await stochastic.stochRSI(candle.stochClose, 14)
         let K = await stochs.k
         let D = await stochs.d
+        let b6 = await myrsi.rsi(candle.pip, 6)
+        let stochs6 = await stochastic.stochRSI(candle.stochClose, 6)
+        let K6 = await stochs6.k
+        let D6 = await stochs6.d
+        
         let renkobars = await renko(candle.forrenko)
         let renkobars00s = [...renkobars[2]]
         let renkobars000 = [...renkobars[2]]
@@ -161,8 +167,8 @@ async function mymap (candle, size){
         let rem20 = await ema.see(20, 20, renkobars300)
         let rem55 = await ema.see(55, 55, renkobars300)
         let rmymyhist = rmymyhist1.histogram
-        let rb = await myrsi.rsi(renkobars000)
-        let rstochs = await stochastic.stochRSI(renkobars00s)
+        let rb = await myrsi.rsi(renkobars000,14)
+        let rstochs = await stochastic.stochRSI(renkobars00s,14)
         let rK = await rstochs.k
         let rD = await rstochs.d
         let amymyhist1 = await mymacd.histogram(candle.apip100, candle.apip200)
@@ -171,10 +177,14 @@ async function mymap (candle, size){
         let aem200 = await ema.see(200, 200, candle.apip500)
         let amymyhist = amymyhist1.histogram
         let amymymac = amymyhist1.macd
-        let ab = await myrsi.rsi(candle.apip)
-        let astochs = await stochastic.stochRSI(candle.astochClose)
+        let ab = await myrsi.rsi(candle.apip, 14)
+        let astochs = await stochastic.stochRSI(candle.astochClose, 14)
         let aK = await astochs.k
         let aD = await astochs.d
+        let ab6 = await myrsi.rsi(candle.apip, 6)
+        let astochs6 = await stochastic.stochRSI(candle.astochClose, 6)
+        let aK6 = await astochs6.k
+        let aD6 = await astochs6.d
         if(bigTime.indexOf(size) !== -1){
             //crossing up from a given stoch
             if(xstochStrat(rK, rD, 15) && renkobars[1][0] == '+' ){
@@ -182,6 +192,12 @@ async function mymap (candle, size){
             }
             if(xstochStrat(aK, aD)){
                 await finalArr.push({name:`${candle.name}`, desc: 'abplus', volume: qv})
+            }
+        }
+
+        if(smallTime.indexOf(size) > -1){
+            if(lowRSI(rb, 33, 7) === true && lowRSI(ab, 30, 9) === true && stochstrat(aK, aD) && aK[0] >= 20 ){
+                await finalArr.push({name: candle.name, desc: 'xlowrsiplusstoch', volume: qv})
             }
         }
 
@@ -288,6 +304,12 @@ async function mymap (candle, size){
         if(K[0] < D[0] && K[1] >= D[1]){
             await finalArr.push({name:`${candle.name}`, desc:'str-', volume: qv} )
         }
+        if(K6[0] <= 1 ){
+            await finalArr.push({name:`${candle.name}`, desc:'6str0', volume: qv} )
+        }
+        if(b6[b6.length -1] < 30 ){
+            await finalArr.push({name: `${candle.name}`, desc: '6rsi0', volume: qv})
+        } 
         if(crossover(mymyhist)){
             await finalArr.push({name: `${candle.name}`, desc:'hist+', volume: qv})
         }
@@ -338,6 +360,12 @@ async function mymap (candle, size){
         if(aK[0] < aD[0] && aK[1] >= aD[1]){
             await finalArr.push({name:`${candle.name}`, desc:'astr-', volume: qv} )
         }
+        if(aK6[0] <= 1 ){
+            await finalArr.push({name:`${candle.name}`, desc:'a6str0', volume: qv} )
+        }
+        if(ab6[ab6.length -1] < 30 ){
+            await finalArr.push({name: `${candle.name}`, desc: 'a6rsi0', volume: qv})
+        } 
         if(crossover(amymyhist)){
             await finalArr.push({name: `${candle.name}`, desc:'ahist+', volume: qv})
         }
