@@ -86,8 +86,42 @@ let find1 = async(size, volume) => {
             let volumepush = [...bars].map(datum => (datum[5]))//await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo}&interval=${size}&limit=26`).
             // then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
+            
+            let xbars = [...bars]
+            xbars.splice(0, 899)
+            let volumepushx = [...xbars]
+            // let volumepush = [...volumepushx]
+            let volumepush1h = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=1h&limit=25`).
+            then(data => data.data).then(data => data.map(datum => (datum[5])))
+
+            let volumepush7d = [...volumepushx.slice(82, 89)]
+            let thisWeek = volumepush7d[6]
+            volumepush7d.pop()
+            let average = avg(volumepush7d)
+            const volumeChange7d = (Number(thisWeek) - average )/ average
+
+            let volumepush30d = [...volumepushx.slice(59, 89)]
+            let thirtieth = volumepush30d[29]
+            volumepush30d.pop()
+            let average30d = avg(volumepush30d)
+            const volumeChange30d = (Number(thirtieth) - average30d )/ average30d
+
+            let volumepush90d = [...volumepushx]
+            let ninetieth = volumepush90d[89]
+            volumepush90d.pop()
+            let average90d = avg(volumepush90d)
+            const volumeChange90d = (Number(ninetieth) - average90d)/ average90d
+
+            const volumeChange1h = (Number(volumepush1h[24]) - Number(volumepush1h[0])) / Number(volumepush1h[0])
+            
+
+            const volumeChange = (Number(volumepush[volumepush.length - 1]) - Number(volumepush[volumepush.length - 2])) / Number(volumepush[volumepush.length - 2])
+            
+
             return { name: eyo.symbol, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3, pip500: close500, stochClose: stochClose, forrenko:bars,
-                apip100: aclose100, apip200: aclose200, apip: aclose400, apip500: aclose500, astochClose: astochClose,qv: qv
+                apip100: aclose100, apip200: aclose200, apip: aclose400, apip500: aclose500, astochClose: astochClose,qv: qv, 
+                volumeChange: Math.ceil(volumeChange*100), volumeChange1h: Math.ceil(volumeChange1h*100), volumeChange7d: Math.ceil(volumeChange7d*100), volumeChange30d: Math.ceil(volumeChange30d*100), volumeChange90d: Math.ceil(volumeChange90d*100), // pip100: close100,  v: volumepush,
+                total_volume: Math.ceil(Number(v3[v3.length -1]) )
             }
         })).catch(err => console.log(err))
 
@@ -125,6 +159,64 @@ let find = async(size, volume) => {
         })).catch(err => console.log(err))
 
 }
+
+
+let find4 = async(size, volume) => {
+    let arr = []
+
+    let eyoarr = await eyo.volumeCheck(volume)
+    // console.log(eyoarr)
+    return Promise.all(
+        eyoarr.map(async function(eyo) {
+            // let bars = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=${size}&limit=500`).
+            // then(data => (data.data))
+            // // let open300 = await (bars.map(datum => (datum[1])))
+            // // let high300 = await (bars.map(datum => (datum[2])))
+            // // let low300 = await 
+         
+            // let close300 = await (bars.map(datum => (datum[4])))
+            // let close100 = [...close300]
+            // let close200 = [...close300]
+            // let close400 = [...close300]
+            // let close500 = [...close300]
+            // let stochClose = [...close300]
+            let volumepushx = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=${size}&limit=90`).
+            then(data => data.data).then(data => data.map(datum => (datum[5])))
+            let volumepush = [...volumepushx]
+            let volumepush1h = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=1h&limit=25`).
+            then(data => data.data).then(data => data.map(datum => (datum[5])))
+
+            let volumepush7d = [...volumepushx.slice(82, 89)]
+            let thisWeek = volumepush7d[6]
+            volumepush7d.pop()
+            let average = avg(volumepush7d)
+            const volumeChange7d = (Number(thisWeek) - average )/ average
+
+            let volumepush30d = [...volumepushx.slice(59, 89)]
+            let thirtieth = volumepush30d[29]
+            volumepush30d.pop()
+            let average30d = avg(volumepush30d)
+            const volumeChange30d = (Number(thirtieth) - average30d )/ average30d
+
+            let volumepush90d = [...volumepushx]
+            let ninetieth = volumepush90d[89]
+            volumepush90d.pop()
+            let average90d = avg(volumepush90d)
+            const volumeChange90d = (Number(ninetieth) - average90d)/ average90d
+
+            const volumeChange1h = (Number(volumepush1h[24]) - Number(volumepush1h[0])) / Number(volumepush1h[0])
+            
+
+            const volumeChange = (Number(volumepush[volumepush.length - 1]) - Number(volumepush[volumepush.length - 2])) / Number(volumepush[volumepush.length - 2])
+            
+            let v3 = volumepush.slice(19, 26)
+            return { name: eyo.symbol, v3: v3, volumeChange: Math.ceil(volumeChange*100), volumeChange1h: Math.ceil(volumeChange1h*100), volumeChange7d: Math.ceil(volumeChange7d*100), volumeChange30d: Math.ceil(volumeChange30d*100), volumeChange90d: Math.ceil(volumeChange90d*100), // pip100: close100,  v: volumepush,
+                total_volume: Math.ceil(Number(v3[v3.length -1]) )
+            }
+        })).catch(err => console.log(err))
+
+}
+
 
 async function mymap (candle, size){
     let finalArr = []
@@ -185,6 +277,11 @@ async function mymap (candle, size){
         let astochs6 = await stochastic.stochRSI(candle.astochClose, 6)
         let aK6 = await astochs6.k
         let aD6 = await astochs6.d
+
+        await finalArr.push({name:`${candle.name}`, desc:"fapp", volumeChange: candle.volumeChange,volumeChange1h: candle.volumeChange1h,
+        volumeChange7d:candle.volumeChange7d, volumeChange30d: candle.volumeChange30d, volumeChange90d:candle.volumeChange90d, total_volume:candle.total_volume
+    })
+
         if(bigTime.indexOf(size) !== -1){
             //crossing up from a given stoch
             if(xstochStrat(rK, rD, 15) && renkobars[1][0] == '+' ){
@@ -590,8 +687,20 @@ let found2 = async(size, volume, rs) => {
     } catch(e){
         console.log(e)
     }
-    
 
+    
+    let found4 = async(size, volume, rs) => {
+        try{
+         let arr = []
+         let candles = await find4(size, volume)
+         let r = await callCandles(mymap, candles, size)
+        // console.log(r)
+         return r
+        }catch(e){
+            console.log(e)
+         }
+        
+     }
     // return Promise.all(
     //         candles.map(async function(candle) {
     //             try {
@@ -658,5 +767,17 @@ module.exports.founnd2 = async(size, volume, rs) => {
         console.log(err)
     }
 }
+
+module.exports.founnd4 = async(size, volume, rs) => {
+    try {
+        console.log(2)
+        let a = await found4(size, volume, rs)
+        console.log(a)
+        return a
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 //https://forms.gle/hwuRPE7DSn6gR3nW6

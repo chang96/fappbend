@@ -450,7 +450,30 @@ let tfs = ['1d', '1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
     // setTimeout(getCandles, 1000 * 60 * 1.2, '30m', 100000, rsii)
+    function getCandlesx(size, volume, rs) {
+        console.log('i:' + i)
+        if(size == undefined || tfs[i] == undefined || i >= tfs.length){
+            size = '1m'
+            i = 0
+        }
+        let a = (async() => {
+            //let cema = await ccc()
+            let b = await ind.founnd1("1d", 100000, 30)
+            //console.log(tfs[i], size + '..................................................')
+                // let c = await save(b, `t${size}`)
+              //  console.log(size + '************************************************')
+              return b
+            })()
 
+            // console.log(a)
+            return a
+            // i++
+            // setTimeout(getCandles, 1000 * 60 * 1.5, tfs[i], 100000, rsii)
+            //getCandles(tfs[i], 100000, 24)
+        // setTimeout(function(){
+        //     return getCandles
+        // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
+    }
     
 // let dt = 1.5 //delay time
 //  function search1star(size, volume, rs) {
@@ -993,9 +1016,13 @@ app.get('/gettwo', function(req, res){
 })
 
 app.get("/getallwithvolume", async function (req, res){
-    const result = await f.f()
-    console.log(result.length)
-    res.send(result)
+    // const result = await f.f()
+    // console.log(result.length)
+    // res.send(result)
+    const res2 = await getCandlesx("1d", 100000, 30)
+    let b = await ind.founnd1("1d", 1000000, 30)
+
+    res.send(res2)
 })
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
