@@ -1021,7 +1021,7 @@ app.get("/getallwithvolume", async function (req, res){
         if (err) return err
         if (coin) {
           //  console.log(coin[t])
-            res.send((coin["1d"].filter(c=>  c.desc === "fapp" && c.name.match(rgx))))
+            res.send((coin["t1d"].filter(c=>  c.desc === "fapp" && c.name.match(rgx))))
         }
     })
 
