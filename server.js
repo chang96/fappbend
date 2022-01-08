@@ -449,7 +449,7 @@ let tfs = ['1d', '1m', '3m', '5m','1m', '3m', '5m', '15m','1m', '3m', '5m', '30m
         //     return getCandles
         // }, 1000 * 60 * 1.4, tfs[i], 100000, rsii)
     }
-    // setTimeout(getCandles, 1000 * 60 * 1.2, '30m', 100000, rsii)
+    setTimeout(getCandles, 1000 * 60 * 1.2, '30m', 100000, rsii)
     function getCandlesx(size, volume, rs) {
         console.log('i:' + i)
         if(size == undefined || tfs[i] == undefined || i >= tfs.length){
