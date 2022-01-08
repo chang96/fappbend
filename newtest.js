@@ -534,6 +534,16 @@ async function callCandles(fn, candles, size) {
 //   return Promise.all(finalAr).catch(e=> console.log(e))
 }
 
+
+function avg(arr){
+    const l = arr.length
+    const sum =  arr.reduce(function(a, b){
+        return Number(a)+Number(b)
+    }, 0)
+    const av = sum/l
+    return Math.ceil(av)
+}
+
 function getSome (arr, param, start, end, direction){
     if (direction === 'up'){
         return arr.reverse().slice(start, end).every(candle=> candle < param)
