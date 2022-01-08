@@ -87,20 +87,19 @@ let find1 = async(size, volume) => {
             // then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
             
-            let xbars = [...volumepush]
-            xbars.splice(0, 899)
+            let xbars =  [...volumepush].slice(volumepush.length-90, volumepush.length-1) 
             let volumepushx = [...xbars]
             // let volumepush = [...volumepushx]
             let volumepush1h = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=1h&limit=25`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
 
-            let volumepush7d = [...volumepushx.slice(82, 89)]
+            let volumepush7d = [...volumepush.slice(volumepush.length-7, volumepush.length-1)]
             let thisWeek = volumepush7d[6]
             volumepush7d.pop()
             let average = avg(volumepush7d)
             const volumeChange7d = (Number(thisWeek) - average )/ average
 
-            let volumepush30d = [...volumepushx.slice(59, 89)]
+            let volumepush30d = [...volumepush.slice(volumepush.length-30, volumepush.length-1)]
             let thirtieth = volumepush30d[29]
             volumepush30d.pop()
             let average30d = avg(volumepush30d)
