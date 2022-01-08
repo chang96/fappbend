@@ -278,10 +278,13 @@ async function mymap (candle, size){
         let aK6 = await astochs6.k
         let aD6 = await astochs6.d
 
-        await finalArr.push({name:`${candle.name}`, desc:"fapp", volumeChange: candle.volumeChange,volumeChange1h: candle.volumeChange1h,
-        volumeChange7d:candle.volumeChange7d, volumeChange30d: candle.volumeChange30d, volumeChange90d:candle.volumeChange90d, total_volume:candle.total_volume
-    })
-
+        if(size === "1d"){
+            await finalArr.push({name:`${candle.name}`, desc:"fapp", volumeChange: candle.volumeChange,volumeChange1h: candle.volumeChange1h,
+            volumeChange7d:candle.volumeChange7d, volumeChange30d: candle.volumeChange30d, volumeChange90d:candle.volumeChange90d, total_volume:candle.total_volume
+            })
+    
+        }
+     
         if(bigTime.indexOf(size) !== -1){
             //crossing up from a given stoch
             if(xstochStrat(rK, rD, 15) && renkobars[1][0] == '+' ){
