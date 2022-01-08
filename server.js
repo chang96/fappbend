@@ -1016,13 +1016,15 @@ app.get('/gettwo', function(req, res){
 })
 
 app.get("/getallwithvolume", async function (req, res){
-    // const result = await f.f()
-    // console.log(result.length)
-    // res.send(result)
-    const res2 = await getCandlesx("1d", 100000, 30)
-    let b = await ind.founnd1("1d", 1000000, 30)
+    let rgx = /USDT$/
+    bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
+        if (err) return err
+        if (coin) {
+          //  console.log(coin[t])
+            res.send((coin["1d"].filter(c=>  c.desc === "fapp" && c.name.match(rgx))))
+        }
+    })
 
-    res.send(res2)
 })
     // app.get('/store', function(req, res) {
     //     let a = (async() => {
