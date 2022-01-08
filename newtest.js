@@ -87,7 +87,7 @@ let find1 = async(size, volume) => {
             // then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
             
-            let xbars = [...bars]
+            let xbars = [...volumepush]
             xbars.splice(0, 899)
             let volumepushx = [...xbars]
             // let volumepush = [...volumepushx]
