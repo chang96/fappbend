@@ -87,26 +87,26 @@ let find1 = async(size, volume) => {
             // then(data => data.data).then(data => data.map(datum => (datum[5])))
             let v3 = volumepush.slice(19, 26)
             
-            let xbars =  [...volumepush].slice(volumepush.length-90, volumepush.length) 
+            let xbars =  [...volumepush].slice(volumepush.length-91, volumepush.length) 
             let volumepushx = [...xbars]
             // let volumepush = [...volumepushx]
             let volumepush1h = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=1h&limit=24`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
 
-            let volumepush7d = [...volumepush.slice(volumepush.length-7, volumepush.length)]
-            let thisWeek = volumepush7d[6]
+            let volumepush7d = [...volumepush.slice(volumepush.length-8, volumepush.length)]
+            let thisWeek = volumepush7d[7]
             volumepush7d.pop()
             let average = avg(volumepush7d)
             const volumeChange7d = (Number(thisWeek) - average )/ average
 
-            let volumepush30d = [...volumepush.slice(volumepush.length-30, volumepush.length)]
-            let thirtieth = volumepush30d[29]
+            let volumepush30d = [...volumepush.slice(volumepush.length-31, volumepush.length)]
+            let thirtieth = volumepush30d[30]
             volumepush30d.pop()
             let average30d = avg(volumepush30d)
             const volumeChange30d = (Number(thirtieth) - average30d )/ average30d
 
             let volumepush90d = [...volumepushx]
-            let ninetieth = volumepush90d[89]
+            let ninetieth = volumepush90d[90]
             volumepush90d.pop()
             let average90d = avg(volumepush90d)
             const volumeChange90d = (Number(ninetieth) - average90d)/ average90d
