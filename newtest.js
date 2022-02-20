@@ -167,20 +167,20 @@ let find4 = async(size, volume) => {
     // console.log(eyoarr)
     return Promise.all(
         eyoarr.map(async function(eyo) {
-            // let bars = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=${size}&limit=500`).
-            // then(data => (data.data))
+            let bars = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=${size}&limit=1000`).
+            then(data => (data.data))
             // // let open300 = await (bars.map(datum => (datum[1])))
             // // let high300 = await (bars.map(datum => (datum[2])))
             // // let low300 = await 
          
-            // let close300 = await (bars.map(datum => (datum[4])))
-            // let close100 = [...close300]
-            // let close200 = [...close300]
-            // let close400 = [...close300]
-            // let close500 = [...close300]
-            // let stochClose = [...close300]
-            let volumepushx = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=${size}&limit=90`).
-            then(data => data.data).then(data => data.map(datum => (datum[5])))
+            let close300 = await (bars.map(datum => (datum[4])))
+            let close100 = [...close300]
+            let close200 = [...close300]
+            let close400 = [...close300]
+            let close500 = [...close300]
+            let stochClose = [...close300]
+            let xx = [...bars].slice(bars.length - 90, bars.length )
+            let volumepushx = await xx.map(datum => (datum[5]))
             let volumepush = [...volumepushx]
             let volumepush1h = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${eyo.symbol}&interval=1h&limit=25`).
             then(data => data.data).then(data => data.map(datum => (datum[5])))
@@ -209,8 +209,10 @@ let find4 = async(size, volume) => {
             const volumeChange = (Number(volumepush[volumepush.length - 1]) - Number(volumepush[volumepush.length - 2])) / Number(volumepush[volumepush.length - 2])
             
             let v3 = volumepush.slice(19, 26)
+            let em200 = await ema.see(200, 200, close100)
+            let b = await myrsi.rsi(close200, 20)
             return { name: eyo.symbol, v3: v3, volumeChange: Math.ceil(volumeChange*100), volumeChange1h: Math.ceil(volumeChange1h*100), volumeChange7d: Math.ceil(volumeChange7d*100), volumeChange30d: Math.ceil(volumeChange30d*100), volumeChange90d: Math.ceil(volumeChange90d*100), // pip100: close100,  v: volumepush,
-                total_volume: Math.ceil(Number(v3[v3.length -1]) )
+                total_volume: Math.ceil(Number(v3[v3.length -1]) ), ema: em200.ema, rsi: b.reverse()[0], p:stochClose.reverse()[0]
             }
         })).catch(err => console.log(err))
 
