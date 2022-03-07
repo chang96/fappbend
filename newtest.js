@@ -290,7 +290,8 @@ async function mymap (candle, size){
 
         if(size === "1d"){
             await finalArr.push({name:`${candle.name}`, desc:"fapp", volumeChange: candle.volumeChange,volumeChange1h: candle.volumeChange1h,
-            volumeChange7d:candle.volumeChange7d, volumeChange30d: candle.volumeChange30d, volumeChange90d:candle.volumeChange90d, total_volume:candle.total_volume, rsi:candle.rsi, price: candle.p, ema:candle.ema
+            volumeChange7d:candle.volumeChange7d, volumeChange30d: candle.volumeChange30d, volumeChange90d:candle.volumeChange90d, total_volume:candle.total_volume, rsi:candle.rsi, price: candle.p, ema:candle.ema,
+            ema20:candle.ema20, em100:candle.em100, histogram: candle.histogram, histogramVal:candle.histogramVal
             })
     
         }
