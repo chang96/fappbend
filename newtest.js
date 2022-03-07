@@ -760,9 +760,9 @@ let found2 = async(size, volume, rs) => {
 
 module.exports.founnd = async(size, volume, rs, eyoar) => {
     try {
-        console.log(2)
+        // console.log(2)
         let a = await found(size, volume, rs, eyoar)
-        console.log(a)
+        // console.log(a)
         return a
     } catch (err) {
         console.log(err)
@@ -771,9 +771,9 @@ module.exports.founnd = async(size, volume, rs, eyoar) => {
 
 module.exports.founnd1 = async(size, volume, rs) => {
     try {
-        console.log(2)
+        // console.log(2)
         let a = await found1(size, volume, rs)
-        console.log(a)
+        // console.log(a)
         return a
     } catch (err) {
         console.log(err)
@@ -782,9 +782,9 @@ module.exports.founnd1 = async(size, volume, rs) => {
 
 module.exports.founnd2 = async(size, volume, rs) => {
     try {
-        console.log(2)
+        // console.log(2)
         let a = await found2(size, volume, rs)
-        console.log(a)
+        // console.log(a)
         return a
     } catch (err) {
         console.log(err)
@@ -793,9 +793,9 @@ module.exports.founnd2 = async(size, volume, rs) => {
 
 module.exports.founnd4 = async(size, volume, rs) => {
     try {
-        console.log(2)
+        // console.log(2)
         let a = await found4(size, volume, rs)
-        console.log(a)
+        // console.log(a)
         return a
     } catch (err) {
         console.log(err)

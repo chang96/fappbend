@@ -21,7 +21,7 @@ async function renkobars(f){
     }
     const period = 14
     let price = fff[fff.length -1].close
-    console.log(price)
+    // console.log(price)
 const result = renko(Object.assign({}, np(), {period: period, useATR:true}))
 for(let i = 0; i<result.close.length; i++){
     //console.log(close[2][i +1])

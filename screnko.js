@@ -30,7 +30,7 @@ async function renkobars(f){
     if(price <= 0.01){
         let zeros  =  price.split('').length
         let myatr = 1/Math.pow(10, zeros-2)
-        console.log(myatr, zeros, price)
+        // console.log(myatr, zeros, price)
        // var result = renko(Object.assign({}, np(), {brickSize : myatr, useATR : false }))
         var result = renko(Object.assign({}, np(), {period: period, useATR:true}))
     } else {
