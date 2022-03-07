@@ -210,9 +210,18 @@ let find4 = async(size, volume) => {
             
             let v3 = volumepush.slice(19, 26)
             let em200 = await ema.see(200, 200, close100)
+            let em20 = await ema.see(20, 20, [...close200])
+            let em100 = await ema.see(100, 100, [...close200])
+            let hist = await mymacd.histogram([...close200], [...close200])
+            let histogram = hist.histogram
+            
+            let histpos = histogram.reverse()[0] > 0? true : false
+            let histVal = histogram[0]
             let b = await myrsi.rsi(close200, 20)
+
             return { name: eyo.symbol, v3: v3, volumeChange: Math.ceil(volumeChange*100), volumeChange1h: Math.ceil(volumeChange1h*100), volumeChange7d: Math.ceil(volumeChange7d*100), volumeChange30d: Math.ceil(volumeChange30d*100), volumeChange90d: Math.ceil(volumeChange90d*100), // pip100: close100,  v: volumepush,
-                total_volume: Math.ceil(Number(v3[v3.length -1]) ), ema: em200.ema, rsi: b.reverse()[0], p:stochClose.reverse()[0]
+                total_volume: Math.ceil(Number(v3[v3.length -1]) ), ema: em200.ema, rsi: b.reverse()[0], p:stochClose.reverse()[0],ema20:em20.ema,
+                em100:em100.ema, histogram: histpos, histogramVal:histVal
             }
         })).catch(err => console.log(err))
 
