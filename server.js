@@ -1017,7 +1017,7 @@ app.get('/gettwo', function(req, res){
 
 app.get("/getallwithvolume", async function (req, res){
     let rgx = /USDT$/
-    let t = req.query.tf || '1d'
+    let t = req.query.tf || 't1d'
     bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
         if (err) return err
         if (coin) {
