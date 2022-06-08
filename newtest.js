@@ -68,6 +68,9 @@ let find1 = async(size, volume) => {
         eyoarr.map(async function(eyo) {
             let bars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo.symbol}&interval=${size}&limit=1000`).
             then(data => (data.data))
+            let weekBars = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${eyo.symbol}&interval=${size}&limit=1000`).
+            then(data => (data.data))
+            let weeklyClose = weekBars.map(datum => (datum[4]))
             let forHa = [...bars]
             let ashi = await ha.HeikinAshi(forHa)
             let aclose300 =await (ashi.map(datum => (datum[3])))
@@ -124,11 +127,24 @@ let find1 = async(size, volume) => {
             
             let histpos = histogram.reverse()[0] > 0? true : false
             let histVal = histogram[0]
+
+            let wem20 = await ema.see(20, 20, [...weeklyClose])
+            let wb = await myrsi.rsi([...weeklyClose], 20)
+            let wem50 = await ema.see(50, 50, [...weeklyClose])
+            let wem100 = await ema.see(100, 100, [...weeklyClose])
+            let whist = await mymacd.histogram([...weeklyClose], [...weeklyClose])
+            let whistogram = whist.histogram
+            
+            let whistpos = whistogram.reverse()[0] > 0? true : false
+            let whistVal = whistogram[0]
+
+
             return { name: eyo.symbol, pip100: close100, pip200: close200, pip: close400, v: volumepush, v3: v3, pip500: close500, stochClose: stochClose, forrenko:bars,
                 apip100: aclose100, apip200: aclose200, apip: aclose400, apip500: aclose500, astochClose: astochClose,qv: qv, 
                 volumeChange: Math.ceil(volumeChange*100), volumeChange1h: Math.ceil(volumeChange1h*100), volumeChange7d: Math.ceil(volumeChange7d*100), volumeChange30d: Math.ceil(volumeChange30d*100), volumeChange90d: Math.ceil(volumeChange90d*100), // pip100: close100,  v: volumepush,
                 total_volume: Math.ceil(Number(v3[v3.length -1]) ), ema20: em20.ema, rsi: b.reverse()[0], p:stochClose.reverse()[0],ema50:em50.ema,
-                em100:em100.ema, histogram: histpos, histogramVal:histVal
+                em100:em100.ema, histogram: histpos, histogramVal:histVal, wema20: wem20.ema, wrsi: wb.reverse()[0],wema50:wem50.ema,
+                wem100:wem100.ema, whistogram: whistpos, whistogramVal:whistVal, 
             }
         })).catch(err => console.log(err))
 
@@ -212,7 +228,7 @@ let find4 = async(size, volume) => {
             const volumeChange90d = (Number(ninetieth) - average90d)/ average90d
 
             const volumeChange1h = (Number(volumepush1h[24]) - Number(volumepush1h[0])) / Number(volumepush1h[0])
-            
+             
 
             const volumeChange = (Number(volumepush[volumepush.length - 1]) - Number(volumepush[volumepush.length - 2])) / Number(volumepush[volumepush.length - 2])
             
@@ -292,7 +308,9 @@ async function mymap (candle, size){
         if(size === "1d"){
             await finalArr.push({name:`${candle.name}`, desc:"fapp", volumeChange: candle.volumeChange,volumeChange1h: candle.volumeChange1h,
             volumeChange7d:candle.volumeChange7d, volumeChange30d: candle.volumeChange30d, volumeChange90d:candle.volumeChange90d, total_volume:candle.total_volume, rsi:candle.rsi, price: candle.p, ema50:candle.ema50,
-            ema20:candle.ema20, em100:candle.em100, histogram: candle.histogram, histogramVal:candle.histogramVal
+            ema20:candle.ema20, em100:candle.em100, histogram: candle.histogram, histogramVal:candle.histogramVal,  ema50:candle.ema50,
+            ema20:candle.ema20, em100:candle.em100, histogram: candle.histogram, histogramVal:candle.histogramVal,
+
             })
     
         }
