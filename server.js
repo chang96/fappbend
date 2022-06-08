@@ -1017,11 +1017,12 @@ app.get('/gettwo', function(req, res){
 
 app.get("/getallwithvolume", async function (req, res){
     let rgx = /USDT$/
+    let t = req.query.tf
     bigcoin.findOne({ 'mymyid': 'bigcoin' }, (err, coin) => {
         if (err) return err
         if (coin) {
           //  console.log(coin[t])
-            res.send((coin["t1d"].filter(c=>  c.desc === "fapp" && c.name.match(rgx))))
+            res.send((coin[t].filter(c=>  c.desc === "fapp" && c.name.match(rgx))))
         }
     })
 
